@@ -23,4 +23,34 @@ export default tseslint.config(
   {
     languageOptions: { globals: { ...globals.node } },
   },
+  // Shared packages run on Hermes (React Native) and in browsers: no Node built-ins or Node-only globals.
+  {
+    files: ['packages/*/src/**/*.{ts,tsx,js,mjs}'],
+    rules: {
+      'no-restricted-imports': [
+        'error',
+        {
+          patterns: [{ group: ['node:*'], message: 'Node built-ins are not available on Hermes.' }],
+          paths: ['fs', 'path', 'vm', 'os', 'module', 'crypto', 'child_process', 'url'].map(
+            (name) => ({
+              name,
+              message: 'Node built-ins are not available on Hermes.',
+            }),
+          ),
+        },
+      ],
+      'no-restricted-globals': [
+        'error',
+        ...[
+          'process',
+          'Buffer',
+          'require',
+          '__dirname',
+          '__filename',
+          'global',
+          'structuredClone',
+        ].map((name) => ({ name, message: `${name} is not available on Hermes.` })),
+      ],
+    },
+  },
 );
