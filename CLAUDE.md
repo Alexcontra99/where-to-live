@@ -14,7 +14,8 @@
 - Detalle y flujo: `docs/notas/concepto.md`.
 
 ## Principios del producto
-- **Filtros neutrales**: el usuario elige qué quiere cerca o lejos y a qué distancia. La app no etiqueta barrios ni colectivos ni trae filtros predefinidos por religión, origen o servicios sociales.
+- **Filtros**: el usuario elige qué quiere cerca o lejos y a qué distancia.
+- **Etiquetas de barrio** (Ale, 2026-10-10): la app sí puede etiquetar barrios (p. ej. seguridad), siempre con dato oficial o valoraciones verificadas y la fuente visible. No etiqueta colectivos ni trae filtros por religión, origen o servicios sociales.
 - Lo personal de Ale (`Proyectos/cambio_piso/`) no se copia a la app.
 - Datos reales y verificables (horarios oficiales, mapas oficiales de ruido, alquiler publicado), con fuente visible.
 - Solo lugares que existen y están reconocidos (edificios y puntos de una fuente de datos); nunca suposiciones, como dónde se vende droga — Ale, 2026-10-04.
