@@ -1,0 +1,90 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Where to Live · Luxembourg</title>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.9.4/leaflet.min.css">
+<link rel="stylesheet" href="style.css">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.9.4/leaflet.min.js"></script>
+<script src="data/grid.js"></script>
+<script src="data/areas.js"></script>
+<script src="data/pois.js"></script>
+<script src="data/transit.js"></script>
+</head>
+<body>
+<div id="map"></div>
+
+<aside id="panel" class="open">
+  <button id="toggle" aria-label="Show or hide filters">Filters</button>
+  <nav class="tabs"><button data-tab="search" class="on">Search</button><button data-tab="sources">Sources</button></nav>
+  <div class="scroll" id="tab-search">
+    <header>
+      <h1>Where to live</h1>
+      <p class="sub">Luxembourg · prototype</p>
+      <button id="example" class="ghost">Load an example</button>
+    </header>
+
+    <section>
+      <h2>Commute</h2>
+      <div id="people"></div>
+      <button id="addPerson" class="ghost">+ Add a second person</button>
+      <label class="row">Arrive around
+        <select id="arrive">
+          <option value="7.5">7:30</option><option value="8" >8:00</option>
+          <option value="8.5" selected>8:30</option><option value="9">9:00</option>
+        </select>
+      </label>
+    </section>
+
+    <section>
+      <h2>Rent</h2>
+      <label class="row">Flat size (m²)<input id="size" type="number" min="10" step="5" placeholder="e.g. 60"></label>
+      <label class="row">Budget per month (€, optional)<input id="budget" type="number" min="0" step="50" placeholder="e.g. 2000"></label>
+    </section>
+
+    <section>
+      <h2>Noise</h2>
+      <div id="noise"></div>
+    </section>
+
+    <section>
+      <h2>Near or far from</h2>
+      <div id="cats"></div>
+    </section>
+
+    <section>
+      <h2>My places</h2>
+      <div id="places"></div>
+      <button id="addPlace" class="ghost">+ Add a place</button>
+    </section>
+
+    <section id="results">
+      <h2>Results</h2>
+      <div id="summary"></div>
+    </section>
+  </div>
+
+  <div class="scroll" id="tab-sources" hidden>
+    <h2>Sources</h2>
+    <ul class="sources">
+      <li>Public transport timetables — Administration des transports publics (CC BY)</li>
+      <li>Rents — Observatoire de l'Habitat (CC0)</li>
+      <li>Noise — Administration de l'environnement: roads and rail 2021, airport 2023 (CC0)</li>
+      <li>Districts — Ville de Luxembourg (CC BY)</li>
+      <li>Communes, terrain and base map — ACT (CC0)</li>
+      <li>Places — © OpenStreetMap contributors (ODbL); Overture Maps Foundation (CDLA-Permissive-2.0; includes Meta, Microsoft, Foursquare Apache-2.0, AllThePlaces CC0)</li>
+      <li>Childcare — structures d'éducation et d'accueil 2021, Ministère de l'Éducation nationale (CC0)</li>
+      <li>Bike stations — Vel'oh! – JCDecaux</li>
+      <li>Address search — geoportail.lu</li>
+    </ul>
+    <h2>Privacy</h2>
+    <p class="hint">Nothing you enter is stored or sent to us. Address searches go to geoportail.lu. Prototype: results are estimates.</p>
+  </div>
+</aside>
+
+<div id="pickHint" hidden>Tap the map to set the location <button id="cancelPick" class="ghost">Cancel</button></div>
+<div id="busy" hidden>Calculating…</div>
+<script src="app.js"></script>
+</body>
+</html>

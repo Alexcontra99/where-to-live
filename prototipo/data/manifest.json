@@ -1,0 +1,199 @@
+{
+ "built": "2026-10-07",
+ "region": [
+  49.55,
+  6.03,
+  49.7,
+  6.28
+ ],
+ "step_km": 0.15,
+ "sources": {
+  "quartiers.geojson": {
+   "url": "https://maps.vdl.lu/arcgis/rest/services/OPENDATA/GEOJSON/FeatureServer/24/query?where=1%3D1&outFields=*&outSR=4326&f=geojson",
+   "last_modified": null,
+   "local": "~/.cache/nether_app/raw/quartiers.geojson",
+   "size": 339655,
+   "downloaded": "2026-10-06T20:22:21"
+  },
+  "communes.geojson": {
+   "url": "https://download.data.public.lu/resources/limites-administratives-du-grand-duche-de-luxembourg/20231123-101528/communes4326.geojson",
+   "last_modified": "2023-11-23T10:15:43.093000+00:00",
+   "local": "~/.cache/nether_app/raw/communes.geojson",
+   "size": 1040927,
+   "downloaded": "2026-10-06T20:22:21"
+  },
+  "loyers_quartiers.xlsx": {
+   "url": "https://download.data.public.lu/resources/loyers-annonces-des-logements-a-luxembourg-ville-par-quartier/20260924-085714/vdl-location-appartements-2025-26.xlsx",
+   "last_modified": "2026-09-24T08:57:28.381000+00:00",
+   "local": "~/.cache/nether_app/raw/loyers_quartiers.xlsx",
+   "size": 44453,
+   "downloaded": "2026-10-06T20:22:29"
+  },
+  "loyers_communes.xls": {
+   "url": "https://download.data.public.lu/resources/loyers-annonces-des-logements-par-commune/20260924-085311/location-appartement-2025-26.xls",
+   "last_modified": "2026-09-24T08:53:24.180000+00:00",
+   "local": "~/.cache/nether_app/raw/loyers_communes.xls",
+   "size": 75264,
+   "downloaded": "2026-10-06T20:22:21"
+  },
+  "agglo.gpkg": {
+   "url": "https://download.data.public.lu/resources/environmental-noise-strategic-noise-maps/20250724-133722/lu-agglomeration-2021-strategicnoisemaps.gpkg",
+   "last_modified": "2025-07-24T13:43:57.627000+00:00",
+   "local": "~/.cache/nether_app/raw/agglo.gpkg",
+   "size": 484069376,
+   "downloaded": "2026-10-06T20:21:36"
+  },
+  "airport.gpkg": {
+   "url": "https://download.data.public.lu/resources/environmental-noise-strategic-noise-maps/20250724-133721/lu-majorairports-2021-strategicnoisemaps.gpkg",
+   "last_modified": "2025-07-24T13:43:49.041000+00:00",
+   "local": "~/.cache/nether_app/raw/airport.gpkg",
+   "size": 212992,
+   "downloaded": "2026-10-06T20:23:13"
+  },
+  "majorroads.gpkg": {
+   "url": "https://download.data.public.lu/resources/environmental-noise-strategic-noise-maps/20250724-133726/lu-majorroads-2021-strategicnoisemaps.gpkg",
+   "last_modified": "2025-07-24T13:43:27.585000+00:00",
+   "local": "~/.cache/nether_app/raw/majorroads.gpkg",
+   "size": 309657600,
+   "downloaded": "2026-10-06T20:50:19"
+  },
+  "majorrailways.gpkg": {
+   "url": "https://download.data.public.lu/resources/environmental-noise-strategic-noise-maps/20250724-133723/lu-majorrailways-2021-strategicnoisemaps.gpkg",
+   "last_modified": "2025-07-24T13:43:37.541000+00:00",
+   "local": "~/.cache/nether_app/raw/majorrailways.gpkg",
+   "size": 60776448,
+   "downloaded": "2026-10-06T20:50:20"
+  },
+  "aggsource.gpkg": {
+   "url": "https://download.data.public.lu/resources/environmental-noise-report-on-all-major-roads-railways-airports-and-agglomerations-df1-and-df5/20250724-134505/agglomerationsource-2020-lu.gpkg",
+   "last_modified": "2025-07-24T13:45:55.644000+00:00",
+   "local": "~/.cache/nether_app/raw/aggsource.gpkg",
+   "size": 118784,
+   "downloaded": "2026-10-06T20:50:14"
+  },
+  "airport2023": {
+   "url": "https://download.data.public.lu/resources/environmental-noise-strategic-noise-maps/20250327-151652/strategic-noise-maps-2023-on-major-airport-documentation.zip",
+   "last_modified": "2025-03-27T15:17:19.266000+00:00",
+   "local": "~/.cache/nether_app/raw/airport2023/snm_MajorAirport_2023_Lden.shp",
+   "size": 14544,
+   "downloaded": "2025-03-14T16:43:38"
+  },
+  "mnt75": {
+   "url": "https://download.data.public.lu/resources/modele-numerique-de-terrain-75m/20160405-133110/mnt_75.zip",
+   "last_modified": "2016-04-05T13:31:19.128000+00:00",
+   "local": "~/.cache/nether_app/raw/mnt75/luxaltblh50",
+   "size": 16583400,
+   "downloaded": "1999-12-08T08:36:36"
+  },
+  "sea_2021": {
+   "url": "https://download.data.public.lu/resources/adresses-des-batiments-scolaires-2021/20230328-230303/adr-sea-2021.xlsx",
+   "last_modified": "2023-03-28T23:03:03+00:00",
+   "local": "~/.cache/nether_app/raw/sea_2021_geocoded.json",
+   "size": 109420,
+   "downloaded": "2026-10-07T08:51:56"
+  },
+  "overture_places": {
+   "url": "overturemaps download --bbox=6.00,49.52,6.33,49.73 -f geojson --type=place",
+   "last_modified": null,
+   "local": "~/.cache/nether_app/raw/overture_places.geojson",
+   "size": 14846047,
+   "downloaded": "2026-10-07T08:11:06",
+   "release": "2026-09-17",
+   "features": 11999
+  },
+  "gtfs": {
+   "url": "https://data.public.lu/en/datasets/horaires-et-arrets-des-transport-publics-gtfs/",
+   "valid_from": "20260930",
+   "valid_to": "20261212",
+   "modelled_day": "2026-10-13",
+   "stops": 820,
+   "connections": 50293,
+   "local": "~/.cache/nether_gtfs/stop_times.txt",
+   "size": 33047961,
+   "downloaded": "2026-10-02T23:43:04"
+  },
+  "veloh": {
+   "url": "https://api.cyclocity.fr/contracts/luxembourg/gbfs/v3/station_information.json"
+  }
+ },
+ "poi_counts": {
+  "supermarket": 89,
+  "pharmacy": 45,
+  "hospital": 6,
+  "doctor": 94,
+  "school": 145,
+  "nursery": 265,
+  "afterschool": 139,
+  "university": 6,
+  "park": 94,
+  "gym": 68,
+  "nightlife": 212,
+  "bikeshare": 146
+ },
+ "areas": {
+  "n": 123,
+  "with_rent": 60,
+  "L": {
+   "Beggen": 0.824,
+   "Belair": 1.028,
+   "Bonnevoie-Nord / Verlorenkost": 0.97,
+   "Bonnevoie-Sud": 0.97,
+   "Cents": 0.815,
+   "Cessange": 0.979,
+   "Clausen": 1.098,
+   "Dommeldange": 1.169,
+   "Eich": 1.062,
+   "Gare": 1.289,
+   "Gasperich": 0.938,
+   "Grund": 1.077,
+   "Hamm": 1.297,
+   "Hollerich": 0.969,
+   "Kirchberg": 1.312,
+   "Merl": 1.036,
+   "Muhlenbach": 0.846,
+   "Neudorf / Weimershof": 0.907,
+   "Pfaffenthal": 0.889,
+   "Pulvermuhl": 0.97,
+   "Rollingergrund / Belair-Nord": 0.888,
+   "Weimerskirch": 1.162,
+   "Ville Haute": 1.123,
+   "Limpertsberg": 1.173,
+   "Kopstal": 0.995,
+   "Mersch": 0.818,
+   "Esch-sur-Sûre": 0.806,
+   "Diekirch": 0.755,
+   "Kehlen": 0.994,
+   "Esch-sur-Alzette": 0.806,
+   "Steinsel": 0.979,
+   "Junglinster": 0.905,
+   "Roeser": 0.732,
+   "Niederanven": 0.75,
+   "Reckange-sur-Mess": 0.649,
+   "Remich": 0.811,
+   "Ettelbruck": 0.756,
+   "Mertert": 0.83,
+   "Mondercange": 0.904,
+   "Mondorf-les-Bains": 0.822,
+   "Frisange": 0.857,
+   "Kayl": 0.816,
+   "Hesperange": 0.974,
+   "Contern": 1.008,
+   "Sanem": 0.855,
+   "Käerjeng": 0.751,
+   "Lorentzweiler": 1.066,
+   "Dudelange": 0.833,
+   "Schifflange": 0.725,
+   "Leudelange": 0.81,
+   "Clervaux": 0.659,
+   "Steinfort": 0.915,
+   "Bertrange": 0.923,
+   "Strassen": 1.008,
+   "Walferdange": 0.864,
+   "Differdange": 0.687,
+   "Bettembourg": 0.77,
+   "Weiswampach": 0.674,
+   "Mamer": 0.824,
+   "Pétange": 0.838
+  }
+ }
+}
