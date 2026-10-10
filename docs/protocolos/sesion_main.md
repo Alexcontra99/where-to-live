@@ -1,6 +1,6 @@
 # Sesión Main — construcción
 
-> Chat que construye y publica. Arranque tras `/clear`: skill `/app-main`. El otro chat: `protocolos/sesion_secundaria.md`.
+> Chat que construye y publica. Arranque tras `/clear`: skill `/app-main`. El otro chat: `docs/protocolos/sesion_secundaria.md`.
 > Rutas relativas a `Proyectos/app_donde_vivir/`.
 
 ## Qué es tuyo
@@ -13,17 +13,17 @@
 1. Lee `estado.md` y `aprendizajes.md` del proyecto. El `CLAUDE.md` del proyecto se carga solo al leerlos.
 2. En `estado.md`, primero "Encargos entre sesiones" abiertos para Main y después "Próximo paso → Main".
 3. Solo si la tarea lo pide:
-   - producto → `notas/concepto.md`;
+   - producto → `docs/notas/concepto.md`;
    - lógica de la app → `prototipo/README.md`;
-   - datos → la sección que toque de `notas/calidad_datos.md` (es largo: no lo leas entero).
+   - datos → la sección que toque de `docs/notas/calidad_datos.md` (es largo: no lo leas entero).
 
 ## Durante
 - Comprueba en el navegador cada cambio visible antes de darlo por hecho (entorno y comandos en `CLAUDE.md` → "Entorno").
 - Números (trayectos, alquiler, distancias): siempre calculados con datos, nunca de cabeza.
-- Para cambiar datos o parámetros validados, necesitas una especificación de Secundaria en `notas/calidad_datos.md`.
+- Para cambiar datos o parámetros validados, necesitas una especificación de Secundaria en `docs/notas/calidad_datos.md`.
 - Para encargar algo a Secundaria, añade una fila en "Encargos entre sesiones". Si su chat está abierto (`ListAgents`; suele llamarse "Secondary - Where to Live?"), avísale además con `SendMessage`.
 
 ## Al cerrar (`/cierre`)
-- Log: bloque "## Main" en `sesiones/YYYY-MM-DD.md`.
+- Log: bloque "## Main" en `docs/sesiones/YYYY-MM-DD.md`.
 - `estado.md`: tu subsección "Próximo paso → Main", los encargos cerrados o nuevos y los hitos.
 - Si cambió la lógica de la app: `prototipo/README.md`.

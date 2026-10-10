@@ -1,0 +1,7 @@
+numpy
+shapely>=2
+pyproj
+openpyxl
+xlrd
+pyshp
+overturemaps

@@ -3,7 +3,7 @@
 
 Uso:  $PY prototipo/build/check_updates.py
 Sale con 0 si no hay nada que actualizar y con 2 si hay novedades.
-Protocolo: protocolos/actualizacion_datos.md (sesión de datos).
+Protocolo: docs/protocolos/actualizacion_datos.md (sesión de datos).
 """
 import datetime, glob, json, os, re, subprocess, sys
 
@@ -120,7 +120,7 @@ def main():
     for label, slug in WATCH.items():
         ds = dataset(slug)
         last = d((ds or {}).get('last_modified'))
-        known = '2026-09-24'   # versión usada para t = 1,04 (ver notas/fuentes_datos.md, "Versiones en uso")
+        known = '2026-09-24'   # versión usada para t = 1,04 (ver docs/notas/fuentes_datos.md, "Versiones en uso")
         add(label, 'ACTUALIZAR' if last > known else 'ok', f'última publicación {last} (en uso {known})')
 
     for label, q in SEARCH.items():

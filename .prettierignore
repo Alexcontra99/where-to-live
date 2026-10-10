@@ -1,0 +1,6 @@
+prototipo/
+docs/
+*.md
+pnpm-lock.yaml
+packages/data-lux/data/
+apps/web/public/demo/

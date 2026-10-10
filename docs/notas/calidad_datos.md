@@ -4,7 +4,7 @@ proyecto: app_donde_vivir
 fecha: 2026-10-06
 ---
 # Calidad de los datos del v0
-> Lo lleva la sesión de datos (`CLAUDE.md`, "Reparto"). Fuentes y licencias: `notas/fuentes_datos.md`.
+> Lo lleva la sesión de datos (`CLAUDE.md`, "Reparto"). Fuentes y licencias: `docs/notas/fuentes_datos.md`.
 > Por criterio: fuente, cómo la usa el prototipo, exactitud medida, huecos, alternativas, recomendación y esfuerzo.
 > Zona del prototipo (REGION): 49,55-49,70 N / 6,03-6,28 E = 301 km², rejilla de 150 m.
 

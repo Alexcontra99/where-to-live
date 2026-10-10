@@ -11,7 +11,7 @@
 - Ayudar a cualquiera que llega, se mueve o se va de una ciudad a saber **dónde buscar para vivir**, con una visión real.
 - El usuario define lo que busca (piso, must y desired) y lo combina con: trayectos al trabajo o al colegio de los hijos, servicios (colegios, universidades, supermercados, parques…), ruido (aviones, trenes, avenidas), alquiler por barrio y distancia a lo que él elija.
 - IA que acota y, si no sale nada, explica qué lo limita (x, y, z) y propone qué parámetros cambiar.
-- Detalle y flujo: `notas/concepto.md`.
+- Detalle y flujo: `docs/notas/concepto.md`.
 
 ## Principios del producto
 - **Filtros neutrales**: el usuario elige qué quiere cerca o lejos y a qué distancia. La app no etiqueta barrios ni colectivos ni trae filtros predefinidos por religión, origen o servicios sociales.
@@ -27,10 +27,10 @@
 - Claude: construye (código, datos, mapas), investiga (competencia, fuentes, licencias) y propone.
 - Ale: decide, prueba y consigue usuarios.
 - Dos chats a la vez (Ale, 2026-10-06):
-  - **Main** construye y publica: `protocolos/sesion_main.md`, skill `/app-main`. Manda en el reparto.
-  - **Secundaria** se ocupa de datos e investigación: `protocolos/sesion_secundaria.md`, skill `/app-secundaria`.
+  - **Main** construye y publica: `docs/protocolos/sesion_main.md`, skill `/app-main`. Manda en el reparto.
+  - **Secundaria** se ocupa de datos e investigación: `docs/protocolos/sesion_secundaria.md`, skill `/app-secundaria`.
   - Qué archivos son de cada uno: en su protocolo.
-  - Archivos compartidos (`estado.md`, `notas/concepto.md`, logs): solo cambios pequeños, releyendo justo antes. Cada chat tiene su sección en `estado.md` y su bloque en el log. Los encargos entre chats van a `estado.md` → "Encargos entre sesiones".
+  - Archivos compartidos (`estado.md`, `docs/notas/concepto.md`, logs): solo cambios pequeños, releyendo justo antes. Cada chat tiene su sección en `estado.md` y su bloque en el log. Los encargos entre chats van a `estado.md` → "Encargos entre sesiones".
 - Si solo hay un chat, hace los dos roles.
 - Si el chat arranca sin skill ("seguimos con la app"), pregunta en una línea: ¿Main o Secundaria? Recomienda Main si `ListAgents` no muestra otro chat de la app abierto.
 - Frontera (Francia, Bélgica, Alemania): después del v0 (Ale, 2026-10-06).
@@ -46,7 +46,7 @@
 
 ## Cómo trabajar
 - Para gustos y decisiones de producto, dale a Ale opciones para marcar; no las elijas por él (`_sistema/memoria.md`).
-- Cada fuente de datos se apunta con su licencia en `notas/fuentes_datos.md`; solo licencias que permitan uso comercial o con condiciones claras (p. ej. atribución de OpenStreetMap).
+- Cada fuente de datos se apunta con su licencia en `docs/notas/fuentes_datos.md`; solo licencias que permitan uso comercial o con condiciones claras (p. ej. atribución de OpenStreetMap).
 - Trayectos y tiempos: siempre calculados con datos reales, nunca de cabeza.
 - Prototipo primero: lo mínimo que se pueda enseñar a un usuario.
 
@@ -57,30 +57,30 @@
 ## Qué leer según la tarea
 | Tarea | Lee (además de este archivo) |
 |---|---|
-| Cualquier sesión | `estado.md`, `aprendizajes.md` y el protocolo de tu rol (`protocolos/sesion_main.md` o `protocolos/sesion_secundaria.md`) |
-| Producto, funciones, flujo | `notas/concepto.md` |
+| Cualquier sesión | `estado.md`, `aprendizajes.md` y el protocolo de tu rol (`docs/protocolos/sesion_main.md` o `docs/protocolos/sesion_secundaria.md`) |
+| Producto, funciones, flujo | `docs/notas/concepto.md` |
 | Lógica de la app (cómo calcula) | `prototipo/README.md` |
-| Fuentes y licencias | `notas/fuentes_datos.md` |
-| Exactitud de un dato (validaciones y márgenes) | `notas/calidad_datos.md`, solo la sección que toque |
-| Actualización mensual de datos | `protocolos/actualizacion_datos.md` |
-| Competencia y mercado | `notas/competencia.md` |
+| Fuentes y licencias | `docs/notas/fuentes_datos.md` |
+| Exactitud de un dato (validaciones y márgenes) | `docs/notas/calidad_datos.md`, solo la sección que toque |
+| Actualización mensual de datos | `docs/protocolos/actualizacion_datos.md` |
+| Competencia y mercado | `docs/notas/competencia.md` |
 | Pruebas con usuarios | `usuarios/` |
 
 ## Dónde se escribe cada cosa
 | Qué | Dónde |
 |---|---|
-| Concepto, funciones, flujo | `notas/concepto.md` |
-| Fuentes de datos y licencias | `notas/fuentes_datos.md` |
-| Competencia | `notas/competencia.md` |
+| Concepto, funciones, flujo | `docs/notas/concepto.md` |
+| Fuentes de datos y licencias | `docs/notas/fuentes_datos.md` |
+| Competencia | `docs/notas/competencia.md` |
 | Código y datos del prototipo | `prototipo/` |
 | Feedback de usuarios de prueba (sin nombres ni datos personales) | `usuarios/YYYY-MM-DD_<perfil>.md` |
 | Material original | `material/YYYY-MM-DD_<descripcion>.<ext>` (no se edita) |
-| Log de sesiones | `sesiones/YYYY-MM-DD.md` |
+| Log de sesiones | `docs/sesiones/YYYY-MM-DD.md` |
 | Situación vigente y pendientes | `estado.md` |
 | Qué funciona con Ale | `aprendizajes.md` |
 
 ## Cierre
-- `protocolos/cierre.md`
+- `docs/protocolos/cierre.md`
 
 ## No hacer
 - No publicar nada (web, redes, tiendas de apps) ni contactar con usuarios o empresas sin OK explícito de Ale.

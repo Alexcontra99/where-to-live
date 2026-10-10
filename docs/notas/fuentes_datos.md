@@ -14,21 +14,21 @@ fecha: 2026-10-06
 | Pendientes | Modèle numérique de terrain 75 m (ACT); el zip incluye un modelo de 4 m de la ciudad | CC0 | ESRI ASCII / XYZ (18,7 MB) | Integrado el 2026-10-07: subida neta a pie (0,07 min/m) y en bici (0,10). El LiDAR 2019 (27 GB) no hace falta. |
 | Ruido aviones | Mapas estratégicos de ruido 2021, aeropuerto (Administration de l'environnement) | CC0 | GeoPackage | Contornos Lden 55-59, 60-64, 65-69, 70-74, ≥ 75 dB y Lnight. Oficiales, mejor que el corredor aproximado de `cambio_piso`. |
 | Ruido trenes | Mapas estratégicos de ruido 2021, ferrocarril | CC0 | GeoPackage (61 MB) | Grandes líneas y ferrocarril en la aglomeración. |
-| Ruido aviones 2023 | Mapa estratégico intermedio del aeropuerto, tráfico 2023 (Administration de l'environnement; estudio de Acoustic Technologies, febrero de 2025), dentro del zip "Strategic noise maps 2023 on major airport – Documentation" | CC0 | Shapefile (Lden y Lnight) | Sustituye al de 2021 (tráfico de 2023 y método corregido). El `.prj` dice Web Mercator, pero las coordenadas son EPSG:2169. Banda en `LEVEL_1`. Ver `notas/calidad_datos.md`. |
-| Ruido carreteras | Mapas estratégicos de ruido 2021, grandes carreteras y aglomeración | CC0 | GeoPackage (310 y 484 MB) | Incluye las avenidas principales de la ciudad. La aglomeración (10 municipios) cubre solo el 66 % de la zona del prototipo: ver `notas/calidad_datos.md`. |
+| Ruido aviones 2023 | Mapa estratégico intermedio del aeropuerto, tráfico 2023 (Administration de l'environnement; estudio de Acoustic Technologies, febrero de 2025), dentro del zip "Strategic noise maps 2023 on major airport – Documentation" | CC0 | Shapefile (Lden y Lnight) | Sustituye al de 2021 (tráfico de 2023 y método corregido). El `.prj` dice Web Mercator, pero las coordenadas son EPSG:2169. Banda en `LEVEL_1`. Ver `docs/notas/calidad_datos.md`. |
+| Ruido carreteras | Mapas estratégicos de ruido 2021, grandes carreteras y aglomeración | CC0 | GeoPackage (310 y 484 MB) | Incluye las avenidas principales de la ciudad. La aglomeración (10 municipios) cubre solo el 66 % de la zona del prototipo: ver `docs/notas/calidad_datos.md`. |
 | Ruido: zona cartografiada | Aglomeraciones de la directiva de ruido (DF1_5), AggloLux y AggloSud | CC0 | GeoPackage (118 KB) | Para marcar cada celda como cartografiada o no. |
-| Alquiler | Alquileres anunciados por barrio (Ciudad) y por municipio (país), Observatoire de l'Habitat | CC0 | Excel | Últimos 12 meses, actualizado cada trimestre. Precio medio por m² sesgado al alza por estudios pequeños: usar solo como índice de ubicación (modelo en `notas/calidad_datos.md`). |
+| Alquiler | Alquileres anunciados por barrio (Ciudad) y por municipio (país), Observatoire de l'Habitat | CC0 | Excel | Últimos 12 meses, actualizado cada trimestre. Precio medio por m² sesgado al alza por estudios pequeños: usar solo como índice de ubicación (modelo en `docs/notas/calidad_datos.md`). |
 | Alquiler por tamaño | "Loyers annoncés en 2025 dans l'aire fonctionnelle du Luxembourg" (Observatoire de l'Habitat, 30/09/2026), figura 5 · Rapport d'analyse n.º 24 "Le cadastre des loyers" (05/06/2026), gráfico 10 | Publicación oficial; se usan cifras citadas (sin licencia de datos explícita) | PDF | Curva de €/m² por clase de superficie y comparación entre lo anunciado y lo pagado. Citar la fuente en la app. |
 | Barrios y municipios | Quartiers de la Ville de Luxembourg (Ville de Luxembourg) · Limites administratives (ACT) | CC-BY · CC0 | GeoJSON | Para agrupar resultados por barrio. |
 | Direcciones | BD-Adresses, direcciones georreferenciadas (ACT) | CC0 | CSV/GeoJSON | Para situar el trabajo, el colegio y "mis lugares" sin depender de geocodificadores externos. |
 | Mapa base | Carte de base WMS/WMTS (ACT) | CC0 | WMTS | Solo Luxemburgo; para otras ciudades hará falta otro proveedor. |
 | Supermercados, farmacias, gimnasios, bares, parques, colegios, guarderías, universidades | OpenStreetMap | ODbL | OSM | Recuento en la ciudad y alrededores (2026-10-04): supermercados 56, farmacias 27, gimnasios 36, bares y discotecas 173, parques 104, colegios 93, guarderías 75, universidades 4. |
-| Gimnasios, guarderías, supermercados y farmacias (complemento) | Overture Maps Places (publicación mensual) | CDLA-Permissive-2.0 (Meta, Microsoft…), Apache-2.0 (Foursquare), CC0 (AllThePlaces) | GeoParquet / GeoJSON | Solo para completar OSM con la regla de fusión de `notas/calidad_datos.md`. Atribución: "Overture Maps Foundation". |
+| Gimnasios, guarderías, supermercados y farmacias (complemento) | Overture Maps Places (publicación mensual) | CDLA-Permissive-2.0 (Meta, Microsoft…), Apache-2.0 (Foursquare), CC0 (AllThePlaces) | GeoParquet / GeoJSON | Solo para completar OSM con la regla de fusión de `docs/notas/calidad_datos.md`. Atribución: "Overture Maps Foundation". |
 | Médicos | OpenStreetMap | ODbL | OSM | **En espera (Ale, 07/10: bastan hospitales y farmacias)**. **Incompleto**: solo 67 médicos y clínicas en la zona. No hay directorio abierto encontrado; en v0 mostrar hospitales y farmacias y avisar. |
 | Vel'oh (bici pública) | Estaciones GBFS 3.0 de JCDecaux para la Ville de Luxembourg: `https://api.cyclocity.fr/contracts/luxembourg/gbfs/v3/station_information.json` (sin clave) | JCDecaux Open Licence | JSON | Integrado en v0 por decisión de Ale (2026-10-06). Atribución visible: "Vel'oh! – JCDecaux". **Antes de monetizar: contactar con JCDecaux** (developer.jcdecaux.com) para confirmar el uso comercial. |
-| Colegios (contraste) y guarderías | Adresses des bâtiments scolaires 2021 (Ministère de l'Éducation): escuelas fundamentales, liceos y **SEA (crèches y maisons relais)** | CC0 | Excel | Colegios: solo contraste (OSM cubre el 100 % y el 96 %). **Guarderías: fuente principal** (la lista SEA de 704 centros, geocodificada), porque OSM solo cubre el 42 % de las crèches. Ver `notas/calidad_datos.md`. |
+| Colegios (contraste) y guarderías | Adresses des bâtiments scolaires 2021 (Ministère de l'Éducation): escuelas fundamentales, liceos y **SEA (crèches y maisons relais)** | CC0 | Excel | Colegios: solo contraste (OSM cubre el 100 % y el 96 %). **Guarderías: fuente principal** (la lista SEA de 704 centros, geocodificada), porque OSM solo cubre el 42 % de las crèches. Ver `docs/notas/calidad_datos.md`. |
 
-## Versiones en uso (actualizar en cada pasada de `protocolos/actualizacion_datos.md`)
+## Versiones en uso (actualizar en cada pasada de `docs/protocolos/actualizacion_datos.md`)
 | Fuente | Versión o fecha en uso | Próxima revisión |
 |---|---|---|
 | Horarios GTFS | Descargado el 2026-10-02 (conjunto del 2026-10-01); día modelado: martes 2026-10-13 | Noviembre 2026; extra tras el cambio de diciembre |
@@ -45,7 +45,7 @@ fecha: 2026-10-06
 | Terreno | MNT de 75 m + 4 m de la ciudad (paquete del 2016) | Sin revisión |
 
 ## Huecos del v0 (revisado 2026-10-06)
-> La sesión de datos es dueña de este archivo desde el 2026-10-06 (`CLAUDE.md`, "Reparto"). El análisis de exactitud de cada criterio va en `notas/calidad_datos.md`.
+> La sesión de datos es dueña de este archivo desde el 2026-10-06 (`CLAUDE.md`, "Reparto"). El análisis de exactitud de cada criterio va en `docs/notas/calidad_datos.md`.
 
 | Hueco | Qué hay | Licencia | Recomendación |
 |---|---|---|---|
@@ -55,7 +55,7 @@ fecha: 2026-10-06
 | Vel'oh (bici pública) | Conjunto "Mobilité - Veloh" en data.public.lu (Ville de Luxembourg): ~145 estaciones; GBFS v3 de JCDecaux (`api.cyclocity.fr/contracts/luxembourg/gbfs/v3`) | "JCDecaux Open Licence": acceso libre, pero JCDecaux pide contactar para uso comercial o de mucho volumen | v0 (prueba con usuarios, sin ingresos): usable con atribución. Antes de monetizar: confirmar con JCDecaux |
 
 ## Frontera (después del v0, decisión de Ale 2026-10-06)
-> Candidatas, sin verificar en detalle. Cobertura y exactitud: pendiente en `notas/calidad_datos.md`.
+> Candidatas, sin verificar en detalle. Cobertura y exactitud: pendiente en `docs/notas/calidad_datos.md`.
 
 | Capa | Francia | Bélgica | Alemania |
 |---|---|---|---|

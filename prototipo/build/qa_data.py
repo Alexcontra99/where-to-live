@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Controles de calidad de los datos del prototipo, mes a mes (protocolos/actualizacion_datos.md).
+"""Controles de calidad de los datos del prototipo, mes a mes (docs/protocolos/actualizacion_datos.md).
 
 Antes de regenerar:  cp prototipo/data/manifest.json prototipo/data/manifest.prev.json
 Después:            $PY prototipo/build/qa_data.py [--todos] [--oficial "O1-D1=07:55,O4-D2=08:04"]
@@ -8,7 +8,7 @@ Después:            $PY prototipo/build/qa_data.py [--todos] [--oficial "O1-D1=
   --oficial  últimas salidas de mobiliteit.lu (llegar a las 08:30) para comparar con la app
 
 Sale con 1 si algún control falla (no publicar) y con 0 si no.
-Umbrales y validación de origen: notas/calidad_datos.md.
+Umbrales y validación de origen: docs/notas/calidad_datos.md.
 """
 import datetime, json, math, os, re, sys
 

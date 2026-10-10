@@ -34,7 +34,7 @@ fecha: 2026-10-04
   - Distancia (cerca o lejos, la elige el usuario) a supermercados, colegios y guarderías, universidades, parques, farmacias y médicos, gimnasios, bares y vida nocturna, y "mis lugares" (puntos propios).
   - Mapa de zonas verde, ámbar y rojo con el porqué de cada una.
 - **Después:** coche en hora punta · IA que explica el limitante y cuantifica alternativas · definir criterios conversando con la IA · enlaces a anuncios.
-- **Frontera (Francia, Bélgica, Alemania):** entra en la app, después del v0 (Ale, 2026-10-06). Fuentes candidatas en `notas/fuentes_datos.md`.
+- **Frontera (Francia, Bélgica, Alemania):** entra en la app, después del v0 (Ale, 2026-10-06). Fuentes candidatas en `docs/notas/fuentes_datos.md`.
 - **Regla de Ale:** solo lugares que existen y están reconocidos (edificios y puntos de fuentes de datos). Nada supuesto, como "zonas donde se vende droga".
 - **Decisiones de Ale (2026-10-06), tras probar el prototipo:**
   - Cada filtro es "me importa / no me importa"; si importa, se elige la distancia. Sin niveles Must/Nice.

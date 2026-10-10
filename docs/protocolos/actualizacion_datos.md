@@ -2,7 +2,7 @@
 
 > Lo ejecuta la sesión de datos (o una sola sesión si solo hay una). Construcción regenera y publica.
 > Objetivo: que precios, trayectos y lugares sigan siendo exactos sin rehacer el trabajo de validación.
-> Qué es cada fuente y su licencia: `notas/fuentes_datos.md`. Cómo se validó y con qué márgenes: `notas/calidad_datos.md`.
+> Qué es cada fuente y su licencia: `docs/notas/fuentes_datos.md`. Cómo se validó y con qué márgenes: `docs/notas/calidad_datos.md`.
 
 ## Cuándo
 - **Cada mes**, en la primera semana.
@@ -43,9 +43,9 @@ $PY prototipo/build/qa_data.py --oficial "O1-D1=07:55,O4-D2=08:04"     #    tras
    - Se mira la última salida que llega a las 08:30 y se vuelve a ejecutar con `--oficial`.
 5. **Publicar**: construcción despliega la nueva versión (`export_web.sh`; el manifiesto no se publica).
 6. **Registrar**:
-   - Actualizar "Versiones en uso" en `notas/fuentes_datos.md`.
-   - Bloque en `sesiones/AAAA-MM-DD.md`: qué cambió, controles y decisiones.
-   - Si algo afecta a la exactitud, una nota en `notas/calidad_datos.md`.
+   - Actualizar "Versiones en uso" en `docs/notas/fuentes_datos.md`.
+   - Bloque en `docs/sesiones/AAAA-MM-DD.md`: qué cambió, controles y decisiones.
+   - Si algo afecta a la exactitud, una nota en `docs/notas/calidad_datos.md`.
 
 ## Controles de calidad
 | Control | Cómo | Salta si |
@@ -70,5 +70,5 @@ $PY prototipo/build/qa_data.py --oficial "O1-D1=07:55,O4-D2=08:04"     #    tras
 - Si hace falta más frescura: acuerdo de datos con un portal. Contactar solo con el OK de Ale.
 
 ## Qué no hacer
-- No cambiar parámetros validados (factores de andar, bici y cuestas, curva de alquiler) sin una validación nueva documentada en `notas/calidad_datos.md`.
+- No cambiar parámetros validados (factores de andar, bici y cuestas, curva de alquiler) sin una validación nueva documentada en `docs/notas/calidad_datos.md`.
 - No publicar con un control en rojo.

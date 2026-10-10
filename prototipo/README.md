@@ -9,7 +9,7 @@ Web estática (opción A, 2026-10-06): todo se calcula en el navegador; no hay s
 - `sh build/export_web.sh` copia la web publicable (sin build ni notas internas, con README en inglés, DATA-LICENSES.md y .nojekyll) a `~/GitHub/where-to-live`. Comprobado el 2026-10-07 sirviendo esa carpeta en limpio (escritorio y móvil, sin errores).
 
 ## Actualización mensual
-- Protocolo y comandos: `../protocolos/actualizacion_datos.md` (sesión de datos). `build/check_updates.py` dice qué fuentes tienen versión nueva; `build/qa_data.py` compara con `data/manifest.prev.json` y falla si algo se sale de rango. qa_data.py lee constantes de `app.js`: no cambiar su formato sin avisar.
+- Protocolo y comandos: `../docs/protocolos/actualizacion_datos.md` (sesión de datos). `build/check_updates.py` dice qué fuentes tienen versión nueva; `build/qa_data.py` compara con `data/manifest.prev.json` y falla si algo se sale de rango. qa_data.py lee constantes de `app.js`: no cambiar su formato sin avisar.
 
 ## Regenerar los datos
 ```
@@ -18,7 +18,7 @@ $PY build/build_data.py
 ```
 - Necesita `shapely`, `pyproj`, `openpyxl`, `xlrd` (instalados con `$PY -m pip install --user ...`).
 - Descargas en `~/.cache/nether_app/raw` (incluye `overture_places.geojson`, bajado con `overturemaps download --bbox=6.00,49.52,6.33,49.73 -f geojson --type=place`, y `airport2023/` del zip de documentación 2023); horarios en `~/.cache/nether_gtfs` (los comparte `Proyectos/cambio_piso/herramientas/trayectos.py`; si están viejos, ejecuta antes `trayectos.py punto 49.6 6.1` para refrescarlos).
-- Fuentes y licencias: `../notas/fuentes_datos.md`.
+- Fuentes y licencias: `../docs/notas/fuentes_datos.md`.
 
 ## Qué hay
 | Archivo | Qué es |
@@ -31,7 +31,7 @@ $PY build/build_data.py
 | `build/build_data.py` | Genera todo lo anterior |
 
 ## Textos de la app (Ale, 2026-10-07)
-- Mínimos. Nada de explicar la lógica en la app: la lógica vive aquí y en `../notas/calidad_datos.md`.
+- Mínimos. Nada de explicar la lógica en la app: la lógica vive aquí y en `../docs/notas/calidad_datos.md`.
 - Fuentes solo en la pestaña "Sources", en una línea cada una (y la atribución obligatoria del mapa base).
 - Ficha de zona: alquiler estimado con rango, "New builds: often up to 25% more", minutos por persona, ruido en palabras, distancias y ✓/✗.
 
@@ -39,7 +39,7 @@ $PY build/build_data.py
 - El alquiler no excluye (decisión de Ale, 2026-10-06): las celdas que cumplen todos los filtros se colorean por alquiler estimado (respecto al presupuesto si lo hay; si no, por €/m² de un piso del tamaño elegido o de 60 m²). Gris: falla un filtro (el resumen dice cuál bloquea más superficie). Sin color: falla dos o más.
 - Filtros: "Don't mind" no afecta; cualquier otra opción filtra (sin Must/Nice, decisión de Ale).
 - Ruido en palabras: above WHO guideline (55), loud (60), very loud (65), extremely loud (70+) dB Lden; bandas de la directiva 2002/49/CE y umbrales OMS 2018. Fuera de la aglomeración AggloLux solo hay grandes ejes y aeropuerto. Aviones: mapa 2023 (actualización intermedia; el de 2021 sobrestimaba cerca de la pista), Lden y noche.
-- Alquiler estimado = curva oficial €/m² por tamaño (Observatoire 2025) × 1,04 × √(L zona / L nacional); ±9 % frente a anuncios reales (`notas/calidad_datos.md`).
+- Alquiler estimado = curva oficial €/m² por tamaño (Observatoire 2025) × 1,04 × √(L zona / L nacional); ±9 % frente a anuncios reales (`docs/notas/calidad_datos.md`).
   - Corrección del 2026-10-07 (bug de Ale: más m² con el mismo dinero habilitaba zonas): en la app, la clase < 50 m² se ancla a 27 m² y el total S × f(S) es no decreciente (máximo acumulado). L en el build sigue con la curva original (ancla 37). Validado por la sesión de datos con 233 anuncios por tramos de superficie: error absoluto 2,5 €/m² en 30-60 m²; monótono de 15 a 200 m². Límite conocido: pisos grandes en la ciudad salen un 9-13 % bajos.
 - Andar (modo a pie): 17,5 min/km recto (×1,3 a 4,5 km/h); bici 6 min/km; ambos + subida neta al destino (0,07 min/m a pie, 0,10 min/m en bici; validado en 10 rutas de valle a meseta con BRouter y Tobler) con el MNT de la ACT (4 m en la ciudad, 75 m fuera). Validado en 30 rutas por calle.
 - Guarderías (0-4, "Nurseries") y maisons relais ("After-school care"), separadas por decisión de Ale (07/10): base = lista oficial SEA 2021 (campos young_children / school_children) (Ministerio de Educación, CC0, geocodificada por la sesión de datos con geoportail.lu) + OSM/Overture a más de 100 m de un SEA. Colegios: OSM (cubre el 100 % de las escuelas fundamentales oficiales y el 96 % de los liceos), sin escuelas de música, policía ni autoescuelas.
