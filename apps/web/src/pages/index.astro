@@ -224,6 +224,7 @@ const live = t.live;
             </div>
           </div>
           <p class="readout" data-readout="safety" aria-live="polite"></p>
+          <p class="source note" data-bars></p>
           <p class="source note">{live.safety.note}</p>
         </div>
       </article>
@@ -345,7 +346,7 @@ const live = t.live;
   let live: { setLayer: (id: LayerId) => void } | null = null;
 
   const pick = () => {
-    const line = innerHeight * (wide() ? 0.6 : 0.85);
+    const line = innerHeight * (wide() ? 0.6 : 0.9);
     let id: LayerId = 'overview';
     for (const step of steps) {
       if ((step.querySelector('.card') ?? step).getBoundingClientRect().top < line) id = step.dataset.layer as LayerId;
@@ -900,6 +901,7 @@ const live = t.live;
     font-variant-numeric: tabular-nums;
   }
 
+  .source:empty,
   .readout:empty {
     display: none;
   }
@@ -1093,11 +1095,11 @@ const live = t.live;
       padding: 0;
     }
 
+    /* Each card scrolls up over the map and leaves; the map then shows that layer unobstructed. */
     .step,
     .step:last-child {
-      min-height: 100svh;
-      align-items: flex-end;
-      padding-bottom: 12px;
+      min-height: 125svh;
+      align-items: flex-start;
     }
 
     .step.intro {

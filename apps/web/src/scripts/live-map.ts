@@ -18,6 +18,13 @@ interface LiveData {
   noise: Record<'road' | 'rail' | 'air' | 'airNight' | 'cov', string>;
   dist: Record<string, string>;
   pois: Record<string, [number, number][]>;
+  night: {
+    road: string;
+    rail: string;
+    lit: string;
+    nearLate: string;
+    bars: [number, number, string, number | null][];
+  };
 }
 
 const KX = 72.1;
@@ -38,7 +45,10 @@ const NOISE_BANDS: Record<number, [number, number, number]> = {
 };
 const FIT: [number, number, number] = [87, 194, 107];
 const NIGHTLIFE: [number, number, number] = [240, 180, 41];
-const AIR_NIGHT: [number, number, number] = [150, 140, 235];
+const NIGHT_NOISE: [number, number, number] = [150, 140, 235];
+const UNLIT: [number, number, number] = [200, 210, 230];
+const LATE = 25 * 60; // a bar "open late" closes at 1:00 or later
+const clock = (m: number) => (m >= 48 * 60 ? '24/7' : `${Math.floor(m / 60) % 24}:${String(m % 60).padStart(2, '0')}`);
 
 const bytes = (b64: string) => Uint8Array.from(atob(b64), (c) => c.charCodeAt(0));
 const fill = (s: string, vars: Record<string, string | number>) =>
@@ -68,6 +78,10 @@ export async function mountLiveMap(root: HTMLElement, s: Strings, onLayer: (id: 
     Uint8Array
   >;
   const dist = Object.fromEntries(Object.entries(data.dist).map(([k, v]) => [k, bytes(v)]));
+  const night = { road: bytes(data.night.road), rail: bytes(data.night.rail), lit: bytes(data.night.lit), nearLate: bytes(data.night.nearLate) };
+  const bars = data.night.bars;
+  const withHours = bars.filter((b) => b[3] !== null);
+  const lateCount = withHours.filter((b) => b[3]! >= LATE).length;
 
   // Defaults follow the demo's example (two commuters, a supermarket and a park nearby, 60 m²);
   // the budget is 2,000 € rather than 2,600 € so the rent layer shows contrast in the city.
@@ -80,7 +94,7 @@ export async function mountLiveMap(root: HTMLElement, s: Strings, onLayer: (id: 
     level: 65,
     cats: new Set(['supermarket', 'park']),
     within: 800,
-    night: new Set(['nightlife', 'airNight']),
+    night: new Set(['late', 'loud', 'dark']),
   };
   let layer: LayerId = 'overview';
 
@@ -104,6 +118,8 @@ export async function mountLiveMap(root: HTMLElement, s: Strings, onLayer: (id: 
     for (const c of state.cats) if (dist[c]![i]! * 10 > state.within) return false;
     return true;
   };
+  const nightAt = (i: number) => Math.max(night.road[i]!, night.rail[i]!, noise.airNight[i]!);
+  const unlit = (i: number) => night.lit[i]! !== 255 && night.lit[i]! < 50;
   const failsAt = (i: number) =>
     (state.persons.size && tripAt(i) > state.max ? 1 : 0) +
     (state.sources.size && noiseAt(i) >= state.level ? 1 : 0) +
@@ -131,9 +147,11 @@ export async function mountLiveMap(root: HTMLElement, s: Strings, onLayer: (id: 
     },
     near: (i) => (state.cats.size && nearOk(i) ? [...FIT, 165] : null),
     safety: (i) => {
-      const d = dist.nightlife![i]!;
-      if (state.night.has('nightlife') && d <= 15) return [...NIGHTLIFE, Math.round(90 + 110 * (1 - d / 15))];
-      if (state.night.has('airNight') && noise.airNight[i]! >= 45) return [...AIR_NIGHT, 85];
+      const d = night.nearLate[i]!;
+      if (state.night.has('late') && d <= 15) return [...NIGHTLIFE, Math.round(90 + 110 * (1 - d / 15))];
+      const n = nightAt(i);
+      if (state.night.has('loud') && n >= 45) return [...NIGHT_NOISE, [30, 70, 110, 145][Math.min(3, (n - 45) / 5)]!];
+      if (state.night.has('dark') && unlit(i)) return [...UNLIT, 95];
       return null;
     },
   };
@@ -183,8 +201,9 @@ export async function mountLiveMap(root: HTMLElement, s: Strings, onLayer: (id: 
         : s.near.empty,
     safety: () =>
       fill(s.safety.readout, {
-        a: km2(count((i) => dist.nightlife![i]! <= 15)),
-        b: km2(count((i) => noise.airNight[i]! >= 45)),
+        a: km2(count((i) => night.nearLate[i]! <= 15)),
+        b: km2(count((i) => nightAt(i) >= 45)),
+        c: km2(count(unlit)),
       }),
   };
 
@@ -202,7 +221,8 @@ export async function mountLiveMap(root: HTMLElement, s: Strings, onLayer: (id: 
     near: () => [[rgb(FIT), s.near.legend[0]!]],
     safety: () => [
       [rgb(NIGHTLIFE), s.safety.legend[0]!],
-      [rgb(AIR_NIGHT), s.safety.legend[1]!],
+      [rgb(NIGHT_NOISE), s.safety.legend[1]!],
+      [rgb(UNLIT), s.safety.legend[2]!],
     ],
   };
 
@@ -276,17 +296,31 @@ export async function mountLiveMap(root: HTMLElement, s: Strings, onLayer: (id: 
           L.circleMarker([p.lat, p.lon], { radius: 7, color: '#fff', weight: 2, fillColor: '#4493f8', fillOpacity: 1 })
             .bindTooltip(s.commute.people[p.id as 'kirchberg'])
             .addTo(pins);
-    const cats = layer === 'near' ? [...state.cats] : layer === 'safety' && state.night.has('nightlife') ? ['nightlife'] : [];
+    const cats = layer === 'near' ? [...state.cats] : [];
     for (const c of cats)
       for (const [la, lo] of data.pois[c] ?? [])
         L.circleMarker([la, lo], {
           radius: 2.5,
           color: '#0a0d12',
           weight: 1,
-          fillColor: c === 'nightlife' ? rgb(NIGHTLIFE) : '#e6edf3',
+          fillColor: '#e6edf3',
           fillOpacity: 1,
           interactive: false,
         }).addTo(dots);
+    if (layer === 'safety' && state.night.has('late'))
+      for (const [la, lo, name, close] of bars) {
+        const late = close !== null && close >= LATE;
+        const label = close === null ? s.popup.noHours : fill(s.popup.until, { time: clock(close) });
+        L.circleMarker([la, lo], {
+          radius: late ? 4 : 2.5,
+          color: '#0a0d12',
+          weight: 1,
+          fillColor: late ? rgb(NIGHTLIFE) : '#9198a1',
+          fillOpacity: 1,
+        })
+          .bindTooltip(`${esc(name || s.popup.bar)} · ${esc(label)}`)
+          .addTo(dots);
+      }
   };
 
   const legendEl = root.querySelector<HTMLElement>('[data-legend]')!;
@@ -295,6 +329,14 @@ export async function mountLiveMap(root: HTMLElement, s: Strings, onLayer: (id: 
       .map(([c, label]) => `<span><i style="background:${c}"></i>${esc(label)}</span>`)
       .join('');
   };
+
+  const barsEl = root.querySelector<HTMLElement>('[data-bars]');
+  if (barsEl)
+    barsEl.textContent = fill(s.safety.bars, {
+      late: lateCount,
+      hours: withHours.length,
+      none: bars.length - withHours.length,
+    });
 
   const readoutEls = root.querySelectorAll<HTMLElement>('[data-readout]');
   const drawReadouts = () => {
@@ -332,6 +374,8 @@ export async function mountLiveMap(root: HTMLElement, s: Strings, onLayer: (id: 
         ? esc(s.popup.noRent)
         : esc(fill(s.popup.rent, { rent: `€${rent.toLocaleString('en')}`, size: state.size })),
       ...data.people.map((p) => `${esc(s.commute.people[p.id as 'kirchberg'])}: ${commute[p.id]![i]} min`),
+      `${esc(s.popup.night)}: ${(['road', 'rail'] as const).map((k) => `${esc(s.noise.kinds[k].toLowerCase())} ${night[k][i]! >= 45 ? `${night[k][i]} dB` : s.popup.under45}`).join(' · ')} · ${esc(s.noise.kinds.air.toLowerCase())} ${noise.airNight[i]! >= 45 ? `${noise.airNight[i]} dB` : s.popup.under45}`,
+      night.lit[i] === 255 ? esc(s.popup.litUnknown) : esc(fill(s.popup.lit, { n: night.lit[i]! })),
       `${esc(s.popup.noise)}: ${NOISE_KINDS.map((k) => `${esc(s.noise.kinds[k].toLowerCase())} ${noiseWord(noise[k][i]!, noise.cov[i]!)}`).join(' · ')}`,
       `<span class="muted">${esc(s.popup.nearest)}: ${Object.entries(s.near.cats)
         .map(([k, l]) => `${esc(l.toLowerCase())} ${fmtM(dist[k]![i]!)}`)
