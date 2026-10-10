@@ -18,13 +18,27 @@ export interface Check {
   short: string;
   source: CheckSource;
   /**
-   * True if cell i fails this check. Thresholds (max minutes, metres, place location) are captured when the
-   * evaluation is built. Intentional difference from app.js, whose closures read the live `state` lazily:
+   * Bit i set = cell i fails this check (packed, 8 cells per byte, all cells including those outside areas).
+   * Plain data: survives structuredClone / postMessage. Read it with checkFails(check, i).
+   */
+  mask: Uint8Array;
+  /**
+   * True if cell i fails this check; same as checkFails(this, i). Non-enumerable convenience, so it is dropped
+   * (not an error) by structuredClone / JSON. Thresholds (max minutes, metres, place location) are fixed when
+   * the evaluation is built. Intentional difference from app.js, whose closures read the live `state` lazily:
    * there, changing a filter after evaluate() and before the popup applies new thresholds to old counts.
    */
   fail(i: number): boolean;
 }
 
+/** True if cell i fails the check (works on structured-cloned evaluations, which have no fail()). */
+export const checkFails = (ch: Pick<Check, 'mask'>, i: number): boolean =>
+  ((ch.mask[i >> 3]! >> (i & 7)) & 1) === 1;
+
+/**
+ * Typed arrays and plain objects only (each check's fail() is non-enumerable), so an evaluation can be
+ * structured-cloned to or from a worker and does not keep the engine's cached commute arrays alive.
+ */
 export interface Evaluation {
   checks: Check[];
   /** Failed checks per cell (only cells inside an area; 0 elsewhere). Saturates at 255 (app.js wraps). */
@@ -41,9 +55,11 @@ export type CommuteFn = (
 ) => Float32Array;
 
 /** Build checks in app.js order (people, noise, categories, places) and count failures per cell. */
+type CheckSpec = Omit<Check, 'mask' | 'fail'> & { fail(i: number): boolean };
+
 export function evaluateFilters(G: Grid, geo: GridGeo, commute: CommuteFn, f: Filters): Evaluation {
   const { cLat, cLon, n: N } = geo;
-  const checks: Check[] = [];
+  const checks: CheckSpec[] = [];
   const commutes: (Float32Array | null)[] = [];
   f.people.forEach((p, n) => {
     if (!p.dest) {
@@ -117,14 +133,27 @@ export function evaluateFilters(G: Grid, geo: GridGeo, commute: CommuteFn, f: Fi
   const fails = new Uint8Array(N);
   const only = new Int16Array(N).fill(-1);
   const area = G.area;
-  checks.forEach((ch, j) => {
+  const out: Check[] = checks.map((spec, j) => {
+    // The spec's closure (which may hold a commute array) is only used here, then dropped.
+    const mask = new Uint8Array((N + 7) >> 3);
     for (let i = 0; i < N; i++)
-      if (area[i]! >= 0 && ch.fail(i)) {
-        if (fails[i]! < 255) fails[i]!++;
-        only[i] = j;
+      if (spec.fail(i)) {
+        mask[i >> 3]! |= 1 << (i & 7);
+        if (area[i]! >= 0) {
+          if (fails[i]! < 255) fails[i]!++;
+          only[i] = j;
+        }
       }
+    const ch = { name: spec.name, short: spec.short, source: spec.source, mask } as Check;
+    Object.defineProperty(ch, 'fail', {
+      value: (i: number) => checkFails(ch, i),
+      enumerable: false,
+      writable: true,
+      configurable: true,
+    });
+    return ch;
   });
-  return { checks, fails, only, commutes };
+  return { checks: out, fails, only, commutes };
 }
 
 export interface AreaMatch {

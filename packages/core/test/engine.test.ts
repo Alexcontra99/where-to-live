@@ -2,8 +2,10 @@
 // beyond parity with the prototype.
 import { describe, expect, it } from 'vitest';
 import {
+  checkFails,
   cloneFilters,
   createEngine,
+  type Engine,
   defaultFilters,
   createGridGeo,
   evaluateFilters,
@@ -117,6 +119,55 @@ describe('evaluate', () => {
     expect(validateFilters(exampleFilters())).toEqual([]);
   });
 
+  it('rejects values outside the allowed sets (noise bands, modes, arrival hour)', () => {
+    const bad: [string, (f: Filters) => void][] = [
+      ['noise.road', (f) => (f.noise.road = 50 as never)],
+      ['noise.air', (f) => (f.noise.air = 75 as never)],
+      ['cats.park.mode', (f) => (f.cats.park = { mode: 'none' as never, m: 500 })],
+      [
+        'places[0].mode',
+        (f) => (f.places = [{ name: 'x', loc: null, mode: 'Near' as never, m: 100 }]),
+      ],
+      ['places[0].m', (f) => (f.places = [{ name: 'x', loc: null, mode: 'far', m: -100 }])],
+      ['arrive', (f) => (f.arrive = 25 as never)],
+      ['arrive', (f) => (f.arrive = NaN as never)],
+      ['people[0].mode', (f) => (f.people[0]!.mode = 'car' as never)],
+    ];
+    for (const [what, mutate] of bad) {
+      const f = defaultFilters();
+      mutate(f);
+      expect(validateFilters(f).join(' ')).toContain(what);
+      expect(() => engine.evaluate(f)).toThrow(RangeError);
+    }
+    // Off-menu but meaningful values stay valid.
+    const ok = defaultFilters();
+    ok.arrive = 6.25 as never;
+    ok.cats.park = { mode: 'any', m: -1 }; // ignored while mode is "any"
+    expect(validateFilters(ok)).toEqual([]);
+  });
+
+  it('is structured-cloneable and the clone gives the same cards and image', () => {
+    const f = exampleFilters();
+    f.places = [{ name: 'Gym', loc: { lat: 49.61, lon: 6.13 }, mode: 'near', m: 2000 }];
+    const ev = engine.evaluate(f);
+    const copy = structuredClone(ev);
+    expect(copy.checks.length).toBe(ev.checks.length);
+    expect('fail' in copy.checks[0]!).toBe(false);
+    for (let i = 0; i < engine.grid.n; i += 11)
+      ev.checks.forEach((ch, j) => expect(checkFails(copy.checks[j]!, i)).toBe(ch.fail(i)));
+    const i = engine.grid.cellAt(49.6116, 6.1319);
+    expect(engine.cellInfo(i, copy)).toEqual(engine.cellInfo(i, ev));
+    expect(Array.from(engine.paint(copy))).toEqual(Array.from(engine.paint(ev)));
+  });
+
+  it('cellInfo throws for an index off the grid (app.js opens no popup there)', () => {
+    const ev = engine.evaluate(defaultFilters());
+    for (const i of [-1, engine.grid.n, 1.5, NaN])
+      expect(() => engine.cellInfo(i, ev)).toThrow(RangeError);
+    const outside = data.grid.area.indexOf(-1);
+    expect(engine.cellInfo(outside, ev).area).toBeNull();
+  });
+
   it('cellInfo(i, ev) uses the evaluation snapshot', () => {
     const f = exampleFilters();
     const ev = engine.evaluate(f);
@@ -147,6 +198,16 @@ describe('fails counter', () => {
 });
 
 describe('paint', () => {
+  it('rejects an output buffer of the wrong size', () => {
+    const ev = engine.evaluate(defaultFilters());
+    const { rows, cols } = engine.grid;
+    expect(() => engine.paint(ev, new Uint8ClampedArray(rows * cols * 4 - 4))).toThrow(RangeError);
+    expect(() => engine.paint(ev, new Uint8ClampedArray(rows * cols * 4 + 4))).toThrow(RangeError);
+    const out = new Uint8ClampedArray(rows * cols * 4).fill(7);
+    expect(engine.paint(ev, out)).toBe(out);
+    expect(Array.from(out)).toEqual(Array.from(engine.paint(ev)));
+  });
+
   it('puts north at the top and uses cellColour per pixel', () => {
     const ev = engine.evaluate(exampleFilters());
     const img = engine.paint(ev);
@@ -170,6 +231,122 @@ describe('paint', () => {
     expect(engine.grid.cellCenter(0).lat).toBeLessThan(
       engine.grid.cellCenter((rows - 1) * cols).lat,
     );
+  });
+});
+
+/** Counts reverse connection scans (one per transit deadline) on an engine. */
+function countScans(e: Engine): () => number {
+  let n = 0;
+  const latest = e.transit.latest;
+  (e.transit as { latest: typeof latest }).latest = (...a) => {
+    n++;
+    return latest(...a);
+  };
+  return () => n;
+}
+const tick = async (): Promise<void> => {};
+const isAbort = (e: unknown): boolean => e instanceof Error && e.name === 'AbortError';
+
+describe('async cancellation and sharing', () => {
+  it('overlapping commuteAsync calls for one key share a single computation', async () => {
+    const e = createEngine(data);
+    e.precompute();
+    const scans = countScans(e);
+    const [a, b, c] = await Promise.all([
+      e.commuteAsync(KIRCHBERG, 8, { pause: tick }),
+      e.commuteAsync(KIRCHBERG, 8, { pause: tick }),
+      e.commuteAsync({ ...KIRCHBERG, lat: 49.626100001 }, 8), // same 5-decimal key
+    ]);
+    expect(scans()).toBe(10); // 10 deadlines, once
+    expect(a).not.toBe(b); // each caller gets its own copy
+    expect(sameArray(a, b)).toBe(true);
+    expect(sameArray(a, c)).toBe(true);
+    expect(sameArray(a, engine.commute(KIRCHBERG, 8))).toBe(true);
+  });
+
+  it('two overlapping evaluateAsync calls: the aborted one rejects, the other scans each key once', async () => {
+    const e = createEngine(data);
+    const scans = countScans(e);
+    const f = exampleFilters();
+    const first = new AbortController();
+    let pauses = 0;
+    const pause = async (): Promise<void> => {
+      if (++pauses === 20) first.abort(); // during the first person's deadline scans
+    };
+    const p1 = e.evaluateAsync(f, { pause, signal: first.signal, chunk: 1000 });
+    const p2 = e.evaluateAsync(f, { pause });
+    await expect(p1).rejects.toSatisfy(isAbort);
+    const ev = await p2;
+    expect(scans()).toBe(20); // 2 people × 10 deadlines, no duplicate work
+    const ref = engine.evaluate(f);
+    expect(sameArray(ev.fails, ref.fails)).toBe(true);
+    expect(sameArray(ev.only, ref.only)).toBe(true);
+  });
+
+  it('stops the computation once every caller has aborted, and caches nothing', async () => {
+    const e = createEngine(data);
+    e.precompute();
+    const scans = countScans(e);
+    const a = new AbortController();
+    const b = new AbortController();
+    let pauses = 0;
+    const pause = async (): Promise<void> => {
+      if (++pauses === 3) a.abort();
+      if (pauses === 5) b.abort();
+    };
+    const pa = e.commuteAsync(KIRCHBERG, 8, { pause, signal: a.signal });
+    const pb = e.commuteAsync(KIRCHBERG, 8, { pause, signal: b.signal });
+    await expect(pa).rejects.toSatisfy(isAbort);
+    await expect(pb).rejects.toSatisfy(isAbort);
+    await new Promise((r) => setTimeout(r, 0));
+    expect(scans()).toBeLessThan(10);
+    const before = scans();
+    e.commute(KIRCHBERG, 8);
+    expect(scans() - before).toBe(10); // recomputed: the aborted run left no cache entry
+  });
+
+  it('rejects at once on an aborted signal, and polls a signal without listeners', async () => {
+    const e = createEngine(data);
+    const scans = countScans(e);
+    const done = new AbortController();
+    done.abort(new Error('stale'));
+    await expect(e.commuteAsync(KIRCHBERG, 8, { signal: done.signal })).rejects.toThrow('stale');
+    await expect(e.evaluateAsync(exampleFilters(), { signal: done.signal })).rejects.toThrow(
+      'stale',
+    );
+    await expect(e.precomputeAsync({ signal: done.signal })).rejects.toThrow('stale');
+    expect(scans()).toBe(0);
+    // A bare { aborted } object is checked at each pause; nothing is scanned after it fires.
+    const bare = { aborted: false };
+    let pauses = 0;
+    const pause = async (): Promise<void> => {
+      if (++pauses === 5) bare.aborted = true; // during the stop-index build (~16 pauses)
+    };
+    await expect(
+      e.commuteAsync(KIRCHBERG, 8, { pause, signal: bare, chunk: 1000 }),
+    ).rejects.toSatisfy(isAbort);
+    expect(scans()).toBe(0);
+  });
+});
+
+describe('commute cache recency', () => {
+  it('keeps a key that is used again (LRU, not FIFO)', () => {
+    const e = createEngine(data);
+    let computed = 0;
+    const cellAt = e.grid.cellAt;
+    (e.grid as { cellAt: typeof cellAt }).cellAt = (lat, lon) => {
+      computed++; // a walk commute calls cellAt once per computation
+      return cellAt(lat, lon);
+    };
+    const q = (k: number): CommuteQuery => ({ lat: 49.6 + k * 1e-3, lon: 6.1, mode: 'walk' });
+    e.commute(q(0), 8);
+    for (let k = 1; k <= 100; k++) {
+      e.commute(q(k), 8);
+      e.commute(q(0), 8); // keeps q(0) the most recently used
+    }
+    expect(computed).toBe(101);
+    e.commute(q(1), 8); // an old entry, evicted by now
+    expect(computed).toBe(102);
   });
 });
 

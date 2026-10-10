@@ -26,7 +26,16 @@ export function rentColour(
   filtered: boolean,
   eur: (a: Area, S: number) => number = eurM2,
 ): RGBA {
-  const a = areas[G.area[i]!];
+  return areaRentColour(areas[G.area[i]!], o, filtered, eur);
+}
+
+/** rentColour for every cell of an area (undefined = no area: the no-rent grey, as app.js). */
+export function areaRentColour(
+  a: Area | undefined,
+  o: RentOpts,
+  filtered: boolean,
+  eur: (a: Area, S: number) => number = eurM2,
+): RGBA {
   if (!a || !a.L) return [...NO_RENT_COLOUR];
   const alpha = filtered ? RENT_ALPHA_FILTERED : RENT_ALPHA_IDLE;
   if (o.budget && o.size) {

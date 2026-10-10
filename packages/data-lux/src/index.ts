@@ -2,6 +2,8 @@
 // The JSON itself is exported as "@wtl/data-lux/<name>.json" (see package.json "exports"). Those subpaths need
 // package-exports resolution (Metro: resolver.unstable_enablePackageExports, on by default since RN 0.79 / Expo 53);
 // "main" only covers the root import.
+// transit.json is ~1.3 MB: an app may load it as an asset (expo-asset + fetch) instead of bundling the import,
+// to keep JS bundle parse time down. @wtl/core copies `conns` into a typed array once in createTransit().
 
 /** POI categories that have a distance layer in the grid (doctor is built but not used in v0). */
 export type DistKey =
@@ -66,7 +68,11 @@ export interface Transit {
   stride?: number;
   /** [lat, lon] per stop. */
   stops: [number, number][];
-  /** Flat connection list sorted by departure, `stride` values each; times in seconds since midnight. */
+  /**
+   * Flat connection list sorted by departure in DESCENDING order (latest first, as build_data.py writes it),
+   * `stride` values each; times in seconds since midnight. The reverse connection scan depends on this order;
+   * @wtl/core createTransit() checks it and throws otherwise.
+   */
   conns: number[];
 }
 

@@ -1,6 +1,6 @@
 import type { Area, Grid } from '@wtl/data-lux';
 import { CATS, MODES, NOISE, shortLabel, type CatKey, type Mode, type NoiseKey } from './constants';
-import type { CommuteFn, Evaluation } from './evaluate';
+import { checkFails, type CommuteFn, type Evaluation } from './evaluate';
 import type { Filters } from './filters';
 import { fmtM, noiseWord } from './format';
 import { estRent, refSize, rentProvenance, type RentProvenance } from './rent';
@@ -30,7 +30,11 @@ export interface CellInfo {
   checks: { fits: boolean; failed: { check: number; name: string }[] } | null;
 }
 
-/** Data for the tap card on a cell (app.js map click popup). */
+/**
+ * Data for the tap card on a cell (app.js map click popup). `i` must be a grid cell (0 ≤ i < rows × cols):
+ * check grid.cellAt(lat, lon) >= 0 first, as app.js does before opening a popup (app.js :252). A valid cell
+ * outside every area gives the "Outside Luxembourg" card; an index off the grid throws a RangeError.
+ */
 export function cellInfo(
   G: Grid,
   areas: Area[],
@@ -39,6 +43,8 @@ export function cellInfo(
   ev: Evaluation | null,
   commute: CommuteFn,
 ): CellInfo {
+  if (!Number.isInteger(i) || i < 0 || i >= G.area.length)
+    throw new RangeError(`cellInfo: cell ${i} is off the grid (check grid.cellAt(...) >= 0 first)`);
   const ai = G.area[i]!;
   const area = areas[ai];
   const empty: CellInfo = {
@@ -89,7 +95,7 @@ export function cellInfo(
   let checks: CellInfo['checks'] = null;
   if (ev && ev.checks.length) {
     const failed = ev.checks
-      .map((ch, j) => ({ check: j, name: ch.name, fails: ch.fail(i) }))
+      .map((ch, j) => ({ check: j, name: ch.name, fails: checkFails(ch, i) }))
       .filter((c) => c.fails)
       .map(({ check, name }) => ({ check, name }));
     checks = { fits: failed.length === 0, failed };

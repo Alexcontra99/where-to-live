@@ -46,11 +46,31 @@ const hkey = (i: number, j: number): number => i * 1e6 + j;
 export function createTransit(TR: Transit, geo: GridGeo): TransitIndex {
   const S = TR.stops;
   const NS = S.length;
-  const C = TR.conns;
   const W = TR.stride || 5;
-  const NC = C.length / W;
+  // One typed copy of the flat connection list (the scan loop reads it ~10× per transit commute), checked
+  // once: departures must be in descending order (latest first), which the reverse scan relies on.
+  const C = Float64Array.from(TR.conns);
+  const NC = Math.floor(C.length / W);
+  if (NC * W !== C.length)
+    throw new Error(`transit.conns length ${C.length} is not a multiple of ${W}`);
   let NT = 0;
-  for (let k = 4; k < C.length; k += W) if (C[k]! >= NT) NT = C[k]! + 1;
+  for (let k = 0; k < NC; k++) {
+    const o = k * W;
+    if (k > 0 && C[o]! > C[o - W]!)
+      throw new Error(`transit.conns must be sorted by departure, latest first (connection ${k})`);
+    if (C[o + 4]! >= NT) NT = C[o + 4]! + 1;
+  }
+  /** First connection with dep ≤ T (all before it depart later and are skipped by the scan). */
+  const firstDepAtOrBefore = (T: number): number => {
+    let lo = 0;
+    let hi = NC;
+    while (lo < hi) {
+      const mid = (lo + hi) >>> 1;
+      if (C[mid * W]! > T) lo = mid + 1;
+      else hi = mid;
+    }
+    return lo;
+  };
 
   const sLat = new Float64Array(NS);
   const sLon = new Float64Array(NS);
@@ -159,10 +179,10 @@ export function createTransit(TR: Transit, geo: GridGeo): TransitIndex {
     const fpt = footpaths();
     const end = nearStops(dla, dlo, STOP_RADIUS_KM);
     for (let k = 0; k < end.idx.length; k++) Lf[end.idx[k]!] = T - end.d[k]! * WALK_S_PER_KM;
-    for (let k = 0; k < NC; k++) {
+    for (let k = firstDepAtOrBefore(T); k < NC; k++) {
       const o = k * W;
       const dep = C[o]!;
-      if (dep > T) continue;
+      if (dep > T) continue; // unreachable for sorted data; kept as in app.js
       const arr = C[o + 1]!;
       const a = C[o + 2]!;
       const b = C[o + 3]!;

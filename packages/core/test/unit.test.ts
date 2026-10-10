@@ -114,4 +114,23 @@ describe('latest() on a tiny synthetic timetable', () => {
     expect(L[1]).toBe(-1e9);
     expect(L[0]).toBe(-1e9);
   });
+
+  it('refuses connections that are not sorted latest first', () => {
+    const tt = timetable(1500);
+    const asc = { ...tt, conns: [...tt.conns.slice(6), ...tt.conns.slice(0, 6)] };
+    expect(() => createTransit(asc, createGridGeo(grid))).toThrow(/latest first/);
+    const ragged = { ...tt, conns: tt.conns.slice(0, 7) };
+    expect(() => createTransit(ragged, createGridGeo(grid))).toThrow(/multiple of 6/);
+  });
+
+  it('starts the scan at the first departure ≤ T (T on, before and after departures)', () => {
+    const tr = createTransit(timetable(1500), createGridGeo(grid));
+    for (const T of [-1, 999, 1000, 1699, 1700, 1701, 1e9]) {
+      const L = tr.latest(...C, T);
+      expect(L[2]).toBe(T);
+      // Trip 1 (dep 1700, arrives C at 2000) only counts when it arrives by T.
+      expect(L[1]).toBe(T >= 2000 ? 1700 : -1e9);
+    }
+    expect(tr.latest(...C, 2000)[1]).toBe(1700);
+  });
 });

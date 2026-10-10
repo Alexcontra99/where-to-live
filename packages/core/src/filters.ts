@@ -5,6 +5,7 @@ import {
   MAX_PLACES,
   MODES,
   NOISE,
+  NOISE_OPTS,
   type ArriveH,
   type CatKey,
   type Mode,
@@ -48,7 +49,7 @@ export interface PlaceFilter {
 export interface Filters {
   /** One or two people. */
   people: PersonFilter[];
-  /** Arrival time in hours: 7.5, 8, 8.5 or 9. */
+  /** Arrival time in hours: the UI offers 7.5, 8, 8.5 or 9; validateFilters accepts any hour in 0–24. */
   arrive: ArriveH;
   /** Monthly budget in €; null = not set (colours by €/m²). Rent never excludes a cell. */
   budget: number | null;
@@ -112,9 +113,16 @@ export function cloneFilters(f: Filters): Filters {
 }
 
 /**
- * Problems that would make the engine compute nonsense (NaN, Infinity, negative distances) or run away
- * (huge place lists). Empty = valid. engine.evaluate() throws a RangeError listing them.
- * Only checks sanity; any finite, non-negative value the prototype form accepts stays valid.
+ * Problems that would make the engine compute nonsense (NaN, Infinity, negative distances, unknown modes or
+ * noise bands) or run away (huge place lists). Empty = valid. engine.evaluate() throws a RangeError listing them.
+ * Use it on filters read back from storage or a URL before evaluating them.
+ *
+ * Checked: people 1–2 with a known mode, max ≥ 0 and a finite destination; arrive in 0–24 h (the UI offers
+ * 7.5 / 8 / 8.5 / 9, any hour works); budget and size ≥ 0 or null; noise ∈ {0, 55, 60, 65, 70}; every category
+ * present with mode any / near / far and m ≥ 0; places ≤ 50 with mode near / far, m ≥ 0 and a finite location.
+ *
+ * Intentional divergence from app.js: its form handlers accept negative metres (`+inp.value || 0`, app.js :354
+ * and :369) and then mark every cell as failing; core rejects them here instead.
  */
 export function validateFilters(f: Filters): string[] {
   const errs: string[] = [];
@@ -135,19 +143,30 @@ export function validateFilters(f: Filters): string[] {
       num(p.max, `people[${n}].max`);
       if (p.dest) point(p.dest, `people[${n}].dest`);
     });
-  if (!Number.isFinite(f.arrive)) errs.push(`arrive must be a finite number of hours`);
+  if (typeof f.arrive !== 'number' || !(f.arrive >= 0 && f.arrive <= 24))
+    errs.push(`arrive must be an hour from 0 to 24 (got ${String(f.arrive)})`);
   if (f.budget !== null) num(f.budget, 'budget');
   if (f.size !== null) num(f.size, 'size');
-  for (const [k] of NOISE) num(f.noise?.[k], `noise.${k}`);
+  for (const [k] of NOISE) {
+    const v = f.noise?.[k];
+    if (!NOISE_OPTS.some(([t]) => t === v))
+      errs.push(
+        `noise.${k} must be one of ${NOISE_OPTS.map(([t]) => t).join(', ')} (got ${String(v)})`,
+      );
+  }
   for (const [k] of CATS) {
     const c = f.cats?.[k];
     if (!c) errs.push(`cats.${k} is missing`);
+    else if (c.mode !== 'any' && c.mode !== 'near' && c.mode !== 'far')
+      errs.push(`cats.${k}.mode must be any, near or far (got ${String(c.mode)})`);
     else if (c.mode !== 'any') num(c.m, `cats.${k}.m`);
   }
   if (!Array.isArray(f.places) || f.places.length > MAX_PLACES)
     errs.push(`places must have at most ${MAX_PLACES} entries`);
   else
     f.places.forEach((pl, n) => {
+      if (pl.mode !== 'near' && pl.mode !== 'far')
+        errs.push(`places[${n}].mode must be near or far (got ${String(pl.mode)})`);
       num(pl.m, `places[${n}].m`);
       if (pl.loc) point(pl.loc, `places[${n}].loc`);
     });
