@@ -1,0 +1,6 @@
+.DS_Store
+__pycache__/
+prototipo/data/manifest.prev.json
+# Local y personal: no sube
+CLAUDE.local.md
+sesiones/
