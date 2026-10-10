@@ -29,6 +29,7 @@ estado: activo
 
 ## Próximo paso
 ### Main
+0. Seguir `notas/playbook_lanzamiento.md` (fases, canales, métricas y puerta de decisión del 30/11).
 1. Guion de prueba y formulario de feedback en `usuarios/guion_prueba.md`. No depende de Ale.
 2. Hecho (10/10): v0 publicado. Siguiente: Ale lo prueba en su móvil y se pasa el enlace con el guion.
 3. Opcional: un enlace que guarde los filtros, para compartir.
