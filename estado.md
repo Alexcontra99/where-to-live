@@ -4,12 +4,13 @@ proyecto: app_donde_vivir
 fecha: 2026-10-10
 estado: activo
 ---
-# App dónde vivir — estado
+# Where to Live — estado
 
 ## Situación
 - v0 de Luxemburgo funcional, con datos validados (07/10): `prototipo/`; lógica en `prototipo/README.md`.
-- v0 publicado el 10/10 en GitHub Pages y retirado al pasar el repositorio a privado. Para los usuarios de prueba hará falta una web pública (Pro o Netlify).
-- Repositorio (10/10): `Alexcontra99/where-to-live`, privado, compartido con el equipo. `/cierre` hace commit y push. GitHub Pages queda inactivo mientras sea privado (cuenta gratuita).
+- Para los usuarios de prueba hará falta una web pública: GitHub Pages no funciona en repositorios privados de cuentas gratuitas (opciones: GitHub Pro o Netlify/Cloudflare Pages).
+- Flujo: rama → PR → revisión de la otra persona → fusión con squash (`CONTRIBUTING.md`). Nunca commit directo a `main`.
+- Repositorio: `Alexcontra99/where-to-live`, privado, compartido por dos personas.
 - Dos chats en paralelo, Main (construcción) y Secundaria (datos), con sus roles en `protocolos/sesion_main.md` y `protocolos/sesion_secundaria.md`.
 
 ## Hitos
@@ -30,7 +31,7 @@ estado: activo
 ## Próximo paso
 ### Main
 1. Guion de prueba y formulario de feedback en `usuarios/guion_prueba.md`. No depende de Ale.
-2. Hecho (10/10): v0 publicado. Siguiente: Ale lo prueba en su móvil y se pasa el enlace con el guion.
+2. Publicar el v0 en una web pública (con OK de Ale) y probar la URL en escritorio y móvil.
 3. Opcional: un enlace que guarde los filtros, para compartir.
 
 ### Secundaria
@@ -46,7 +47,7 @@ estado: activo
 - Médicos: en espera (Ale, 07/10).
 
 ## Pendientes de Ale
-- Probar el v0 en su móvil (en local o cuando vuelva a haber web pública).
+- Probar el v0 en su móvil (en local o cuando haya web pública).
 - Precios: A, oficial del Observatoire + revisión manual semestral (recomendado), o B, acuerdo con un portal.
 - Tarea programada mensual para la actualización de datos: sí o no.
 - OK para descargar la serie trimestral del Observatoire y recalcular el factor t del alquiler (hoy 1,04, calculado a mano): sí o no. Recomendado: sí.
