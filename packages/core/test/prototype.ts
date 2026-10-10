@@ -78,6 +78,11 @@ export interface Prototype {
   summaryHtml(): string;
   /** Simulates a map click on a cell centre and returns the popup HTML. */
   popupHtml(lat: number, lon: number): string;
+  /** Runs app.js draw() (evaluate + canvas fill) and returns the RGBA bytes it passed to putImageData. */
+  drawImage(): Uint8ClampedArray;
+  /** The prototype's own grid and areas (mutable: tests may add synthetic areas). */
+  G: { area: number[]; rows: number; cols: number };
+  AREAS: { L: number | null; name: string; kind: string; eur_m2: number | null }[];
 }
 
 export function loadPrototype(): Prototype {
@@ -87,9 +92,24 @@ export function loadPrototype(): Prototype {
     if (!r) elements.set(id, (r = {}));
     return stub(r);
   };
+  // A canvas whose 2D context hands out real ImageData buffers and records what draw() puts back.
+  let painted: Uint8ClampedArray | null = null;
+  const canvas = () => {
+    const ctx = stub({
+      createImageData: (w: number, h: number) => ({
+        width: w,
+        height: h,
+        data: new Uint8ClampedArray(w * h * 4),
+      }),
+      putImageData: (img: { data: Uint8ClampedArray }) => {
+        painted = img.data;
+      },
+    });
+    return stub({ getContext: () => ctx, toDataURL: () => 'data:,' });
+  };
   const document = stub({
     getElementById: el,
-    createElement: () => stub(),
+    createElement: (tag: string) => (tag === 'canvas' ? canvas() : stub()),
     querySelectorAll: () => [],
   });
   let clickHandler: ((e: unknown) => void) | null = null;
@@ -123,14 +143,23 @@ export function loadPrototype(): Prototype {
   vm.runInContext(readFileSync(join(PROTO_DIR, 'app.js'), 'utf8'), ctx, { filename: 'app.js' });
   // Top-level const/let/function of app.js live in the context's global lexical scope: expose them.
   const api = vm.runInContext(
-    `({ state, N, CELL_KM2, evaluate, commute, rentColour, fSize, monoTotal, eurM2, km, cellAt, latest, summary })`,
+    `({ state, N, CELL_KM2, evaluate, commute, rentColour, fSize, monoTotal, eurM2, km, cellAt, latest, summary, draw, G, AREAS })`,
     ctx,
-  ) as Omit<Prototype, 'summaryHtml' | 'popupHtml'> & { summary(): void };
+  ) as Omit<Prototype, 'summaryHtml' | 'popupHtml' | 'drawImage'> & {
+    summary(): void;
+    draw(): void;
+  };
   return {
     ...api,
     summaryHtml() {
       api.summary();
       return String(elements.get('summary')?.innerHTML ?? '');
+    },
+    drawImage() {
+      painted = null;
+      api.draw();
+      if (!painted) throw new Error('app.js draw() did not call putImageData');
+      return painted;
     },
     popupHtml(lat, lon) {
       popupContent = '';

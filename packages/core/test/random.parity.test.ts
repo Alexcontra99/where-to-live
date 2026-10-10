@@ -120,29 +120,24 @@ describe.each(SEEDS)('random parity seed %i', (seed) => {
     expect(firstDiff(ev.fails, want.fails)).toBe(-1);
     expect(firstDiff(ev.only, want.only)).toBe(-1);
 
-    // Rent colour on every cell, and the painted image rebuilt from the prototype's draw() rules.
-    const { rows, cols, n } = engine.grid;
+    // Rent colour on every cell.
+    const { cols, n } = engine.grid;
+    for (let i = 0; i < n; i++) {
+      const rc = Array.from(proto.rentColour(i));
+      const gc = engine.rentColour(i, ev);
+      if (rc.join() !== gc.join()) expect(gc, `rent cell ${i}`).toEqual(rc);
+    }
+    // The painted image: bytes the prototype's own draw() put on its canvas vs engine.paint().
     const img = engine.paint(ev);
-    const G = engine.data.grid;
-    for (let r = 0; r < rows; r++)
-      for (let c = 0; c < cols; c++) {
-        const i = r * cols + c;
-        const rc = Array.from(proto.rentColour(i));
-        const gc = engine.rentColour(i, ev);
-        if (rc.join() !== gc.join()) expect(gc, `rent cell ${i}`).toEqual(rc);
-        const p = ((rows - 1 - r) * cols + c) * 4;
-        const fl = want.fails[i];
-        const exp =
-          G.area[i]! < 0
-            ? [0, 0, 0, 0]
-            : fl === 0
-              ? rc
-              : fl === 1
-                ? [140, 140, 140, 70]
-                : [0, 0, 0, 0];
-        const px = Array.from(img.subarray(p, p + 4));
-        if (px.join() !== exp.join()) expect(px, `paint cell ${i}`).toEqual(exp);
-      }
+    const ref = proto.drawImage();
+    const d = firstDiff(img, ref);
+    if (d >= 0) {
+      const px = Math.floor(d / 4);
+      expect(
+        Array.from(img.subarray(px * 4, px * 4 + 4)),
+        `paint pixel ${px} (row ${Math.floor(px / cols)} from the top)`,
+      ).toEqual(Array.from(ref.subarray(px * 4, px * 4 + 4)));
+    }
 
     // Summary: compare the full HTML-derived numbers.
     const html = proto.summaryHtml();

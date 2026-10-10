@@ -1,6 +1,15 @@
 // GOLDEN parity: the original prototipo/app.js and @wtl/core must give the same per-cell results.
 import { beforeAll, describe, expect, it } from 'vitest';
-import { cellInfoLines, createEngine, type Engine, type Filters } from '../src';
+import {
+  areaRentColour,
+  cellInfoLines,
+  createEngine,
+  defaultFilters,
+  eurM2,
+  RENT_M2,
+  type Engine,
+  type Filters,
+} from '../src';
 import { loadLuxData } from './data';
 import { htmlToLines, loadPrototype, type Prototype } from './prototype';
 import { SCENARIOS } from './scenarios';
@@ -37,7 +46,7 @@ interface ParsedSummary {
   fit: string;
   areaCount: number;
   top: { name: string; km2: string; est: number; size: number }[];
-  blockers: { short: string; km2: string; width: number }[];
+  blockers: { short: string; km2: string; width: string }[];
   nothingFits: boolean;
 }
 
@@ -52,7 +61,7 @@ function parseSummary(html: string): ParsedSummary {
     ...html.matchAll(
       /<div>([^<]*?) · (.*?)<\/div><div class="bar"><i style="width:([^%]*)%"><\/i><\/div>/g,
     ),
-  ].map((m) => ({ short: m[1]!, km2: m[2]!, width: Number(m[3]) }));
+  ].map((m) => ({ short: m[1]!, km2: m[2]!, width: m[3]! }));
   return {
     fit: fit?.[1] ?? '',
     areaCount: Number(fit?.[2] ?? -1),
@@ -112,9 +121,12 @@ describe.each(Object.entries(SCENARIOS))('parity: %s', (_name, filters) => {
     expect(s.blockers.length > 0).toBe(html.includes('What blocks the grey areas'));
     expect(s.blockers.map((b) => b.short)).toEqual(want.blockers.map((b) => b.short));
     expect(s.blockers.map((b) => b.km2Label)).toEqual(want.blockers.map((b) => b.km2));
-    s.blockers.forEach((b, j) =>
-      expect(Math.abs(b.share * 100 - want.blockers[j]!.width)).toBeLessThan(1e-9),
+    // Bar width exactly as app.js prints it (100 * cells / max), and share as its ratio.
+    const maxLim = Math.max(1, ...s.blockers.map((b) => b.cells));
+    expect(s.blockers.map((b) => String((100 * b.cells) / maxLim))).toEqual(
+      want.blockers.map((b) => b.width),
     );
+    s.blockers.forEach((b) => expect(b.share).toBe(b.cells / maxLim));
     if (s.topBlocker) {
       const maxCells = Math.max(...s.blockers.map((b) => b.cells));
       expect(s.topBlocker.cells).toBe(maxCells);
@@ -145,7 +157,66 @@ describe('parity: helpers', () => {
       expect(monoTotal(S)).toBe(proto.monoTotal(S));
     }
     for (const a of areas)
-      for (const S of [20, 45, 60, 99, 150]) expect(eurM2(a, S)).toBe(proto.eurM2(a, S));
+      for (let S = 10; S <= 200; S += 0.5) {
+        const got = eurM2(a, S);
+        const want = proto.eurM2(a, S);
+        if (!Object.is(got, want)) expect(got, `${a.name} ${S} m²`).toBe(want);
+      }
+  });
+
+  it('rent colour by €/m² matches at the exact band edges (synthetic areas)', () => {
+    // Real areas never land exactly on 33 / 35 / 37 / 40 €/m², so the `<` in RENT_M2.find is untested by them.
+    // Search price levels L whose eurM2 equals an edge bit for bit, and check both sides of the comparison.
+    const ties: { L: number; S: number; edge: number }[] = [];
+    for (const [edge] of RENT_M2.slice(0, -1))
+      for (const S of [27, 45, 60, 99.5, 150]) {
+        const base = eurM2({ L: 0.879 }, S);
+        const L0 = 0.879 * (edge / base) ** 2;
+        const f64 = new Float64Array(1);
+        const u64 = new BigUint64Array(f64.buffer);
+        f64[0] = L0;
+        const bits = u64[0]!;
+        for (let d = -64n; d <= 64n; d++) {
+          u64[0] = bits + d;
+          const L = f64[0]!;
+          if (eurM2({ L }, S) === edge) {
+            ties.push({ L, S, edge });
+            break;
+          }
+        }
+      }
+    expect(ties.length).toBeGreaterThanOrEqual(4);
+    const k = proto.AREAS.length;
+    const cell = proto.G.area.findIndex((a) => a >= 0);
+    const saved = proto.G.area[cell]!;
+    try {
+      for (const { L, S, edge } of ties) {
+        const area = {
+          name: 'Synthetic',
+          kind: 'district',
+          eur_m2: edge,
+          offers: null,
+          avg_rent: null,
+          estimated: false,
+          L,
+          L_default: false,
+        };
+        proto.AREAS.push(area);
+        proto.G.area[cell] = k;
+        applyToPrototype({ ...defaultFilters(), size: S, budget: null });
+        const filtered = proto.evaluate().checks.length > 0;
+        const want = Array.from(proto.rentColour(cell));
+        const got = areaRentColour(area, { budget: null, size: S }, filtered);
+        expect(got, `L=${L} S=${S} €/m²=${edge}`).toEqual(want);
+        // At the edge the cell belongs to the next band up.
+        const j = RENT_M2.findIndex(([t]) => t === edge);
+        expect(got.slice(0, 3)).toEqual([...RENT_M2[j + 1]![1]]);
+        proto.AREAS.pop();
+      }
+    } finally {
+      proto.G.area[cell] = saved;
+      while (proto.AREAS.length > k) proto.AREAS.pop();
+    }
   });
 
   it('cellAt and latest() match on real data', () => {
