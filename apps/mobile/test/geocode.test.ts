@@ -19,6 +19,14 @@ describe('geocoder (app.js geocode)', () => {
     expect(() => parseGeocode({ results: [] })).toThrow('not found');
     expect(() => parseGeocode({})).toThrow('not found');
   });
+  it('treats a result without coordinates as not found', () => {
+    for (const r of [
+      { name: 'x' },
+      { name: 'x', geomlonlat: {} },
+      { geomlonlat: { coordinates: [NaN, 1] } },
+    ])
+      expect(isNotFound(catchErr(() => parseGeocode({ results: [r as never] })))).toBe(true);
+  });
   it('tells "not found" apart from network errors', () => {
     let err: unknown;
     try {
@@ -34,3 +42,12 @@ describe('geocoder (app.js geocode)', () => {
     expect(GEOCODER_URL).toBe('https://apiv3.geoportail.lu/geocode/search?queryString=');
   });
 });
+
+function catchErr(fn: () => unknown): unknown {
+  try {
+    fn();
+  } catch (e) {
+    return e;
+  }
+  return undefined;
+}

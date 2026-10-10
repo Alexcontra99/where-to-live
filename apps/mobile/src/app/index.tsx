@@ -2,11 +2,19 @@ import type BottomSheet from '@gorhom/bottom-sheet';
 import { defaultFilters, type CellInfo } from '@wtl/core';
 import { router } from 'expo-router';
 import { useCallback, useEffect, useMemo, useRef, useState } from 'react';
-import { Pressable, StyleSheet, Text, View } from 'react-native';
+import {
+  AccessibilityInfo,
+  Platform,
+  Pressable,
+  StyleSheet,
+  Text,
+  View,
+  useWindowDimensions,
+} from 'react-native';
 import { useSafeAreaInsets } from 'react-native-safe-area-context';
 import { CellSheet } from '../components/CellSheet';
 import { Button } from '../components/controls';
-import { FilterSheet, MIN_SNAP, type Edit, type PickTarget } from '../components/FilterSheet';
+import { FilterSheet, type Edit, type PickTarget } from '../components/FilterSheet';
 import { ResultMap } from '../components/ResultMap';
 import { data } from '../lib/engine';
 import { applyExample, cloneUi, pointLabel, withIds, type UiFilters } from '../lib/filters';
@@ -20,6 +28,7 @@ const TIP_MS = 4000;
 export default function MapScreen() {
   const t = useTheme();
   const insets = useSafeAreaInsets();
+  const { height } = useWindowDimensions();
   const sheet = useRef<BottomSheet>(null);
   const [filters, setFilters] = useState<UiFilters | null>(null);
   const [picking, setPicking] = useState<PickTarget | null>(null);
@@ -43,6 +52,8 @@ export default function MapScreen() {
   }, [filters]);
   useEffect(() => {
     if (!tip) return;
+    // accessibilityLiveRegion is Android only.
+    if (Platform.OS === 'ios') AccessibilityInfo.announceForAccessibility(tip);
     const timer = setTimeout(() => setTip(null), TIP_MS);
     return () => clearTimeout(timer);
   }, [tip]);
@@ -118,7 +129,8 @@ export default function MapScreen() {
         markers={markers}
         activeCats={activeCats}
         pois={data.pois ?? []}
-        bottomInset={MIN_SNAP}
+        // The filter sheet opens at its 50% snap point: keep the start view above it (app.js pads by the panel).
+        bottomInset={Math.round(height / 2)}
         onPress={onMapPress}
         onFeaturePress={onFeaturePress}
       />
@@ -126,7 +138,8 @@ export default function MapScreen() {
         <View
           style={[
             styles.banner,
-            { top: insets.top + 8, backgroundColor: t.bg, borderColor: t.border },
+            // Below the map's ⓘ attribution button (top left), so it stays reachable while picking.
+            { top: insets.top + 52, backgroundColor: t.bg, borderColor: t.border },
           ]}
         >
           <Text style={{ color: t.text, fontSize: 15, flex: 1 }}>

@@ -11,8 +11,15 @@ import {
   type Filters,
   type Summary,
 } from '@wtl/core';
-import { forwardRef, memo, useMemo, useState } from 'react';
-import { ActivityIndicator, Pressable, Text, View } from 'react-native';
+import { forwardRef, memo, useEffect, useMemo, useState } from 'react';
+import {
+  AccessibilityInfo,
+  ActivityIndicator,
+  Platform,
+  Pressable,
+  Text,
+  View,
+} from 'react-native';
 import { useSafeAreaInsets } from 'react-native-safe-area-context';
 import {
   newUiPerson,
@@ -106,6 +113,12 @@ export const FilterSheet = memo(
         ? 'Calculating…'
         : `${summary.fitKm2Label} fit`;
 
+    // accessibilityLiveRegion is Android only: on iOS, VoiceOver hears each finished result here.
+    useEffect(() => {
+      if (Platform.OS === 'ios' && !computing && (failed || summary))
+        AccessibilityInfo.announceForAccessibility(status);
+    }, [status, computing, failed, summary]);
+
     return (
       <BottomSheet
         ref={ref}
@@ -174,6 +187,7 @@ export const FilterSheet = memo(
                   <LocationEditor
                     value={p.dest}
                     placeholder="Work or study address"
+                    label={`${label}, work or study address`}
                     onChange={(loc) => editPerson(p.id, (x) => void (x.dest = loc))}
                     onPick={() => onPick({ kind: 'person', id: p.id })}
                   />
@@ -293,7 +307,7 @@ export const FilterSheet = memo(
                     <Field
                       value={pl.name}
                       onChangeText={(s) => editPlace(pl.id, (x) => void (x.name = s))}
-                      accessibilityLabel="Name"
+                      accessibilityLabel={`${name}, name`}
                       style={{ flex: 1 }}
                     />
                     <XButton
@@ -306,6 +320,7 @@ export const FilterSheet = memo(
                   <LocationEditor
                     value={pl.loc}
                     placeholder="Address"
+                    label={`${name}, address`}
                     onChange={(loc) => editPlace(pl.id, (x) => void (x.loc = loc))}
                     onPick={() => onPick({ kind: 'place', id: pl.id })}
                   />

@@ -8,6 +8,7 @@ import {
 } from '@wtl/core';
 import { Text, View } from 'react-native';
 import { rgba } from '../lib/mapFill';
+import { rentText } from '../lib/rent';
 import { useTheme } from '../lib/theme';
 import { Hint } from './controls';
 
@@ -63,7 +64,7 @@ export function Results({ summary }: { summary: Summary }) {
             <Text key={a.area} style={{ color: t.text, fontSize: 14 }}>
               {j + 1}. {a.name}{' '}
               <Text style={{ color: t.muted }}>
-                · {a.km2Label} · about €{a.estRent} for {summary.size} m²
+                · {a.km2Label} · {rentText(a, summary.size)}
               </Text>
             </Text>
           ))}
@@ -79,13 +80,13 @@ export function Results({ summary }: { summary: Summary }) {
               <Text style={{ color: t.text, fontSize: 14 }}>
                 {b.short} · {b.km2Label}
               </Text>
-              <View style={{ height: 6, borderRadius: 3, backgroundColor: t.chip }}>
+              <View style={{ height: 6, borderRadius: 3, backgroundColor: t.track }}>
                 <View
                   style={{
                     height: 6,
                     borderRadius: 3,
                     width: `${100 * b.share}%`,
-                    backgroundColor: t.bar,
+                    backgroundColor: t.warn,
                   }}
                 />
               </View>

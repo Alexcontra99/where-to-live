@@ -5,7 +5,7 @@ import type { Place } from '@wtl/core';
 export const GEOCODER_URL = 'https://apiv3.geoportail.lu/geocode/search?queryString=';
 
 interface GeoportailResponse {
-  results?: { name: string; geomlonlat: { coordinates: [number, number] } }[];
+  results?: { name?: string; geomlonlat?: { coordinates?: [number, number] } }[];
 }
 
 /** The geocoder answered but has no result (as opposed to a network or server error). */
@@ -36,7 +36,11 @@ export async function geocode(q: string, timeoutMs: number = GEOCODE_TIMEOUT_MS)
 
 export function parseGeocode(j: GeoportailResponse): Place {
   const first = j.results?.[0];
-  if (!first) throw new NotFoundError();
-  const [lon, lat] = first.geomlonlat.coordinates;
-  return { lat, lon, label: first.name.replace(/\s+,/g, ',').replace(/^[\s,]+/, '') };
+  const c = first?.geomlonlat?.coordinates;
+  // A result without usable coordinates counts as not found (not as a connection error).
+  if (!first || !Array.isArray(c) || !Number.isFinite(c[0]) || !Number.isFinite(c[1]))
+    throw new NotFoundError();
+  const [lon, lat] = c;
+  const name = typeof first.name === 'string' ? first.name : '';
+  return { lat, lon, label: name.replace(/\s+,/g, ',').replace(/^[\s,]+/, '') };
 }

@@ -27,14 +27,13 @@ const num = (text: string): number => {
   return Number.isFinite(v) ? v : 0;
 };
 
-export const MIN_MAX = 5;
-export const MAX_MAX = 90;
-const clampMax = (v: number): number => Math.min(MAX_MAX, Math.max(MIN_MAX, v));
-
-/** Max commute minutes: app.js `+value || 30`, within the input's range (min 5, max 90). */
+/**
+ * Max commute minutes: app.js `+value || 30`. The input's min 5 / max 90 only bound its stepper there, so typed
+ * values are kept as they are (120 stays 120). Negative values, which validateFilters() rejects, also give 30.
+ */
 export const parseMax = (text: string): number => {
   const v = num(text);
-  return v > 0 ? clampMax(v) : 30;
+  return v > 0 ? v : 30;
 };
 
 /** Budget / size: app.js `+value || null` (negative values are treated as not set). */
@@ -96,7 +95,7 @@ export function restoreFilters(raw: unknown): Filters {
         label: d.label,
         dest: readPlace(p.dest),
         mode: MODES.some(([m]) => m === p.mode) ? (p.mode as PersonFilter['mode']) : d.mode,
-        max: finite(p.max) && p.max > 0 ? clampMax(p.max) : d.max,
+        max: finite(p.max) && p.max > 0 ? p.max : d.max,
       };
     });
     if (people.length) f.people = people;

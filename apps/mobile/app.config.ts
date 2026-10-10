@@ -19,6 +19,10 @@ const config: ExpoConfig = {
     infoPlist: {
       // Only tiles and the address search go over the network; nothing is tracked.
       NSAppTransportSecurity: { NSAllowsArbitraryLoads: false },
+      // The map library links CoreLocation, so Apple's binary scan expects a purpose string (ITMS-90683).
+      // The app never asks for or shows the user's location.
+      NSLocationWhenInUseUsageDescription:
+        'Where to Live does not use your location. The map library includes this permission, but the app never asks for it.',
     },
     privacyManifests: {
       NSPrivacyTracking: false,

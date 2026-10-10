@@ -54,6 +54,7 @@ export function CellSheet({ info, onClose }: { info: CellInfo; onClose: () => vo
                 <Text style={[body, { fontWeight: '600' }]}>
                   Estimated asking rent for {info.rent.size} m²: about €{info.rent.eur} (€
                   {info.rent.low}–{info.rent.high})
+                  {info.rent.provenance.basis === 'city-average' ? ' (city average)' : ''}
                 </Text>
                 <Text style={small}>New builds: often up to 25% more</Text>
               </View>

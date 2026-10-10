@@ -1,5 +1,5 @@
 import type { Place } from '@wtl/core';
-import { useEffect, useState } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import { ActivityIndicator, Text, View } from 'react-native';
 import { geocode, isNotFound } from '../lib/geocode';
 import { useTheme } from '../lib/theme';
@@ -14,11 +14,14 @@ const MESSAGES = {
 export function LocationEditor({
   value,
   placeholder,
+  label,
   onChange,
   onPick,
 }: {
   value: Place | null;
   placeholder: string;
+  /** Accessibility label of the search field, naming its person or place. */
+  label: string;
   onChange: (p: Place) => void;
   onPick: () => void;
 }) {
@@ -27,18 +30,27 @@ export function LocationEditor({
   const [busy, setBusy] = useState(false);
   const [failed, setFailed] = useState<keyof typeof MESSAGES | null>(null);
 
+  const valueKey = value ? `${value.lat},${value.lon},${value.label ?? ''}` : '';
+  const latest = useRef(valueKey);
+  latest.current = valueKey;
+
   // A new location (search or pick on the map) replaces the message, as app.js set() does.
-  useEffect(() => setFailed(null), [value?.lat, value?.lon, value?.label]);
+  useEffect(() => setFailed(null), [valueKey]);
 
   const search = async () => {
     if (!q.trim() || busy) return;
+    const before = latest.current;
     setBusy(true);
     setFailed(null);
     try {
-      onChange(await geocode(q));
-      setQ('');
+      const place = await geocode(q);
+      // A point picked on the map while the search was running is newer: keep it.
+      if (latest.current === before) {
+        onChange(place);
+        setQ('');
+      }
     } catch (e) {
-      setFailed(isNotFound(e) ? 'notFound' : 'offline');
+      if (latest.current === before) setFailed(isNotFound(e) ? 'notFound' : 'offline');
     }
     setBusy(false);
   };
@@ -56,7 +68,7 @@ export function LocationEditor({
           returnKeyType="search"
           onSubmitEditing={search}
           autoCorrect={false}
-          accessibilityLabel={placeholder}
+          accessibilityLabel={label}
           style={{ flex: 1 }}
         />
         {busy ? (
@@ -65,7 +77,7 @@ export function LocationEditor({
           <Button title="Search" kind="primary" onPress={search} />
         )}
       </View>
-      <Button title="Pick on map" onPress={onPick} />
+      <Button title="Pick on map" onPress={onPick} accessibilityLabel={`${label}: pick on map`} />
     </View>
   );
 }

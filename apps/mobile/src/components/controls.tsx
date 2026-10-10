@@ -45,7 +45,7 @@ export function Chips<V extends string | number>({
             key={String(v)}
             onPress={() => onChange(v)}
             accessibilityRole="radio"
-            accessibilityState={{ selected: on }}
+            accessibilityState={{ checked: on }}
             style={[styles.chip, { backgroundColor: on ? t.chipOn : t.chip }]}
           >
             <Text style={{ color: on ? t.onChipOn : t.text, fontSize: 14 }}>{text}</Text>
@@ -61,11 +61,13 @@ export function Button({
   onPress,
   kind = 'ghost',
   disabled,
+  accessibilityLabel,
 }: {
   title: string;
   onPress: () => void;
   kind?: 'primary' | 'ghost';
   disabled?: boolean;
+  accessibilityLabel?: string;
 }) {
   const t = useTheme();
   const primary = kind === 'primary';
@@ -74,6 +76,7 @@ export function Button({
       onPress={onPress}
       disabled={disabled}
       accessibilityRole="button"
+      accessibilityLabel={accessibilityLabel}
       style={({ pressed }) => [
         styles.button,
         primary
@@ -157,7 +160,7 @@ export function NumberField({
       inputMode="numeric"
       placeholder={placeholder}
       accessibilityLabel={accessibilityLabel}
-      // Show the value actually used (e.g. 90 after typing 900, 30 after clearing the minutes).
+      // Show the value actually used (e.g. 30 after clearing the minutes).
       onEndEditing={() => setText(shown)}
       editable={editable}
       accessibilityState={{ disabled: !editable }}

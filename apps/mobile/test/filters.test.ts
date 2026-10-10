@@ -26,9 +26,9 @@ import {
 import { exampleEvaluation, getTestEngine } from './engine';
 
 describe('input parsing (app.js rules)', () => {
-  it('max minutes: +value || 30, within the input range 5–90', () => {
-    expect(parseMax('900')).toBe(90);
-    expect(parseMax('2')).toBe(5);
+  it('max minutes: +value || 30, typed values kept as app.js does (no 5–90 clamp)', () => {
+    expect(parseMax('120')).toBe(120);
+    expect(parseMax('3')).toBe(3);
     expect(parseMax('90')).toBe(90);
     expect(parseMax('45')).toBe(45);
     expect(parseMax('')).toBe(30);

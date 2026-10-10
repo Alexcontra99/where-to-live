@@ -28,16 +28,31 @@ export interface EvaluationState {
  */
 export function useEvaluation(filters: Filters | null): EvaluationState {
   const [engine, setEngine] = useState<Engine | null>(null);
+  const [layer, setLayer] = useState<CellLayer | null>(null);
   const [results, setResults] = useState<Results | null>(null);
   const [computing, setComputing] = useState(true);
   const [error, setError] = useState<string | null>(null);
   const abort = useRef<AbortController | null>(null);
 
-  // Create the engine after the first frame, then build the transit stop index in the background.
+  // Create the engine and the cell polygons after the first frame (outside render), then build the transit stop
+  // index in the background. A failure here shows "Could not calculate" instead of calculating forever.
   useEffect(() => {
     const t = setTimeout(() => {
-      const e = getEngine();
+      let e: Engine;
+      let l: CellLayer;
+      try {
+        e = getEngine();
+        const t0 = Date.now();
+        l = buildCellLayer(e.data.grid, e.grid);
+        if (__DEV__) console.log(`[wtl] ${l.cells.length} cell polygons in ${Date.now() - t0} ms`);
+      } catch (err) {
+        if (__DEV__) console.warn('[wtl] engine start failed', err);
+        setError(err instanceof Error ? err.message : String(err));
+        setComputing(false);
+        return;
+      }
       setEngine(e);
+      setLayer(l);
       const t0 = Date.now();
       e.precomputeAsync()
         .then(() => {
@@ -47,14 +62,6 @@ export function useEvaluation(filters: Filters | null): EvaluationState {
     }, 0);
     return () => clearTimeout(t);
   }, []);
-
-  const layer = useMemo(() => {
-    if (!engine) return null;
-    const t0 = Date.now();
-    const l = buildCellLayer(engine.data.grid, engine.grid);
-    if (__DEV__) console.log(`[wtl] ${l.cells.length} cell polygons in ${Date.now() - t0} ms`);
-    return l;
-  }, [engine]);
 
   const key = useMemo(() => (filters ? filtersKey(filters) : null), [filters]);
 

@@ -14,7 +14,9 @@ const light = {
   onChipOn: '#ffffff',
   ok: '#1a7f37',
   fail: '#cf222e',
-  bar: '#8c8c8c',
+  /** Blocker bars (prototype --warn) on a --line track. */
+  warn: '#bf8700',
+  track: '#d1d9e0',
 };
 export type Theme = typeof light;
 const dark: Theme = {
@@ -30,7 +32,8 @@ const dark: Theme = {
   onChipOn: '#ffffff',
   ok: '#3fb950',
   fail: '#f85149',
-  bar: '#8c8c8c',
+  warn: '#bf8700',
+  track: '#30363d',
 };
 
 export function useTheme(): Theme {

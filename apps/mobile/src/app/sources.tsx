@@ -1,4 +1,4 @@
-import { Linking, ScrollView, Text, View } from 'react-native';
+import { Linking, Pressable, ScrollView, Text, View } from 'react-native';
 import { useSafeAreaInsets } from 'react-native-safe-area-context';
 import { meta } from '../lib/engine';
 import { ATTRIBUTION } from '../lib/mapConfig';
@@ -28,10 +28,19 @@ export default function SourcesScreen() {
   const h2 = { color: t.text, fontSize: 17, fontWeight: '600' as const, marginTop: 16 };
   const p = { color: t.text, fontSize: 15, lineHeight: 21 };
   const hint = { color: t.muted, fontSize: 13, lineHeight: 18 };
+  // A link with Apple's 44 pt minimum touch target.
   const link = (url: string, label: string) => (
-    <Text style={{ color: t.primary }} onPress={() => void Linking.openURL(url)}>
-      {label}
-    </Text>
+    <Pressable
+      key={url}
+      onPress={() => void Linking.openURL(url)}
+      accessibilityRole="link"
+      style={({ pressed }) => [
+        { minHeight: 44, justifyContent: 'center' },
+        pressed && { opacity: 0.6 },
+      ]}
+    >
+      <Text style={{ color: t.primary, fontSize: 15 }}>{label}</Text>
+    </Pressable>
   );
   return (
     <ScrollView
@@ -45,11 +54,11 @@ export default function SourcesScreen() {
           <Text style={[p, { flex: 1 }]}>{s}</Text>
         </View>
       ))}
-      <Text style={hint}>
-        {ODBL}{' '}
-        {link('https://opendatacommons.org/licenses/odbl/', 'opendatacommons.org/licenses/odbl')} ·{' '}
+      <Text style={hint}>{ODBL}</Text>
+      <View>
+        {link('https://opendatacommons.org/licenses/odbl/', 'opendatacommons.org/licenses/odbl')}
         {link('https://www.openstreetmap.org/copyright', 'openstreetmap.org/copyright')}
-      </Text>
+      </View>
       <Text style={hint}>Map: {ATTRIBUTION}</Text>
       <Text style={hint}>
         Data built {meta.built ?? '—'}
@@ -58,7 +67,8 @@ export default function SourcesScreen() {
       <Text style={h2}>Privacy</Text>
       <Text style={hint}>
         Nothing you enter is sent to us; your last filters are kept only on this device. Address
-        searches go to geoportail.lu. Results are estimates from the data sources above.
+        searches and map tiles are loaded from geoportail.lu. Results are estimates from the data
+        sources above.
       </Text>
     </ScrollView>
   );
