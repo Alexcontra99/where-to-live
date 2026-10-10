@@ -1,0 +1,111 @@
+{
+ "generated_from": "prototipo/data",
+ "files": {
+  "grid": {
+   "source": "prototipo/data/grid.js",
+   "source_bytes": 831114,
+   "json_bytes": 831099
+  },
+  "areas": {
+   "source": "prototipo/data/areas.js",
+   "source_bytes": 15529,
+   "json_bytes": 15513
+  },
+  "pois": {
+   "source": "prototipo/data/pois.js",
+   "source_bytes": 66453,
+   "json_bytes": 66438
+  },
+  "transit": {
+   "source": "prototipo/data/transit.js",
+   "source_bytes": 1324395,
+   "json_bytes": 1324377
+  }
+ },
+ "built": "2026-10-07",
+ "region": [
+  49.55,
+  6.03,
+  49.7,
+  6.28
+ ],
+ "step_km": 0.15,
+ "sources": {
+  "quartiers.geojson": {
+   "url": "https://maps.vdl.lu/arcgis/rest/services/OPENDATA/GEOJSON/FeatureServer/24/query?where=1%3D1&outFields=*&outSR=4326&f=geojson",
+   "last_modified": null,
+   "downloaded": "2026-10-06T20:22:21"
+  },
+  "communes.geojson": {
+   "url": "https://download.data.public.lu/resources/limites-administratives-du-grand-duche-de-luxembourg/20231123-101528/communes4326.geojson",
+   "last_modified": "2023-11-23T10:15:43.093000+00:00",
+   "downloaded": "2026-10-06T20:22:21"
+  },
+  "loyers_quartiers.xlsx": {
+   "url": "https://download.data.public.lu/resources/loyers-annonces-des-logements-a-luxembourg-ville-par-quartier/20260924-085714/vdl-location-appartements-2025-26.xlsx",
+   "last_modified": "2026-09-24T08:57:28.381000+00:00",
+   "downloaded": "2026-10-06T20:22:29"
+  },
+  "loyers_communes.xls": {
+   "url": "https://download.data.public.lu/resources/loyers-annonces-des-logements-par-commune/20260924-085311/location-appartement-2025-26.xls",
+   "last_modified": "2026-09-24T08:53:24.180000+00:00",
+   "downloaded": "2026-10-06T20:22:21"
+  },
+  "agglo.gpkg": {
+   "url": "https://download.data.public.lu/resources/environmental-noise-strategic-noise-maps/20250724-133722/lu-agglomeration-2021-strategicnoisemaps.gpkg",
+   "last_modified": "2025-07-24T13:43:57.627000+00:00",
+   "downloaded": "2026-10-06T20:21:36"
+  },
+  "airport.gpkg": {
+   "url": "https://download.data.public.lu/resources/environmental-noise-strategic-noise-maps/20250724-133721/lu-majorairports-2021-strategicnoisemaps.gpkg",
+   "last_modified": "2025-07-24T13:43:49.041000+00:00",
+   "downloaded": "2026-10-06T20:23:13"
+  },
+  "majorroads.gpkg": {
+   "url": "https://download.data.public.lu/resources/environmental-noise-strategic-noise-maps/20250724-133726/lu-majorroads-2021-strategicnoisemaps.gpkg",
+   "last_modified": "2025-07-24T13:43:27.585000+00:00",
+   "downloaded": "2026-10-06T20:50:19"
+  },
+  "majorrailways.gpkg": {
+   "url": "https://download.data.public.lu/resources/environmental-noise-strategic-noise-maps/20250724-133723/lu-majorrailways-2021-strategicnoisemaps.gpkg",
+   "last_modified": "2025-07-24T13:43:37.541000+00:00",
+   "downloaded": "2026-10-06T20:50:20"
+  },
+  "aggsource.gpkg": {
+   "url": "https://download.data.public.lu/resources/environmental-noise-report-on-all-major-roads-railways-airports-and-agglomerations-df1-and-df5/20250724-134505/agglomerationsource-2020-lu.gpkg",
+   "last_modified": "2025-07-24T13:45:55.644000+00:00",
+   "downloaded": "2026-10-06T20:50:14"
+  },
+  "airport2023": {
+   "url": "https://download.data.public.lu/resources/environmental-noise-strategic-noise-maps/20250327-151652/strategic-noise-maps-2023-on-major-airport-documentation.zip",
+   "last_modified": "2025-03-27T15:17:19.266000+00:00",
+   "downloaded": "2025-03-14T16:43:38"
+  },
+  "mnt75": {
+   "url": "https://download.data.public.lu/resources/modele-numerique-de-terrain-75m/20160405-133110/mnt_75.zip",
+   "last_modified": "2016-04-05T13:31:19.128000+00:00",
+   "downloaded": "1999-12-08T08:36:36"
+  },
+  "sea_2021": {
+   "url": "https://download.data.public.lu/resources/adresses-des-batiments-scolaires-2021/20230328-230303/adr-sea-2021.xlsx",
+   "last_modified": "2023-03-28T23:03:03+00:00",
+   "downloaded": "2026-10-07T08:51:56"
+  },
+  "overture_places": {
+   "url": "overturemaps download --bbox=6.00,49.52,6.33,49.73 -f geojson --type=place",
+   "last_modified": null,
+   "downloaded": "2026-10-07T08:11:06"
+  },
+  "gtfs": {
+   "url": "https://data.public.lu/en/datasets/horaires-et-arrets-des-transport-publics-gtfs/",
+   "last_modified": null,
+   "downloaded": "2026-10-02T23:43:04"
+  },
+  "veloh": {
+   "url": "https://api.cyclocity.fr/contracts/luxembourg/gbfs/v3/station_information.json",
+   "last_modified": null,
+   "downloaded": null
+  }
+ },
+ "transit_day": "2026-10-13"
+}

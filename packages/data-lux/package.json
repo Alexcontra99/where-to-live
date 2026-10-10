@@ -1,0 +1,39 @@
+{
+  "name": "@wtl/data-lux",
+  "version": "0.1.0",
+  "private": true,
+  "description": "Luxembourg dataset (grid, areas, POIs, transit) converted from prototipo/data",
+  "type": "module",
+  "exports": {
+    ".": "./src/index.ts",
+    "./grid.json": {
+      "types": "./src/grid.json.d.ts",
+      "default": "./data/grid.json"
+    },
+    "./areas.json": {
+      "types": "./src/areas.json.d.ts",
+      "default": "./data/areas.json"
+    },
+    "./pois.json": {
+      "types": "./src/pois.json.d.ts",
+      "default": "./data/pois.json"
+    },
+    "./transit.json": {
+      "types": "./src/transit.json.d.ts",
+      "default": "./data/transit.json"
+    },
+    "./meta.json": {
+      "types": "./src/meta.json.d.ts",
+      "default": "./data/meta.json"
+    },
+    "./package.json": "./package.json"
+  },
+  "files": [
+    "src",
+    "data"
+  ],
+  "scripts": {
+    "convert": "node scripts/convert.mjs",
+    "typecheck": "tsc --noEmit"
+  }
+}
