@@ -82,7 +82,7 @@ export const en = {
   },
   cities: {
     title: 'Luxembourg today. Seven cities next.',
-    lead: 'Tell us your city and we will write when it opens. The iOS app comes first to the cities with the most sign-ups.',
+    lead: 'Tell us your city and we will write when it opens, or when the iOS app is ready.',
     demo: 'Demo live',
     soon: 'On the list',
     open: 'Open',
@@ -125,7 +125,9 @@ export const en = {
       city: 'Choose a city.',
       locale: 'Choose a language.',
       consent: 'Tick the box so we can email you.',
-      captcha: 'We couldn’t confirm you’re human. Wait for the check to finish and try again.',
+      captcha:
+        'The human check didn’t go through, so we restarted it. Wait for “Success”, then send again.',
+      pending: 'The human check is still running. Wait for “Success”, then send again.',
       server: 'Something went wrong on our side. Try again in a minute.',
       network: 'No connection. Check your network and try again.',
     },

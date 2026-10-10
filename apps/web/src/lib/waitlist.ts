@@ -21,13 +21,18 @@ const LOCALE_IDS: ReadonlySet<string> = new Set(LOCALES.map((l) => l.id));
 // Deliberately loose: one @, a dot in the domain, no spaces. The inbox is the real check.
 const EMAIL_RE = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
 const SOURCE_RE = /^[a-z0-9_-]{1,32}$/;
+// A leading = + - @ would run as a formula if an export is opened in a spreadsheet.
+const FORMULA_RE = /^[=+@-]/;
+
+export const MAX_TOKEN_LENGTH = 2048;
+export const TURNSTILE_ACTION = 'waitlist';
 
 export function normalizeEmail(raw: string): string {
   return raw.trim().toLowerCase();
 }
 
 export function isValidEmail(email: string): boolean {
-  return email.length <= 254 && EMAIL_RE.test(email);
+  return email.length <= 254 && EMAIL_RE.test(email) && !FORMULA_RE.test(email);
 }
 
 function str(value: unknown): string {
@@ -55,7 +60,7 @@ export function parseWaitlist(input: Record<string, unknown>): ParseResult {
   if (fields.length > 0) return { ok: false, reason: 'invalid', fields };
 
   const token = str(input['cf-turnstile-response'] ?? input.token).trim();
-  if (!token) return { ok: false, reason: 'captcha' };
+  if (!token || token.length > MAX_TOKEN_LENGTH) return { ok: false, reason: 'captcha' };
 
   const rawSource = str(input.source).trim().toLowerCase();
   const source = SOURCE_RE.test(rawSource) ? rawSource : 'landing';
@@ -65,4 +70,31 @@ export function parseWaitlist(input: Record<string, unknown>): ParseResult {
     entry: { email, city: city as CityId, locale: locale as LocaleId, source },
     token,
   };
+}
+
+export interface SiteverifyOutcome {
+  success?: boolean;
+  hostname?: string;
+  action?: string;
+}
+
+/**
+ * Accepts a Turnstile siteverify result. When production hostnames are configured, the token must also
+ * come from one of them and from the waitlist widget; test keys report example.com and are rejected.
+ */
+export function isTrustedTurnstile(
+  outcome: SiteverifyOutcome,
+  hostnames: readonly string[],
+): boolean {
+  if (outcome.success !== true) return false;
+  if (hostnames.length === 0) return true;
+  return hostnames.includes(outcome.hostname ?? '') && outcome.action === TURNSTILE_ACTION;
+}
+
+/** Parses the comma-separated TURNSTILE_HOSTNAMES variable. */
+export function parseHostnames(raw: string | undefined): string[] {
+  return (raw ?? '')
+    .split(',')
+    .map((h) => h.trim().toLowerCase())
+    .filter(Boolean);
 }

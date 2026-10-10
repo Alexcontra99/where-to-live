@@ -2,6 +2,7 @@
 import Icon from './Icon.astro';
 import { CITIES, LOCALES, TURNSTILE_TEST_SITE_KEY } from '../config';
 import { useStrings } from '../i18n';
+import { TURNSTILE_ACTION } from '../lib/waitlist';
 
 const { locale = 'en' } = Astro.props as { locale?: string };
 const t = useStrings(locale);
@@ -68,7 +69,13 @@ const siteKey = import.meta.env.PUBLIC_TURNSTILE_SITE_KEY || TURNSTILE_TEST_SITE
     <p class="error" id="wl-consent-error" hidden></p>
   </div>
 
-  <div class="cf-turnstile" data-sitekey={siteKey} data-theme="dark" data-size="flexible"></div>
+  <div
+    class="cf-turnstile"
+    data-sitekey={siteKey}
+    data-action={TURNSTILE_ACTION}
+    data-theme="dark"
+    data-size="flexible"
+  ></div>
 
   <button class="btn btn-primary submit" type="submit">
     <span class="label">{t.form.submit}</span>
@@ -123,6 +130,8 @@ const siteKey = import.meta.env.PUBLIC_TURNSTILE_SITE_KEY || TURNSTILE_TEST_SITE
       return bad;
     };
 
+    const resetCheck = () => (window as unknown as { turnstile?: Turnstile }).turnstile?.reset();
+
     const busy = (on: boolean) => {
       button.disabled = on;
       label.textContent = on ? (form.dataset.sending ?? idle) : idle;
@@ -134,6 +143,12 @@ const siteKey = import.meta.env.PUBLIC_TURNSTILE_SITE_KEY || TURNSTILE_TEST_SITE
       const bad = localCheck();
       showErrors(bad);
       if (bad.length) return;
+
+      const token = form.querySelector<HTMLInputElement>('[name="cf-turnstile-response"]')?.value;
+      if (!token) {
+        status.textContent = messages.pending ?? '';
+        return;
+      }
 
       const data = Object.fromEntries(new FormData(form).entries());
       const source = new URLSearchParams(location.search).get('ref');
@@ -155,9 +170,10 @@ const siteKey = import.meta.env.PUBLIC_TURNSTILE_SITE_KEY || TURNSTILE_TEST_SITE
         }
         if (res.status === 400 && body.fields?.length) showErrors(body.fields);
         else status.textContent = messages[body.error === 'captcha' ? 'captcha' : 'server'] ?? '';
-        (window as unknown as { turnstile?: Turnstile }).turnstile?.reset();
+        resetCheck();
       } catch {
         status.textContent = messages.network ?? '';
+        resetCheck();
       } finally {
         busy(false);
       }

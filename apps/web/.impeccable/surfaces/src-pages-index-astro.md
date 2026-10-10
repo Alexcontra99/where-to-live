@@ -14,8 +14,8 @@ Constraints: safety appears in the hero (user decision 2026-10-10), qualified in
 
 ## Direction contract
 THESIS: The category standard, played straight (user took the canon exit, reference: Scotch POS landing on landingfolio). A modern dark product landing whose hero is the real app at work, not an illustration. Refuses: fake device mockups, stock photos, invented stats.
-OWN-WORLD: near-black ground from the app's dark theme (#0d1117 family), app foreground/muted tokens, the app's blue as the single accent, map-zone greens only where they mean "fits". Geist variable, tight display, generous centred hero, pill buttons, hairline frames, small square icon chips before section titles' content, not above them.
+OWN-WORLD: near-black ground from the app's dark theme (#0d1117 family), app foreground/muted tokens, the app's blue as the single accent, map-zone greens only where they mean "fits". Geist variable, tight display, generous centred hero, pill buttons, hairline frames; headings stand alone, no eyebrows or icon chips.
 STORY: I can see which neighbourhoods fit my commute, rent, noise and safety; it already works for Luxembourg; my city is on the list; I join.
-FIRST VIEWPORT: slim header (wordmark, nav, Join button). Centred H1 at ~4.5rem, one-sentence sub, two CTAs (Join the waitlist pill, Try the Luxembourg demo link). Below, rising into the fold, the demo screenshot in a hairline browser frame with a soft green-blue glow; layer tabs dock on its lower edge.
+FIRST VIEWPORT: slim header (wordmark, nav, Join button). Centred H1 at ~4.5rem, short two-sentence sub, two CTAs (Join the waitlist pill, Try the Luxembourg demo link). Below, rising into the fold, the demo screenshot in a hairline browser frame with a soft green-blue glow; layer tabs dock on its lower edge.
 FORM: canon (standing exit), seed key a7297e7a. Signature interaction: layer tabs under the screenshot switch the caption and source for commute, rent, noise, near/far, safety.
 FINISH: unreviewed and undocumented is unfinished; this build ends with the finish review, the verdict, DESIGN.md, and every shipping raster carrying its provenance

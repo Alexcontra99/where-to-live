@@ -1,5 +1,12 @@
 import { describe, expect, it } from 'vitest';
-import { isValidEmail, normalizeEmail, parseWaitlist } from '../src/lib/waitlist';
+import {
+  isTrustedTurnstile,
+  isValidEmail,
+  MAX_TOKEN_LENGTH,
+  normalizeEmail,
+  parseHostnames,
+  parseWaitlist,
+} from '../src/lib/waitlist';
 
 const valid = {
   email: '  Ana@Example.COM ',
@@ -18,12 +25,20 @@ describe('normalizeEmail / isValidEmail', () => {
     expect(isValidEmail(email)).toBe(true);
   });
 
-  it.each(['', 'plain', 'a@b', 'a b@c.de', '@c.de', 'a@@c.de', `${'x'.repeat(250)}@c.de`])(
-    'rejects %j',
-    (email) => {
-      expect(isValidEmail(email)).toBe(false);
-    },
-  );
+  it.each([
+    '',
+    'plain',
+    'a@b',
+    'a b@c.de',
+    '@c.de',
+    'a@@c.de',
+    '=cmd@evil.co',
+    '+1@x.co',
+    '-x@y.co',
+    `${'x'.repeat(250)}@c.de`,
+  ])('rejects %j', (email) => {
+    expect(isValidEmail(email)).toBe(false);
+  });
 });
 
 describe('parseWaitlist', () => {
@@ -91,5 +106,56 @@ describe('parseWaitlist', () => {
       for (const l of LOCALES) {
         expect(parseWaitlist({ ...valid, city: c.id, locale: l.id }).ok).toBe(true);
       }
+  });
+});
+
+describe('captcha token limits', () => {
+  it('rejects an oversized token as a captcha failure', () => {
+    const token = 'x'.repeat(MAX_TOKEN_LENGTH + 1);
+    expect(parseWaitlist({ ...valid, 'cf-turnstile-response': token })).toEqual({
+      ok: false,
+      reason: 'captcha',
+    });
+  });
+});
+
+describe('isTrustedTurnstile', () => {
+  const prod = ['where-to-live.pages.dev'];
+
+  it('requires success', () => {
+    expect(isTrustedTurnstile({ success: false }, [])).toBe(false);
+    expect(isTrustedTurnstile({}, [])).toBe(false);
+  });
+
+  it('accepts any successful token when no hostnames are configured (local dev)', () => {
+    expect(isTrustedTurnstile({ success: true, hostname: 'example.com' }, [])).toBe(true);
+  });
+
+  it('checks hostname and action in production', () => {
+    expect(
+      isTrustedTurnstile(
+        { success: true, hostname: 'where-to-live.pages.dev', action: 'waitlist' },
+        prod,
+      ),
+    ).toBe(true);
+    expect(
+      isTrustedTurnstile({ success: true, hostname: 'example.com', action: 'waitlist' }, prod),
+    ).toBe(false);
+    expect(
+      isTrustedTurnstile(
+        { success: true, hostname: 'where-to-live.pages.dev', action: 'other' },
+        prod,
+      ),
+    ).toBe(false);
+  });
+});
+
+describe('parseHostnames', () => {
+  it('splits, trims, lowercases and drops blanks', () => {
+    expect(parseHostnames(' Where-To-Live.pages.dev, ,example.org ')).toEqual([
+      'where-to-live.pages.dev',
+      'example.org',
+    ]);
+    expect(parseHostnames(undefined)).toEqual([]);
   });
 });
