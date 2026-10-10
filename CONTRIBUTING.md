@@ -1,6 +1,6 @@
 # Cómo trabajar en este repositorio
 
-Repositorio privado compartido por dos personas: el **autor** de un cambio y el **revisor** (el otro). Cada cambio llega a `main` solo por pull request (PR) revisado.
+Repositorio privado compartido por dos personas (Alexcontra99 y SearchingAlpha): el **autor** de un cambio y el **revisor** (el otro). Si el PR lo abre quien revisaría, lo revisa la otra persona igualmente. Cada cambio llega a `main` solo por pull request (PR) revisado.
 
 ## Reglas
 - Nunca commit ni push directo a `main`. Nunca `push --force` sin acordarlo con la otra persona.

@@ -17,6 +17,7 @@ from shapely.strtree import STRtree
 HERE = os.path.dirname(os.path.abspath(__file__))
 OUT = os.path.normpath(os.path.join(HERE, '..', 'data'))
 RAW = os.path.expanduser('~/.cache/nether_app/raw')
+SEA_JSON = os.path.join(os.path.dirname(os.path.abspath(__file__)), 'sea_2021_geocoded.json')   # versionado: lista oficial SEA 2021 geocodificada
 GTFS = os.path.expanduser('~/.cache/nether_gtfs')   # caché de horarios compartida con otras herramientas locales
 REGION = (49.55, 6.03, 49.70, 6.28)                  # lat0, lon0, lat1, lon1
 STEP_KM = 0.15                                        # lado de la celda
@@ -315,7 +316,7 @@ def sea_childcare(other_geoms, other_shown, kind, cat):
     """Guarderías y maisons relais: base = lista oficial SEA 2021 (Ministère de l'Éducation nationale, CC0),
     geocodificada por la sesión de datos con geoportail.lu; + OSM/Overture a más de 100 m de un SEA."""
     lat0, lon0, lat1, lon1 = REGION
-    sea = [x for x in json.load(open(os.path.join(RAW, 'sea_2021_geocoded.json')))
+    sea = [x for x in json.load(open(SEA_JSON))
            if x.get('lat') and x.get(kind) and lat0 - 0.03 <= x['lat'] <= lat1 + 0.03 and lon0 - 0.04 <= x['lon'] <= lon1 + 0.04]
     geoms, shown = [], []
     for x in sea:

@@ -1,6 +1,6 @@
 ---
 tipo: estado
-proyecto: app_donde_vivir
+proyecto: where-to-live
 fecha: 2026-10-10
 estado: activo
 ---
@@ -30,13 +30,12 @@ estado: activo
 
 ## Próximo paso
 ### Main
-0. Hecho en este PR: la exportación de la web vive en `publicar/`, versionada (decisión de Ale, 10/10: todo el material junto en una carpeta). Regenerarla y subirla cada vez que cambie la app.
 1. Guion de prueba y formulario de feedback en `usuarios/guion_prueba.md`. No depende de Ale.
 2. Publicar el v0 en una web pública (con OK de Ale) y probar la URL en escritorio y móvil.
 3. Opcional: un enlace que guarde los filtros, para compartir.
 
 ### Secundaria
-- Convertir en script la geocodificación de la lista SEA 2021 (`sea_2021_geocoded.json`), para que cualquiera pueda regenerar los datos (auditoría del 10/10).
+- Convertir en script la geocodificación de la lista SEA 2021. El resultado ya está versionado en `prototipo/build/sea_2021_geocoded.json`, así que los datos se regeneran sin él; falta poder rehacerlo cuando salga una lista nueva.
 - Revisar el mínimo de 30 ofertas también en barrios (Hamm, Clausen y Pfaffenthal tienen L alto con 14-16 ofertas).
 - Sin trabajo abierto. Espera las decisiones de Ale sobre precios (A/B) y la tarea mensual (abajo).
 - Primera actualización mensual: primera semana de noviembre (`protocolos/actualizacion_datos.md`). Pasada extra tras el cambio de horarios de mediados de diciembre.

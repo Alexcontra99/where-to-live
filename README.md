@@ -15,7 +15,7 @@ pip install -r prototipo/build/requirements.txt   # Python 3.9+
 python3 prototipo/build/get_gtfs.py
 python3 prototipo/build/build_data.py
 ```
-Limitación conocida: `sea_2021_geocoded.json` se generó a mano (pendiente de convertir en script).
+Dependencia versionada: `prototipo/build/sea_2021_geocoded.json` (lista oficial de guarderías geocodificada a mano; el script que la genera está pendiente).
 
 ## Qué hay en el repositorio
 | Carpeta o archivo | Contenido |

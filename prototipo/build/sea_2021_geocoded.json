@@ -1,0 +1,5634 @@
+[
+{
+"name": "Maison Relais & Crèche Beaufort",
+"lat": 49.838341,
+"lon": 6.294674,
+"young_children": true,
+"school_children": true,
+"geocode_precision": "numero"
+},
+{
+"name": "Crèche Draachemailchen",
+"lat": 49.744116,
+"lon": 5.932037,
+"young_children": true,
+"school_children": false,
+"geocode_precision": "numero"
+},
+{
+"name": "Maison Relais Dillendapp",
+"lat": 49.731819,
+"lon": 5.882816,
+"young_children": false,
+"school_children": true,
+"geocode_precision": "numero"
+},
+{
+"name": "Le Temps d'un Rêve - Noerdange",
+"lat": 49.742962,
+"lon": 5.927667,
+"young_children": true,
+"school_children": false,
+"geocode_precision": "numero"
+},
+{
+"name": "Crèche Zavanouille & Co",
+"lat": 49.730818,
+"lon": 5.842339,
+"young_children": true,
+"school_children": false,
+"geocode_precision": "numero"
+},
+{
+"name": "Al Weilerbach",
+"lat": 49.832707,
+"lon": 6.38238,
+"young_children": false,
+"school_children": true,
+"geocode_precision": "numero"
+},
+{
+"name": "Maison Relais Berdorf",
+"lat": 49.826702,
+"lon": 6.344196,
+"young_children": false,
+"school_children": true,
+"geocode_precision": "numero"
+},
+{
+"name": "Sunflower Montessori  Bertrange",
+"lat": 49.611228,
+"lon": 6.053338,
+"young_children": true,
+"school_children": false,
+"geocode_precision": "numero"
+},
+{
+"name": "Maison Relais Bertrange - Beiestack ",
+"lat": 49.609095,
+"lon": 6.051071,
+"young_children": false,
+"school_children": true,
+"geocode_precision": "numero"
+},
+{
+"name": "SEA Bei der Péitruss",
+"lat": 49.6091,
+"lon": 6.05602,
+"young_children": false,
+"school_children": true,
+"geocode_precision": "numero"
+},
+{
+"name": "Crèche Mausi",
+"lat": 49.619382,
+"lon": 6.049298,
+"young_children": true,
+"school_children": false,
+"geocode_precision": "numero"
+},
+{
+"name": "L'Enfant Roi Atrium",
+"lat": 49.607264,
+"lon": 6.079361,
+"young_children": true,
+"school_children": false,
+"geocode_precision": "numero"
+},
+{
+"name": "Crèche Le Petit Prince",
+"lat": 49.608795,
+"lon": 6.066216,
+"young_children": true,
+"school_children": false,
+"geocode_precision": "numero"
+},
+{
+"name": "Crèche Kandodoo",
+"lat": 49.600082,
+"lon": 6.0685,
+"young_children": true,
+"school_children": true,
+"geocode_precision": "numero"
+},
+{
+"name": "Foyer de Jour Kannervilla Carlo Hemmer",
+"lat": 49.613617,
+"lon": 6.050773,
+"young_children": true,
+"school_children": false,
+"geocode_precision": "numero"
+},
+{
+"name": "Crèche Mini Me",
+"lat": 49.606121,
+"lon": 6.073655,
+"young_children": true,
+"school_children": false,
+"geocode_precision": "numero"
+},
+{
+"name": "Crèche Madagascar",
+"lat": 49.603542,
+"lon": 6.074464,
+"young_children": true,
+"school_children": false,
+"geocode_precision": "numero"
+},
+{
+"name": "Crèche les P'tits Loulous",
+"lat": 49.619784,
+"lon": 6.047783,
+"young_children": true,
+"school_children": false,
+"geocode_precision": "numero"
+},
+{
+"name": "Maison Relais Bettembourg - Sonnepavillon ",
+"lat": 49.507424,
+"lon": 6.053616,
+"young_children": false,
+"school_children": true,
+"geocode_precision": "numero"
+},
+{
+"name": "CRECHE POHUNN",
+"lat": 49.517957,
+"lon": 6.068133,
+"young_children": true,
+"school_children": false,
+"geocode_precision": "numero"
+},
+{
+"name": "CRECHE SONNEBLIMCHEN",
+"lat": 49.511093,
+"lon": 6.113638,
+"young_children": true,
+"school_children": false,
+"geocode_precision": "numero"
+},
+{
+"name": "Wonnerwelt",
+"lat": 49.517283,
+"lon": 6.109964,
+"young_children": false,
+"school_children": true,
+"geocode_precision": "numero"
+},
+{
+"name": "SEAI KOKOPELLI",
+"lat": 49.511943,
+"lon": 6.117624,
+"young_children": true,
+"school_children": false,
+"geocode_precision": "numero"
+},
+{
+"name": "Crèche Au Petit Bonheur",
+"lat": 49.512333,
+"lon": 6.112654,
+"young_children": true,
+"school_children": false,
+"geocode_precision": "numero"
+},
+{
+"name": "FOYER DE JOUR STAERENHAUS",
+"lat": 49.520723,
+"lon": 6.099743,
+"young_children": true,
+"school_children": false,
+"geocode_precision": "numero"
+},
+{
+"name": "Crèche Aria",
+"lat": 49.529336,
+"lon": 6.098809,
+"young_children": true,
+"school_children": false,
+"geocode_precision": "numero"
+},
+{
+"name": "GARDERIE KRABBELCLUB",
+"lat": 49.515116,
+"lon": 6.098516,
+"young_children": true,
+"school_children": false,
+"geocode_precision": "numero"
+},
+{
+"name": "Reebou-Pavillon",
+"lat": 49.516972,
+"lon": 6.110705,
+"young_children": false,
+"school_children": true,
+"geocode_precision": "numero"
+},
+{
+"name": "Al Gemeng 1",
+"lat": 49.520593,
+"lon": 6.099478,
+"young_children": false,
+"school_children": true,
+"geocode_precision": "numero"
+},
+{
+"name": "Al Gemeng 2",
+"lat": 49.520723,
+"lon": 6.099743,
+"young_children": false,
+"school_children": true,
+"geocode_precision": "numero"
+},
+{
+"name": "Centre sportif",
+"lat": 49.515116,
+"lon": 6.098516,
+"young_children": false,
+"school_children": true,
+"geocode_precision": "numero"
+},
+{
+"name": "Les Frimousses",
+"lat": 49.529108,
+"lon": 6.098217,
+"young_children": true,
+"school_children": false,
+"geocode_precision": "numero"
+},
+{
+"name": "Crèche Mes Copains et Moi",
+"lat": 49.510394,
+"lon": 6.06102,
+"young_children": true,
+"school_children": false,
+"geocode_precision": "numero"
+},
+{
+"name": "Crèche Mes Copains et Moi",
+"lat": 49.514873,
+"lon": 6.113629,
+"young_children": true,
+"school_children": false,
+"geocode_precision": "numero"
+},
+{
+"name": "Les P'tits Mousses",
+"lat": 49.514797,
+"lon": 6.094243,
+"young_children": true,
+"school_children": true,
+"geocode_precision": "numero"
+},
+{
+"name": "Pohunn Niewendrunn",
+"lat": 49.519988,
+"lon": 6.083413,
+"young_children": true,
+"school_children": false,
+"geocode_precision": "numero"
+},
+{
+"name": "Maison Relais & Crèche Dappeshaus",
+"lat": 49.874606,
+"lon": 6.217077,
+"young_children": true,
+"school_children": true,
+"geocode_precision": "numero"
+},
+{
+"name": "Maison Relais  & Crèche Betzdorf",
+"lat": 49.664835,
+"lon": 6.301168,
+"young_children": true,
+"school_children": true,
+"geocode_precision": "calle"
+},
+{
+"name": "Bëschcrèche Betzdorf ",
+"lat": 49.664835,
+"lon": 6.301168,
+"young_children": true,
+"school_children": false,
+"geocode_precision": "calle"
+},
+{
+"name": "Crèche Kiddies Betzdorf",
+"lat": 49.687235,
+"lon": 6.345351,
+"young_children": true,
+"school_children": false,
+"geocode_precision": "numero"
+},
+{
+"name": "Maison Relais Spillschoul Un der Atert",
+"lat": 49.788119,
+"lon": 6.067193,
+"young_children": false,
+"school_children": true,
+"geocode_precision": "numero"
+},
+{
+"name": "Crèche Margréitchen",
+"lat": 49.787547,
+"lon": 6.066748,
+"young_children": true,
+"school_children": false,
+"geocode_precision": "numero"
+},
+{
+"name": "Maison Relais Un der Atert",
+"lat": 49.788336,
+"lon": 6.067969,
+"young_children": false,
+"school_children": true,
+"geocode_precision": "numero"
+},
+{
+"name": "Maison Relais Biwer",
+"lat": 49.701107,
+"lon": 6.379814,
+"young_children": false,
+"school_children": true,
+"geocode_precision": "numero"
+},
+{
+"name": "CRECHE BIWER",
+"lat": 49.700998,
+"lon": 6.380438,
+"young_children": true,
+"school_children": false,
+"geocode_precision": "numero"
+},
+{
+"name": "Crèche Babasi",
+"lat": 49.898508,
+"lon": 5.819187,
+"young_children": true,
+"school_children": false,
+"geocode_precision": "numero"
+},
+{
+"name": "Maison Relais  / Crèche Bourscheid",
+"lat": 49.908952,
+"lon": 6.059801,
+"young_children": true,
+"school_children": true,
+"geocode_precision": "numero"
+},
+{
+"name": "Crèche Am Beiestack",
+"lat": 49.920429,
+"lon": 6.089385,
+"young_children": true,
+"school_children": false,
+"geocode_precision": "numero"
+},
+{
+"name": "LES PETITS FILOUS",
+"lat": 49.552978,
+"lon": 6.31799,
+"young_children": true,
+"school_children": false,
+"geocode_precision": "numero"
+},
+{
+"name": "Maison Relais Bous",
+"lat": 49.555242,
+"lon": 6.329966,
+"young_children": false,
+"school_children": true,
+"geocode_precision": "numero"
+},
+{
+"name": "La Voie des Enfants",
+"lat": 49.555219,
+"lon": 6.324936,
+"young_children": true,
+"school_children": false,
+"geocode_precision": "numero"
+},
+{
+"name": "Crèche CouCou Bonheur",
+"lat": 49.555492,
+"lon": 6.31236,
+"young_children": true,
+"school_children": false,
+"geocode_precision": "numero"
+},
+{
+"name": "Maison Relais Packatuffi",
+"lat": 50.056797,
+"lon": 6.035927,
+"young_children": false,
+"school_children": true,
+"geocode_precision": "calle"
+},
+{
+"name": "International School",
+"lat": 50.064172,
+"lon": 6.023006,
+"young_children": false,
+"school_children": true,
+"geocode_precision": "numero"
+},
+{
+"name": "Crèche Louklëppelcher",
+"lat": 50.056797,
+"lon": 6.035927,
+"young_children": true,
+"school_children": false,
+"geocode_precision": "calle"
+},
+{
+"name": "Crèche Butzemillen Marnach",
+"lat": 50.053051,
+"lon": 6.070945,
+"young_children": true,
+"school_children": false,
+"geocode_precision": "calle"
+},
+{
+"name": "Eislecker Maisercher",
+"lat": 50.066574,
+"lon": 6.068005,
+"young_children": true,
+"school_children": false,
+"geocode_precision": "numero"
+},
+{
+"name": "ENGELSHAISCHEN",
+"lat": 49.805846,
+"lon": 6.093439,
+"young_children": true,
+"school_children": false,
+"geocode_precision": "numero"
+},
+{
+"name": "Maison Relais & Crèche Piccolini",
+"lat": 49.807798,
+"lon": 6.091964,
+"young_children": true,
+"school_children": true,
+"geocode_precision": "numero"
+},
+{
+"name": "Maison Relais - Crèche communale Consdorf, nouveau bâtiment",
+"lat": 49.779103,
+"lon": 6.340733,
+"young_children": true,
+"school_children": true,
+"geocode_precision": "numero"
+},
+{
+"name": "Maison Relais Contern - Centre scolaire et sportif Um Ewent",
+"lat": 49.5781,
+"lon": 6.221593,
+"young_children": false,
+"school_children": true,
+"geocode_precision": "numero"
+},
+{
+"name": "Sunflower Montessori Crèche",
+"lat": 49.587817,
+"lon": 6.258143,
+"young_children": true,
+"school_children": true,
+"geocode_precision": "numero"
+},
+{
+"name": "Le Paradis des Enfants",
+"lat": 49.588452,
+"lon": 6.22008,
+"young_children": true,
+"school_children": false,
+"geocode_precision": "numero"
+},
+{
+"name": "Le Paradis des Enfants 2 ",
+"lat": 49.58141,
+"lon": 6.220032,
+"young_children": true,
+"school_children": false,
+"geocode_precision": "numero"
+},
+{
+"name": "Spillkëscht Mutfert",
+"lat": 49.587113,
+"lon": 6.256777,
+"young_children": true,
+"school_children": false,
+"geocode_precision": "numero"
+},
+{
+"name": "Crèche Arc-en-ciel",
+"lat": 49.542158,
+"lon": 6.286245,
+"young_children": true,
+"school_children": false,
+"geocode_precision": "numero"
+},
+{
+"name": "NaturCrèche mäh-ma-muh",
+"lat": 49.532971,
+"lon": 6.247874,
+"young_children": true,
+"school_children": false,
+"geocode_precision": "numero"
+},
+{
+"name": "SEA An de Wolleken",
+"lat": 49.541594,
+"lon": 6.265788,
+"young_children": false,
+"school_children": true,
+"geocode_precision": "calle"
+},
+{
+"name": "Dikricher Däbbessen Kockelberg",
+"lat": 49.86972,
+"lon": 6.150694,
+"young_children": true,
+"school_children": false,
+"geocode_precision": "numero"
+},
+{
+"name": "Dikricher Däbbessen ",
+"lat": 49.869867,
+"lon": 6.155626,
+"young_children": true,
+"school_children": false,
+"geocode_precision": "numero"
+},
+{
+"name": "Maison Relais - Crèche  Diekirch",
+"lat": 49.870231,
+"lon": 6.156079,
+"young_children": true,
+"school_children": true,
+"geocode_precision": "numero"
+},
+{
+"name": "Crèche An der Kléck",
+"lat": 49.868567,
+"lon": 6.167193,
+"young_children": true,
+"school_children": false,
+"geocode_precision": "numero"
+},
+{
+"name": "Crèche Butzemillen Diekirch",
+"lat": 49.859989,
+"lon": 6.144475,
+"young_children": true,
+"school_children": false,
+"geocode_precision": "numero"
+},
+{
+"name": "CRECHE CASA DEL BAMBINO",
+"lat": 49.518948,
+"lon": 5.900284,
+"young_children": true,
+"school_children": false,
+"geocode_precision": "numero"
+},
+{
+"name": "Maison Relais Differdange Fousbann",
+"lat": 49.519758,
+"lon": 5.900715,
+"young_children": false,
+"school_children": true,
+"geocode_precision": "numero"
+},
+{
+"name": "FOYER DE JOUR BEI DEN BUTZEN",
+"lat": 49.515438,
+"lon": 5.896224,
+"young_children": false,
+"school_children": true,
+"geocode_precision": "numero"
+},
+{
+"name": "Rockids Niederkorn",
+"lat": 49.536939,
+"lon": 5.897922,
+"young_children": false,
+"school_children": true,
+"geocode_precision": "numero"
+},
+{
+"name": "SEA de l'EIDE",
+"lat": 49.521595,
+"lon": 5.886101,
+"young_children": false,
+"school_children": true,
+"geocode_precision": "numero"
+},
+{
+"name": "Crèche Calimero Differdange",
+"lat": 49.523324,
+"lon": 5.88645,
+"young_children": true,
+"school_children": true,
+"geocode_precision": "numero"
+},
+{
+"name": "Hakuna Matata",
+"lat": 49.522522,
+"lon": 5.887112,
+"young_children": true,
+"school_children": false,
+"geocode_precision": "numero"
+},
+{
+"name": "AM STRAM GRAM",
+"lat": 49.518849,
+"lon": 5.89773,
+"young_children": false,
+"school_children": true,
+"geocode_precision": "numero"
+},
+{
+"name": "Crèche et Maison Relais en forêt",
+"lat": 49.527992,
+"lon": 5.879389,
+"young_children": true,
+"school_children": true,
+"geocode_precision": "numero"
+},
+{
+"name": "CRECHE VILLA PIPOO II",
+"lat": 49.524243,
+"lon": 5.889368,
+"young_children": true,
+"school_children": false,
+"geocode_precision": "calle"
+},
+{
+"name": "Foyer de Jour Calimero",
+"lat": 49.52194,
+"lon": 5.887937,
+"young_children": false,
+"school_children": true,
+"geocode_precision": "numero"
+},
+{
+"name": "Maison Relais Differdange Ecole Woiwer",
+"lat": 49.519169,
+"lon": 5.908362,
+"young_children": false,
+"school_children": true,
+"geocode_precision": "numero"
+},
+{
+"name": "Maison Relais Differdange Oberkorn",
+"lat": 49.521349,
+"lon": 5.907486,
+"young_children": false,
+"school_children": true,
+"geocode_precision": "numero"
+},
+{
+"name": "Crèche Bei den Deckelsmouken",
+"lat": 49.538869,
+"lon": 5.904004,
+"young_children": true,
+"school_children": false,
+"geocode_precision": "numero"
+},
+{
+"name": "Les Petits Gourmands",
+"lat": 49.515535,
+"lon": 5.897398,
+"young_children": true,
+"school_children": false,
+"geocode_precision": "numero"
+},
+{
+"name": "Crèche Butzebuerg",
+"lat": 49.520353,
+"lon": 5.887085,
+"young_children": true,
+"school_children": false,
+"geocode_precision": "numero"
+},
+{
+"name": "Crèche Bei den Butzen",
+"lat": 49.515364,
+"lon": 5.896217,
+"young_children": true,
+"school_children": false,
+"geocode_precision": "numero"
+},
+{
+"name": "Crèche Cookie Kids",
+"lat": 49.53731,
+"lon": 5.896161,
+"young_children": true,
+"school_children": false,
+"geocode_precision": "numero"
+},
+{
+"name": "Les Colombes",
+"lat": 49.51797,
+"lon": 5.901218,
+"young_children": true,
+"school_children": true,
+"geocode_precision": "numero"
+},
+{
+"name": "Crèche Au Coeur du Soleil",
+"lat": 49.542478,
+"lon": 5.88738,
+"young_children": true,
+"school_children": false,
+"geocode_precision": "numero"
+},
+{
+"name": "Foyer de Jour Kornascht",
+"lat": 49.543953,
+"lon": 5.889113,
+"young_children": true,
+"school_children": false,
+"geocode_precision": "numero"
+},
+{
+"name": "Maison Relais Niederkorn Erpelding",
+"lat": 49.534076,
+"lon": 5.890286,
+"young_children": false,
+"school_children": true,
+"geocode_precision": "numero"
+},
+{
+"name": "Mes Copains et Moi",
+"lat": 49.517951,
+"lon": 5.888183,
+"young_children": true,
+"school_children": false,
+"geocode_precision": "numero"
+},
+{
+"name": "Mes Copains et Moi",
+"lat": 49.51216,
+"lon": 5.892331,
+"young_children": true,
+"school_children": false,
+"geocode_precision": "numero"
+},
+{
+"name": "Maison Relais Differdange Centre",
+"lat": 49.522529,
+"lon": 5.889449,
+"young_children": false,
+"school_children": true,
+"geocode_precision": "numero"
+},
+{
+"name": "Butzen Schlass",
+"lat": 49.512892,
+"lon": 5.892858,
+"young_children": true,
+"school_children": false,
+"geocode_precision": "numero"
+},
+{
+"name": "SEAI TOPOLINO",
+"lat": 49.518863,
+"lon": 5.891826,
+"young_children": true,
+"school_children": false,
+"geocode_precision": "numero"
+},
+{
+"name": "Casa del bambino Cite'O",
+"lat": 49.513567,
+"lon": 5.895881,
+"young_children": true,
+"school_children": false,
+"geocode_precision": "calle"
+},
+{
+"name": "Foyer de Jour Butzebuerg",
+"lat": 49.540095,
+"lon": 5.890743,
+"young_children": false,
+"school_children": true,
+"geocode_precision": "numero"
+},
+{
+"name": "Hakuna Matata Foyer de Jour",
+"lat": 49.522075,
+"lon": 5.887482,
+"young_children": false,
+"school_children": true,
+"geocode_precision": "numero"
+},
+{
+"name": "Maison Relais Dippach",
+"lat": 49.583231,
+"lon": 5.960817,
+"young_children": false,
+"school_children": true,
+"geocode_precision": "numero"
+},
+{
+"name": "Crèche Pirateschëff",
+"lat": 49.587053,
+"lon": 5.987201,
+"young_children": true,
+"school_children": false,
+"geocode_precision": "numero"
+},
+{
+"name": "Crèche Les Petits Curieux",
+"lat": 49.580142,
+"lon": 5.953348,
+"young_children": true,
+"school_children": false,
+"geocode_precision": "numero"
+},
+{
+"name": "Crèche Kannernascht Dippech-Garnech",
+"lat": 49.587351,
+"lon": 5.983513,
+"young_children": true,
+"school_children": false,
+"geocode_precision": "numero"
+},
+{
+"name": "Jardin d'enfants Beienhëpchen",
+"lat": 49.58189,
+"lon": 5.957289,
+"young_children": true,
+"school_children": true,
+"geocode_precision": "numero"
+},
+{
+"name": "Villa Wichtel (Dudelange)",
+"lat": 49.485719,
+"lon": 6.096168,
+"young_children": true,
+"school_children": true,
+"geocode_precision": "numero"
+},
+{
+"name": "Maison Relais Gaffelt",
+"lat": 49.482099,
+"lon": 6.080453,
+"young_children": false,
+"school_children": true,
+"geocode_precision": "numero"
+},
+{
+"name": "Foyer de Jour Rockids Dudelange",
+"lat": 49.483933,
+"lon": 6.077252,
+"young_children": false,
+"school_children": true,
+"geocode_precision": "numero"
+},
+{
+"name": "Minettsdepp",
+"lat": 49.483151,
+"lon": 6.086385,
+"young_children": true,
+"school_children": false,
+"geocode_precision": "numero"
+},
+{
+"name": "Nuddelsfabrik",
+"lat": 49.485319,
+"lon": 6.082266,
+"young_children": true,
+"school_children": false,
+"geocode_precision": "numero"
+},
+{
+"name": "Crèche Spatzennascht",
+"lat": 49.477293,
+"lon": 6.08047,
+"young_children": true,
+"school_children": false,
+"geocode_precision": "numero"
+},
+{
+"name": "Foyer Diddelfamill",
+"lat": 49.472888,
+"lon": 6.07633,
+"young_children": false,
+"school_children": true,
+"geocode_precision": "numero"
+},
+{
+"name": "Crèche Barbara Dudelange",
+"lat": 49.480785,
+"lon": 6.082754,
+"young_children": true,
+"school_children": false,
+"geocode_precision": "numero"
+},
+{
+"name": "Crèche Wonnerland",
+"lat": 49.481687,
+"lon": 6.08033,
+"young_children": true,
+"school_children": false,
+"geocode_precision": "numero"
+},
+{
+"name": "Crèche La P'tite Souris Verte",
+"lat": 49.485888,
+"lon": 6.091639,
+"young_children": true,
+"school_children": false,
+"geocode_precision": "numero"
+},
+{
+"name": "Crèche et Foyer de Jour Rockids Dudelange 1",
+"lat": 49.492135,
+"lon": 6.093906,
+"young_children": true,
+"school_children": true,
+"geocode_precision": "numero"
+},
+{
+"name": "Maison relais Deich",
+"lat": 49.473485,
+"lon": 6.084941,
+"young_children": false,
+"school_children": true,
+"geocode_precision": "numero"
+},
+{
+"name": "Maison Relais Strutzbierg",
+"lat": 49.477188,
+"lon": 6.086023,
+"young_children": false,
+"school_children": true,
+"geocode_precision": "numero"
+},
+{
+"name": "Maison Relais Waldschoul",
+"lat": 49.48386,
+"lon": 6.085426,
+"young_children": false,
+"school_children": true,
+"geocode_precision": "calle"
+},
+{
+"name": "Maison Relais An der Schwemm",
+"lat": 49.48556,
+"lon": 6.089042,
+"young_children": false,
+"school_children": true,
+"geocode_precision": "numero"
+},
+{
+"name": "Maison Relais Ribeschpont",
+"lat": 49.492085,
+"lon": 6.080921,
+"young_children": false,
+"school_children": true,
+"geocode_precision": "numero"
+},
+{
+"name": "Maison Relais Boudersberg",
+"lat": 49.487507,
+"lon": 6.071212,
+"young_children": false,
+"school_children": true,
+"geocode_precision": "numero"
+},
+{
+"name": "Maison Relais Lenkeschléi",
+"lat": 49.48184,
+"lon": 6.094062,
+"young_children": false,
+"school_children": true,
+"geocode_precision": "numero"
+},
+{
+"name": "Ecole et Maison Relais Lenkeschléi",
+"lat": 49.480768,
+"lon": 6.097453,
+"young_children": false,
+"school_children": true,
+"geocode_precision": "numero"
+},
+{
+"name": "Crèche et Foyer de Jour Les Mignons",
+"lat": 49.488869,
+"lon": 6.082833,
+"young_children": true,
+"school_children": true,
+"geocode_precision": "numero"
+},
+{
+"name": "Crèche Nascht Echternach",
+"lat": 49.806035,
+"lon": 6.405719,
+"young_children": true,
+"school_children": false,
+"geocode_precision": "numero"
+},
+{
+"name": "Foyer de Jour Nascht Echternach",
+"lat": 49.804017,
+"lon": 6.431653,
+"young_children": false,
+"school_children": true,
+"geocode_precision": "numero"
+},
+{
+"name": "Crèche & Foyer de Jour Hämelmais",
+"lat": 49.816884,
+"lon": 6.41148,
+"young_children": true,
+"school_children": true,
+"geocode_precision": "numero"
+},
+{
+"name": "Foyer de Jour & Maison Relais Eechternoacher Kannerstuff",
+"lat": 49.811374,
+"lon": 6.415464,
+"young_children": true,
+"school_children": true,
+"geocode_precision": "numero"
+},
+{
+"name": "Crèche Nascht",
+"lat": 49.805585,
+"lon": 6.405942,
+"young_children": true,
+"school_children": false,
+"geocode_precision": "numero"
+},
+{
+"name": "Foyer de Jour A Butzen",
+"lat": 49.76199,
+"lon": 5.853791,
+"young_children": true,
+"school_children": false,
+"geocode_precision": "numero"
+},
+{
+"name": "Maison Relais Fräschepillchen Ell",
+"lat": 49.762349,
+"lon": 5.853237,
+"young_children": false,
+"school_children": true,
+"geocode_precision": "numero"
+},
+{
+"name": "Crèche Am Butzenascht",
+"lat": 49.85251,
+"lon": 6.13338,
+"young_children": true,
+"school_children": false,
+"geocode_precision": "numero"
+},
+{
+"name": "Crèche Erpeldange",
+"lat": 49.707616,
+"lon": 6.184421,
+"young_children": true,
+"school_children": false,
+"geocode_precision": "calle"
+},
+{
+"name": "Maison Relais Erpeldange",
+"lat": 49.707616,
+"lon": 6.184421,
+"young_children": false,
+"school_children": true,
+"geocode_precision": "calle"
+},
+{
+"name": "Crèche Les P'tits Malins 2",
+"lat": 49.851945,
+"lon": 6.115302,
+"young_children": true,
+"school_children": false,
+"geocode_precision": "numero"
+},
+{
+"name": "Crèche Butzen",
+"lat": 49.880795,
+"lon": 6.090944,
+"young_children": true,
+"school_children": false,
+"geocode_precision": "numero"
+},
+{
+"name": "Crèche BOUMBA 3",
+"lat": 49.49729,
+"lon": 5.988962,
+"young_children": true,
+"school_children": false,
+"geocode_precision": "numero"
+},
+{
+"name": "CRECHE COCCINELLA",
+"lat": 49.508476,
+"lon": 5.974265,
+"young_children": true,
+"school_children": false,
+"geocode_precision": "numero"
+},
+{
+"name": "BOUMBA",
+"lat": 49.503034,
+"lon": 5.986661,
+"young_children": true,
+"school_children": false,
+"geocode_precision": "numero"
+},
+{
+"name": "Maison Relais Parc du Canal",
+"lat": 49.494897,
+"lon": 5.978682,
+"young_children": false,
+"school_children": true,
+"geocode_precision": "numero"
+},
+{
+"name": "Villa Wichtel Belval",
+"lat": 49.502333,
+"lon": 5.943729,
+"young_children": true,
+"school_children": false,
+"geocode_precision": "calle"
+},
+{
+"name": "SEA de l'EIDE",
+"lat": 49.495784,
+"lon": 5.974812,
+"young_children": false,
+"school_children": true,
+"geocode_precision": "numero"
+},
+{
+"name": "Maison Relais Bei de Flierdermais",
+"lat": 49.506302,
+"lon": 5.968363,
+"young_children": false,
+"school_children": true,
+"geocode_precision": "numero"
+},
+{
+"name": "D'Heemelmaus-Crèche Belval",
+"lat": 49.497849,
+"lon": 5.947082,
+"young_children": true,
+"school_children": false,
+"geocode_precision": "numero"
+},
+{
+"name": "ROCKIDS ESCH 1",
+"lat": 49.502212,
+"lon": 5.982717,
+"young_children": true,
+"school_children": false,
+"geocode_precision": "numero"
+},
+{
+"name": "ROCKIDS ESCH 2",
+"lat": 49.503156,
+"lon": 5.981933,
+"young_children": true,
+"school_children": false,
+"geocode_precision": "numero"
+},
+{
+"name": "Maison Relais Brill 2",
+"lat": 49.491726,
+"lon": 5.976295,
+"young_children": false,
+"school_children": true,
+"geocode_precision": "calle"
+},
+{
+"name": "Maison Relais Highlander",
+"lat": 49.497539,
+"lon": 5.971891,
+"young_children": false,
+"school_children": true,
+"geocode_precision": "calle"
+},
+{
+"name": "Maison Relais Ganzdaagschoul",
+"lat": 49.496311,
+"lon": 5.972442,
+"young_children": false,
+"school_children": true,
+"geocode_precision": "numero"
+},
+{
+"name": "Maison Relais Nonnewissen",
+"lat": 49.508424,
+"lon": 5.973784,
+"young_children": false,
+"school_children": true,
+"geocode_precision": "numero"
+},
+{
+"name": "1,2,3 Sourire",
+"lat": 49.503113,
+"lon": 5.965265,
+"young_children": true,
+"school_children": false,
+"geocode_precision": "calle"
+},
+{
+"name": "CRECHE BARBARA ESCH",
+"lat": 49.501958,
+"lon": 5.97402,
+"young_children": true,
+"school_children": false,
+"geocode_precision": "numero"
+},
+{
+"name": "Crèche NASCHT",
+"lat": 49.502962,
+"lon": 5.971412,
+"young_children": true,
+"school_children": false,
+"geocode_precision": "numero"
+},
+{
+"name": "BOUMBA 2",
+"lat": 49.503532,
+"lon": 5.968676,
+"young_children": true,
+"school_children": false,
+"geocode_precision": "numero"
+},
+{
+"name": "Foyer de Jour Cockerills Park",
+"lat": 49.491463,
+"lon": 5.981477,
+"young_children": true,
+"school_children": false,
+"geocode_precision": "numero"
+},
+{
+"name": "CITIZENKIDS",
+"lat": 49.497932,
+"lon": 5.971117,
+"young_children": true,
+"school_children": false,
+"geocode_precision": "numero"
+},
+{
+"name": "De Butzeneck",
+"lat": 49.495058,
+"lon": 5.970764,
+"young_children": true,
+"school_children": false,
+"geocode_precision": "numero"
+},
+{
+"name": "Foyer de Jour Coccinella",
+"lat": 49.507711,
+"lon": 5.983394,
+"young_children": false,
+"school_children": true,
+"geocode_precision": "numero"
+},
+{
+"name": "Bëschcrèche",
+"lat": 49.475034,
+"lon": 5.990421,
+"young_children": true,
+"school_children": false,
+"geocode_precision": "numero"
+},
+{
+"name": "Escher Kannervilla ",
+"lat": 49.492837,
+"lon": 5.983164,
+"young_children": true,
+"school_children": true,
+"geocode_precision": "numero"
+},
+{
+"name": "Crèche du CHEM",
+"lat": 49.501101,
+"lon": 5.980433,
+"young_children": true,
+"school_children": false,
+"geocode_precision": "numero"
+},
+{
+"name": "Maison Relais Origer",
+"lat": 49.497606,
+"lon": 5.983595,
+"young_children": true,
+"school_children": false,
+"geocode_precision": "numero"
+},
+{
+"name": "Maison Relais Parc Laval",
+"lat": 49.498953,
+"lon": 5.978554,
+"young_children": true,
+"school_children": true,
+"geocode_precision": "numero"
+},
+{
+"name": "Maison Relais  Lallange",
+"lat": 49.508842,
+"lon": 5.988442,
+"young_children": false,
+"school_children": true,
+"geocode_precision": "numero"
+},
+{
+"name": "Maison Relais Brill 1",
+"lat": 49.491343,
+"lon": 5.977434,
+"young_children": false,
+"school_children": true,
+"geocode_precision": "numero"
+},
+{
+"name": "Maison Relais Papillon",
+"lat": 49.498055,
+"lon": 5.981278,
+"young_children": false,
+"school_children": true,
+"geocode_precision": "numero"
+},
+{
+"name": "Maison Relais Galaxie",
+"lat": 49.502958,
+"lon": 5.968677,
+"young_children": false,
+"school_children": true,
+"geocode_precision": "numero"
+},
+{
+"name": "Maison Relais Breedewee",
+"lat": 49.498773,
+"lon": 5.979375,
+"young_children": false,
+"school_children": true,
+"geocode_precision": "numero"
+},
+{
+"name": "Maison Relais d'Heemelmaus",
+"lat": 49.491848,
+"lon": 5.979115,
+"young_children": false,
+"school_children": true,
+"geocode_precision": "numero"
+},
+{
+"name": "Accueil éducatif D'Heemelmaus",
+"lat": 49.492138,
+"lon": 5.979169,
+"young_children": false,
+"school_children": true,
+"geocode_precision": "numero"
+},
+{
+"name": "Crèche Nascht",
+"lat": 49.496698,
+"lon": 5.987375,
+"young_children": true,
+"school_children": false,
+"geocode_precision": "numero"
+},
+{
+"name": "Crèche et Foyer de Jour Butzemillen -Heiderscheid",
+"lat": 49.885575,
+"lon": 5.981356,
+"young_children": true,
+"school_children": true,
+"geocode_precision": "numero"
+},
+{
+"name": "SEA Kannerstuff Heischent",
+"lat": 49.887874,
+"lon": 5.977321,
+"young_children": false,
+"school_children": true,
+"geocode_precision": "numero"
+},
+{
+"name": "Krabbelstuff asbl",
+"lat": 49.887874,
+"lon": 5.977321,
+"young_children": true,
+"school_children": false,
+"geocode_precision": "numero"
+},
+{
+"name": "Foyer de jour Villa Wichtel Ettelbruck",
+"lat": 49.849918,
+"lon": 6.091119,
+"young_children": true,
+"school_children": true,
+"geocode_precision": "numero"
+},
+{
+"name": "Maison Relais Ettelbruck - Ettelbrécker Kannerbuerg",
+"lat": 49.842893,
+"lon": 6.091612,
+"young_children": false,
+"school_children": true,
+"geocode_precision": "numero"
+},
+{
+"name": "Foyer de jour Butzemillen",
+"lat": 49.849532,
+"lon": 6.099227,
+"young_children": false,
+"school_children": true,
+"geocode_precision": "numero"
+},
+{
+"name": "Crèche Butzemillen - Ettelbruck",
+"lat": 49.838937,
+"lon": 6.096989,
+"young_children": true,
+"school_children": false,
+"geocode_precision": "numero"
+},
+{
+"name": "Crèche Wig-Wam",
+"lat": 49.851905,
+"lon": 6.096996,
+"young_children": true,
+"school_children": false,
+"geocode_precision": "numero"
+},
+{
+"name": "Foyer de jour Kannervilla",
+"lat": 49.844069,
+"lon": 6.09898,
+"young_children": true,
+"school_children": false,
+"geocode_precision": "numero"
+},
+{
+"name": "Crèche Butzemillen Warken",
+"lat": 49.853868,
+"lon": 6.092265,
+"young_children": true,
+"school_children": false,
+"geocode_precision": "numero"
+},
+{
+"name": "La Colline aux enfants Ettelbrück",
+"lat": 49.847988,
+"lon": 6.104143,
+"young_children": true,
+"school_children": false,
+"geocode_precision": "numero"
+},
+{
+"name": "FEELENER ZWERGEWISS",
+"lat": 49.848691,
+"lon": 6.032504,
+"young_children": true,
+"school_children": false,
+"geocode_precision": "numero"
+},
+{
+"name": "Maison Relais & Crèche Feulen",
+"lat": 49.854659,
+"lon": 6.044997,
+"young_children": true,
+"school_children": true,
+"geocode_precision": "numero"
+},
+{
+"name": "Crèche Fischbach - Am Kuebenascht",
+"lat": 49.74898,
+"lon": 6.1701,
+"young_children": true,
+"school_children": false,
+"geocode_precision": "numero"
+},
+{
+"name": "Maison Relais Bei de Kueben",
+"lat": 49.763159,
+"lon": 6.164013,
+"young_children": false,
+"school_children": true,
+"geocode_precision": "numero"
+},
+{
+"name": "Am Hummelnascht",
+"lat": 49.668377,
+"lon": 6.344186,
+"young_children": true,
+"school_children": false,
+"geocode_precision": "numero"
+},
+{
+"name": "Spillkëscht Dumbo",
+"lat": 49.666355,
+"lon": 6.343173,
+"young_children": true,
+"school_children": false,
+"geocode_precision": "numero"
+},
+{
+"name": "Crèche Billek",
+"lat": 49.665583,
+"lon": 6.344202,
+"young_children": true,
+"school_children": false,
+"geocode_precision": "calle"
+},
+{
+"name": "Butzenhaus Fréiseng",
+"lat": 49.509613,
+"lon": 6.149337,
+"young_children": true,
+"school_children": false,
+"geocode_precision": "calle"
+},
+{
+"name": "Maison Relais Frisange",
+"lat": 49.515119,
+"lon": 6.190016,
+"young_children": false,
+"school_children": true,
+"geocode_precision": "numero"
+},
+{
+"name": "Crèche mäh-ma-muh",
+"lat": 49.521676,
+"lon": 6.224529,
+"young_children": true,
+"school_children": false,
+"geocode_precision": "calle"
+},
+{
+"name": "La Luciole XII",
+"lat": 49.516507,
+"lon": 6.189277,
+"young_children": true,
+"school_children": false,
+"geocode_precision": "calle"
+},
+{
+"name": "Crèche Sim Sala Bim",
+"lat": 49.516507,
+"lon": 6.189277,
+"young_children": true,
+"school_children": false,
+"geocode_precision": "calle"
+},
+{
+"name": "crèche BB  Câlins",
+"lat": 49.521676,
+"lon": 6.224529,
+"young_children": true,
+"school_children": false,
+"geocode_precision": "calle"
+},
+{
+"name": "Wichtelwelt",
+"lat": 49.634493,
+"lon": 5.915975,
+"young_children": true,
+"school_children": false,
+"geocode_precision": "numero"
+},
+{
+"name": "Le Jardin Enchanté ",
+"lat": 49.597075,
+"lon": 5.946474,
+"young_children": true,
+"school_children": false,
+"geocode_precision": "numero"
+},
+{
+"name": "Maison Relais Garnich",
+"lat": 49.615542,
+"lon": 5.949153,
+"young_children": false,
+"school_children": true,
+"geocode_precision": "numero"
+},
+{
+"name": "Crèche - Zwergen op der Heckt",
+"lat": 49.935484,
+"lon": 5.97344,
+"young_children": true,
+"school_children": false,
+"geocode_precision": "numero"
+},
+{
+"name": "Maison Relais Dahl",
+"lat": 49.920187,
+"lon": 5.970884,
+"young_children": false,
+"school_children": true,
+"geocode_precision": "numero"
+},
+{
+"name": "Maison Relais Grevenmacher",
+"lat": 49.680797,
+"lon": 6.442124,
+"young_children": false,
+"school_children": true,
+"geocode_precision": "numero"
+},
+{
+"name": "Bibiskids",
+"lat": 49.68173,
+"lon": 6.446442,
+"young_children": true,
+"school_children": false,
+"geocode_precision": "numero"
+},
+{
+"name": "Foyer de jour & Crèche Museldrauwen",
+"lat": 49.679664,
+"lon": 6.439222,
+"young_children": true,
+"school_children": true,
+"geocode_precision": "numero"
+},
+{
+"name": "Crèche Mes Copains et Moi",
+"lat": 49.68004,
+"lon": 6.444635,
+"young_children": true,
+"school_children": false,
+"geocode_precision": "numero"
+},
+{
+"name": "BIBISKIDS",
+"lat": 49.685077,
+"lon": 6.445173,
+"young_children": true,
+"school_children": false,
+"geocode_precision": "numero"
+},
+{
+"name": "Maison Relais Grosbous",
+"lat": 49.827541,
+"lon": 5.964349,
+"young_children": false,
+"school_children": true,
+"geocode_precision": "numero"
+},
+{
+"name": "Crèche Butzeland & Maison Relais Heffingen",
+"lat": 49.752448,
+"lon": 6.261272,
+"young_children": true,
+"school_children": true,
+"geocode_precision": "numero"
+},
+{
+"name": "Maison Relais Boevange/Attert",
+"lat": 49.750598,
+"lon": 6.00719,
+"young_children": false,
+"school_children": true,
+"geocode_precision": "numero"
+},
+{
+"name": "CRECHE BARBARA TUNTANGE",
+"lat": 49.712313,
+"lon": 6.012536,
+"young_children": true,
+"school_children": true,
+"geocode_precision": "numero"
+},
+{
+"name": "Crèche An Dicksen",
+"lat": 49.71696,
+"lon": 6.005815,
+"young_children": true,
+"school_children": false,
+"geocode_precision": "numero"
+},
+{
+"name": "Maison Relais Tuntange",
+"lat": 49.71242,
+"lon": 6.050652,
+"young_children": false,
+"school_children": true,
+"geocode_precision": "numero"
+},
+{
+"name": "les petits tournesols",
+"lat": 49.732723,
+"lon": 6.014116,
+"young_children": true,
+"school_children": false,
+"geocode_precision": "numero"
+},
+{
+"name": "Crèche Charly",
+"lat": 49.568452,
+"lon": 6.162051,
+"young_children": true,
+"school_children": false,
+"geocode_precision": "numero"
+},
+{
+"name": "Maison Relais Miniheesprenger",
+"lat": 49.571707,
+"lon": 6.154738,
+"young_children": false,
+"school_children": true,
+"geocode_precision": "numero"
+},
+{
+"name": "The Happy Few",
+"lat": 49.572838,
+"lon": 6.149048,
+"young_children": true,
+"school_children": false,
+"geocode_precision": "numero"
+},
+{
+"name": "Maison Relais HOLZWIERMERCHER",
+"lat": 49.587739,
+"lon": 6.169476,
+"young_children": false,
+"school_children": true,
+"geocode_precision": "numero"
+},
+{
+"name": "BEIM KLENGE FUUSS",
+"lat": 49.578814,
+"lon": 6.148518,
+"young_children": true,
+"school_children": false,
+"geocode_precision": "numero"
+},
+{
+"name": "Les Petits Tournesols",
+"lat": 49.588146,
+"lon": 6.170447,
+"young_children": true,
+"school_children": false,
+"geocode_precision": "numero"
+},
+{
+"name": "Maison Wissbei Howald",
+"lat": 49.586913,
+"lon": 6.145257,
+"young_children": false,
+"school_children": true,
+"geocode_precision": "numero"
+},
+{
+"name": "Maison Relais Heesprenger",
+"lat": 49.571707,
+"lon": 6.154738,
+"young_children": false,
+"school_children": true,
+"geocode_precision": "numero"
+},
+{
+"name": "LA LUCIOLE 10",
+"lat": 49.566314,
+"lon": 6.15479,
+"young_children": true,
+"school_children": false,
+"geocode_precision": "numero"
+},
+{
+"name": "Crèche Fanti",
+"lat": 49.569584,
+"lon": 6.144925,
+"young_children": true,
+"school_children": false,
+"geocode_precision": "numero"
+},
+{
+"name": "La Luciole 3",
+"lat": 49.572225,
+"lon": 6.159928,
+"young_children": true,
+"school_children": false,
+"geocode_precision": "numero"
+},
+{
+"name": "La Luciole 4",
+"lat": 49.589419,
+"lon": 6.173443,
+"young_children": true,
+"school_children": false,
+"geocode_precision": "numero"
+},
+{
+"name": "CRECHE NEMO & CIE",
+"lat": 49.567894,
+"lon": 6.167521,
+"young_children": true,
+"school_children": false,
+"geocode_precision": "numero"
+},
+{
+"name": "Ribambelle Fentange",
+"lat": 49.563922,
+"lon": 6.15146,
+"young_children": true,
+"school_children": false,
+"geocode_precision": "numero"
+},
+{
+"name": "Maison Relais Reewiermercher",
+"lat": 49.567987,
+"lon": 6.163379,
+"young_children": false,
+"school_children": true,
+"geocode_precision": "numero"
+},
+{
+"name": "TOP Crèches",
+"lat": 49.580936,
+"lon": 6.144042,
+"young_children": true,
+"school_children": false,
+"geocode_precision": "numero"
+},
+{
+"name": "Crèche JANGELI",
+"lat": 49.573816,
+"lon": 6.159042,
+"young_children": true,
+"school_children": false,
+"geocode_precision": "numero"
+},
+{
+"name": "CRECHE LOULOU ET COMPAGNIE",
+"lat": 49.572746,
+"lon": 6.16228,
+"young_children": true,
+"school_children": false,
+"geocode_precision": "numero"
+},
+{
+"name": "Luciole 9",
+"lat": 49.575744,
+"lon": 6.136451,
+"young_children": true,
+"school_children": true,
+"geocode_precision": "numero"
+},
+{
+"name": "Ribambelle Howald",
+"lat": 49.58527,
+"lon": 6.13915,
+"young_children": true,
+"school_children": false,
+"geocode_precision": "numero"
+},
+{
+"name": "Crèche Hobscheid",
+"lat": 49.688074,
+"lon": 5.915322,
+"young_children": true,
+"school_children": false,
+"geocode_precision": "numero"
+},
+{
+"name": "Maison Relais Eischen",
+"lat": 49.689388,
+"lon": 5.884356,
+"young_children": false,
+"school_children": true,
+"geocode_precision": "numero"
+},
+{
+"name": "Maison Relais Hobscheid",
+"lat": 49.688894,
+"lon": 5.915796,
+"young_children": false,
+"school_children": true,
+"geocode_precision": "numero"
+},
+{
+"name": "Um Montessori Haff",
+"lat": 49.68864,
+"lon": 5.922452,
+"young_children": false,
+"school_children": true,
+"geocode_precision": "numero"
+},
+{
+"name": "Maison Relais Septfontaines",
+"lat": 49.750345,
+"lon": 6.102112,
+"young_children": false,
+"school_children": true,
+"geocode_precision": "calle"
+},
+{
+"name": "Maison Relais Kannerhaus am Wëldpark",
+"lat": 49.993971,
+"lon": 6.096368,
+"young_children": true,
+"school_children": true,
+"geocode_precision": "numero"
+},
+{
+"name": "Maison Relais - crèche Huser Kannerstuff",
+"lat": 50.01671,
+"lon": 6.090541,
+"young_children": true,
+"school_children": false,
+"geocode_precision": "numero"
+},
+{
+"name": "Villa Wichtel Hosingen",
+"lat": 50.014466,
+"lon": 6.090297,
+"young_children": true,
+"school_children": true,
+"geocode_precision": "numero"
+},
+{
+"name": "Foyer scolaire Parc Housen",
+"lat": 49.994266,
+"lon": 6.097632,
+"young_children": false,
+"school_children": true,
+"geocode_precision": "numero"
+},
+{
+"name": "Crèche Kwaki",
+"lat": 49.708996,
+"lon": 6.249584,
+"young_children": true,
+"school_children": false,
+"geocode_precision": "numero"
+},
+{
+"name": "SEA Lënster Päiperlék Buerglënster",
+"lat": 49.704449,
+"lon": 6.214369,
+"young_children": true,
+"school_children": true,
+"geocode_precision": "numero"
+},
+{
+"name": "BabyHome",
+"lat": 49.70921,
+"lon": 6.247694,
+"young_children": true,
+"school_children": false,
+"geocode_precision": "numero"
+},
+{
+"name": "CRECHE BABY BIRD",
+"lat": 49.711365,
+"lon": 6.247224,
+"young_children": true,
+"school_children": true,
+"geocode_precision": "numero"
+},
+{
+"name": "Maison Relais Lukashaus Bourglinster",
+"lat": 49.705181,
+"lon": 6.213802,
+"young_children": false,
+"school_children": true,
+"geocode_precision": "numero"
+},
+{
+"name": "Crèche Lënster Päiperlék",
+"lat": 49.714468,
+"lon": 6.25365,
+"young_children": true,
+"school_children": false,
+"geocode_precision": "numero"
+},
+{
+"name": "SEA Lënster Päiperlék International School",
+"lat": 49.700001,
+"lon": 6.250391,
+"young_children": false,
+"school_children": true,
+"geocode_precision": "numero"
+},
+{
+"name": "Villa Vichtel Junglinster",
+"lat": 49.706591,
+"lon": 6.247206,
+"young_children": true,
+"school_children": true,
+"geocode_precision": "numero"
+},
+{
+"name": "SEA Lënster Päiperlék Gonderange",
+"lat": 49.692415,
+"lon": 6.248766,
+"young_children": false,
+"school_children": true,
+"geocode_precision": "numero"
+},
+{
+"name": "SEA Päiperlék Junglinster",
+"lat": 49.714163,
+"lon": 6.253054,
+"young_children": true,
+"school_children": true,
+"geocode_precision": "numero"
+},
+{
+"name": "Crèche KAWEECHELCHEN",
+"lat": 49.576722,
+"lon": 5.909464,
+"young_children": true,
+"school_children": false,
+"geocode_precision": "numero"
+},
+{
+"name": "Up Foyer",
+"lat": 49.567637,
+"lon": 5.907954,
+"young_children": false,
+"school_children": true,
+"geocode_precision": "numero"
+},
+{
+"name": "Maison Relais Käerjeng - Kéinzeg",
+"lat": 49.597398,
+"lon": 5.873059,
+"young_children": false,
+"school_children": true,
+"geocode_precision": "numero"
+},
+{
+"name": "Maison Relais Käerjeng - Bascharage Op Acker",
+"lat": 49.564492,
+"lon": 5.903359,
+"young_children": false,
+"school_children": true,
+"geocode_precision": "numero"
+},
+{
+"name": "Les Angelots",
+"lat": 49.573173,
+"lon": 5.917058,
+"young_children": true,
+"school_children": false,
+"geocode_precision": "numero"
+},
+{
+"name": "CRECHE CALIMERO",
+"lat": 49.573688,
+"lon": 5.91985,
+"young_children": true,
+"school_children": false,
+"geocode_precision": "numero"
+},
+{
+"name": "Crèche De Blummenhaff",
+"lat": 49.565738,
+"lon": 5.888839,
+"young_children": true,
+"school_children": false,
+"geocode_precision": "numero"
+},
+{
+"name": "Crèche Um Kläppchen",
+"lat": 49.574877,
+"lon": 5.909559,
+"young_children": true,
+"school_children": false,
+"geocode_precision": "numero"
+},
+{
+"name": "Crèche Bidibul",
+"lat": 49.563014,
+"lon": 5.918547,
+"young_children": true,
+"school_children": false,
+"geocode_precision": "numero"
+},
+{
+"name": "Childforest",
+"lat": 49.472575,
+"lon": 6.046111,
+"young_children": true,
+"school_children": false,
+"geocode_precision": "numero"
+},
+{
+"name": "Cuore Mio",
+"lat": 49.483639,
+"lon": 6.026928,
+"young_children": true,
+"school_children": false,
+"geocode_precision": "numero"
+},
+{
+"name": "Villa Wonnerland",
+"lat": 49.48648,
+"lon": 6.043778,
+"young_children": true,
+"school_children": true,
+"geocode_precision": "numero"
+},
+{
+"name": "FOYER DE JOUR SPILLSCHLASS",
+"lat": 49.477252,
+"lon": 6.037969,
+"young_children": false,
+"school_children": true,
+"geocode_precision": "numero"
+},
+{
+"name": "Crèche Mini Maya",
+"lat": 49.485576,
+"lon": 6.045704,
+"young_children": true,
+"school_children": false,
+"geocode_precision": "numero"
+},
+{
+"name": "Les Petits Tournesols",
+"lat": 49.488374,
+"lon": 6.038842,
+"young_children": true,
+"school_children": false,
+"geocode_precision": "numero"
+},
+{
+"name": "SEA Ecole Précoce Zwergeland ",
+"lat": 49.486692,
+"lon": 6.038804,
+"young_children": false,
+"school_children": true,
+"geocode_precision": "calle"
+},
+{
+"name": "SEA Ecole J.P. Nuel Tétange",
+"lat": 49.474406,
+"lon": 6.038428,
+"young_children": false,
+"school_children": true,
+"geocode_precision": "numero"
+},
+{
+"name": "SEA Kayl Widdem",
+"lat": 49.487678,
+"lon": 6.038283,
+"young_children": false,
+"school_children": true,
+"geocode_precision": "numero"
+},
+{
+"name": "Crèche et foyer de jour Spillschlass",
+"lat": 49.483546,
+"lon": 6.043203,
+"young_children": true,
+"school_children": true,
+"geocode_precision": "numero"
+},
+{
+"name": "Crèche BABY STEPS",
+"lat": 49.492041,
+"lon": 6.038668,
+"young_children": true,
+"school_children": false,
+"geocode_precision": "numero"
+},
+{
+"name": "Foyer de jour Nascht Tétange",
+"lat": 49.47632,
+"lon": 6.037309,
+"young_children": false,
+"school_children": true,
+"geocode_precision": "numero"
+},
+{
+"name": "Crèche Kannergaart ",
+"lat": 49.476695,
+"lon": 6.042207,
+"young_children": true,
+"school_children": false,
+"geocode_precision": "numero"
+},
+{
+"name": "FOYER KIDDY STEPS",
+"lat": 49.480098,
+"lon": 6.039738,
+"young_children": false,
+"school_children": true,
+"geocode_precision": "numero"
+},
+{
+"name": "Maison Relais Primär",
+"lat": 49.667196,
+"lon": 6.035109,
+"young_children": false,
+"school_children": true,
+"geocode_precision": "calle"
+},
+{
+"name": "Maison Relais - Précoce - Olm",
+"lat": 49.64714,
+"lon": 5.993649,
+"young_children": false,
+"school_children": true,
+"geocode_precision": "numero"
+},
+{
+"name": "Crèche Keispelt",
+"lat": 49.695068,
+"lon": 6.065424,
+"young_children": true,
+"school_children": false,
+"geocode_precision": "numero"
+},
+{
+"name": "Crèche Villa Kunterbunt",
+"lat": 49.666315,
+"lon": 6.035463,
+"young_children": true,
+"school_children": false,
+"geocode_precision": "numero"
+},
+{
+"name": "TOP Crèches",
+"lat": 49.644506,
+"lon": 5.997321,
+"young_children": true,
+"school_children": false,
+"geocode_precision": "numero"
+},
+{
+"name": "Maison Relais Spillschoul",
+"lat": 49.669198,
+"lon": 6.03672,
+"young_children": false,
+"school_children": true,
+"geocode_precision": "numero"
+},
+{
+"name": "Am Holzhaus",
+"lat": 49.993738,
+"lon": 6.010506,
+"young_children": true,
+"school_children": false,
+"geocode_precision": "numero"
+},
+{
+"name": "Maison Relais Schoulkauz",
+"lat": 49.992388,
+"lon": 5.999841,
+"young_children": false,
+"school_children": true,
+"geocode_precision": "calle"
+},
+{
+"name": "Maison Relais Koerich",
+"lat": 49.667396,
+"lon": 5.9515,
+"young_children": false,
+"school_children": true,
+"geocode_precision": "numero"
+},
+{
+"name": "Crèche Hêtre",
+"lat": 49.649646,
+"lon": 5.961375,
+"young_children": true,
+"school_children": true,
+"geocode_precision": "numero"
+},
+{
+"name": "Le Temps d'un Rêve",
+"lat": 49.648449,
+"lon": 5.962018,
+"young_children": true,
+"school_children": false,
+"geocode_precision": "numero"
+},
+{
+"name": "Mäerchenland",
+"lat": 49.666871,
+"lon": 5.949766,
+"young_children": true,
+"school_children": true,
+"geocode_precision": "numero"
+},
+{
+"name": "Crèche Am Schleekenhaus Bridel",
+"lat": 49.653302,
+"lon": 6.080304,
+"young_children": true,
+"school_children": false,
+"geocode_precision": "numero"
+},
+{
+"name": "Foyer de jour Botterblumm",
+"lat": 49.656165,
+"lon": 6.077719,
+"young_children": true,
+"school_children": false,
+"geocode_precision": "numero"
+},
+{
+"name": "Maison Relais Bridel",
+"lat": 49.656773,
+"lon": 6.078383,
+"young_children": false,
+"school_children": true,
+"geocode_precision": "numero"
+},
+{
+"name": "Crèche Children's World \"Bridel\" by Babilou Family",
+"lat": 49.652582,
+"lon": 6.083017,
+"young_children": true,
+"school_children": false,
+"geocode_precision": "numero"
+},
+{
+"name": "Maison Relais - Ecole régionale de Harlange",
+"lat": 49.932165,
+"lon": 5.787541,
+"young_children": false,
+"school_children": true,
+"geocode_precision": "numero"
+},
+{
+"name": "AN HENNESSEN",
+"lat": 49.909533,
+"lon": 5.8751,
+"young_children": true,
+"school_children": true,
+"geocode_precision": "numero"
+},
+{
+"name": "Maison Relais Larochette - Vun de Fielser Biddestöpp",
+"lat": 49.78703,
+"lon": 6.218184,
+"young_children": true,
+"school_children": true,
+"geocode_precision": "numero"
+},
+{
+"name": "Maison Relais Larochette - Fielser Bëschcrèche",
+"lat": 49.787682,
+"lon": 6.208859,
+"young_children": true,
+"school_children": false,
+"geocode_precision": "numero"
+},
+{
+"name": "Maison Relais Larochette - Manoir de Roebé",
+"lat": 49.784797,
+"lon": 6.218351,
+"young_children": false,
+"school_children": true,
+"geocode_precision": "calle"
+},
+{
+"name": "Maison Relais Mueresgässel",
+"lat": 49.609965,
+"lon": 6.324875,
+"young_children": false,
+"school_children": true,
+"geocode_precision": "numero"
+},
+{
+"name": "Crèche Funtasy Stuff",
+"lat": 49.612065,
+"lon": 6.330441,
+"young_children": true,
+"school_children": false,
+"geocode_precision": "numero"
+},
+{
+"name": "Les P'tits Choux",
+"lat": 49.562792,
+"lon": 6.066376,
+"young_children": true,
+"school_children": true,
+"geocode_precision": "numero"
+},
+{
+"name": "Les P'tits Tigrous",
+"lat": 49.561814,
+"lon": 6.063633,
+"young_children": true,
+"school_children": false,
+"geocode_precision": "numero"
+},
+{
+"name": "Crèche Les P'tits Bouchons",
+"lat": 49.567336,
+"lon": 6.081609,
+"young_children": true,
+"school_children": false,
+"geocode_precision": "numero"
+},
+{
+"name": "Crèche Catiminis les petites souris 2",
+"lat": 49.562544,
+"lon": 6.06399,
+"young_children": true,
+"school_children": false,
+"geocode_precision": "numero"
+},
+{
+"name": "Crèche Catiminis les petites souris ",
+"lat": 49.562587,
+"lon": 6.067721,
+"young_children": true,
+"school_children": false,
+"geocode_precision": "numero"
+},
+{
+"name": "Crèche Laluxkids",
+"lat": 49.567445,
+"lon": 6.075599,
+"young_children": true,
+"school_children": false,
+"geocode_precision": "numero"
+},
+{
+"name": "CRECHE PETIT POUCE",
+"lat": 49.563606,
+"lon": 6.071619,
+"young_children": true,
+"school_children": false,
+"geocode_precision": "numero"
+},
+{
+"name": "Maison relais Leudelange",
+"lat": 49.567015,
+"lon": 6.062884,
+"young_children": false,
+"school_children": true,
+"geocode_precision": "numero"
+},
+{
+"name": "Le Jardin Enchanté 2",
+"lat": 49.72244,
+"lon": 6.125647,
+"young_children": true,
+"school_children": false,
+"geocode_precision": "numero"
+},
+{
+"name": "Mimi an seng Kanner",
+"lat": 49.720881,
+"lon": 6.125536,
+"young_children": true,
+"school_children": false,
+"geocode_precision": "numero"
+},
+{
+"name": "Maison Relais Lintgen ",
+"lat": 50.124427,
+"lon": 6.109008,
+"young_children": false,
+"school_children": true,
+"geocode_precision": "calle"
+},
+{
+"name": "Le Jardin Enchanté",
+"lat": 49.727554,
+"lon": 6.115439,
+"young_children": true,
+"school_children": true,
+"geocode_precision": "numero"
+},
+{
+"name": "Maison relais Lorentzweiler",
+"lat": 49.700741,
+"lon": 6.145759,
+"young_children": false,
+"school_children": true,
+"geocode_precision": "numero"
+},
+{
+"name": "LES PETITS DOUES",
+"lat": 49.693544,
+"lon": 6.141179,
+"young_children": true,
+"school_children": false,
+"geocode_precision": "numero"
+},
+{
+"name": "LES PETITS DOUES 2",
+"lat": 49.693667,
+"lon": 6.141175,
+"young_children": true,
+"school_children": false,
+"geocode_precision": "numero"
+},
+{
+"name": "Crèche Zwergenhaus",
+"lat": 49.700496,
+"lon": 6.14729,
+"young_children": true,
+"school_children": false,
+"geocode_precision": "numero"
+},
+{
+"name": "Atelier Zeralda - Oppend Haus Pafendall",
+"lat": 49.614616,
+"lon": 6.134036,
+"young_children": false,
+"school_children": true,
+"geocode_precision": "numero"
+},
+{
+"name": "Foyer scolaire Merl",
+"lat": 49.60248,
+"lon": 6.099364,
+"young_children": false,
+"school_children": true,
+"geocode_precision": "numero"
+},
+{
+"name": "Foyer scolaire Cents",
+"lat": 49.617555,
+"lon": 6.162434,
+"young_children": false,
+"school_children": true,
+"geocode_precision": "numero"
+},
+{
+"name": "Foyer scolaire Gasperich",
+"lat": 49.592533,
+"lon": 6.121065,
+"young_children": false,
+"school_children": true,
+"geocode_precision": "numero"
+},
+{
+"name": "Foyer scolaire Gare Strasbourg",
+"lat": 49.600643,
+"lon": 6.129633,
+"young_children": false,
+"school_children": true,
+"geocode_precision": "numero"
+},
+{
+"name": "Foyer scolaire Rollingergrund",
+"lat": 49.618884,
+"lon": 6.107863,
+"young_children": false,
+"school_children": true,
+"geocode_precision": "numero"
+},
+{
+"name": "Foyer scolaire Limpertsberg Henri VII",
+"lat": 49.619233,
+"lon": 6.122265,
+"young_children": false,
+"school_children": true,
+"geocode_precision": "numero"
+},
+{
+"name": "L'enfant Roi Europe",
+"lat": 49.629383,
+"lon": 6.164248,
+"young_children": true,
+"school_children": false,
+"geocode_precision": "numero"
+},
+{
+"name": "La Luciole V",
+"lat": 49.593987,
+"lon": 6.118143,
+"young_children": true,
+"school_children": true,
+"geocode_precision": "numero"
+},
+{
+"name": "FOYER DE JOUR HAPPY LAND",
+"lat": 49.592312,
+"lon": 6.12348,
+"young_children": false,
+"school_children": true,
+"geocode_precision": "numero"
+},
+{
+"name": "HAPPY LAND",
+"lat": 49.593545,
+"lon": 6.128438,
+"young_children": true,
+"school_children": false,
+"geocode_precision": "numero"
+},
+{
+"name": "Crèche de Luxembourg",
+"lat": 49.613234,
+"lon": 6.141544,
+"young_children": true,
+"school_children": false,
+"geocode_precision": "numero"
+},
+{
+"name": "Amitola",
+"lat": 49.588402,
+"lon": 6.100556,
+"young_children": true,
+"school_children": false,
+"geocode_precision": "numero"
+},
+{
+"name": "La Luciole 16",
+"lat": 49.623121,
+"lon": 6.122832,
+"young_children": true,
+"school_children": true,
+"geocode_precision": "numero"
+},
+{
+"name": "La Luciole 17",
+"lat": 49.623149,
+"lon": 6.122455,
+"young_children": true,
+"school_children": false,
+"geocode_precision": "numero"
+},
+{
+"name": "Barbara",
+"lat": 49.648316,
+"lon": 6.128037,
+"young_children": true,
+"school_children": false,
+"geocode_precision": "numero"
+},
+{
+"name": "Kids'ville",
+"lat": 49.636124,
+"lon": 6.133036,
+"young_children": true,
+"school_children": true,
+"geocode_precision": "numero"
+},
+{
+"name": "L'Enfant Roi J.F.K.",
+"lat": 49.632325,
+"lon": 6.172303,
+"young_children": true,
+"school_children": false,
+"geocode_precision": "numero"
+},
+{
+"name": "Kidscare Les Petits Loups",
+"lat": 49.633464,
+"lon": 6.174687,
+"young_children": true,
+"school_children": false,
+"geocode_precision": "numero"
+},
+{
+"name": "Kidscare Les Pommiers",
+"lat": 49.611759,
+"lon": 6.149765,
+"young_children": true,
+"school_children": false,
+"geocode_precision": "numero"
+},
+{
+"name": "Crèche et Foyer Barbara 2",
+"lat": 49.595217,
+"lon": 6.119733,
+"young_children": true,
+"school_children": true,
+"geocode_precision": "numero"
+},
+{
+"name": "Children's World Les Muguets",
+"lat": 49.623049,
+"lon": 6.160574,
+"young_children": true,
+"school_children": false,
+"geocode_precision": "numero"
+},
+{
+"name": "L'Enfant Roi Grünewald",
+"lat": 49.630187,
+"lon": 6.179795,
+"young_children": true,
+"school_children": false,
+"geocode_precision": "numero"
+},
+{
+"name": "Chez Gaston - l'Annexe",
+"lat": 49.609363,
+"lon": 6.105249,
+"young_children": false,
+"school_children": true,
+"geocode_precision": "numero"
+},
+{
+"name": "Maison Relais Pinocchio",
+"lat": 49.59689,
+"lon": 6.14242,
+"young_children": false,
+"school_children": true,
+"geocode_precision": "numero"
+},
+{
+"name": "Crèche municipale rue J. Leydenbach",
+"lat": 49.629358,
+"lon": 6.174527,
+"young_children": true,
+"school_children": false,
+"geocode_precision": "numero"
+},
+{
+"name": "Sunflower Eagle",
+"lat": 49.633799,
+"lon": 6.17,
+"young_children": true,
+"school_children": true,
+"geocode_precision": "numero"
+},
+{
+"name": "Little Star",
+"lat": 49.611263,
+"lon": 6.130698,
+"young_children": true,
+"school_children": false,
+"geocode_precision": "calle"
+},
+{
+"name": "Mausi - Limpertsberg",
+"lat": 49.620129,
+"lon": 6.123362,
+"young_children": true,
+"school_children": true,
+"geocode_precision": "numero"
+},
+{
+"name": "Sunflower Montessori - Findel & Alizeti",
+"lat": 49.630137,
+"lon": 6.20584,
+"young_children": false,
+"school_children": true,
+"geocode_precision": "numero"
+},
+{
+"name": "Kidscare Les chemins de la découverte",
+"lat": 49.617467,
+"lon": 6.169771,
+"young_children": true,
+"school_children": true,
+"geocode_precision": "numero"
+},
+{
+"name": "DAY CARE ARCUS",
+"lat": 49.624235,
+"lon": 6.118148,
+"young_children": false,
+"school_children": true,
+"geocode_precision": "numero"
+},
+{
+"name": "Foyer scolaire Kiem Beffort 4",
+"lat": 49.635794,
+"lon": 6.162821,
+"young_children": false,
+"school_children": true,
+"geocode_precision": "numero"
+},
+{
+"name": "Foyer scolaire Belair Kayser",
+"lat": 49.614403,
+"lon": 6.107396,
+"young_children": false,
+"school_children": true,
+"geocode_precision": "numero"
+},
+{
+"name": "Foyer scolaire Belair Charles IV",
+"lat": 49.610464,
+"lon": 6.102149,
+"young_children": false,
+"school_children": true,
+"geocode_precision": "numero"
+},
+{
+"name": "Crèche Bei den Tigercher",
+"lat": 49.624663,
+"lon": 6.16293,
+"young_children": true,
+"school_children": false,
+"geocode_precision": "numero"
+},
+{
+"name": "CRECHE ET FOYER DE JOUR BARBARA MÜHLENBACH",
+"lat": 49.626819,
+"lon": 6.127543,
+"young_children": true,
+"school_children": true,
+"geocode_precision": "numero"
+},
+{
+"name": "Crèches et Foyers Children's World Merl 1",
+"lat": 49.606046,
+"lon": 6.102902,
+"young_children": true,
+"school_children": true,
+"geocode_precision": "numero"
+},
+{
+"name": "Les Ateliers de Mimi - Belair",
+"lat": 49.608311,
+"lon": 6.114438,
+"young_children": false,
+"school_children": true,
+"geocode_precision": "numero"
+},
+{
+"name": "BabyHome-Luxembourg",
+"lat": 49.588869,
+"lon": 6.124786,
+"young_children": true,
+"school_children": false,
+"geocode_precision": "numero"
+},
+{
+"name": "Sim Sala Bim Merl",
+"lat": 49.616322,
+"lon": 6.097538,
+"young_children": true,
+"school_children": false,
+"geocode_precision": "numero"
+},
+{
+"name": "L'Enfant Roi Dyapason",
+"lat": 49.583773,
+"lon": 6.118004,
+"young_children": true,
+"school_children": false,
+"geocode_precision": "numero"
+},
+{
+"name": "Foyer scolaire Bonnevoie Prés",
+"lat": 49.596945,
+"lon": 6.143259,
+"young_children": false,
+"school_children": true,
+"geocode_precision": "numero"
+},
+{
+"name": "La Luciole 18",
+"lat": 49.623352,
+"lon": 6.106118,
+"young_children": true,
+"school_children": false,
+"geocode_precision": "numero"
+},
+{
+"name": "La Luciole 19",
+"lat": 49.626625,
+"lon": 6.161447,
+"young_children": true,
+"school_children": true,
+"geocode_precision": "numero"
+},
+{
+"name": "Children's World Merl2",
+"lat": 49.605242,
+"lon": 6.100248,
+"young_children": true,
+"school_children": true,
+"geocode_precision": "numero"
+},
+{
+"name": "Crèche BioBébé - Limpertsberg",
+"lat": 49.620062,
+"lon": 6.114998,
+"young_children": true,
+"school_children": false,
+"geocode_precision": "numero"
+},
+{
+"name": "Babyhome -Hamm",
+"lat": 49.609421,
+"lon": 6.164811,
+"young_children": true,
+"school_children": false,
+"geocode_precision": "numero"
+},
+{
+"name": "Foyer scolaire Cessange rue Verte",
+"lat": 49.590088,
+"lon": 6.110212,
+"young_children": false,
+"school_children": true,
+"geocode_precision": "numero"
+},
+{
+"name": "Foyer scolaire Hollerich Meyer",
+"lat": 49.602136,
+"lon": 6.117038,
+"young_children": false,
+"school_children": true,
+"geocode_precision": "numero"
+},
+{
+"name": "Crèche CityKids Gare",
+"lat": 49.601211,
+"lon": 6.130746,
+"young_children": true,
+"school_children": false,
+"geocode_precision": "numero"
+},
+{
+"name": "Crèches & Foyers Ribambelle \"Cloche d'Or\"",
+"lat": 49.587515,
+"lon": 6.123763,
+"young_children": true,
+"school_children": true,
+"geocode_precision": "numero"
+},
+{
+"name": "L'Enfant Roi Kirchberg",
+"lat": 49.621374,
+"lon": 6.157866,
+"young_children": true,
+"school_children": false,
+"geocode_precision": "numero"
+},
+{
+"name": "Hakuna Matata Beggen",
+"lat": 49.641803,
+"lon": 6.130493,
+"young_children": true,
+"school_children": false,
+"geocode_precision": "numero"
+},
+{
+"name": "The International Kindergarten ARCUS",
+"lat": 49.604939,
+"lon": 6.119011,
+"young_children": true,
+"school_children": false,
+"geocode_precision": "numero"
+},
+{
+"name": "Crèche Pomme d'Api",
+"lat": 49.622146,
+"lon": 6.115778,
+"young_children": true,
+"school_children": false,
+"geocode_precision": "numero"
+},
+{
+"name": "European Children",
+"lat": 49.609684,
+"lon": 6.167388,
+"young_children": true,
+"school_children": false,
+"geocode_precision": "numero"
+},
+{
+"name": "Crèche L'Ile au Trésor",
+"lat": 49.609479,
+"lon": 6.167,
+"young_children": true,
+"school_children": false,
+"geocode_precision": "numero"
+},
+{
+"name": "L'Enfant Roi Helios",
+"lat": 49.5802,
+"lon": 6.110509,
+"young_children": true,
+"school_children": false,
+"geocode_precision": "numero"
+},
+{
+"name": "Crèche François Elisabeth",
+"lat": 49.632138,
+"lon": 6.176191,
+"young_children": true,
+"school_children": false,
+"geocode_precision": "numero"
+},
+{
+"name": "Kidscare Cocoon",
+"lat": 49.61953,
+"lon": 6.171811,
+"young_children": true,
+"school_children": false,
+"geocode_precision": "numero"
+},
+{
+"name": "Foyer scolaire Merl Cahen",
+"lat": 49.602765,
+"lon": 6.100139,
+"young_children": false,
+"school_children": true,
+"geocode_precision": "numero"
+},
+{
+"name": "Foyer scolaire Bonnevoie Verger",
+"lat": 49.602921,
+"lon": 6.140099,
+"young_children": false,
+"school_children": true,
+"geocode_precision": "numero"
+},
+{
+"name": "Foyer scolaire Kiem Beffort 1B",
+"lat": 49.635946,
+"lon": 6.163373,
+"young_children": false,
+"school_children": true,
+"geocode_precision": "numero"
+},
+{
+"name": "Foyer scolaire Limpertsberg Ermesinde",
+"lat": 49.62164,
+"lon": 6.120189,
+"young_children": false,
+"school_children": true,
+"geocode_precision": "numero"
+},
+{
+"name": "Kannerland Foyer de Jour",
+"lat": 49.62166,
+"lon": 6.118836,
+"young_children": true,
+"school_children": true,
+"geocode_precision": "numero"
+},
+{
+"name": "Porte Ouverte Kannernascht ",
+"lat": 49.628304,
+"lon": 6.131299,
+"young_children": false,
+"school_children": true,
+"geocode_precision": "numero"
+},
+{
+"name": "Foyer scolarie Dommeldange Château",
+"lat": 49.634002,
+"lon": 6.138613,
+"young_children": false,
+"school_children": true,
+"geocode_precision": "numero"
+},
+{
+"name": "Foyer scolaire Gasperich Transition",
+"lat": 49.592433,
+"lon": 6.123122,
+"young_children": false,
+"school_children": true,
+"geocode_precision": "numero"
+},
+{
+"name": "Foyer scolaire Eich Eich",
+"lat": 49.62945,
+"lon": 6.131826,
+"young_children": false,
+"school_children": true,
+"geocode_precision": "numero"
+},
+{
+"name": "Foyer scolaire Beggen Marche 34",
+"lat": 49.64391,
+"lon": 6.126847,
+"young_children": false,
+"school_children": true,
+"geocode_precision": "numero"
+},
+{
+"name": "Foyer scolaire Hamm Hamm",
+"lat": 49.609547,
+"lon": 6.160647,
+"young_children": false,
+"school_children": true,
+"geocode_precision": "numero"
+},
+{
+"name": "Foyer scolaire Cessange Cessange",
+"lat": 49.587477,
+"lon": 6.104818,
+"young_children": false,
+"school_children": true,
+"geocode_precision": "numero"
+},
+{
+"name": "Maison Relais Laladudo",
+"lat": 49.620775,
+"lon": 6.160686,
+"young_children": false,
+"school_children": true,
+"geocode_precision": "numero"
+},
+{
+"name": "Haus vun de Kanner",
+"lat": 49.608343,
+"lon": 6.136651,
+"young_children": false,
+"school_children": true,
+"geocode_precision": "numero"
+},
+{
+"name": "Foyer scolaire Bonnevoie Schlechter",
+"lat": 49.595588,
+"lon": 6.146475,
+"young_children": false,
+"school_children": true,
+"geocode_precision": "numero"
+},
+{
+"name": "Foyer scolaire Bonnevoie Gellé",
+"lat": 49.596518,
+"lon": 6.139276,
+"young_children": false,
+"school_children": true,
+"geocode_precision": "numero"
+},
+{
+"name": "Foyer scolaire Gare Fischer",
+"lat": 49.601335,
+"lon": 6.126773,
+"young_children": false,
+"school_children": true,
+"geocode_precision": "numero"
+},
+{
+"name": "Crèche et Foyer Sim Sala Bim Bonnevoie",
+"lat": 49.595111,
+"lon": 6.139332,
+"young_children": true,
+"school_children": true,
+"geocode_precision": "numero"
+},
+{
+"name": "Crèche et Foyer Barbara",
+"lat": 49.627391,
+"lon": 6.103613,
+"young_children": true,
+"school_children": true,
+"geocode_precision": "numero"
+},
+{
+"name": "CRECHE BARBARA GASPERICH",
+"lat": 49.595286,
+"lon": 6.119573,
+"young_children": true,
+"school_children": false,
+"geocode_precision": "numero"
+},
+{
+"name": "CRECHE LA PETITE SIRENE",
+"lat": 49.593799,
+"lon": 6.108792,
+"young_children": true,
+"school_children": false,
+"geocode_precision": "numero"
+},
+{
+"name": "FRIMOUSSES Crèche",
+"lat": 49.619067,
+"lon": 6.109726,
+"young_children": true,
+"school_children": false,
+"geocode_precision": "numero"
+},
+{
+"name": "AU COEUR DU VERGER",
+"lat": 49.602592,
+"lon": 6.139868,
+"young_children": true,
+"school_children": true,
+"geocode_precision": "numero"
+},
+{
+"name": "Crèche Zoo Magique",
+"lat": 49.644494,
+"lon": 6.129173,
+"young_children": true,
+"school_children": false,
+"geocode_precision": "numero"
+},
+{
+"name": "Crèche Les Petits Fermiers",
+"lat": 49.612796,
+"lon": 6.158064,
+"young_children": true,
+"school_children": false,
+"geocode_precision": "numero"
+},
+{
+"name": "CRECHE BARBARA MERL",
+"lat": 49.603165,
+"lon": 6.08629,
+"young_children": true,
+"school_children": false,
+"geocode_precision": "numero"
+},
+{
+"name": "Crèche Molli",
+"lat": 49.597991,
+"lon": 6.120409,
+"young_children": true,
+"school_children": false,
+"geocode_precision": "calle"
+},
+{
+"name": "Maison Relais Waldorf",
+"lat": 49.626332,
+"lon": 6.118492,
+"young_children": false,
+"school_children": true,
+"geocode_precision": "numero"
+},
+{
+"name": "LA LUCIOLE 2",
+"lat": 49.594314,
+"lon": 6.117583,
+"young_children": true,
+"school_children": true,
+"geocode_precision": "numero"
+},
+{
+"name": "Foyer de Jour Lantergaass",
+"lat": 49.611606,
+"lon": 6.130816,
+"young_children": true,
+"school_children": true,
+"geocode_precision": "numero"
+},
+{
+"name": "Crèche Am Schleekenhaus Belair",
+"lat": 49.609462,
+"lon": 6.111858,
+"young_children": true,
+"school_children": false,
+"geocode_precision": "numero"
+},
+{
+"name": "Butterfly Valley Crèche et Foyer",
+"lat": 49.6268,
+"lon": 6.148174,
+"young_children": true,
+"school_children": true,
+"geocode_precision": "numero"
+},
+{
+"name": "Caterpillar Haven Crèche et Foyer",
+"lat": 49.624131,
+"lon": 6.140664,
+"young_children": true,
+"school_children": true,
+"geocode_precision": "numero"
+},
+{
+"name": "CRECHE BARBARA BONNEVOIE 2",
+"lat": 49.593097,
+"lon": 6.141653,
+"young_children": true,
+"school_children": false,
+"geocode_precision": "numero"
+},
+{
+"name": "CRECHE BARBARA BONNEVOIE I",
+"lat": 49.595249,
+"lon": 6.149149,
+"young_children": true,
+"school_children": false,
+"geocode_precision": "numero"
+},
+{
+"name": "Le Jardin d'éveil - Garden of Awakening",
+"lat": 49.594138,
+"lon": 6.108738,
+"young_children": true,
+"school_children": false,
+"geocode_precision": "numero"
+},
+{
+"name": "Crèche Charles et Julie",
+"lat": 49.617474,
+"lon": 6.122253,
+"young_children": true,
+"school_children": false,
+"geocode_precision": "numero"
+},
+{
+"name": "Crèche municipale de la route d'Arlon",
+"lat": 49.614532,
+"lon": 6.113529,
+"young_children": true,
+"school_children": false,
+"geocode_precision": "numero"
+},
+{
+"name": "Crèche municipale rue de Chicago",
+"lat": 49.603507,
+"lon": 6.139147,
+"young_children": true,
+"school_children": false,
+"geocode_precision": "numero"
+},
+{
+"name": "Crèche municipale de la rue Barrière",
+"lat": 49.60345,
+"lon": 6.097173,
+"young_children": true,
+"school_children": false,
+"geocode_precision": "numero"
+},
+{
+"name": "Crèche Mes Premiers Pas",
+"lat": 49.624408,
+"lon": 6.161486,
+"young_children": true,
+"school_children": false,
+"geocode_precision": "numero"
+},
+{
+"name": "CRECHE MARY POPPIN'S",
+"lat": 49.622657,
+"lon": 6.18539,
+"young_children": true,
+"school_children": false,
+"geocode_precision": "numero"
+},
+{
+"name": "Crèche Les Près en Bulles",
+"lat": 49.58793,
+"lon": 6.120766,
+"young_children": true,
+"school_children": false,
+"geocode_precision": "numero"
+},
+{
+"name": "POPPY BABY",
+"lat": 49.601444,
+"lon": 6.131816,
+"young_children": true,
+"school_children": false,
+"geocode_precision": "numero"
+},
+{
+"name": "Ribambelle Albert Philippe",
+"lat": 49.609264,
+"lon": 6.114539,
+"young_children": false,
+"school_children": true,
+"geocode_precision": "numero"
+},
+{
+"name": "Children's Kirchberg 2",
+"lat": 49.626136,
+"lon": 6.137669,
+"young_children": true,
+"school_children": false,
+"geocode_precision": "numero"
+},
+{
+"name": "Children's World Belair",
+"lat": 49.611605,
+"lon": 6.107215,
+"young_children": true,
+"school_children": false,
+"geocode_precision": "numero"
+},
+{
+"name": "Crèche Haensel & Gretel",
+"lat": 49.617741,
+"lon": 6.159599,
+"young_children": true,
+"school_children": false,
+"geocode_precision": "numero"
+},
+{
+"name": "Crèche Bambesch Kids",
+"lat": 49.633535,
+"lon": 6.117289,
+"young_children": true,
+"school_children": false,
+"geocode_precision": "numero"
+},
+{
+"name": "Foyer de Jour Siweschléifer",
+"lat": 49.593915,
+"lon": 6.126474,
+"young_children": true,
+"school_children": false,
+"geocode_precision": "numero"
+},
+{
+"name": "Butzestuff Gasperich",
+"lat": 49.594666,
+"lon": 6.118963,
+"young_children": true,
+"school_children": true,
+"geocode_precision": "numero"
+},
+{
+"name": "Butzestuff Belair",
+"lat": 49.612596,
+"lon": 6.112618,
+"young_children": true,
+"school_children": false,
+"geocode_precision": "numero"
+},
+{
+"name": "Babillou",
+"lat": 49.610043,
+"lon": 6.100916,
+"young_children": true,
+"school_children": false,
+"geocode_precision": "numero"
+},
+{
+"name": "Chez Gaston",
+"lat": 49.609788,
+"lon": 6.105548,
+"young_children": true,
+"school_children": true,
+"geocode_precision": "numero"
+},
+{
+"name": "LES POUSSINS",
+"lat": 49.598578,
+"lon": 6.144679,
+"young_children": true,
+"school_children": true,
+"geocode_precision": "numero"
+},
+{
+"name": "MINI COLLEGE",
+"lat": 49.626516,
+"lon": 6.143318,
+"young_children": true,
+"school_children": true,
+"geocode_precision": "numero"
+},
+{
+"name": "Bébés Poussins",
+"lat": 49.598663,
+"lon": 6.144149,
+"young_children": true,
+"school_children": true,
+"geocode_precision": "numero"
+},
+{
+"name": "Crèche Gan Rapaël",
+"lat": 49.609275,
+"lon": 6.097789,
+"young_children": true,
+"school_children": false,
+"geocode_precision": "numero"
+},
+{
+"name": "Foyer de Jour Am Rousegäertchen",
+"lat": 49.603886,
+"lon": 6.1268,
+"young_children": true,
+"school_children": true,
+"geocode_precision": "numero"
+},
+{
+"name": "Kaweechelchen",
+"lat": 49.611822,
+"lon": 6.109572,
+"young_children": true,
+"school_children": false,
+"geocode_precision": "numero"
+},
+{
+"name": "Crèche Les Copains d'abord",
+"lat": 49.619296,
+"lon": 6.100581,
+"young_children": true,
+"school_children": false,
+"geocode_precision": "numero"
+},
+{
+"name": "Crèche Aux Enfants Gâtés",
+"lat": 49.611289,
+"lon": 6.107725,
+"young_children": true,
+"school_children": false,
+"geocode_precision": "numero"
+},
+{
+"name": "Foyer de Jour Chance Egalité",
+"lat": 49.589493,
+"lon": 6.115487,
+"young_children": true,
+"school_children": true,
+"geocode_precision": "numero"
+},
+{
+"name": "Maison Relais Babbeltiermchen",
+"lat": 49.623994,
+"lon": 6.123913,
+"young_children": true,
+"school_children": false,
+"geocode_precision": "numero"
+},
+{
+"name": "Foyer de Jour Bbeee",
+"lat": 49.61394,
+"lon": 6.106915,
+"young_children": false,
+"school_children": true,
+"geocode_precision": "numero"
+},
+{
+"name": "Foyer de Jour Rockids Rollingergrund",
+"lat": 49.616857,
+"lon": 6.113753,
+"young_children": false,
+"school_children": true,
+"geocode_precision": "calle"
+},
+{
+"name": "Foyer de Jour Kannerwelt",
+"lat": 49.612729,
+"lon": 6.109195,
+"young_children": false,
+"school_children": true,
+"geocode_precision": "numero"
+},
+{
+"name": "Les Ateliers de Mimi",
+"lat": 49.607039,
+"lon": 6.108238,
+"young_children": false,
+"school_children": true,
+"geocode_precision": "numero"
+},
+{
+"name": "Crèche municipale d'Orval",
+"lat": 49.607279,
+"lon": 6.102028,
+"young_children": true,
+"school_children": false,
+"geocode_precision": "numero"
+},
+{
+"name": "ROYAL KIDS - Crèche et Foyer de Jour",
+"lat": 49.606091,
+"lon": 6.103701,
+"young_children": true,
+"school_children": true,
+"geocode_precision": "numero"
+},
+{
+"name": "Foyer scolaire Eich Sept-Arpents",
+"lat": 49.635529,
+"lon": 6.115878,
+"young_children": false,
+"school_children": true,
+"geocode_precision": "numero"
+},
+{
+"name": "Foyer scolaire Beggen Marche 38",
+"lat": 49.644208,
+"lon": 6.126578,
+"young_children": false,
+"school_children": true,
+"geocode_precision": "numero"
+},
+{
+"name": "Crèche Arc-en-ciel",
+"lat": 49.644041,
+"lon": 6.12577,
+"young_children": true,
+"school_children": false,
+"geocode_precision": "numero"
+},
+{
+"name": "BABYHOME",
+"lat": 49.589444,
+"lon": 6.123692,
+"young_children": true,
+"school_children": false,
+"geocode_precision": "numero"
+},
+{
+"name": "Foyer de Jour Calimero",
+"lat": 49.602756,
+"lon": 6.13749,
+"young_children": false,
+"school_children": true,
+"geocode_precision": "numero"
+},
+{
+"name": "Crèche BioBébé -Limpertsberg II",
+"lat": 49.621036,
+"lon": 6.114964,
+"young_children": true,
+"school_children": false,
+"geocode_precision": "numero"
+},
+{
+"name": "MAUSI BEGGEN",
+"lat": 49.644223,
+"lon": 6.129315,
+"young_children": true,
+"school_children": true,
+"geocode_precision": "numero"
+},
+{
+"name": "Crèche BioBébé - Merl",
+"lat": 49.612182,
+"lon": 6.09826,
+"young_children": true,
+"school_children": false,
+"geocode_precision": "numero"
+},
+{
+"name": "Crèche et foyer de jour Bei den Hiesercher",
+"lat": 49.616559,
+"lon": 6.169187,
+"young_children": true,
+"school_children": true,
+"geocode_precision": "numero"
+},
+{
+"name": "Sunflower Montessori Crèche",
+"lat": 49.608947,
+"lon": 6.161203,
+"young_children": true,
+"school_children": true,
+"geocode_precision": "numero"
+},
+{
+"name": "Crèche Nascht",
+"lat": 49.622688,
+"lon": 6.184072,
+"young_children": true,
+"school_children": false,
+"geocode_precision": "numero"
+},
+{
+"name": "Crèche municipale rue de Gasperich",
+"lat": 49.591281,
+"lon": 6.123462,
+"young_children": true,
+"school_children": false,
+"geocode_precision": "numero"
+},
+{
+"name": "Maison Relais Capellen",
+"lat": 49.644562,
+"lon": 5.988726,
+"young_children": false,
+"school_children": true,
+"geocode_precision": "numero"
+},
+{
+"name": "Crèche et Foyer de Jour Le Royaume de Winnie",
+"lat": 49.623759,
+"lon": 6.028967,
+"young_children": true,
+"school_children": true,
+"geocode_precision": "numero"
+},
+{
+"name": "Crèche BioBébé -Mamer",
+"lat": 49.628307,
+"lon": 6.025777,
+"young_children": true,
+"school_children": false,
+"geocode_precision": "calle"
+},
+{
+"name": "L'Enfant Roi Capellen",
+"lat": 49.641414,
+"lon": 6.010318,
+"young_children": true,
+"school_children": false,
+"geocode_precision": "calle"
+},
+{
+"name": " CRECHE JIPPELCHENSNASCHT ",
+"lat": 49.64473,
+"lon": 6.00102,
+"young_children": true,
+"school_children": false,
+"geocode_precision": "numero"
+},
+{
+"name": "Crèche BioBébé - Mamer II",
+"lat": 49.628669,
+"lon": 6.036747,
+"young_children": false,
+"school_children": true,
+"geocode_precision": "numero"
+},
+{
+"name": "CRECHE SMILE KIDS",
+"lat": 49.627473,
+"lon": 6.021183,
+"young_children": true,
+"school_children": true,
+"geocode_precision": "numero"
+},
+{
+"name": "Picapi",
+"lat": 49.627447,
+"lon": 6.021655,
+"young_children": false,
+"school_children": true,
+"geocode_precision": "numero"
+},
+{
+"name": "Crèche bioécologique Gekko",
+"lat": 49.646507,
+"lon": 5.976774,
+"young_children": true,
+"school_children": false,
+"geocode_precision": "numero"
+},
+{
+"name": "Crèche Huesestuff",
+"lat": 49.615922,
+"lon": 5.989975,
+"young_children": true,
+"school_children": false,
+"geocode_precision": "numero"
+},
+{
+"name": "Crèche Titoune",
+"lat": 49.645959,
+"lon": 5.973957,
+"young_children": true,
+"school_children": false,
+"geocode_precision": "numero"
+},
+{
+"name": "Crèche Am Schleekenhaus Mamer",
+"lat": 49.623808,
+"lon": 6.011984,
+"young_children": true,
+"school_children": true,
+"geocode_precision": "numero"
+},
+{
+"name": "Crèche Kannerstuff",
+"lat": 49.64591,
+"lon": 5.984373,
+"young_children": true,
+"school_children": false,
+"geocode_precision": "numero"
+},
+{
+"name": "Crèche et Foyer de Jour Rockids Mamer",
+"lat": 49.628785,
+"lon": 6.038689,
+"young_children": true,
+"school_children": true,
+"geocode_precision": "numero"
+},
+{
+"name": "Crèche Pétronille",
+"lat": 49.641414,
+"lon": 6.010318,
+"young_children": true,
+"school_children": false,
+"geocode_precision": "calle"
+},
+{
+"name": "Maison Relais Kinneksbond",
+"lat": 49.629283,
+"lon": 6.02768,
+"young_children": false,
+"school_children": true,
+"geocode_precision": "calle"
+},
+{
+"name": "Crèche & Maison Relais Renert",
+"lat": 49.730957,
+"lon": 6.398536,
+"young_children": true,
+"school_children": true,
+"geocode_precision": "calle"
+},
+{
+"name": "Maison Relais Mersch I - extension",
+"lat": 49.74241,
+"lon": 6.091957,
+"young_children": false,
+"school_children": true,
+"geocode_precision": "numero"
+},
+{
+"name": "Maison Relais Nic Welter",
+"lat": 49.748111,
+"lon": 6.102225,
+"young_children": false,
+"school_children": true,
+"geocode_precision": "numero"
+},
+{
+"name": "La colline aux enfants Mersch Bleue",
+"lat": 49.743873,
+"lon": 6.113606,
+"young_children": true,
+"school_children": true,
+"geocode_precision": "numero"
+},
+{
+"name": "Maison Relais & Crèche Butzenhaus",
+"lat": 49.74067,
+"lon": 6.112604,
+"young_children": true,
+"school_children": true,
+"geocode_precision": "numero"
+},
+{
+"name": "Crèche Bieschbech",
+"lat": 49.745076,
+"lon": 6.11457,
+"young_children": true,
+"school_children": false,
+"geocode_precision": "numero"
+},
+{
+"name": "La colline aux enfants Mersch Millekneppchen",
+"lat": 49.743041,
+"lon": 6.115028,
+"young_children": true,
+"school_children": false,
+"geocode_precision": "numero"
+},
+{
+"name": "L'Enfant Roi Mersch",
+"lat": 49.751314,
+"lon": 6.108931,
+"young_children": true,
+"school_children": true,
+"geocode_precision": "numero"
+},
+{
+"name": "Garderie Klengt Butzenhaus",
+"lat": 49.740671,
+"lon": 6.11247,
+"young_children": true,
+"school_children": false,
+"geocode_precision": "numero"
+},
+{
+"name": "Crèche Villa Pan Tau",
+"lat": 49.752742,
+"lon": 6.10627,
+"young_children": true,
+"school_children": false,
+"geocode_precision": "numero"
+},
+{
+"name": "Maison Relais Kuebekëscht Mertert",
+"lat": 49.701394,
+"lon": 6.480036,
+"young_children": false,
+"school_children": true,
+"geocode_precision": "numero"
+},
+{
+"name": "Maison Relais Papageieninsel",
+"lat": 49.714125,
+"lon": 6.494737,
+"young_children": false,
+"school_children": true,
+"geocode_precision": "numero"
+},
+{
+"name": "Maison Relais Spatzennascht",
+"lat": 49.715383,
+"lon": 6.498382,
+"young_children": true,
+"school_children": false,
+"geocode_precision": "numero"
+},
+{
+"name": "Maison Relais Fräscheland",
+"lat": 49.7005,
+"lon": 6.480239,
+"young_children": false,
+"school_children": true,
+"geocode_precision": "numero"
+},
+{
+"name": "Maison Relais Mertzig",
+"lat": 49.833587,
+"lon": 6.005976,
+"young_children": false,
+"school_children": true,
+"geocode_precision": "numero"
+},
+{
+"name": "CRECHE BEI DEN TURELCHER",
+"lat": 49.832589,
+"lon": 6.004616,
+"young_children": true,
+"school_children": false,
+"geocode_precision": "numero"
+},
+{
+"name": "Crèche Kiddies Mertzig",
+"lat": 49.831611,
+"lon": 6.004968,
+"young_children": true,
+"school_children": false,
+"geocode_precision": "numero"
+},
+{
+"name": "CRECHE BABY CONCEPT",
+"lat": 49.83001,
+"lon": 5.998823,
+"young_children": true,
+"school_children": false,
+"geocode_precision": "numero"
+},
+{
+"name": "Crèche Bidibul",
+"lat": 49.525648,
+"lon": 6.011298,
+"young_children": true,
+"school_children": false,
+"geocode_precision": "numero"
+},
+{
+"name": "Crèche Himmelsdeiercher",
+"lat": 49.531186,
+"lon": 5.988987,
+"young_children": true,
+"school_children": false,
+"geocode_precision": "numero"
+},
+{
+"name": "Les P'tits bouchons",
+"lat": 49.524491,
+"lon": 6.010089,
+"young_children": true,
+"school_children": true,
+"geocode_precision": "numero"
+},
+{
+"name": "Crèche Nascht Mondercange",
+"lat": 49.534924,
+"lon": 5.983888,
+"young_children": true,
+"school_children": false,
+"geocode_precision": "numero"
+},
+{
+"name": "Maison Relais Stëbserten",
+"lat": 49.531537,
+"lon": 5.988249,
+"young_children": false,
+"school_children": true,
+"geocode_precision": "numero"
+},
+{
+"name": "Crèche Le Chat Potté",
+"lat": 49.518669,
+"lon": 6.045147,
+"young_children": true,
+"school_children": false,
+"geocode_precision": "numero"
+},
+{
+"name": "CRECHE SPILLWOLLEK",
+"lat": 49.533249,
+"lon": 5.988376,
+"young_children": true,
+"school_children": false,
+"geocode_precision": "numero"
+},
+{
+"name": "Foyer Weier",
+"lat": 49.535061,
+"lon": 5.982984,
+"young_children": false,
+"school_children": true,
+"geocode_precision": "numero"
+},
+{
+"name": "Maison relais Steebrécken",
+"lat": 49.535209,
+"lon": 6.030204,
+"young_children": false,
+"school_children": true,
+"geocode_precision": "calle"
+},
+{
+"name": "Maison Relais Centre",
+"lat": 49.528919,
+"lon": 5.986626,
+"young_children": false,
+"school_children": true,
+"geocode_precision": "calle"
+},
+{
+"name": "Crèche Bisounours",
+"lat": 49.531176,
+"lon": 6.036085,
+"young_children": true,
+"school_children": false,
+"geocode_precision": "numero"
+},
+{
+"name": "Wibbeldewapp",
+"lat": 49.531186,
+"lon": 5.988987,
+"young_children": true,
+"school_children": false,
+"geocode_precision": "numero"
+},
+{
+"name": "Crèche Patatina",
+"lat": 49.541563,
+"lon": 6.035571,
+"young_children": true,
+"school_children": false,
+"geocode_precision": "numero"
+},
+{
+"name": "Maison Relais MUNNEREF - extension",
+"lat": 49.50601,
+"lon": 6.273693,
+"young_children": false,
+"school_children": true,
+"geocode_precision": "numero"
+},
+{
+"name": "Bibiskids",
+"lat": 49.51204,
+"lon": 6.254769,
+"young_children": true,
+"school_children": false,
+"geocode_precision": "numero"
+},
+{
+"name": "Crèche Spruddelmailchen",
+"lat": 49.511171,
+"lon": 6.257641,
+"young_children": true,
+"school_children": false,
+"geocode_precision": "numero"
+},
+{
+"name": "Service d'éducation et d'accompagnement de l'Ecole internationale de Mondorf-les-Bains",
+"lat": 49.500764,
+"lon": 6.284667,
+"young_children": false,
+"school_children": true,
+"geocode_precision": "numero"
+},
+{
+"name": "Crèche La Jungle des Minots",
+"lat": 49.504067,
+"lon": 6.277839,
+"young_children": true,
+"school_children": false,
+"geocode_precision": "numero"
+},
+{
+"name": "Ribambelle Mondorf",
+"lat": 49.508763,
+"lon": 6.284574,
+"young_children": true,
+"school_children": false,
+"geocode_precision": "numero"
+},
+{
+"name": "Crèche C'Choouette",
+"lat": 49.504188,
+"lon": 6.284696,
+"young_children": true,
+"school_children": false,
+"geocode_precision": "numero"
+},
+{
+"name": "Maison Relais & Crèche Niederanven",
+"lat": 49.656928,
+"lon": 6.242529,
+"young_children": true,
+"school_children": true,
+"geocode_precision": "calle"
+},
+{
+"name": "Foyer de Jour Butzeschlass",
+"lat": 49.64901,
+"lon": 6.228223,
+"young_children": true,
+"school_children": false,
+"geocode_precision": "numero"
+},
+{
+"name": "L'Enfant Roi Findel",
+"lat": 49.638199,
+"lon": 6.218372,
+"young_children": true,
+"school_children": false,
+"geocode_precision": "numero"
+},
+{
+"name": "Kidscare Zauberschlass",
+"lat": 49.649166,
+"lon": 6.236048,
+"young_children": true,
+"school_children": false,
+"geocode_precision": "numero"
+},
+{
+"name": "Babyhome",
+"lat": 49.636153,
+"lon": 6.220155,
+"young_children": true,
+"school_children": false,
+"geocode_precision": "numero"
+},
+{
+"name": "Maison Relais & Crèche Noumer",
+"lat": 49.795054,
+"lon": 6.173566,
+"young_children": true,
+"school_children": true,
+"geocode_precision": "numero"
+},
+{
+"name": "Garderie Butzenhaff",
+"lat": 49.799326,
+"lon": 6.131598,
+"young_children": true,
+"school_children": false,
+"geocode_precision": "numero"
+},
+{
+"name": "CRECHE IL NIDO RODANGE",
+"lat": 49.548713,
+"lon": 5.847289,
+"young_children": true,
+"school_children": true,
+"geocode_precision": "numero"
+},
+{
+"name": "Boxenmännercher",
+"lat": 49.548484,
+"lon": 5.850985,
+"young_children": true,
+"school_children": false,
+"geocode_precision": "numero"
+},
+{
+"name": "CRECHE LES SCOUBIDOUX",
+"lat": 49.549746,
+"lon": 5.83819,
+"young_children": true,
+"school_children": false,
+"geocode_precision": "numero"
+},
+{
+"name": "Foyer de Jour LES SCOUBIDOUX",
+"lat": 49.549701,
+"lon": 5.838019,
+"young_children": false,
+"school_children": true,
+"geocode_precision": "numero"
+},
+{
+"name": "La Colline aux enfants- Rodange",
+"lat": 49.550365,
+"lon": 5.840186,
+"young_children": true,
+"school_children": false,
+"geocode_precision": "numero"
+},
+{
+"name": "Maison Relais Bei de Bujellien",
+"lat": 49.545838,
+"lon": 5.83868,
+"young_children": false,
+"school_children": true,
+"geocode_precision": "numero"
+},
+{
+"name": "Crèche Au Petit Monde",
+"lat": 49.547677,
+"lon": 5.832254,
+"young_children": true,
+"school_children": false,
+"geocode_precision": "numero"
+},
+{
+"name": "Foyer de Jour Bei den Butzen II",
+"lat": 49.556096,
+"lon": 5.876838,
+"young_children": false,
+"school_children": true,
+"geocode_precision": "numero"
+},
+{
+"name": "Crèche Nascht",
+"lat": 49.556871,
+"lon": 5.878774,
+"young_children": true,
+"school_children": false,
+"geocode_precision": "numero"
+},
+{
+"name": "Foyer de Jour Villa Bambi",
+"lat": 49.54603,
+"lon": 5.838092,
+"young_children": true,
+"school_children": false,
+"geocode_precision": "numero"
+},
+{
+"name": "Crèche Kordall",
+"lat": 49.558676,
+"lon": 5.873857,
+"young_children": true,
+"school_children": false,
+"geocode_precision": "numero"
+},
+{
+"name": "CRECHE KIDSLAND",
+"lat": 49.545808,
+"lon": 5.84022,
+"young_children": true,
+"school_children": false,
+"geocode_precision": "numero"
+},
+{
+"name": "FOYER DE JOUR KIDSLAND",
+"lat": 49.54553,
+"lon": 5.840109,
+"young_children": false,
+"school_children": true,
+"geocode_precision": "numero"
+},
+{
+"name": "Crèche Little Steps",
+"lat": 49.546444,
+"lon": 5.827059,
+"young_children": true,
+"school_children": false,
+"geocode_precision": "numero"
+},
+{
+"name": "CRECHE LES RENARDEAUX",
+"lat": 49.546997,
+"lon": 5.842028,
+"young_children": true,
+"school_children": false,
+"geocode_precision": "numero"
+},
+{
+"name": "Maison Relais Tëtelbieren",
+"lat": 49.54648,
+"lon": 5.856114,
+"young_children": false,
+"school_children": true,
+"geocode_precision": "numero"
+},
+{
+"name": "Maison Relais Villa Reebou",
+"lat": 49.558244,
+"lon": 5.871353,
+"young_children": false,
+"school_children": true,
+"geocode_precision": "calle"
+},
+{
+"name": "Maison Relais Dachse vun der Bich",
+"lat": 49.54573,
+"lon": 5.838235,
+"young_children": false,
+"school_children": true,
+"geocode_precision": "numero"
+},
+{
+"name": "La Crèche Enchantée Nurserie",
+"lat": 49.561316,
+"lon": 5.873684,
+"young_children": true,
+"school_children": false,
+"geocode_precision": "numero"
+},
+{
+"name": "La Crèche Enchantée",
+"lat": 49.555398,
+"lon": 5.879779,
+"young_children": true,
+"school_children": false,
+"geocode_precision": "numero"
+},
+{
+"name": "La Bulle d'Oxygène",
+"lat": 49.548015,
+"lon": 5.83002,
+"young_children": true,
+"school_children": true,
+"geocode_precision": "numero"
+},
+{
+"name": "Maison Relais Préizerdaul",
+"lat": 49.795156,
+"lon": 5.941853,
+"young_children": false,
+"school_children": true,
+"geocode_precision": "calle"
+},
+{
+"name": "Crèche BROMMELI",
+"lat": 49.788379,
+"lon": 5.936215,
+"young_children": true,
+"school_children": false,
+"geocode_precision": "numero"
+},
+{
+"name": "Crèche Minimoyz",
+"lat": 49.807938,
+"lon": 5.860605,
+"young_children": true,
+"school_children": false,
+"geocode_precision": "numero"
+},
+{
+"name": "La Maison Papillons",
+"lat": 49.851139,
+"lon": 5.791972,
+"young_children": true,
+"school_children": false,
+"geocode_precision": "numero"
+},
+{
+"name": "Crèche Butze Jhangeli",
+"lat": 49.840312,
+"lon": 5.838981,
+"young_children": false,
+"school_children": true,
+"geocode_precision": "numero"
+},
+{
+"name": "Maison Relais de Jhangeli",
+"lat": 49.840312,
+"lon": 5.838981,
+"young_children": false,
+"school_children": true,
+"geocode_precision": "numero"
+},
+{
+"name": "Maison Relais Reckange",
+"lat": 49.562312,
+"lon": 6.010142,
+"young_children": false,
+"school_children": true,
+"geocode_precision": "numero"
+},
+{
+"name": "CRECHE PRENZESCHLASS op der Mess",
+"lat": 49.560091,
+"lon": 6.008091,
+"young_children": true,
+"school_children": false,
+"geocode_precision": "numero"
+},
+{
+"name": "A Butzen",
+"lat": 49.772906,
+"lon": 5.927455,
+"young_children": true,
+"school_children": false,
+"geocode_precision": "numero"
+},
+{
+"name": "Mini Butz",
+"lat": 49.772614,
+"lon": 6.015975,
+"young_children": true,
+"school_children": false,
+"geocode_precision": "calle"
+},
+{
+"name": "Les Explorateurs Du Bonheur",
+"lat": 49.772614,
+"lon": 6.015975,
+"young_children": true,
+"school_children": false,
+"geocode_precision": "calle"
+},
+{
+"name": "Maison Relais Beiestack",
+"lat": 49.772614,
+"lon": 6.015975,
+"young_children": false,
+"school_children": true,
+"geocode_precision": "calle"
+},
+{
+"name": "Crèche Butzemillen Reisdorf",
+"lat": 49.86852,
+"lon": 6.26052,
+"young_children": true,
+"school_children": false,
+"geocode_precision": "numero"
+},
+{
+"name": "Maison Relais Reisdorf",
+"lat": 49.867283,
+"lon": 6.266379,
+"young_children": false,
+"school_children": true,
+"geocode_precision": "numero"
+},
+{
+"name": "Maison Relais Remich - Ecole Gewännchen",
+"lat": 49.547204,
+"lon": 6.366001,
+"young_children": false,
+"school_children": true,
+"geocode_precision": "numero"
+},
+{
+"name": "Crèche la Jungle des Minots",
+"lat": 49.548836,
+"lon": 6.365229,
+"young_children": true,
+"school_children": false,
+"geocode_precision": "numero"
+},
+{
+"name": "Foyer de Jour Muselnascht",
+"lat": 49.543484,
+"lon": 6.363444,
+"young_children": true,
+"school_children": false,
+"geocode_precision": "numero"
+},
+{
+"name": "Crèche Nascht",
+"lat": 49.549166,
+"lon": 6.37626,
+"young_children": true,
+"school_children": false,
+"geocode_precision": "numero"
+},
+{
+"name": "Maison Relais Draachenhiel",
+"lat": 49.541023,
+"lon": 6.145599,
+"young_children": false,
+"school_children": true,
+"geocode_precision": "numero"
+},
+{
+"name": "La Crèche Coccinelle",
+"lat": 49.530175,
+"lon": 6.119927,
+"young_children": true,
+"school_children": false,
+"geocode_precision": "numero"
+},
+{
+"name": "Crèche Schnick Schnack Schnuck",
+"lat": 49.55962,
+"lon": 6.114771,
+"young_children": true,
+"school_children": false,
+"geocode_precision": "numero"
+},
+{
+"name": "Ribambelle Bettembourg - Livange",
+"lat": 49.53223,
+"lon": 6.11114,
+"young_children": true,
+"school_children": false,
+"geocode_precision": "calle"
+},
+{
+"name": "Crèche et Foyer de jour Pomme d'Amour 2",
+"lat": 49.53817,
+"lon": 6.144823,
+"young_children": true,
+"school_children": true,
+"geocode_precision": "numero"
+},
+{
+"name": "Maison Relais Kannerinsel",
+"lat": 49.541524,
+"lon": 6.13217,
+"young_children": false,
+"school_children": true,
+"geocode_precision": "numero"
+},
+{
+"name": "Crèche Méckenhaischen",
+"lat": 49.539071,
+"lon": 6.129624,
+"young_children": true,
+"school_children": false,
+"geocode_precision": "numero"
+},
+{
+"name": "Crèche Pomme d'Amour",
+"lat": 49.530984,
+"lon": 6.147283,
+"young_children": true,
+"school_children": false,
+"geocode_precision": "numero"
+},
+{
+"name": "Crèche Schnick Schnack Schnuck",
+"lat": 49.558779,
+"lon": 6.114336,
+"young_children": true,
+"school_children": false,
+"geocode_precision": "numero"
+},
+{
+"name": "Crèche la Jungle des Minots",
+"lat": 49.543549,
+"lon": 6.148495,
+"young_children": true,
+"school_children": false,
+"geocode_precision": "numero"
+},
+{
+"name": "Crèche Kiddies Rosport",
+"lat": 49.802571,
+"lon": 6.506375,
+"young_children": true,
+"school_children": false,
+"geocode_precision": "numero"
+},
+{
+"name": "Maison Relais Am Bongert",
+"lat": 49.805006,
+"lon": 6.497611,
+"young_children": false,
+"school_children": true,
+"geocode_precision": "numero"
+},
+{
+"name": "CRECHE BARBARA BORN",
+"lat": 49.755731,
+"lon": 6.502783,
+"young_children": true,
+"school_children": false,
+"geocode_precision": "calle"
+},
+{
+"name": "Crèche Giele Pimpampel Born",
+"lat": 49.758978,
+"lon": 6.510099,
+"young_children": true,
+"school_children": false,
+"geocode_precision": "calle"
+},
+{
+"name": "Maison Relais Mompach",
+"lat": 49.755731,
+"lon": 6.502783,
+"young_children": false,
+"school_children": true,
+"geocode_precision": "calle"
+},
+{
+"name": "Rockids Rumelange",
+"lat": 49.459764,
+"lon": 6.02977,
+"young_children": false,
+"school_children": true,
+"geocode_precision": "numero"
+},
+{
+"name": "Foyer de Jour Am Zechenhaischen",
+"lat": 49.46038,
+"lon": 6.02916,
+"young_children": true,
+"school_children": true,
+"geocode_precision": "numero"
+},
+{
+"name": "Crèche Nascht Rumelange",
+"lat": 49.459907,
+"lon": 6.03034,
+"young_children": true,
+"school_children": false,
+"geocode_precision": "numero"
+},
+{
+"name": "SEA Roude Fiels Rëmeleng",
+"lat": 49.462097,
+"lon": 6.029378,
+"young_children": false,
+"school_children": true,
+"geocode_precision": "numero"
+},
+{
+"name": "Maison Relais Saeul Toeresgäertchen",
+"lat": 49.725902,
+"lon": 5.984816,
+"young_children": false,
+"school_children": true,
+"geocode_precision": "numero"
+},
+{
+"name": "Piwitsch",
+"lat": 49.614927,
+"lon": 6.220476,
+"young_children": true,
+"school_children": false,
+"geocode_precision": "numero"
+},
+{
+"name": "Maison Relais Sandweiler",
+"lat": 49.616051,
+"lon": 6.2164,
+"young_children": false,
+"school_children": true,
+"geocode_precision": "numero"
+},
+{
+"name": "Sunflower Montessori Crèche -Galileo",
+"lat": 49.626507,
+"lon": 6.199355,
+"young_children": true,
+"school_children": false,
+"geocode_precision": "calle"
+},
+{
+"name": "Crèche et Foyer de jour Ribambelle Soleuvre",
+"lat": 49.522236,
+"lon": 5.920961,
+"young_children": true,
+"school_children": true,
+"geocode_precision": "numero"
+},
+{
+"name": "Zolwerknäppercher",
+"lat": 49.53051,
+"lon": 5.949182,
+"young_children": true,
+"school_children": false,
+"geocode_precision": "numero"
+},
+{
+"name": "FOYER IL NIDO",
+"lat": 49.507005,
+"lon": 5.927876,
+"young_children": true,
+"school_children": true,
+"geocode_precision": "numero"
+},
+{
+"name": "CRECHE LES JOYEUX NAINS",
+"lat": 49.522185,
+"lon": 5.963162,
+"young_children": true,
+"school_children": false,
+"geocode_precision": "numero"
+},
+{
+"name": "CRECHE IL NIDO",
+"lat": 49.517563,
+"lon": 5.935669,
+"young_children": true,
+"school_children": false,
+"geocode_precision": "numero"
+},
+{
+"name": "Crèche Les Angelots",
+"lat": 49.509381,
+"lon": 5.941416,
+"young_children": true,
+"school_children": false,
+"geocode_precision": "numero"
+},
+{
+"name": "Maison Relais Sanem -  Zolwer Kannerbuerg ",
+"lat": 49.522057,
+"lon": 5.93716,
+"young_children": true,
+"school_children": true,
+"geocode_precision": "numero"
+},
+{
+"name": "SEA Sanem Ecole Belvaux - Poste",
+"lat": 49.508262,
+"lon": 5.925327,
+"young_children": false,
+"school_children": true,
+"geocode_precision": "numero"
+},
+{
+"name": "SEA Sanem Ecole Ehlerange",
+"lat": 49.524054,
+"lon": 5.967176,
+"young_children": false,
+"school_children": true,
+"geocode_precision": "numero"
+},
+{
+"name": "SEA Sanem Ecole Chemin Rouge",
+"lat": 49.514267,
+"lon": 5.940515,
+"young_children": false,
+"school_children": true,
+"geocode_precision": "numero"
+},
+{
+"name": "SEA Sanem Ecole Soleuvre",
+"lat": 49.523393,
+"lon": 5.938441,
+"young_children": false,
+"school_children": true,
+"geocode_precision": "numero"
+},
+{
+"name": "SEA Ecole Scheierhaff",
+"lat": 49.519478,
+"lon": 5.927418,
+"young_children": false,
+"school_children": true,
+"geocode_precision": "calle"
+},
+{
+"name": "Crèche et foyer de jour LES PETITS DINOSAURES",
+"lat": 49.509057,
+"lon": 5.942424,
+"young_children": true,
+"school_children": true,
+"geocode_precision": "numero"
+},
+{
+"name": "SEA Sanem Ecole Sanem",
+"lat": 49.54622,
+"lon": 5.926776,
+"young_children": false,
+"school_children": true,
+"geocode_precision": "numero"
+},
+{
+"name": "Crèche Bei de Wiermercher",
+"lat": 49.544404,
+"lon": 5.927219,
+"young_children": true,
+"school_children": false,
+"geocode_precision": "numero"
+},
+{
+"name": "CRECHE AU MONDE DES PETITES ETOILES",
+"lat": 49.52258,
+"lon": 5.941961,
+"young_children": true,
+"school_children": false,
+"geocode_precision": "numero"
+},
+{
+"name": "Crèche Bei de Wiermercher 2",
+"lat": 49.544781,
+"lon": 5.92145,
+"young_children": true,
+"school_children": false,
+"geocode_precision": "numero"
+},
+{
+"name": "Crèche Ô Comme 3 Pommes",
+"lat": 49.548133,
+"lon": 5.92769,
+"young_children": true,
+"school_children": false,
+"geocode_precision": "numero"
+},
+{
+"name": "Crèche Bisounours",
+"lat": 49.522349,
+"lon": 5.925984,
+"young_children": true,
+"school_children": false,
+"geocode_precision": "numero"
+},
+{
+"name": "NS Kids",
+"lat": 49.511514,
+"lon": 5.942992,
+"young_children": true,
+"school_children": false,
+"geocode_precision": "numero"
+},
+{
+"name": "SEA Sanem Kannercampus Belval",
+"lat": 49.506944,
+"lon": 5.934831,
+"young_children": true,
+"school_children": true,
+"geocode_precision": "numero"
+},
+{
+"name": "Le Jardin d'éveil - Garden of Awakening",
+"lat": 49.512119,
+"lon": 6.356649,
+"young_children": true,
+"school_children": false,
+"geocode_precision": "numero"
+},
+{
+"name": "Kannervilla Boermereng",
+"lat": 49.485424,
+"lon": 6.323381,
+"young_children": true,
+"school_children": false,
+"geocode_precision": "numero"
+},
+{
+"name": "Crèche Krunnemécken",
+"lat": 49.501532,
+"lon": 6.35257,
+"young_children": true,
+"school_children": false,
+"geocode_precision": "numero"
+},
+{
+"name": "Maison Relais Schengen - annexes Elvange",
+"lat": 49.503243,
+"lon": 6.316323,
+"young_children": false,
+"school_children": true,
+"geocode_precision": "calle"
+},
+{
+"name": "Maison Relais Schengen - Remerschen I",
+"lat": 49.487754,
+"lon": 6.351795,
+"young_children": false,
+"school_children": true,
+"geocode_precision": "calle"
+},
+{
+"name": "Maison Relais Schengen Bech Kleinmacher",
+"lat": 49.52805,
+"lon": 6.349451,
+"young_children": false,
+"school_children": true,
+"geocode_precision": "numero"
+},
+{
+"name": "KIDDIES SCHIEREN",
+"lat": 49.82625,
+"lon": 6.099247,
+"young_children": true,
+"school_children": false,
+"geocode_precision": "numero"
+},
+{
+"name": "Maison Relais Rousennascht",
+"lat": 49.828836,
+"lon": 6.098617,
+"young_children": false,
+"school_children": true,
+"geocode_precision": "numero"
+},
+{
+"name": "Crèche Bim Bam",
+"lat": 49.829581,
+"lon": 6.097391,
+"young_children": true,
+"school_children": false,
+"geocode_precision": "numero"
+},
+{
+"name": "La Luciole 8",
+"lat": 49.508809,
+"lon": 6.022899,
+"young_children": true,
+"school_children": false,
+"geocode_precision": "numero"
+},
+{
+"name": "Maison Relais Op Huddelen",
+"lat": 49.510124,
+"lon": 6.027377,
+"young_children": false,
+"school_children": true,
+"geocode_precision": "numero"
+},
+{
+"name": "CRECHE VILLA PIPOO",
+"lat": 49.501697,
+"lon": 6.014318,
+"young_children": true,
+"school_children": false,
+"geocode_precision": "numero"
+},
+{
+"name": "CRECHE DOUDOU ET COMPAGNIE",
+"lat": 49.503543,
+"lon": 6.013336,
+"young_children": true,
+"school_children": false,
+"geocode_precision": "numero"
+},
+{
+"name": "Crèche et Foyer de Jour Bei den Raupen",
+"lat": 49.506839,
+"lon": 6.013615,
+"young_children": true,
+"school_children": true,
+"geocode_precision": "numero"
+},
+{
+"name": "Crèche Bébé Star",
+"lat": 49.501859,
+"lon": 6.010913,
+"young_children": true,
+"school_children": false,
+"geocode_precision": "numero"
+},
+{
+"name": "Crèche Les 3 Pommes",
+"lat": 49.505828,
+"lon": 6.028048,
+"young_children": true,
+"school_children": false,
+"geocode_precision": "numero"
+},
+{
+"name": "Schëfflenger Bëschzwergen",
+"lat": 49.501435,
+"lon": 6.011439,
+"young_children": true,
+"school_children": false,
+"geocode_precision": "numero"
+},
+{
+"name": "Foyer de Jour Am Buggi",
+"lat": 49.505626,
+"lon": 6.012866,
+"young_children": true,
+"school_children": true,
+"geocode_precision": "numero"
+},
+{
+"name": "Crèche d'Stuppesland",
+"lat": 49.513223,
+"lon": 6.01035,
+"young_children": true,
+"school_children": false,
+"geocode_precision": "numero"
+},
+{
+"name": "Maison Relais Schifflange - Ecole Nelly Stein",
+"lat": 49.506257,
+"lon": 6.008784,
+"young_children": false,
+"school_children": true,
+"geocode_precision": "calle"
+},
+{
+"name": "CRECHE VILLA PIPOO III",
+"lat": 49.507079,
+"lon": 6.014393,
+"young_children": true,
+"school_children": false,
+"geocode_precision": "numero"
+},
+{
+"name": "BOUMBA 4",
+"lat": 49.501923,
+"lon": 5.999021,
+"young_children": true,
+"school_children": true,
+"geocode_precision": "numero"
+},
+{
+"name": "Marco Polo - Lëtz Explore",
+"lat": 49.505304,
+"lon": 6.020266,
+"young_children": true,
+"school_children": true,
+"geocode_precision": "numero"
+},
+{
+"name": "Maison Relais Schuttrange - An der Dällt ES",
+"lat": 49.622011,
+"lon": 6.266386,
+"young_children": false,
+"school_children": true,
+"geocode_precision": "calle"
+},
+{
+"name": "Crèche Schuttrange \"Am Bongert\"",
+"lat": 49.622011,
+"lon": 6.266386,
+"young_children": true,
+"school_children": false,
+"geocode_precision": "calle"
+},
+{
+"name": "Crèche Millepattes & Am Märchenbësch",
+"lat": 49.620153,
+"lon": 6.264476,
+"young_children": true,
+"school_children": false,
+"geocode_precision": "numero"
+},
+{
+"name": "Crèche Biobébé Munsbach",
+"lat": 49.638451,
+"lon": 6.269254,
+"young_children": true,
+"school_children": true,
+"geocode_precision": "numero"
+},
+{
+"name": "Maison Relais/Crèche Huesenascht",
+"lat": 49.563821,
+"lon": 6.363343,
+"young_children": true,
+"school_children": false,
+"geocode_precision": "numero"
+},
+{
+"name": "CRECHE ACQUABELLA",
+"lat": 49.586868,
+"lon": 6.373868,
+"young_children": true,
+"school_children": false,
+"geocode_precision": "calle"
+},
+{
+"name": "Maison relais Stadbredimus",
+"lat": 49.564169,
+"lon": 6.363694,
+"young_children": false,
+"school_children": true,
+"geocode_precision": "numero"
+},
+{
+"name": "Crèche Beim Petzi",
+"lat": 49.631631,
+"lon": 5.890879,
+"young_children": true,
+"school_children": false,
+"geocode_precision": "numero"
+},
+{
+"name": "Maison Relais Stengefort",
+"lat": 49.656225,
+"lon": 5.917132,
+"young_children": false,
+"school_children": true,
+"geocode_precision": "calle"
+},
+{
+"name": "Butzen-Spaass",
+"lat": 49.633279,
+"lon": 5.892945,
+"young_children": true,
+"school_children": false,
+"geocode_precision": "numero"
+},
+{
+"name": "CRECHE BEI DEN MAISERCHER",
+"lat": 49.662552,
+"lon": 5.925295,
+"young_children": true,
+"school_children": false,
+"geocode_precision": "numero"
+},
+{
+"name": "Crèche M.P. Petit Doudou",
+"lat": 49.64692,
+"lon": 5.918467,
+"young_children": true,
+"school_children": false,
+"geocode_precision": "numero"
+},
+{
+"name": "Crèche Au Plaisir des Bambins",
+"lat": 49.651155,
+"lon": 5.91829,
+"young_children": true,
+"school_children": false,
+"geocode_precision": "numero"
+},
+{
+"name": "DE STORSCH",
+"lat": 49.659269,
+"lon": 5.924215,
+"young_children": true,
+"school_children": false,
+"geocode_precision": "numero"
+},
+{
+"name": "Crèche & Maison Relais An der Bamschoul",
+"lat": 49.67235,
+"lon": 6.140144,
+"young_children": true,
+"school_children": true,
+"geocode_precision": "numero"
+},
+{
+"name": "Crèche Kannerhaus Stesel",
+"lat": 49.677628,
+"lon": 6.122539,
+"young_children": true,
+"school_children": false,
+"geocode_precision": "numero"
+},
+{
+"name": "Maison Relais Äerdbiersnascht Steinsel",
+"lat": 49.67887,
+"lon": 6.122499,
+"young_children": false,
+"school_children": true,
+"geocode_precision": "calle"
+},
+{
+"name": "Crèche Am Pescher",
+"lat": 49.623164,
+"lon": 6.07439,
+"young_children": true,
+"school_children": false,
+"geocode_precision": "numero"
+},
+{
+"name": "Maison Relais - Ecole Martyrs",
+"lat": 49.618199,
+"lon": 6.070615,
+"young_children": false,
+"school_children": true,
+"geocode_precision": "numero"
+},
+{
+"name": "Mini Butzy",
+"lat": 49.615983,
+"lon": 6.092644,
+"young_children": true,
+"school_children": false,
+"geocode_precision": "numero"
+},
+{
+"name": "Care Your Kids",
+"lat": 49.620579,
+"lon": 6.078507,
+"young_children": true,
+"school_children": true,
+"geocode_precision": "numero"
+},
+{
+"name": "L'Enfant Roi Am Piesch",
+"lat": 49.613664,
+"lon": 6.075576,
+"young_children": true,
+"school_children": false,
+"geocode_precision": "numero"
+},
+{
+"name": "L'Enfant Roi Maison-Relais Montessori",
+"lat": 49.618943,
+"lon": 6.055156,
+"young_children": false,
+"school_children": true,
+"geocode_precision": "numero"
+},
+{
+"name": "Maison Relais Strassen",
+"lat": 49.618939,
+"lon": 6.071658,
+"young_children": false,
+"school_children": true,
+"geocode_precision": "numero"
+},
+{
+"name": "CRECHE LA RONDE DES PETITS",
+"lat": 49.621561,
+"lon": 6.061434,
+"young_children": true,
+"school_children": false,
+"geocode_precision": "numero"
+},
+{
+"name": "Crèche Les P'tits Malins 1",
+"lat": 49.62368,
+"lon": 6.079665,
+"young_children": true,
+"school_children": false,
+"geocode_precision": "numero"
+},
+{
+"name": "Babouille",
+"lat": 49.620541,
+"lon": 6.064996,
+"young_children": true,
+"school_children": false,
+"geocode_precision": "numero"
+},
+{
+"name": "Crèche et Foyer de Jour Rockids Strassen 3",
+"lat": 49.617382,
+"lon": 6.090376,
+"young_children": true,
+"school_children": false,
+"geocode_precision": "numero"
+},
+{
+"name": "Children's World Strassen",
+"lat": 49.624413,
+"lon": 6.064715,
+"young_children": true,
+"school_children": false,
+"geocode_precision": "numero"
+},
+{
+"name": "Crèche Rockids Strassen 2",
+"lat": 49.617327,
+"lon": 6.090593,
+"young_children": true,
+"school_children": false,
+"geocode_precision": "numero"
+},
+{
+"name": "Mes Copains et Moi",
+"lat": 49.617326,
+"lon": 6.079796,
+"young_children": true,
+"school_children": false,
+"geocode_precision": "numero"
+},
+{
+"name": "Crèche Wibbeldewapp",
+"lat": 49.619265,
+"lon": 6.072666,
+"young_children": true,
+"school_children": false,
+"geocode_precision": "numero"
+},
+{
+"name": "Crèche les petites bouilles",
+"lat": 49.62114,
+"lon": 6.076348,
+"young_children": true,
+"school_children": false,
+"geocode_precision": "numero"
+},
+{
+"name": "CRECHE TIRAMISU",
+"lat": 49.613905,
+"lon": 6.072389,
+"young_children": true,
+"school_children": false,
+"geocode_precision": "numero"
+},
+{
+"name": "Maison Relais Tandel",
+"lat": 49.892982,
+"lon": 6.18206,
+"young_children": false,
+"school_children": true,
+"geocode_precision": "numero"
+},
+{
+"name": "Crèche Tandel",
+"lat": 49.896175,
+"lon": 6.18139,
+"young_children": true,
+"school_children": false,
+"geocode_precision": "numero"
+},
+{
+"name": "Le Bonheur",
+"lat": 50.138574,
+"lon": 6.021956,
+"young_children": true,
+"school_children": false,
+"geocode_precision": "numero"
+},
+{
+"name": "Maison Relais & Crèche A. Schmatts",
+"lat": 50.120677,
+"lon": 6.003134,
+"young_children": true,
+"school_children": true,
+"geocode_precision": "numero"
+},
+{
+"name": "Crèche Un Der Atert",
+"lat": 49.769653,
+"lon": 5.979878,
+"young_children": true,
+"school_children": false,
+"geocode_precision": "numero"
+},
+{
+"name": "Maison Relais Bei de Fliedermais",
+"lat": 49.774892,
+"lon": 5.976243,
+"young_children": false,
+"school_children": true,
+"geocode_precision": "numero"
+},
+{
+"name": "Maison relais Medernach - Hall sportif",
+"lat": 49.80944,
+"lon": 6.21386,
+"young_children": false,
+"school_children": true,
+"geocode_precision": "numero"
+},
+{
+"name": "Kannervilla Gepëppelte Mëmmel",
+"lat": 49.937382,
+"lon": 6.205992,
+"young_children": true,
+"school_children": false,
+"geocode_precision": "numero"
+},
+{
+"name": "Maison Relais Vianden",
+"lat": 49.935164,
+"lon": 6.206475,
+"young_children": false,
+"school_children": true,
+"geocode_precision": "calle"
+},
+{
+"name": "Maison Relais Um Sonnegäertchen",
+"lat": 49.802536,
+"lon": 6.00018,
+"young_children": false,
+"school_children": true,
+"geocode_precision": "numero"
+},
+{
+"name": "Maison Relais Am Kiischtenascht",
+"lat": 49.572929,
+"lon": 6.279858,
+"young_children": false,
+"school_children": true,
+"geocode_precision": "numero"
+},
+{
+"name": "Crèche Tiramisu 4",
+"lat": 49.65271,
+"lon": 6.120386,
+"young_children": true,
+"school_children": true,
+"geocode_precision": "numero"
+},
+{
+"name": "Maison Relais Helmsange",
+"lat": 49.663331,
+"lon": 6.13851,
+"young_children": false,
+"school_children": true,
+"geocode_precision": "numero"
+},
+{
+"name": "CRECHE TIRAMISU 1",
+"lat": 49.662579,
+"lon": 6.133618,
+"young_children": true,
+"school_children": true,
+"geocode_precision": "numero"
+},
+{
+"name": "CRECHE TIRAMISU 2 & 3",
+"lat": 49.654533,
+"lon": 6.121784,
+"young_children": true,
+"school_children": true,
+"geocode_precision": "numero"
+},
+{
+"name": "Crèche Am Beienhaischen",
+"lat": 49.653558,
+"lon": 6.126444,
+"young_children": true,
+"school_children": false,
+"geocode_precision": "numero"
+},
+{
+"name": "CRECHE CANNELLE ET CARAMEL",
+"lat": 49.660223,
+"lon": 6.144662,
+"young_children": true,
+"school_children": false,
+"geocode_precision": "numero"
+},
+{
+"name": "Maison relais Walferdange- Ecole de Bereldange",
+"lat": 49.652994,
+"lon": 6.12639,
+"young_children": false,
+"school_children": true,
+"geocode_precision": "numero"
+},
+{
+"name": "Maison Relais Walferdange",
+"lat": 49.65826,
+"lon": 6.130893,
+"young_children": false,
+"school_children": true,
+"geocode_precision": "calle"
+},
+{
+"name": "Au Pays des Merveilles",
+"lat": 49.664695,
+"lon": 6.134876,
+"young_children": true,
+"school_children": false,
+"geocode_precision": "numero"
+},
+{
+"name": "Crèche Les P'tites Fripouilles",
+"lat": 49.651658,
+"lon": 6.118687,
+"young_children": true,
+"school_children": false,
+"geocode_precision": "numero"
+},
+{
+"name": "Maison Relais Wahl",
+"lat": 49.847021,
+"lon": 5.908262,
+"young_children": false,
+"school_children": true,
+"geocode_precision": "numero"
+},
+{
+"name": "Maison relais  & Crèche Waldbelleg",
+"lat": 49.7966,
+"lon": 6.279148,
+"young_children": true,
+"school_children": true,
+"geocode_precision": "numero"
+},
+{
+"name": "Maison relais Bei de Steekauzen ",
+"lat": 49.546755,
+"lon": 6.199427,
+"young_children": false,
+"school_children": true,
+"geocode_precision": "calle"
+},
+{
+"name": "Crèche Fliedermais",
+"lat": 49.543802,
+"lon": 6.20122,
+"young_children": true,
+"school_children": false,
+"geocode_precision": "numero"
+},
+{
+"name": "Klengen Haas",
+"lat": 50.139853,
+"lon": 6.078645,
+"young_children": true,
+"school_children": false,
+"geocode_precision": "numero"
+},
+{
+"name": "Maison Relais Kuarregärtchen",
+"lat": 50.140507,
+"lon": 6.073489,
+"young_children": false,
+"school_children": true,
+"geocode_precision": "numero"
+},
+{
+"name": "Crèche Cocon",
+"lat": 50.140507,
+"lon": 6.073489,
+"young_children": true,
+"school_children": false,
+"geocode_precision": "numero"
+},
+{
+"name": "La colline aux enfants Wiltz",
+"lat": 49.964998,
+"lon": 5.926878,
+"young_children": true,
+"school_children": true,
+"geocode_precision": "numero"
+},
+{
+"name": "Maison Relais Wiltz - Reenert",
+"lat": 49.967508,
+"lon": 5.932302,
+"young_children": false,
+"school_children": true,
+"geocode_precision": "numero"
+},
+{
+"name": "Crèche Butzemillen Wiltz",
+"lat": 49.963498,
+"lon": 5.922559,
+"young_children": true,
+"school_children": true,
+"geocode_precision": "numero"
+},
+{
+"name": "Eis Wibbelmais",
+"lat": 49.977592,
+"lon": 5.947298,
+"young_children": true,
+"school_children": false,
+"geocode_precision": "numero"
+},
+{
+"name": "Le Bonheur Wiltz",
+"lat": 49.968808,
+"lon": 5.931872,
+"young_children": true,
+"school_children": true,
+"geocode_precision": "numero"
+},
+{
+"name": "Crèche Stadmais",
+"lat": 49.968619,
+"lon": 5.928608,
+"young_children": true,
+"school_children": false,
+"geocode_precision": "numero"
+},
+{
+"name": "Villa Millermoaler",
+"lat": 49.968119,
+"lon": 5.932169,
+"young_children": false,
+"school_children": true,
+"geocode_precision": "numero"
+},
+{
+"name": "Villa Mirabella",
+"lat": 49.969147,
+"lon": 5.928279,
+"young_children": false,
+"school_children": true,
+"geocode_precision": "calle"
+},
+{
+"name": "Crèche Mitsch & Matsch",
+"lat": 49.964496,
+"lon": 5.924934,
+"young_children": true,
+"school_children": false,
+"geocode_precision": "numero"
+},
+{
+"name": "Maison Relais & Crèche Kiemelkiddies Wëntger",
+"lat": 50.053474,
+"lon": 5.916885,
+"young_children": true,
+"school_children": true,
+"geocode_precision": "calle"
+},
+{
+"name": "Crèche Baby Concept 2",
+"lat": 49.960285,
+"lon": 5.859048,
+"young_children": true,
+"school_children": false,
+"geocode_precision": "numero"
+},
+{
+"name": "Crèche Butzemillen - Pommerloch",
+"lat": 49.96231,
+"lon": 5.860889,
+"young_children": true,
+"school_children": false,
+"geocode_precision": "numero"
+},
+{
+"name": "LITTLE KIDS GARDEN",
+"lat": 49.609989,
+"lon": 6.404477,
+"young_children": true,
+"school_children": false,
+"geocode_precision": "numero"
+},
+{
+"name": "Garderie Pimpampel",
+"lat": 49.609492,
+"lon": 6.400303,
+"young_children": true,
+"school_children": false,
+"geocode_precision": "numero"
+},
+{
+"name": "Maison Relais Billek",
+"lat": 49.741916,
+"lon": 5.923421,
+"young_children": false,
+"school_children": true,
+"geocode_precision": "calle"
+}
+]

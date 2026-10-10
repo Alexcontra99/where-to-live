@@ -1,4 +1,4 @@
-# Actualización mensual de datos — App dónde vivir
+# Actualización mensual de datos — Where to Live
 
 > Lo ejecuta la sesión de datos (o una sola sesión si solo hay una). Construcción regenera y publica.
 > Objetivo: que precios, trayectos y lugares sigan siendo exactos sin rehacer el trabajo de validación.
@@ -25,7 +25,7 @@
 
 ## Pasos
 ```
-PY=/Library/Developer/CommandLineTools/Library/Frameworks/Python3.framework/Versions/3.9/bin/python3
+PY=python3   # Python 3.9+ con prototipo/build/requirements.txt
 $PY prototipo/build/check_updates.py                                   # 1. sale con 0 si no hay nada nuevo y con 2 si hay novedades
 cp prototipo/data/manifest.json prototipo/data/manifest.prev.json      # 2. guardar la línea base
 $PY prototipo/build/build_data.py                                      # 3. regenerar (construcción)

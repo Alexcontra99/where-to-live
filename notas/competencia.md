@@ -1,6 +1,6 @@
 ---
 tipo: nota
-proyecto: app_donde_vivir
+proyecto: where-to-live
 fecha: 2026-10-06
 ---
 # Competencia

@@ -5,7 +5,7 @@
 
 ## Qué es tuyo
 - `prototipo/` (web, `build/build_data.py`, `build/export_web.sh`), salvo `build/check_updates.py` y `build/qa_data.py`, que son de Secundaria.
-- Publicar: la carpeta la carpeta `publicar/` (web exportada, versionada) y el alojamiento.
+- Publicar: la carpeta `publicar/` (web exportada, versionada) y el alojamiento.
 - En `estado.md`: la subsección "Próximo paso → Main". En el log del día: el bloque "## Main".
 - Mandas en el reparto. Si un encargo no está claro, decides tú (Ale, 2026-10-07).
 

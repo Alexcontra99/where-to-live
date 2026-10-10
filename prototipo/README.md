@@ -21,7 +21,7 @@ python3 build/build_data.py                     # 2. descarga lo automático a ~
   - `overture_places.geojson`: `overturemaps download --bbox=6.00,49.52,6.33,49.73 -f geojson --type=place -o overture_places.geojson`.
   - `airport2023/`: descomprimir el zip de documentación del mapa del aeropuerto 2023 (URL en `../notas/fuentes_datos.md`, "Enlaces"). El `.prj` dice Web Mercator, pero los datos están en LUREF (EPSG:2169).
   - `mnt75/`: modelo numérico del terreno de 75 m de la ACT, https://download.data.public.lu/resources/modele-numerique-de-terreno-75m/20160405-133110/mnt_75.zip. El zip debe dejar `luxaltblh50` y `test.dem` dentro de `mnt75/`.
-  - `sea_2021_geocoded.json`: lista oficial SEA 2021 ("Colegios 2021" en `../notas/fuentes_datos.md`) geocodificada con el buscador de geoportail.lu. Campos que espera `build_data.py`: `lat`, `lon`, `name`, `young_children` y `school_children`. Se generó a mano el 2026-10-07 (método en `../notas/calidad_datos.md`, "Contraste con las listas oficiales de 2021"); falta convertirlo en script (pendiente en `../estado.md`).
+  - `sea_2021_geocoded.json` **ya está en el repositorio** (`build/sea_2021_geocoded.json`), no hace falta descargarlo: lista oficial SEA 2021 ("Colegios 2021" en `../notas/fuentes_datos.md`) geocodificada con el buscador de geoportail.lu. Campos que espera `build_data.py`: `lat`, `lon`, `name`, `young_children` y `school_children`. Se generó a mano el 2026-10-07 (método en `../notas/calidad_datos.md`, "Contraste con las listas oficiales de 2021"); falta convertirlo en script (pendiente en `../estado.md`).
 - Fuentes y licencias: `../notas/fuentes_datos.md`.
 
 ## Qué hay
