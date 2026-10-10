@@ -60,5 +60,9 @@ export function parseWaitlist(input: Record<string, unknown>): ParseResult {
   const rawSource = str(input.source).trim().toLowerCase();
   const source = SOURCE_RE.test(rawSource) ? rawSource : 'landing';
 
-  return { ok: true, entry: { email, city: city as CityId, locale: locale as LocaleId, source }, token };
+  return {
+    ok: true,
+    entry: { email, city: city as CityId, locale: locale as LocaleId, source },
+    token,
+  };
 }

@@ -1,0 +1,85 @@
+---
+import Wordmark from './Wordmark.astro';
+import { useStrings } from '../i18n';
+
+const { locale = 'en' } = Astro.props as { locale?: string };
+const t = useStrings(locale);
+---
+
+<header class="site-header">
+  <div class="wrap bar">
+    <Wordmark />
+    <nav aria-label="Main">
+      <ul>
+        <li class="opt"><a href="/#how">{t.nav.how}</a></li>
+        <li class="opt"><a href="/#cities">{t.nav.cities}</a></li>
+        <li class="opt"><a href="/#data">{t.nav.data}</a></li>
+        <li class="demo-link"><a href="/demo/">{t.nav.demo}</a></li>
+        <li><a class="btn btn-primary btn-sm" href="/#waitlist">{t.nav.join}</a></li>
+      </ul>
+    </nav>
+  </div>
+</header>
+
+<style>
+  .site-header {
+    position: sticky;
+    top: 0;
+    z-index: 50;
+    background: color-mix(in srgb, var(--bg) 82%, transparent);
+    backdrop-filter: saturate(140%) blur(14px);
+    -webkit-backdrop-filter: saturate(140%) blur(14px);
+    border-bottom: 1px solid color-mix(in srgb, var(--line) 70%, transparent);
+  }
+
+  .bar {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 16px;
+    min-height: 68px;
+  }
+
+  ul {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    list-style: none;
+    margin: 0;
+    padding: 0;
+  }
+
+  nav a:not(.btn) {
+    display: inline-block;
+    padding: 8px 12px;
+    color: var(--muted);
+    font-size: 0.9375rem;
+    text-decoration: none;
+    border-radius: 999px;
+    transition: color 0.2s var(--ease-out);
+  }
+
+  nav a:not(.btn):hover {
+    color: var(--fg-strong);
+  }
+
+  .btn {
+    margin-left: 8px;
+  }
+
+  @media (max-width: 760px) {
+    .opt {
+      display: none;
+    }
+  }
+
+  .btn {
+    white-space: nowrap;
+  }
+
+  @media (max-width: 440px) {
+    .demo-link {
+      display: none;
+    }
+  }
+</style>

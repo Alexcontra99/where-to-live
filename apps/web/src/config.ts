@@ -6,6 +6,9 @@ export const SITE_URL = 'https://where-to-live.pages.dev';
 // Placeholder until the domain exists: the privacy policy names this address as the contact.
 export const CONTACT_EMAIL = 'privacy@where-to-live.example';
 
+// Data controller named in the privacy policy. Must be completed before publishing.
+export const CONTROLLER = '[Controller name and postal address — to complete before launch]';
+
 // Cities offered in the waitlist form. `status` drives copy on the landing.
 export const CITIES = [
   { id: 'luxembourg', name: 'Luxembourg', country: 'LU', status: 'demo' },
