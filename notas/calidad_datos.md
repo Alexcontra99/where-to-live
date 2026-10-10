@@ -338,7 +338,7 @@ Observado frente a recomendado (€/m², n):
 - **Colegios**: OSM vale. Tiene además 37 sin equivalente oficial: privados o internacionales, que sirven, y algunos que no son para familias (música, policía).
 - **Guarderías**: la base pasa a ser la lista oficial SEA 2021 (704 en el país, 245 en la zona; el 96 % geocodificado con número de portal).
   - Se completa con 25 guarderías de OSM y Overture a más de 100 m de un SEA (abiertas después de 2021 o privadas fuera de la lista).
-  - Fichero para construcción: `~/.cache/nether_app/raw/sea_2021_geocoded.json` (fuera del vault).
+  - Fichero para construcción: `~/.cache/nether_app/raw/sea_2021_geocoded.json` (fuera del repositorio).
 - **Integrado** (2026-10-07): guarderías = 306 SEA (zona ampliada) + 31 de OSM y Overture a más de 100 m = 337. Colegios = 145 de OSM, sin música, policía ni autoescuelas.
 - **Límite**: la lista es de 2021, así que puede haber altas y bajas.
 
@@ -347,7 +347,7 @@ Observado frente a recomendado (€/m², n):
 
 **Médicos**:
 - Ninguna fuente abierta los resuelve.
-- Recomiendo pedir el conjunto de datos al Ministerio de Sanidad (professions.medicales@ms.etat.lu), pero solo con el OK de Ale, porque es contactar con fuera.
+- Recomiendo pedir el conjunto de datos al Ministerio de Sanidad (professions.medicales@ms.etat.lu), solo con el OK de Ale, porque es contactar con fuera.
 - Mientras tanto: médicos de OSM con el aviso "incomplete".
 
 ## Fuentes de esta nota

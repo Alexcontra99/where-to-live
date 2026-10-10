@@ -1,9 +1,9 @@
 #!/bin/sh
 # Copia la web publicable (sin build ni notas internas) a la carpeta del repositorio de GitHub.
-# Uso: sh prototipo/build/export_web.sh [destino]   (por defecto ~/GitHub/where-to-live)
+# Uso: sh prototipo/build/export_web.sh [destino]   (por defecto ~/GitHub/where-to-live-export)
 set -e
 SRC="$(cd "$(dirname "$0")/.." && pwd)"
-DST="${1:-$HOME/GitHub/where-to-live}"
+DST="${1:-$HOME/GitHub/where-to-live-export}"
 mkdir -p "$DST/data"
 cp "$SRC/index.html" "$SRC/app.js" "$SRC/style.css" "$DST/"
 cp "$SRC"/data/*.js "$DST/data/"

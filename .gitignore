@@ -1,6 +1,5 @@
+# Local
 .DS_Store
 __pycache__/
+# Línea base de qa_data.py: se regenera en cada actualización mensual
 prototipo/data/manifest.prev.json
-# Local y personal: no sube
-CLAUDE.local.md
-sesiones/
