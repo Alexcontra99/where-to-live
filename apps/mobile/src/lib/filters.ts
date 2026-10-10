@@ -3,6 +3,7 @@
 // and make sure whatever reaches the engine passes validateFilters().
 import {
   ARRIVE_OPTS,
+  exampleFilters,
   CATS,
   MAX_PEOPLE,
   MAX_PLACES,
@@ -26,10 +27,14 @@ const num = (text: string): number => {
   return Number.isFinite(v) ? v : 0;
 };
 
-/** Max commute minutes: app.js `+value || 30`. */
+export const MIN_MAX = 5;
+export const MAX_MAX = 90;
+const clampMax = (v: number): number => Math.min(MAX_MAX, Math.max(MIN_MAX, v));
+
+/** Max commute minutes: app.js `+value || 30`, within the input's range (min 5, max 90). */
 export const parseMax = (text: string): number => {
   const v = num(text);
-  return v > 0 ? v : 30;
+  return v > 0 ? clampMax(v) : 30;
 };
 
 /** Budget / size: app.js `+value || null` (negative values are treated as not set). */
@@ -91,7 +96,7 @@ export function restoreFilters(raw: unknown): Filters {
         label: d.label,
         dest: readPlace(p.dest),
         mode: MODES.some(([m]) => m === p.mode) ? (p.mode as PersonFilter['mode']) : d.mode,
-        max: finite(p.max) && p.max > 0 ? p.max : d.max,
+        max: finite(p.max) && p.max > 0 ? clampMax(p.max) : d.max,
       };
     });
     if (people.length) f.people = people;
@@ -133,8 +138,19 @@ export function restoreFilters(raw: unknown): Filters {
  */
 export function toEngineFilters(ui: Filters): Filters {
   const f = cloneFilters(ui);
-  f.people = f.people.map((p, n) => ({ ...p, label: p.label || `Person ${n + 1}` }));
-  f.places = f.places.map((p) => ({ ...p, name: p.name.trim() || 'My place' }));
+  // Only the engine's fields: UI-only keys (the `id` of a card) are left out.
+  f.people = f.people.map(({ dest, mode, max, label }, n) => ({
+    label: label || `Person ${n + 1}`,
+    dest,
+    mode,
+    max,
+  }));
+  f.places = f.places.map(({ name, loc, mode, m }) => ({
+    name: name.trim() || 'My place',
+    loc,
+    mode,
+    m,
+  }));
   const errs = validateFilters(f);
   if (errs.length) throw new RangeError(`Invalid filters from the UI: ${errs.join('; ')}`);
   return f;
@@ -142,5 +158,52 @@ export function toEngineFilters(ui: Filters): Filters {
 
 /** Stable key of what the engine sees, to skip re-evaluating when nothing that matters changed. */
 export const filtersKey = (f: Filters): string => JSON.stringify(toEngineFilters(f));
+
+/**
+ * "Load an example" as app.js does it: it sets the people, budget, size, noise, supermarket and park, and keeps
+ * everything else (arrival time, other categories, my places).
+ */
+export function applyExample(cur: Filters): Filters {
+  const ex = exampleFilters();
+  const f = cloneFilters(cur);
+  f.people = ex.people;
+  f.budget = ex.budget;
+  f.size = ex.size;
+  f.noise = ex.noise;
+  f.cats.supermarket = ex.cats.supermarket;
+  f.cats.park = ex.cats.park;
+  return f;
+}
+
+// Stable ids for the person and place cards (React keys, and edit targets that survive removals).
+// They live in the UI state only; toEngineFilters() drops them.
+export type UiPerson = PersonFilter & { id: string };
+export type UiPlace = PlaceFilter & { id: string };
+export interface UiFilters extends Filters {
+  people: UiPerson[];
+  places: UiPlace[];
+}
+
+let seq = 0;
+const nextId = (): string => `c${++seq}`;
+const idOf = (x: object): string | undefined => {
+  const id = (x as { id?: unknown }).id;
+  return typeof id === 'string' ? id : undefined;
+};
+
+/** Gives every person and place an id (keeps existing ones). */
+export function withIds(f: Filters): UiFilters {
+  return {
+    ...f,
+    people: f.people.map((p) => ({ ...p, id: idOf(p) ?? nextId() })),
+    places: f.places.map((p) => ({ ...p, id: idOf(p) ?? nextId() })),
+  };
+}
+
+export const newUiPerson = (n: number): UiPerson => ({ ...newPerson(n), id: nextId() });
+export const newUiPlace = (): UiPlace => ({ ...newPlace(), id: nextId() });
+
+/** Deep copy that keeps the ids. */
+export const cloneUi = (f: UiFilters): UiFilters => cloneFilters(f) as UiFilters;
 
 export type { CatKey };

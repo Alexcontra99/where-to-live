@@ -1,8 +1,10 @@
 import BottomSheet, { BottomSheetView } from '@gorhom/bottom-sheet';
 import type { CellInfo } from '@wtl/core';
+import { useRef } from 'react';
 import { Text, View } from 'react-native';
 import { useSafeAreaInsets } from 'react-native-safe-area-context';
 import { useTheme } from '../lib/theme';
+import { XButton } from './controls';
 
 /** Tap card for a cell: same content and wording as the prototype popup (app.js :250-285). */
 export function CellSheet({ info, onClose }: { info: CellInfo; onClose: () => void }) {
@@ -10,8 +12,11 @@ export function CellSheet({ info, onClose }: { info: CellInfo; onClose: () => vo
   const insets = useSafeAreaInsets();
   const small = { color: t.muted, fontSize: 13 };
   const body = { color: t.text, fontSize: 15 };
+  const sheet = useRef<BottomSheet>(null);
+  const close = () => sheet.current?.close();
   return (
     <BottomSheet
+      ref={sheet}
       index={0}
       enableDynamicSizing
       enablePanDownToClose
@@ -19,14 +24,31 @@ export function CellSheet({ info, onClose }: { info: CellInfo; onClose: () => vo
       backgroundStyle={{ backgroundColor: t.bg }}
       handleIndicatorStyle={{ backgroundColor: t.border }}
     >
-      <BottomSheetView style={{ paddingHorizontal: 16, paddingBottom: insets.bottom + 16, gap: 6 }}>
-        {!info.area ? (
-          <Text style={body}>Outside Luxembourg: not covered yet.</Text>
-        ) : (
+      <BottomSheetView
+        style={{ paddingHorizontal: 16, paddingBottom: insets.bottom + 16, gap: 6 }}
+        onAccessibilityEscape={close}
+      >
+        <View style={{ flexDirection: 'row', alignItems: 'center', gap: 8 }}>
+          <Text
+            style={
+              info.area
+                ? { color: t.text, fontSize: 18, fontWeight: '700', flex: 1 }
+                : [body, { flex: 1 }]
+            }
+            accessibilityRole={info.area ? 'header' : undefined}
+          >
+            {info.area ? (
+              <>
+                {info.area.name} <Text style={small}>({info.area.kind})</Text>
+              </>
+            ) : (
+              'Outside Luxembourg: not covered yet.'
+            )}
+          </Text>
+          <XButton label="Close" onPress={close} />
+        </View>
+        {info.area && (
           <>
-            <Text style={{ color: t.text, fontSize: 18, fontWeight: '700' }}>
-              {info.area.name} <Text style={small}>({info.area.kind})</Text>
-            </Text>
             {info.rent ? (
               <View>
                 <Text style={[body, { fontWeight: '600' }]}>

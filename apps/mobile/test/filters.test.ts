@@ -9,6 +9,8 @@ import {
 import { describe, expect, it } from 'vitest';
 import {
   activeCount,
+  applyExample,
+  cloneUi,
   filtersKey,
   newPerson,
   newPlace,
@@ -19,11 +21,15 @@ import {
   restoreFilters,
   setCatMode,
   toEngineFilters,
+  withIds,
 } from '../src/lib/filters';
 import { exampleEvaluation, getTestEngine } from './engine';
 
 describe('input parsing (app.js rules)', () => {
-  it('max minutes: +value || 30', () => {
+  it('max minutes: +value || 30, within the input range 5–90', () => {
+    expect(parseMax('900')).toBe(90);
+    expect(parseMax('2')).toBe(5);
+    expect(parseMax('90')).toBe(90);
     expect(parseMax('45')).toBe(45);
     expect(parseMax('')).toBe(30);
     expect(parseMax('0')).toBe(30);
@@ -160,5 +166,48 @@ describe('toEngineFilters (UI → engine adapter)', () => {
     const a = await engine.evaluateAsync(f, { pause: async () => {} });
     const b = engine.evaluate(f);
     expect(Array.from(a.fails)).toEqual(Array.from(b.fails));
+  });
+});
+
+describe('applyExample (app.js "Load an example")', () => {
+  it('sets people, rent, noise, supermarket and park, and keeps the rest', () => {
+    const cur = defaultFilters();
+    cur.arrive = 9;
+    cur.cats.gym = { mode: 'far', m: 300 };
+    cur.cats.supermarket = { mode: 'far', m: 100 };
+    cur.places.push({ name: 'Gym', loc: { lat: 49.6, lon: 6.1 }, mode: 'near', m: 500 });
+    const f = applyExample(cur);
+    const ex = exampleFilters();
+    expect(f.people).toEqual(ex.people);
+    expect([f.budget, f.size]).toEqual([ex.budget, ex.size]);
+    expect(f.noise).toEqual(ex.noise);
+    expect(f.cats.supermarket).toEqual(ex.cats.supermarket);
+    expect(f.cats.park).toEqual(ex.cats.park);
+    expect(f.arrive).toBe(9);
+    expect(f.cats.gym).toEqual({ mode: 'far', m: 300 });
+    expect(f.places).toEqual(cur.places);
+    expect(f).not.toBe(cur);
+    expect(applyExample(defaultFilters())).toEqual(ex);
+  });
+});
+
+describe('card ids (UI state only)', () => {
+  it('gives each person and place an id and keeps existing ones', () => {
+    const f = defaultFilters();
+    f.places.push(newPlace(), newPlace());
+    const ui = withIds(f);
+    const ids = [...ui.people, ...ui.places].map((x) => x.id);
+    expect(new Set(ids).size).toBe(3);
+    expect(withIds(ui).places.map((p) => p.id)).toEqual(ui.places.map((p) => p.id));
+    expect(cloneUi(ui).places.map((p) => p.id)).toEqual(ui.places.map((p) => p.id));
+  });
+  it('the engine never sees them', () => {
+    const ui = withIds(exampleFilters());
+    ui.places.push({ ...newPlace(), id: 'x' });
+    const f = toEngineFilters(ui);
+    expect(f.people.every((p) => !('id' in p))).toBe(true);
+    expect(f.places.every((p) => !('id' in p))).toBe(true);
+    expect(filtersKey(ui)).toBe(filtersKey(withIds(ui)));
+    expect(validateFilters(f)).toEqual([]);
   });
 });

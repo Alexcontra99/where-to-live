@@ -15,7 +15,7 @@ const SOURCES = [
   "Childcare facilities 2021 — Ministère de l'Éducation nationale, CC0",
   'Places — © OpenStreetMap contributors, ODbL 1.0',
   'Places — Overture Maps Foundation, CDLA-Permissive-2.0 (includes Meta, Microsoft, Foursquare Apache-2.0, AllThePlaces CC0)',
-  "Bike stations — Vel'oh! – JCDecaux",
+  "Bike stations — Vel'oh! – JCDecaux, JCDecaux Open Licence",
   'Address search — geoportail.lu',
 ];
 
@@ -57,8 +57,8 @@ export default function SourcesScreen() {
       </Text>
       <Text style={h2}>Privacy</Text>
       <Text style={hint}>
-        Nothing you enter is stored or sent to us. Your last filters stay on this device. Address
-        searches go to geoportail.lu. Prototype: results are estimates.
+        Nothing you enter is sent to us; your last filters are kept only on this device. Address
+        searches go to geoportail.lu. Results are estimates from the data sources above.
       </Text>
     </ScrollView>
   );

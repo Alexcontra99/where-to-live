@@ -89,6 +89,21 @@ export function Button({
   );
 }
 
+/** ✕ control (remove, close) with a 44 pt target. */
+export function XButton({ label, onPress }: { label: string; onPress: () => void }) {
+  const t = useTheme();
+  return (
+    <Pressable
+      onPress={onPress}
+      accessibilityRole="button"
+      accessibilityLabel={label}
+      style={({ pressed }) => [styles.iconButton, pressed && { opacity: 0.6 }]}
+    >
+      <Text style={{ color: t.muted, fontSize: 17 }}>✕</Text>
+    </Pressable>
+  );
+}
+
 export function Field(props: TextInputProps) {
   const t = useTheme();
   return (
@@ -142,8 +157,11 @@ export function NumberField({
       inputMode="numeric"
       placeholder={placeholder}
       accessibilityLabel={accessibilityLabel}
+      // Show the value actually used (e.g. 90 after typing 900, 30 after clearing the minutes).
+      onEndEditing={() => setText(shown)}
       editable={editable}
-      style={{ width, textAlign: 'right', opacity: editable ? 1 : 0.5 }}
+      accessibilityState={{ disabled: !editable }}
+      style={{ minWidth: width, textAlign: 'right', opacity: editable ? 1 : 0.5 }}
     />
   );
 }
@@ -154,8 +172,16 @@ export const styles = StyleSheet.create({
   hint: { fontSize: 13 },
   label: { fontSize: 15 },
   chips: { flexDirection: 'row', flexWrap: 'wrap', gap: 6 },
-  chip: { paddingHorizontal: 12, paddingVertical: 7, borderRadius: 16 },
+  // 44 pt: Apple's minimum touch target.
+  chip: {
+    minHeight: 44,
+    paddingHorizontal: 14,
+    paddingVertical: 7,
+    borderRadius: 22,
+    justifyContent: 'center',
+  },
   button: {
+    minHeight: 44,
     paddingHorizontal: 14,
     paddingVertical: 9,
     borderRadius: 8,
@@ -163,6 +189,7 @@ export const styles = StyleSheet.create({
     justifyContent: 'center',
   },
   input: {
+    minHeight: 44,
     borderWidth: StyleSheet.hairlineWidth,
     borderRadius: 8,
     paddingHorizontal: 10,
@@ -171,4 +198,6 @@ export const styles = StyleSheet.create({
   },
   row: { flexDirection: 'row', alignItems: 'center', gap: 8 },
   card: { borderRadius: 10, padding: 12, gap: 8 },
+  /** Square 44 pt target for a small glyph (✕). */
+  iconButton: { width: 44, height: 44, alignItems: 'center', justifyContent: 'center' },
 });

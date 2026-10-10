@@ -1,5 +1,5 @@
 import { describe, expect, it } from 'vitest';
-import { GEOCODER_URL, parseGeocode } from '../src/lib/geocode';
+import { GEOCODER_URL, isNotFound, parseGeocode } from '../src/lib/geocode';
 
 describe('geocoder (app.js geocode)', () => {
   it('reads the first result and tidies the label', () => {
@@ -18,6 +18,17 @@ describe('geocoder (app.js geocode)', () => {
   it('throws when nothing is found', () => {
     expect(() => parseGeocode({ results: [] })).toThrow('not found');
     expect(() => parseGeocode({})).toThrow('not found');
+  });
+  it('tells "not found" apart from network errors', () => {
+    let err: unknown;
+    try {
+      parseGeocode({ results: [] });
+    } catch (e) {
+      err = e;
+    }
+    expect(isNotFound(err)).toBe(true);
+    expect(isNotFound(new TypeError('Network request failed'))).toBe(false);
+    expect(isNotFound(new Error('geocoder HTTP 500'))).toBe(false);
   });
   it('uses the geoportail.lu endpoint', () => {
     expect(GEOCODER_URL).toBe('https://apiv3.geoportail.lu/geocode/search?queryString=');

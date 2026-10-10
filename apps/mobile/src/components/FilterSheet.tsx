@@ -7,28 +7,44 @@ import {
   MODES,
   NOISE,
   NOISE_OPTS,
-  cloneFilters,
   type CatMode,
   type Filters,
   type Summary,
 } from '@wtl/core';
-import { forwardRef, memo } from 'react';
+import { forwardRef, memo, useMemo, useState } from 'react';
 import { ActivityIndicator, Pressable, Text, View } from 'react-native';
 import { useSafeAreaInsets } from 'react-native-safe-area-context';
 import {
-  newPerson,
-  newPlace,
+  newUiPerson,
+  newUiPlace,
   parseMax,
   parseMetres,
   parseOptional,
   setCatMode,
+  type UiFilters,
+  type UiPerson,
+  type UiPlace,
 } from '../lib/filters';
 import { useTheme } from '../lib/theme';
-import { Button, Chips, Field, Hint, Label, NumberField, Section, styles } from './controls';
+import {
+  Button,
+  Chips,
+  Field,
+  Hint,
+  Label,
+  NumberField,
+  Section,
+  XButton,
+  styles,
+} from './controls';
 import { LocationEditor } from './LocationEditor';
 import { Legend, Results } from './Results';
 
-export type PickTarget = { kind: 'person' | 'place'; index: number };
+/** A person or place card, by its stable id. */
+export type PickTarget = { kind: 'person' | 'place'; id: string };
+
+/** An edit applied to the latest filters (not to a copy captured earlier, e.g. before an address search). */
+export type Edit = (fn: (f: UiFilters) => void) => void;
 
 const ARRIVE_CHIPS = ARRIVE_OPTS.map(
   (h) => [h, `${Math.floor(h)}:${h % 1 ? '30' : '00'}`] as const,
@@ -43,62 +59,90 @@ const PLACE_CHIPS = [
   ['far', 'At least'],
 ] as const;
 
-export const SNAP_POINTS = [128, '50%', '92%'];
+/** Collapsed height at the default text size; larger text grows it to fit the header. */
+export const MIN_SNAP = 128;
+const HANDLE_H = 24;
 
 interface Props {
-  filters: Filters;
-  onChange: (f: Filters) => void;
+  filters: UiFilters;
+  /** Filters of the evaluation on screen (for the legend), null before the first one. */
+  evaluated: Filters | null;
+  onEdit: Edit;
   onPick: (target: PickTarget) => void;
   summary: Summary | null;
   computing: boolean;
-  error: string | null;
+  failed: boolean;
   onExample: () => void;
   onSources: () => void;
 }
 
 export const FilterSheet = memo(
   forwardRef<BottomSheet, Props>(function FilterSheet(
-    { filters, onChange, onPick, summary, computing, error, onExample, onSources },
+    { filters, evaluated, onEdit: edit, onPick, summary, computing, failed, onExample, onSources },
     ref,
   ) {
     const t = useTheme();
     const insets = useSafeAreaInsets();
-    const edit = (fn: (f: Filters) => void) => {
-      const f = cloneFilters(filters);
-      fn(f);
-      onChange(f);
-    };
+    const [headerH, setHeaderH] = useState(0);
+    const snapPoints = useMemo(
+      () => [Math.max(MIN_SNAP, Math.ceil(headerH + HANDLE_H)), '50%', '92%'],
+      [headerH],
+    );
+    // Edits find their card by id in the latest filters; a card removed meanwhile is a no-op.
+    const editPerson = (id: string, fn: (p: UiPerson) => void) =>
+      edit((f) => {
+        const p = f.people.find((x) => x.id === id);
+        if (p) fn(p);
+      });
+    const editPlace = (id: string, fn: (p: UiPlace) => void) =>
+      edit((f) => {
+        const p = f.places.find((x) => x.id === id);
+        if (p) fn(p);
+      });
 
-    const status = error
-      ? `Error: ${error}`
+    const status = failed
+      ? 'Could not calculate'
       : computing || !summary
         ? 'Calculating…'
-        : `${summary.fitKm2Label} fit` +
-          (summary.topBlocker ? ` · most blocked by ${summary.topBlocker.short}` : '');
+        : `${summary.fitKm2Label} fit`;
 
     return (
       <BottomSheet
         ref={ref}
         index={1}
-        snapPoints={SNAP_POINTS}
+        snapPoints={snapPoints}
         enableDynamicSizing={false}
         keyboardBehavior="extend"
         keyboardBlurBehavior="restore"
         backgroundStyle={{ backgroundColor: t.bg }}
         handleIndicatorStyle={{ backgroundColor: t.border }}
       >
-        <View style={{ paddingHorizontal: 16, paddingBottom: 8, gap: 4 }}>
+        <View
+          style={{ paddingHorizontal: 16, paddingBottom: 8, gap: 2 }}
+          onLayout={(e) => setHeaderH(e.nativeEvent.layout.height)}
+        >
           <View style={[styles.row, { justifyContent: 'space-between' }]}>
-            <Text style={{ color: t.text, fontSize: 20, fontWeight: '700' }}>Where to live</Text>
-            <Pressable onPress={onSources} accessibilityRole="link" hitSlop={8}>
+            <Text style={{ color: t.text, fontSize: 20, fontWeight: '700', flexShrink: 1 }}>
+              Where to live
+            </Text>
+            <Pressable
+              onPress={onSources}
+              accessibilityRole="button"
+              style={{
+                minHeight: 44,
+                minWidth: 44,
+                justifyContent: 'center',
+                alignItems: 'flex-end',
+              }}
+            >
               <Text style={{ color: t.primary, fontSize: 15 }}>Sources</Text>
             </Pressable>
           </View>
           <View style={styles.row}>
             {computing && <ActivityIndicator size="small" />}
             <Text
-              style={{ color: error ? t.fail : t.muted, fontSize: 14, flexShrink: 1 }}
-              numberOfLines={1}
+              style={{ color: failed ? t.fail : t.muted, fontSize: 14, flexShrink: 1 }}
+              numberOfLines={2}
               accessibilityLiveRegion="polite"
             >
               {status}
@@ -112,49 +156,55 @@ export const FilterSheet = memo(
           <Button title="Load an example" onPress={onExample} />
 
           <Section title="Commute">
-            {filters.people.map((p, n) => (
-              <View key={n} style={[styles.card, { backgroundColor: t.surface }]}>
-                <View style={[styles.row, { justifyContent: 'space-between' }]}>
-                  <Label>{p.label ?? `Person ${n + 1}`}</Label>
-                  {n > 0 && (
-                    <Pressable
-                      onPress={() => edit((f) => void f.people.splice(n, 1))}
-                      accessibilityLabel="Remove"
-                      hitSlop={10}
-                    >
-                      <Text style={{ color: t.muted, fontSize: 17 }}>✕</Text>
-                    </Pressable>
-                  )}
-                </View>
-                <LocationEditor
-                  value={p.dest}
-                  placeholder="Work or study address"
-                  onChange={(loc) => edit((f) => void (f.people[n]!.dest = loc))}
-                  onPick={() => onPick({ kind: 'person', index: n })}
-                />
-                <Chips
-                  label="Mode"
-                  options={MODES}
-                  value={p.mode}
-                  onChange={(m) => edit((f) => void (f.people[n]!.mode = m))}
-                />
-                <View style={styles.row}>
-                  <Label>max</Label>
-                  <NumberField
-                    value={p.max}
-                    parse={parseMax}
-                    onChange={(v) => edit((f) => void (f.people[n]!.max = v ?? 30))}
-                    accessibilityLabel="Max minutes"
-                    width={64}
+            {filters.people.map((p, n) => {
+              const label = p.label ?? `Person ${n + 1}`;
+              return (
+                <View key={p.id} style={[styles.card, { backgroundColor: t.surface }]}>
+                  <View style={[styles.row, { justifyContent: 'space-between', minHeight: 44 }]}>
+                    <Label>{label}</Label>
+                    {n > 0 && (
+                      <XButton
+                        label={`Remove ${label}`}
+                        onPress={() =>
+                          edit((f) => void (f.people = f.people.filter((x) => x.id !== p.id)))
+                        }
+                      />
+                    )}
+                  </View>
+                  <LocationEditor
+                    value={p.dest}
+                    placeholder="Work or study address"
+                    onChange={(loc) => editPerson(p.id, (x) => void (x.dest = loc))}
+                    onPick={() => onPick({ kind: 'person', id: p.id })}
                   />
-                  <Label>min</Label>
+                  <Chips
+                    label="Mode"
+                    options={MODES}
+                    value={p.mode}
+                    onChange={(m) => editPerson(p.id, (x) => void (x.mode = m))}
+                  />
+                  <View style={styles.row}>
+                    <Label>max</Label>
+                    <NumberField
+                      value={p.max}
+                      parse={parseMax}
+                      onChange={(v) => editPerson(p.id, (x) => void (x.max = v ?? 30))}
+                      accessibilityLabel={`${label}, max minutes`}
+                      width={64}
+                    />
+                    <Label>min</Label>
+                  </View>
                 </View>
-              </View>
-            ))}
+              );
+            })}
             {filters.people.length < MAX_PEOPLE && (
               <Button
                 title="+ Add a second person"
-                onPress={() => edit((f) => void f.people.push(newPerson(f.people.length)))}
+                onPress={() =>
+                  edit((f) => {
+                    if (f.people.length < MAX_PEOPLE) f.people.push(newUiPerson(f.people.length));
+                  })
+                }
               />
             )}
             <Label>Arrive around</Label>
@@ -178,7 +228,9 @@ export const FilterSheet = memo(
               />
             </View>
             <View style={[styles.row, { justifyContent: 'space-between' }]}>
-              <Label>Budget per month (€, optional)</Label>
+              <View style={{ flexShrink: 1 }}>
+                <Label>Budget per month (€, optional)</Label>
+              </View>
               <NumberField
                 value={filters.budget}
                 parse={parseOptional}
@@ -233,57 +285,63 @@ export const FilterSheet = memo(
           </Section>
 
           <Section title="My places">
-            {filters.places.map((pl, n) => (
-              <View key={n} style={[styles.card, { backgroundColor: t.surface }]}>
-                <View style={styles.row}>
-                  <Field
-                    value={pl.name}
-                    onChangeText={(s) => edit((f) => void (f.places[n]!.name = s))}
-                    accessibilityLabel="Name"
-                    style={{ flex: 1 }}
+            {filters.places.map((pl) => {
+              const name = pl.name.trim() || 'My place';
+              return (
+                <View key={pl.id} style={[styles.card, { backgroundColor: t.surface }]}>
+                  <View style={styles.row}>
+                    <Field
+                      value={pl.name}
+                      onChangeText={(s) => editPlace(pl.id, (x) => void (x.name = s))}
+                      accessibilityLabel="Name"
+                      style={{ flex: 1 }}
+                    />
+                    <XButton
+                      label={`Remove ${name}`}
+                      onPress={() =>
+                        edit((f) => void (f.places = f.places.filter((x) => x.id !== pl.id)))
+                      }
+                    />
+                  </View>
+                  <LocationEditor
+                    value={pl.loc}
+                    placeholder="Address"
+                    onChange={(loc) => editPlace(pl.id, (x) => void (x.loc = loc))}
+                    onPick={() => onPick({ kind: 'place', id: pl.id })}
                   />
-                  <Pressable
-                    onPress={() => edit((f) => void f.places.splice(n, 1))}
-                    accessibilityLabel="Remove"
-                    hitSlop={10}
-                  >
-                    <Text style={{ color: t.muted, fontSize: 17 }}>✕</Text>
-                  </Pressable>
+                  <View style={[styles.row, { flexWrap: 'wrap' }]}>
+                    <Chips
+                      label="Within or at least"
+                      options={PLACE_CHIPS}
+                      value={pl.mode}
+                      onChange={(m) => editPlace(pl.id, (x) => void (x.mode = m))}
+                    />
+                    <NumberField
+                      value={pl.m}
+                      parse={parseMetres}
+                      onChange={(v) => editPlace(pl.id, (x) => void (x.m = v ?? 0))}
+                      accessibilityLabel={`${name}, metres`}
+                      width={70}
+                    />
+                    <Label>m</Label>
+                  </View>
                 </View>
-                <LocationEditor
-                  value={pl.loc}
-                  placeholder="Address"
-                  onChange={(loc) => edit((f) => void (f.places[n]!.loc = loc))}
-                  onPick={() => onPick({ kind: 'place', index: n })}
-                />
-                <View style={[styles.row, { flexWrap: 'wrap' }]}>
-                  <Chips
-                    label="Within or at least"
-                    options={PLACE_CHIPS}
-                    value={pl.mode}
-                    onChange={(m) => edit((f) => void (f.places[n]!.mode = m))}
-                  />
-                  <NumberField
-                    value={pl.m}
-                    parse={parseMetres}
-                    onChange={(v) => edit((f) => void (f.places[n]!.m = v ?? 0))}
-                    accessibilityLabel="Metres"
-                    width={70}
-                  />
-                  <Label>m</Label>
-                </View>
-              </View>
-            ))}
+              );
+            })}
             {filters.places.length < MAX_PLACES && (
               <Button
                 title="+ Add a place"
-                onPress={() => edit((f) => void f.places.push(newPlace()))}
+                onPress={() =>
+                  edit((f) => {
+                    if (f.places.length < MAX_PLACES) f.places.push(newUiPlace());
+                  })
+                }
               />
             )}
           </Section>
 
           <Section title="Results">
-            <Legend filters={filters} />
+            <Legend filters={evaluated ?? filters} />
             {summary ? <Results summary={summary} /> : <Hint>Calculating…</Hint>}
           </Section>
         </BottomSheetScrollView>

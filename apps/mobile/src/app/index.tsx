@@ -1,32 +1,37 @@
 import type BottomSheet from '@gorhom/bottom-sheet';
-import { defaultFilters, exampleFilters, type CellInfo, type Filters } from '@wtl/core';
+import { defaultFilters, type CellInfo } from '@wtl/core';
 import { router } from 'expo-router';
-import { useCallback, useEffect, useRef, useState } from 'react';
-import { StyleSheet, Text, View } from 'react-native';
+import { useCallback, useEffect, useMemo, useRef, useState } from 'react';
+import { Pressable, StyleSheet, Text, View } from 'react-native';
 import { useSafeAreaInsets } from 'react-native-safe-area-context';
 import { CellSheet } from '../components/CellSheet';
 import { Button } from '../components/controls';
-import { FilterSheet, SNAP_POINTS, type PickTarget } from '../components/FilterSheet';
+import { FilterSheet, MIN_SNAP, type Edit, type PickTarget } from '../components/FilterSheet';
 import { ResultMap } from '../components/ResultMap';
 import { data } from '../lib/engine';
-import { pointLabel, toEngineFilters } from '../lib/filters';
+import { applyExample, cloneUi, pointLabel, withIds, type UiFilters } from '../lib/filters';
+import { activeCatsKey, markersGeoJSON } from '../lib/markers';
 import { loadFilters, saveFilters } from '../lib/storage';
 import { useTheme } from '../lib/theme';
 import { useEvaluation } from '../lib/useEvaluation';
+
+const TIP_MS = 4000;
 
 export default function MapScreen() {
   const t = useTheme();
   const insets = useSafeAreaInsets();
   const sheet = useRef<BottomSheet>(null);
-  const [filters, setFilters] = useState<Filters | null>(null);
+  const [filters, setFilters] = useState<UiFilters | null>(null);
   const [picking, setPicking] = useState<PickTarget | null>(null);
   const [cell, setCell] = useState<CellInfo | null>(null);
+  /** Text of a tapped marker or POI (the prototype's tooltip). */
+  const [tip, setTip] = useState<string | null>(null);
   const { engine, layer, results, computing, error } = useEvaluation(filters);
 
   // Last filters from the device, or the prototype's empty start.
   useEffect(() => {
     let live = true;
-    void loadFilters().then((f) => live && setFilters(f ?? defaultFilters()));
+    void loadFilters().then((f) => live && setFilters(withIds(f ?? defaultFilters())));
     return () => {
       live = false;
     };
@@ -36,54 +41,86 @@ export default function MapScreen() {
     const timer = setTimeout(() => void saveFilters(filters), 1000);
     return () => clearTimeout(timer);
   }, [filters]);
+  useEffect(() => {
+    if (!tip) return;
+    const timer = setTimeout(() => setTip(null), TIP_MS);
+    return () => clearTimeout(timer);
+  }, [tip]);
 
-  const onChange = useCallback((f: Filters) => setFilters(f), []);
+  // Every edit is applied to the latest state, so a slow address search cannot undo later changes.
+  const onEdit = useCallback<Edit>(
+    (fn) =>
+      setFilters((cur) => {
+        if (!cur) return cur;
+        const f = cloneUi(cur);
+        fn(f);
+        return f;
+      }),
+    [],
+  );
   const onPick = useCallback((target: PickTarget) => {
     setCell(null);
+    setTip(null);
     setPicking(target);
     sheet.current?.snapToIndex(0);
   }, []);
-  const onExample = useCallback(() => setFilters(exampleFilters()), []);
+  const onExample = useCallback(
+    () => setFilters((cur) => withIds(applyExample(cur ?? defaultFilters()))),
+    [],
+  );
   const onSources = useCallback(() => router.push('/sources'), []);
 
   const onMapPress = useCallback(
     (lat: number, lon: number) => {
+      setTip(null);
       if (picking) {
         const loc = { lat, lon, label: pointLabel(lat, lon) };
-        setFilters((cur) => {
-          if (!cur) return cur;
-          const f = { ...cur, people: [...cur.people], places: [...cur.places] };
-          if (picking.kind === 'person' && f.people[picking.index])
-            f.people[picking.index] = { ...f.people[picking.index]!, dest: loc };
-          if (picking.kind === 'place' && f.places[picking.index])
-            f.places[picking.index] = { ...f.places[picking.index]!, loc };
-          return f;
+        onEdit((f) => {
+          if (picking.kind === 'person') {
+            const p = f.people.find((x) => x.id === picking.id);
+            if (p) p.dest = loc;
+          } else {
+            const p = f.places.find((x) => x.id === picking.id);
+            if (p) p.loc = loc;
+          }
         });
         setPicking(null);
         sheet.current?.snapToIndex(1);
         return;
       }
-      if (!engine) return;
+      // Before the first evaluation the card would have to compute commutes on the JS thread: wait for it.
+      if (!engine || !results) return;
       const i = engine.grid.cellAt(lat, lon);
       if (i < 0) return;
       // The card uses the filters of the evaluation on screen, as the prototype popup does.
-      setCell(
-        results ? engine.cellInfo(i, results.ev) : engine.cellInfo(i, toEngineFilters(filters!)),
-      );
+      setCell(engine.cellInfo(i, results.ev));
       sheet.current?.snapToIndex(0);
     },
-    [picking, engine, results, filters],
+    [picking, engine, results, onEdit],
   );
+  const onFeaturePress = useCallback(
+    (text: string) => {
+      if (picking) return false;
+      setTip(text);
+      return true;
+    },
+    [picking],
+  );
+
+  const markers = useMemo(() => markersGeoJSON(filters ?? { people: [], places: [] }), [filters]);
+  const activeCats = useMemo(() => (filters ? activeCatsKey(filters) : ''), [filters]);
 
   return (
     <View style={{ flex: 1, backgroundColor: t.bg }}>
       <ResultMap
         layer={layer}
         fill={results?.fill ?? null}
-        filters={filters}
+        markers={markers}
+        activeCats={activeCats}
         pois={data.pois ?? []}
-        bottomInset={typeof SNAP_POINTS[0] === 'number' ? SNAP_POINTS[0] : 0}
+        bottomInset={MIN_SNAP}
         onPress={onMapPress}
+        onFeaturePress={onFeaturePress}
       />
       {picking && (
         <View
@@ -98,15 +135,29 @@ export default function MapScreen() {
           <Button title="Cancel" onPress={() => setPicking(null)} />
         </View>
       )}
+      {tip && !picking && (
+        <Pressable
+          onPress={() => setTip(null)}
+          accessibilityRole="text"
+          accessibilityLiveRegion="polite"
+          style={[
+            styles.banner,
+            { top: insets.top + 52, backgroundColor: t.bg, borderColor: t.border },
+          ]}
+        >
+          <Text style={{ color: t.text, fontSize: 15, flex: 1 }}>{tip}</Text>
+        </Pressable>
+      )}
       {filters && (
         <FilterSheet
           ref={sheet}
           filters={filters}
-          onChange={onChange}
+          evaluated={results?.ev.filters ?? null}
+          onEdit={onEdit}
           onPick={onPick}
           summary={results?.summary ?? null}
           computing={computing}
-          error={error}
+          failed={error !== null}
           onExample={onExample}
           onSources={onSources}
         />

@@ -13,7 +13,7 @@ const config: ExpoConfig = {
   userInterfaceStyle: 'automatic',
   ios: {
     bundleIdentifier: IOS_BUNDLE_ID,
-    buildNumber: '1',
+    // No buildNumber: eas.json uses appVersionSource "remote" with autoIncrement.
     supportsTablet: false,
     config: { usesNonExemptEncryption: false },
     infoPlist: {
@@ -30,11 +30,22 @@ const config: ExpoConfig = {
           NSPrivacyAccessedAPIType: 'NSPrivacyAccessedAPICategoryUserDefaults',
           NSPrivacyAccessedAPITypeReasons: ['CA92.1'],
         },
+        // React Native core (also merged in by its pod install; listed here so the app manifest is complete).
+        {
+          NSPrivacyAccessedAPIType: 'NSPrivacyAccessedAPICategoryFileTimestamp',
+          NSPrivacyAccessedAPITypeReasons: ['C617.1'],
+        },
+        {
+          NSPrivacyAccessedAPIType: 'NSPrivacyAccessedAPICategorySystemBootTime',
+          NSPrivacyAccessedAPITypeReasons: ['35F9.1'],
+        },
       ],
     },
   },
   plugins: [
     'expo-router',
+    // Its local-network keys (NSBonjourServices, NSLocalNetworkUsageDescription) are stripped from non-Debug
+    // builds by expo-dev-launcher's "Strip Local Network Keys for Release" build phase.
     'expo-dev-client',
     '@maplibre/maplibre-react-native',
     [

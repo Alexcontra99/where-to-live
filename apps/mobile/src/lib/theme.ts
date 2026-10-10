@@ -15,8 +15,6 @@ const light = {
   ok: '#1a7f37',
   fail: '#cf222e',
   bar: '#8c8c8c',
-  person: '#0969da',
-  place: '#8250df',
 };
 export type Theme = typeof light;
 const dark: Theme = {
@@ -33,8 +31,6 @@ const dark: Theme = {
   ok: '#3fb950',
   fail: '#f85149',
   bar: '#8c8c8c',
-  person: '#4493f8',
-  place: '#a371f7',
 };
 
 export function useTheme(): Theme {

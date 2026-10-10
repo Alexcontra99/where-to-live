@@ -18,6 +18,7 @@ export interface EvaluationState {
   results: Results | null;
   /** True from a filter change until its evaluation is on screen. */
   computing: boolean;
+  /** Message of the last failed evaluation (for logs; the UI shows a generic line). */
   error: string | null;
 }
 
@@ -83,11 +84,16 @@ export function useEvaluation(filters: Filters | null): EvaluationState {
         })
         .catch((e: unknown) => {
           if (ctrl.signal.aborted) return;
+          if (__DEV__) console.warn('[wtl] evaluation failed', e);
           setError(e instanceof Error ? e.message : String(e));
           setComputing(false);
         });
     }, DEBOUNCE_MS);
-    return () => clearTimeout(timer);
+    return () => {
+      clearTimeout(timer);
+      // The filters changed: a run still going is for old filters, so it must not land on screen.
+      abort.current?.abort();
+    };
     // `key` captures everything in `filters` that the engine reads, so `filters` itself is not a dependency.
   }, [engine, layer, key]);
 

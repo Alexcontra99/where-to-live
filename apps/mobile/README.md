@@ -85,6 +85,11 @@ review.
 - [ ] Description, keywords, and the data sources and licences (Sources screen) in the listing.
 - [ ] Icon and splash: `assets/icon.png` and `assets/splash-icon.png` are **placeholders** — replace before
       release (icon 1024 × 1024 PNG, no transparency).
+- [ ] Native project check (not possible on Windows: `expo prebuild -p ios` skips iOS there). Before the first
+      store build, read the "Prebuild" and "Install pods" phases of the first `eas build --profile development
+      -p ios` log, and check the generated `PrivacyInfo.xcprivacy` (UserDefaults, FileTimestamp,
+      SystemBootTime) and App Store Connect's email after the first upload (no ITMS-91053).
+- [ ] On a notched iPhone: the map's ⓘ attribution button (OSM / ACT) is visible and opens.
 
 ## Notes
 
@@ -92,5 +97,9 @@ review.
   (`grid.json` 0.8 MB, `transit.json` 1.3 MB as JSON). Moving `transit.json` to an asset loaded at runtime would
   shrink it if start-up time becomes a problem.
 - Privacy manifest (`ios.privacyManifests`): AsyncStorage → `NSPrivacyAccessedAPICategoryUserDefaults` (CA92.1);
-  no collected data types, no tracking. Third-party SDKs ship their own manifests.
+  React Native core → FileTimestamp (C617.1) and SystemBootTime (35F9.1); no collected data types, no tracking.
+  Third-party SDKs ship their own manifests.
+- `expo-dev-client` adds a local-network permission (`NSLocalNetworkUsageDescription`, `NSBonjourServices`) to
+  Info.plist; its build phase "Strip Local Network Keys for Release" removes it from non-Debug builds, so
+  TestFlight / App Store builds do not ask for it.
 - There is no safety layer for Luxembourg yet.
