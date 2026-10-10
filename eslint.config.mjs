@@ -23,6 +23,12 @@ export default tseslint.config(
   {
     languageOptions: { globals: { ...globals.node } },
   },
+  // Expo / Metro config files are CommonJS (loaded by Node with require).
+  {
+    files: ['apps/mobile/*.js'],
+    languageOptions: { sourceType: 'commonjs' },
+    rules: { '@typescript-eslint/no-require-imports': 'off' },
+  },
   // Shared packages run on Hermes (React Native) and in browsers: no Node built-ins or Node-only globals.
   {
     files: ['packages/*/src/**/*.{ts,tsx,js,mjs}'],
