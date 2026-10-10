@@ -6,7 +6,7 @@ Web estática (opción A, 2026-10-06): todo se calcula en el navegador; no hay s
 - Abrir `index.html` en el navegador (funciona con doble clic; los datos van en `data/*.js`).
 
 ## Publicar
-- `sh build/export_web.sh` copia la web publicable (sin build ni notas internas, con README en inglés, DATA-LICENSES.md y .nojekyll) a `~/GitHub/where-to-live-export`. Comprobado el 2026-10-07 sirviendo esa carpeta en limpio (escritorio y móvil, sin errores).
+- `sh build/export_web.sh` copia la web publicable (sin build ni notas internas, con README en inglés, DATA-LICENSES.md y .nojekyll) a `publicar/` en la raíz del repositorio (versionada). Comprobado el 2026-10-07 sirviendo esa carpeta en limpio (escritorio y móvil, sin errores).
 
 ## Actualización mensual
 - Protocolo y comandos: `../protocolos/actualizacion_datos.md` (sesión de datos). `build/check_updates.py` dice qué fuentes tienen versión nueva; `build/qa_data.py` compara con `data/manifest.prev.json` y falla si algo se sale de rango. qa_data.py lee constantes de `app.js`: no cambiar su formato sin avisar.

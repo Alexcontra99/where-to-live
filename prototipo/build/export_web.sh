@@ -1,9 +1,11 @@
 #!/bin/sh
-# Copia la web publicable (sin build ni notas internas) a la carpeta del repositorio de GitHub.
-# Uso: sh prototipo/build/export_web.sh [destino]   (por defecto ~/GitHub/where-to-live-export)
+# Copia la web publicable (sin build ni notas internas) a publicar/, dentro del repositorio.
+# Uso: sh prototipo/build/export_web.sh [destino]   (por defecto <raíz del repositorio>/publicar)
+# Hay que volver a ejecutarlo y subir publicar/ cada vez que cambie la app o los datos.
 set -e
 SRC="$(cd "$(dirname "$0")/.." && pwd)"
-DST="${1:-$HOME/GitHub/where-to-live-export}"
+ROOT="$(cd "$SRC/.." && pwd)"
+DST="${1:-$ROOT/publicar}"
 mkdir -p "$DST/data"
 cp "$SRC/index.html" "$SRC/app.js" "$SRC/style.css" "$DST/"
 cp "$SRC"/data/*.js "$DST/data/"

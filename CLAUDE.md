@@ -34,7 +34,7 @@
 - Python 3.9 o superior con `prototipo/build/requirements.txt`. En macOS, el `python3` del sistema puede dar errores de SDK: usa uno instalado aparte.
 - Vista previa: servir `prototipo/` con `python3 -m http.server`. Si la carpeta está en el Escritorio o en iCloud, macOS puede impedir que el servidor la lea: sirve una copia (`rsync -a --exclude build prototipo/ <carpeta temporal>/`).
 - Regenerar datos y descargas (`~/.cache/nether_app`, `~/.cache/nether_gtfs`): `prototipo/README.md`.
-- Exportar la web publicable: `sh prototipo/build/export_web.sh [destino]` (por defecto `~/GitHub/where-to-live-export`, fuera del repositorio). Pruébala en limpio (escritorio y móvil, consola sin errores) antes de subirla.
+- Exportar la web publicable: `sh prototipo/build/export_web.sh [destino]` (por defecto `publicar/`, dentro del repositorio y versionada; hay que regenerarla y subirla cuando cambie la app). Pruébala en limpio (escritorio y móvil, consola sin errores) antes de subirla.
 
 ## Cómo trabajar
 - Para gustos y decisiones de producto, da opciones para marcar; no las elijas por él.

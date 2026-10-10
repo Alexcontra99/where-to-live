@@ -21,6 +21,7 @@ Limitación conocida: `sea_2021_geocoded.json` se generó a mano (pendiente de c
 | Carpeta o archivo | Contenido |
 |---|---|
 | `prototipo/` | La web, los datos generados y los scripts (`build/`) |
+| `publicar/` | La web ya exportada, lista para subir a un alojamiento (Netlify, Cloudflare Pages, GitHub Pages) |
 | `notas/` | Concepto, fuentes y licencias, calidad de los datos, competencia |
 | `protocolos/` | Actualización mensual de datos, roles de los chats y cierre de sesión |
 | `sesiones/` | Registro de sesiones de trabajo |
