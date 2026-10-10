@@ -1,4 +1,6 @@
-// Reports timings only; never fails on speed. Target: < 1 s in Node.
+// Reports timings; fails only on a loose budget (10x the Node targets) so a big regression breaks CI.
+// Node has a JIT and Hermes does not: on a device expect several times these numbers, which is why the
+// async API exists. The "longest slice" is the longest stretch the async path holds the thread.
 import { expect, it } from 'vitest';
 import { createEngine, exampleFilters } from '../src';
 import { loadLuxData } from './data';
@@ -6,6 +8,7 @@ import { loadLuxData } from './data';
 const ms = (t0: number): string => `${(performance.now() - t0).toFixed(0)} ms`;
 
 it('perf: engine setup, transit commute, evaluate (example)', () => {
+  const t0All = performance.now();
   const data = loadLuxData();
   let t = performance.now();
   const engine = createEngine(data);
@@ -48,4 +51,28 @@ it('perf: engine setup, transit commute, evaluate (example)', () => {
     ].join('\n'),
   );
   expect(ev.fails.length).toBe(fresh.grid.n);
+  expect(performance.now() - t0All).toBeLessThan(15_000);
+});
+
+it('perf: async evaluate keeps every blocking slice short', async () => {
+  const data = loadLuxData();
+  const engine = createEngine(data);
+  let last = performance.now();
+  let longest = 0;
+  let slices = 0;
+  const pause = async (): Promise<void> => {
+    const now = performance.now();
+    longest = Math.max(longest, now - last);
+    slices++;
+    await Promise.resolve();
+    last = performance.now();
+  };
+  const t = performance.now();
+  await engine.evaluateAsync(exampleFilters(), { pause, chunk: 500 });
+  longest = Math.max(longest, performance.now() - last);
+  console.log(
+    `[perf] evaluateAsync(example), cold: ${ms(t)} in ${slices + 1} slices, longest slice ${longest.toFixed(0)} ms`,
+  );
+  // One reverse connection scan (~3 ms in Node) or 500 cells of the stop index per slice.
+  expect(longest).toBeLessThan(500);
 });

@@ -3,14 +3,22 @@ import { CATS, MODES, NOISE, shortLabel, type CatKey, type Mode, type NoiseKey }
 import type { CommuteFn, Evaluation } from './evaluate';
 import type { Filters } from './filters';
 import { fmtM, noiseWord } from './format';
-import { estRent, refSize } from './rent';
+import { estRent, refSize, rentProvenance, type RentProvenance } from './rent';
 
 export interface CellInfo {
   cell: number;
   /** null = outside the covered area ("Outside Luxembourg: not covered yet."). */
   area: { index: number; name: string; kind: string } | null;
   /** Estimated asking rent for `size` m² with a ±10 % range; null when the area has no published rent. */
-  rent: { size: number; eur: number; low: number; high: number } | null;
+  rent: {
+    size: number;
+    eur: number;
+    low: number;
+    high: number;
+    /** Published €/m² the estimate starts from (the area's own, or the city average for some districts). */
+    eurM2: number;
+    provenance: RentProvenance;
+  } | null;
   /** Minutes per person with a destination, rounded. */
   commutes: { label: string; mode: Mode; modeLabel: string; minutes: number }[];
   noise: { key: NoiseKey; label: string; db: number; words: string }[];
@@ -48,7 +56,14 @@ export function cellInfo(
   if (area.eur_m2) {
     const S = refSize(f.size);
     const r = estRent(area, S);
-    rent = { size: S, eur: Math.round(r), low: Math.round(r * 0.9), high: Math.round(r * 1.1) };
+    rent = {
+      size: S,
+      eur: Math.round(r),
+      low: Math.round(r * 0.9),
+      high: Math.round(r * 1.1),
+      eurM2: area.eur_m2,
+      provenance: rentProvenance(area),
+    };
   }
   const commutes: CellInfo['commutes'] = [];
   f.people.forEach((p, n) => {

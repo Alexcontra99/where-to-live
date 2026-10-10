@@ -3,7 +3,7 @@ import { CATS, NOISE, NOISE_CHECK_WORDS, shortLabel } from './constants';
 import type { Filters } from './filters';
 import { fmtKm2 } from './format';
 import { km, type GridGeo } from './geo';
-import { estRent, refSize } from './rent';
+import { estRent, refSize, rentProvenance, type RentProvenance } from './rent';
 
 export type CheckSource =
   | { kind: 'person'; index: number }
@@ -17,17 +17,21 @@ export interface Check {
   /** Label for the blocker list ("Person 1 commute"). */
   short: string;
   source: CheckSource;
-  /** True if cell i fails this check. */
+  /**
+   * True if cell i fails this check. Thresholds (max minutes, metres, place location) are captured when the
+   * evaluation is built. Intentional difference from app.js, whose closures read the live `state` lazily:
+   * there, changing a filter after evaluate() and before the popup applies new thresholds to old counts.
+   */
   fail(i: number): boolean;
 }
 
 export interface Evaluation {
   checks: Check[];
-  /** Failed checks per cell (only cells inside an area; 0 elsewhere). */
+  /** Failed checks per cell (only cells inside an area; 0 elsewhere). Saturates at 255 (app.js wraps). */
   fails: Uint8Array;
   /** Index of the last failing check per cell, -1 if none (the failing check when fails = 1). */
   only: Int16Array;
-  /** Commute minutes per person (null when the person has no destination). */
+  /** Commute minutes per person (null when the person has no destination). A copy: mutating it is harmless. */
   commutes: (Float32Array | null)[];
 }
 
@@ -47,7 +51,7 @@ export function evaluateFilters(G: Grid, geo: GridGeo, commute: CommuteFn, f: Fi
       return;
     }
     const t = commute({ lat: p.dest.lat, lon: p.dest.lon, mode: p.mode }, f.arrive);
-    commutes.push(t);
+    commutes.push(t.slice());
     const label = p.label ?? `Person ${n + 1}`;
     const max = p.max;
     checks.push({
@@ -116,7 +120,7 @@ export function evaluateFilters(G: Grid, geo: GridGeo, commute: CommuteFn, f: Fi
   checks.forEach((ch, j) => {
     for (let i = 0; i < N; i++)
       if (area[i]! >= 0 && ch.fail(i)) {
-        fails[i]!++;
+        if (fails[i]! < 255) fails[i]!++;
         only[i] = j;
       }
   });
@@ -133,6 +137,8 @@ export interface AreaMatch {
   km2Label: string;
   /** Estimated asking rent (€, rounded) for `size` m². */
   estRent: number;
+  /** What estRent is based on (published table, city average or national model) and its source key. */
+  rentProvenance: RentProvenance;
 }
 
 export interface Blocker {
@@ -203,6 +209,7 @@ export function summarise(
       km2: cells * cellKm2,
       km2Label: fmtKm2(cells, cellKm2),
       estRent: Math.round(estRent(areas[k]!, S)),
+      rentProvenance: rentProvenance(areas[k]!),
     }));
   const maxLim = Math.max(1, ...lim);
   const blockers: Blocker[] = [];

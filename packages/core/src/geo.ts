@@ -22,7 +22,7 @@ export interface GridGeo {
   /** Cell centres. */
   readonly cLat: Float64Array;
   readonly cLon: Float64Array;
-  /** Cell index for a point, or -1 outside the grid. */
+  /** Cell index for a point, or -1 outside the grid or for a non-finite coordinate (app.js gives NaN). */
   cellAt(lat: number, lon: number): number;
   cellCenter(i: number): LatLon;
   /** [[south, west], [north, east]] of one cell. */
@@ -44,6 +44,7 @@ export function createGridGeo(G: Grid): GridGeo {
       cLon[i] = G.lon0 + (c + 0.5) * G.dlon;
     }
   const cellAt = (lat: number, lon: number): number => {
+    if (!Number.isFinite(lat) || !Number.isFinite(lon)) return -1;
     const r = Math.floor((lat - G.lat0) / G.dlat);
     const c = Math.floor((lon - G.lon0) / G.dlon);
     return r < 0 || c < 0 || r >= G.rows || c >= G.cols ? -1 : r * G.cols + c;

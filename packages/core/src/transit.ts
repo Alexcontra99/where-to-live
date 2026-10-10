@@ -26,6 +26,13 @@ export interface TransitIndex {
   /** Stops within 1.2 km of each cell centre (lazy, memoised). */
   cellStops(): Csr<Float32Array>;
   /**
+   * Same as cellStops(), but built in chunks of `chunk` cells, awaiting `pause()` between chunks so a
+   * single-threaded runtime (Hermes) can keep handling UI events. Concurrent calls share one build.
+   */
+  cellStopsAsync(pause: () => Promise<void>, chunk?: number): Promise<Csr<Float32Array>>;
+  /** True once the per-cell stop index exists (the next transit commute will not build it). */
+  readonly ready: boolean;
+  /**
    * Reverse connection scan (app.js latest): for every stop, the latest time (s since midnight) one can leave it
    * and still reach (dla, dlo) by T, walking ≤ 1.2 km at the end. -1e9 = unreachable.
    */
@@ -98,13 +105,14 @@ export function createTransit(TR: Transit, geo: GridGeo): TransitIndex {
   }
 
   let cs: Csr<Float32Array> | null = null;
-  function cellStops(): Csr<Float32Array> {
-    if (cs) return cs;
+  /** Builds the per-cell stop index; yields after every `chunk` cells (the sync path ignores the yields). */
+  function* buildCellStops(chunk: number): Generator<void, Csr<Float32Array>> {
     const N = geo.n;
     const off = new Int32Array(N + 1);
     const idx: number[] = [];
     const w: number[] = [];
     for (let i = 0; i < N; i++) {
+      if (i > 0 && i % chunk === 0) yield;
       off[i] = idx.length;
       const near = nearStops(geo.cLat[i]!, geo.cLon[i]!, STOP_RADIUS_KM);
       for (let k = 0; k < near.idx.length; k++) {
@@ -113,7 +121,35 @@ export function createTransit(TR: Transit, geo: GridGeo): TransitIndex {
       }
     }
     off[N] = idx.length;
-    return (cs = { off, idx: Int32Array.from(idx), w: Float32Array.from(w) });
+    return { off, idx: Int32Array.from(idx), w: Float32Array.from(w) };
+  }
+  function cellStops(): Csr<Float32Array> {
+    if (cs) return cs;
+    const it = buildCellStops(Infinity);
+    let r = it.next();
+    while (!r.done) r = it.next();
+    return (cs = r.value);
+  }
+  let pending: Promise<Csr<Float32Array>> | null = null;
+  function cellStopsAsync(pause: () => Promise<void>, chunk = 500): Promise<Csr<Float32Array>> {
+    if (cs) return Promise.resolve(cs);
+    return (pending ??= (async () => {
+      try {
+        await pause();
+        footpaths(); // ~1 ms: one nearStops per stop
+        await pause();
+        const it = buildCellStops(Math.max(1, chunk));
+        let r = it.next();
+        while (!r.done) {
+          await pause();
+          if (cs) return cs; // a sync cellStops() finished it meanwhile
+          r = it.next();
+        }
+        return (cs ??= r.value);
+      } finally {
+        pending = null;
+      }
+    })());
   }
 
   function latest(dla: number, dlo: number, T: number): Float64Array {
@@ -149,5 +185,17 @@ export function createTransit(TR: Transit, geo: GridGeo): TransitIndex {
     return Lb;
   }
 
-  return { nStops: NS, nConns: NC, nTrips: NT, nearStops, footpaths, cellStops, latest };
+  return {
+    nStops: NS,
+    nConns: NC,
+    nTrips: NT,
+    get ready() {
+      return cs !== null;
+    },
+    nearStops,
+    footpaths,
+    cellStops,
+    cellStopsAsync,
+    latest,
+  };
 }

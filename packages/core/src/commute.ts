@@ -30,6 +30,24 @@ export function computeCommute(
   p: CommuteQuery,
   arriveH: number,
 ): Float32Array {
+  const it = commuteSteps(G, geo, tr, p, arriveH);
+  let r = it.next();
+  while (!r.done) r = it.next();
+  return r.value;
+}
+
+/**
+ * computeCommute as a generator: yields once before each transit deadline scan (one reverse connection
+ * scan each), so an async caller can hand the thread back between scans. Builds tr.cellStops() synchronously
+ * if it does not exist yet: call tr.cellStopsAsync() first to avoid that.
+ */
+export function* commuteSteps(
+  G: Grid,
+  geo: GridGeo,
+  tr: TransitIndex,
+  p: CommuteQuery,
+  arriveH: number,
+): Generator<void, Float32Array> {
   const N = geo.n;
   const { cLat, cLon } = geo;
   const out = new Float32Array(N);
@@ -54,6 +72,7 @@ export function computeCommute(
   for (let i = 0; i < N; i++) direct[i] = km(cLat[i]!, cLon[i]!, p.lat, p.lon) * WALK_S_PER_KM;
   const { off, idx, w } = cs;
   for (const T of deadlines) {
+    yield;
     const L = tr.latest(p.lat, p.lon, T);
     for (let i = 0; i < N; i++) {
       let best = direct[i]!;

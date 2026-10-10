@@ -1,6 +1,10 @@
 // Serialisable search filters: mirrors the prototype's `state` (app.js :131-137) and its form inputs.
 import {
   CATS,
+  MAX_PEOPLE,
+  MAX_PLACES,
+  MODES,
+  NOISE,
   type ArriveH,
   type CatKey,
   type Mode,
@@ -94,4 +98,58 @@ export function exampleFilters(): Filters {
   f.cats.supermarket = { mode: 'near', m: 800 };
   f.cats.park = { mode: 'near', m: 500 };
   return f;
+}
+
+/** Deep copy of a filters object; unlike a JSON round trip it keeps every number as is. */
+export function cloneFilters(f: Filters): Filters {
+  const copy = (x: unknown): unknown => {
+    if (Array.isArray(x)) return x.map(copy);
+    if (x !== null && typeof x === 'object')
+      return Object.fromEntries(Object.entries(x).map(([k, v]) => [k, copy(v)]));
+    return x;
+  };
+  return copy(f) as Filters;
+}
+
+/**
+ * Problems that would make the engine compute nonsense (NaN, Infinity, negative distances) or run away
+ * (huge place lists). Empty = valid. engine.evaluate() throws a RangeError listing them.
+ * Only checks sanity; any finite, non-negative value the prototype form accepts stays valid.
+ */
+export function validateFilters(f: Filters): string[] {
+  const errs: string[] = [];
+  const num = (v: unknown, what: string): void => {
+    if (typeof v !== 'number' || !Number.isFinite(v) || v < 0)
+      errs.push(`${what} must be a finite number ≥ 0 (got ${String(v)})`);
+  };
+  const point = (p: LatLon, what: string): void => {
+    if (!Number.isFinite(p.lat) || !Number.isFinite(p.lon) || Math.abs(p.lat) > 90)
+      errs.push(`${what} must have finite lat/lon (got ${String(p.lat)}, ${String(p.lon)})`);
+  };
+  if (!Array.isArray(f.people) || f.people.length < 1 || f.people.length > MAX_PEOPLE)
+    errs.push(`people must have 1 to ${MAX_PEOPLE} entries`);
+  else
+    f.people.forEach((p, n) => {
+      if (!MODES.some(([m]) => m === p.mode))
+        errs.push(`people[${n}].mode is unknown: ${String(p.mode)}`);
+      num(p.max, `people[${n}].max`);
+      if (p.dest) point(p.dest, `people[${n}].dest`);
+    });
+  if (!Number.isFinite(f.arrive)) errs.push(`arrive must be a finite number of hours`);
+  if (f.budget !== null) num(f.budget, 'budget');
+  if (f.size !== null) num(f.size, 'size');
+  for (const [k] of NOISE) num(f.noise?.[k], `noise.${k}`);
+  for (const [k] of CATS) {
+    const c = f.cats?.[k];
+    if (!c) errs.push(`cats.${k} is missing`);
+    else if (c.mode !== 'any') num(c.m, `cats.${k}.m`);
+  }
+  if (!Array.isArray(f.places) || f.places.length > MAX_PLACES)
+    errs.push(`places must have at most ${MAX_PLACES} entries`);
+  else
+    f.places.forEach((pl, n) => {
+      num(pl.m, `places[${n}].m`);
+      if (pl.loc) point(pl.loc, `places[${n}].loc`);
+    });
+  return errs;
 }

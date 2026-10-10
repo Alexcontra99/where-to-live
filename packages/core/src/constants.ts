@@ -98,6 +98,15 @@ export const SIZE_CURVE: readonly (readonly [number, number])[] = [
 export const L_NAT = 0.879;
 /** Reference flat size when the user has not set one. */
 export const DEFAULT_SIZE = 60;
+/** meta.json `sources` keys of the published asking-rent tables (data.public.lu), per area kind. */
+export const RENT_SOURCE = {
+  district: 'loyers_quartiers.xlsx',
+  commune: 'loyers_communes.xls',
+} as const;
+
+/** Filter limits checked by validateFilters (keep the per-cell failure count far below 255). */
+export const MAX_PEOPLE = 2;
+export const MAX_PLACES = 50;
 
 /** Walk / bike: minutes per straight-line km (walk ×1.3 at 4.5 km/h, bike ×1.4 at 15 km/h). */
 export const WALK_MIN_PER_KM = 17.5;
