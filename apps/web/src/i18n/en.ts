@@ -54,7 +54,7 @@ export const en = {
       {
         id: 'safety',
         name: 'Safety',
-        text: 'A neighbourhood label built from official police data where the city publishes it, with the source and its level of detail always shown.',
+        text: 'What is next to the front door, by day and by night: official incident figures, nightlife, noise and lighting, and verified reviews from residents. Facts with their source, date and level of detail; never a “dangerous” label.',
         source: 'Coming with the iOS app and the new cities',
       },
     ],

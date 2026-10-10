@@ -31,7 +31,7 @@ Portals answer "which flat"; this answers "which street, for my life". It combin
 
 ## Brand Commitments
 
-- Neighbourhood labels (e.g. safety) are allowed only with official data or verified reviews and a visible source. Never label groups of people; no filters by religion, origin or social services.
+- Safety is the differentiator (Pablo and Ale, 2026-10-10): show what is next to the front door, by day and by night (official incidents, nightlife, noise, lighting, verified resident reviews), only as facts with source, date and level of detail. Never the label "dangerous" on neighbourhoods or people; no layers by religion, origin or other groups; no social-services layer. The repo CLAUDE.md is the authority.
 - Only real, recognised places; never guesses.
 - Marketing surfaces follow modern product-landing convention and match the app's own look (user, 2026-10-10). Reference: Scotch POS landing (landingfolio.com/inspiration/post/scotch).
 
