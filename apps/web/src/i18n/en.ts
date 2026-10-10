@@ -54,7 +54,7 @@ export const en = {
       {
         id: 'safety',
         name: 'Safety',
-        text: 'What is next to the front door, by day and by night: official incident figures, nightlife, noise and lighting, and verified reviews from residents. Facts with their source, date and level of detail; never a “dangerous” label.',
+        text: 'Your street after dark: the bars and clubs nearby and how late they stay open, how loud it gets at night, whether it is lit, and what the police recorded in the area. Every fact with its source and date. No labels, no guesses.',
         source: 'Coming with the iOS app and the new cities',
       },
     ],
@@ -115,7 +115,7 @@ export const en = {
       show: 'By night, today',
       kinds: { nightlife: 'Bars and clubs', airNight: 'Planes at night' },
       readout: '{a} within 150 m of a bar or club; {b} with planes above 45 dB at night.',
-      note: 'A preview from the demo’s data. Official incident figures, street lighting and verified resident reviews come with the app.',
+      note: 'On the map today: bars, clubs and planes at night. Next: road and train noise at night, street lighting, and police figures at the finest level the police publish. In Luxembourg that is four regions for the whole country, so that is what we will show.',
       legend: ['Bars and clubs within 150 m', 'Planes above 45 dB at night'],
     },
     popup: {
