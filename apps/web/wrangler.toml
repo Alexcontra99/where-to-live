@@ -1,0 +1,14 @@
+# Cloudflare Pages project for the landing page. Docs: README.md
+name = "where-to-live"
+compatibility_date = "2026-10-01"
+pages_build_output_dir = "./dist"
+
+[vars]
+# Public, non-secret. TURNSTILE_SECRET lives in .dev.vars locally and as a Pages secret in production.
+
+[[d1_databases]]
+binding = "DB"
+database_name = "wtl-waitlist"
+# Replace with the id printed by `wrangler d1 create wtl-waitlist` before deploying.
+database_id = "00000000-0000-0000-0000-000000000000"
+migrations_dir = "migrations"
