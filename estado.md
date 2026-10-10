@@ -30,6 +30,7 @@ estado: activo
 
 ## Próximo paso
 ### Main
+0. Tras fusionar los PR #1 y #2: nuevo PR para que `export_web.sh` exporte a `publicar/` **dentro del repositorio** (decisión de Ale, 10/10: todo el material junto en una carpeta; se versiona para mantener el espejo exacto). Regenerar la exportación en ese PR. Después, borrar la carpeta antigua `~/GitHub/where-to-live-export`.
 1. Guion de prueba y formulario de feedback en `usuarios/guion_prueba.md`. No depende de Ale.
 2. Publicar el v0 en una web pública (con OK de Ale) y probar la URL en escritorio y móvil.
 3. Opcional: un enlace que guarde los filtros, para compartir.
