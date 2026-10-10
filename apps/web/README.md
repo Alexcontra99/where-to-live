@@ -30,7 +30,7 @@ cd apps/web
 pnpm dev                     # Astro dev server on http://localhost:4321 (no API)
 ```
 
-`pnpm dev` and `pnpm build` first run `scripts/copy-demo.mjs`, which copies `prototipo/index.html`, `app.js`, `style.css` and `data/*.js` into `public/demo/` (git-ignored).
+`pnpm dev` and `pnpm build` first run `scripts/copy-demo.mjs`, which copies `prototipo/index.html`, `app.js`, `style.css` and `data/*.js` into `public/demo/` (git-ignored), then `scripts/build-live-data.mjs`, which runs `prototipo/app.js` in a sandbox to write `public/live/luxembourg.json` (git-ignored): the commute times, rent estimates, noise and distances behind the live map on the home page. The map and the demo therefore share one algorithm and one dataset; if the prototype's code changes shape, this step fails the build instead of drifting.
 
 To exercise the form end to end you need the Pages runtime with D1:
 

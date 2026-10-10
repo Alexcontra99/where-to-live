@@ -98,7 +98,7 @@
           "#c2cad4",
           "#eaeff5"
         ],
-        "note": "Literal #b4bcc6 in source (hero lead, privacy prose); not yet a custom property."
+        "note": "Literal #b4bcc6 in source (hero lead, step-card body, privacy prose); not yet a custom property."
       },
       "ink-muted": {
         "role": "neutral",
@@ -259,17 +259,17 @@
       {
         "name": "frame-lift",
         "value": "0 40px 80px -30px rgb(0 0 0 / 0.75), 0 0 0 6px color-mix(in srgb, var(--bg-soft) 60%, transparent)",
-        "purpose": "Hero screenshot frame with halo ring."
+        "purpose": "Live-map frame with halo ring."
       },
       {
         "name": "card-lift",
         "value": "0 40px 80px -40px rgb(0 0 0 / 0.9)",
-        "purpose": "Panel screenshot and form card."
+        "purpose": "Step cards (94% Ground Raised, 14px backdrop blur), panel screenshot and form card."
       },
       {
         "name": "dock-lift",
         "value": "0 16px 40px -16px rgb(0 0 0 / 0.8)",
-        "purpose": "Floating layer-tab dock, with 12px backdrop blur."
+        "purpose": "Floating layer dock (12px backdrop blur), Leaflet zoom control, popups and tooltips."
       },
       {
         "name": "focus-ring",
@@ -286,18 +286,22 @@
       {
         "name": "rise",
         "value": "1.1s ease-out; from translateY(32px) scale(0.985) blur(6px)",
-        "purpose": "Hero frame entrance; off under prefers-reduced-motion."
+        "purpose": "Live-map frame entrance; off under prefers-reduced-motion."
       },
       {
-        "name": "fade",
-        "value": "0.45s ease-out; from translateY(6px) opacity 0.4",
-        "purpose": "Layer caption swap."
+        "name": "step",
+        "value": "0.45s ease-out; upcoming opacity 0.4 scale(0.98), past opacity 0",
+        "purpose": "Step cards entering and leaving the reading line; off under prefers-reduced-motion."
       }
     ],
     "breakpoints": [
       {
         "name": "stack",
         "value": "960px"
+      },
+      {
+        "name": "story",
+        "value": "900px"
       },
       {
         "name": "nav-collapse",
@@ -315,7 +319,31 @@
         "name": "nav-min",
         "value": "440px"
       }
-    ]
+    ],
+    "dataColors": {
+      "note": "Data-visualisation colours on the live map only (src/scripts/live-map.ts, from prototipo/app.js); never UI accents.",
+      "rentBudget": [
+        "rgb(26 127 55)",
+        "rgb(124 201 106)",
+        "rgb(240 180 41)",
+        "rgb(209 73 91)"
+      ],
+      "noiseBands": {
+        "55": "rgb(240 200 90)",
+        "60": "rgb(240 150 60)",
+        "65": "rgb(226 96 72)",
+        "70": "rgb(196 54 84)"
+      },
+      "fits": [
+        "rgb(87 194 107)",
+        "rgb(87 194 107 / 0.35)"
+      ],
+      "nightlife": "rgb(240 180 41)",
+      "planesAtNight": "rgb(150 140 235)",
+      "commutePins": "#4493f8 fill, white 2px ring",
+      "mapShell": "#0d1116",
+      "tileFilter": "invert(1) hue-rotate(180deg) brightness(0.92) contrast(0.86) saturate(0.4)"
+    }
   },
   "components": [
     {
@@ -367,34 +395,47 @@
       "css": ".ds-card{padding:clamp(24px,4vw,40px);border-radius:22px;border:1px solid var(--line-strong);background:var(--bg-raise);box-shadow:0 40px 80px -40px rgb(0 0 0 / .9);color:var(--fg);font-family:var(--font)}"
     },
     {
-      "name": "Layer Tab Dock",
-      "kind": "custom",
+      "name": "Layer Dock",
+      "kind": "nav",
       "refersTo": "layer-tab",
-      "description": "Signature pill dock under the demo screenshot; the selected tab inverts.",
-      "html": "<div class=\"ds-tabs\" role=\"tablist\"><button class=\"ds-tab\" role=\"tab\" aria-selected=\"true\">Commute</button><button class=\"ds-tab\" role=\"tab\" aria-selected=\"false\">Rent</button><button class=\"ds-tab\" role=\"tab\" aria-selected=\"false\">Noise</button></div>",
-      "css": ".ds-tabs{display:inline-flex;gap:6px;padding:6px;border-radius:999px;border:1px solid var(--line-strong);background:color-mix(in srgb,var(--bg-raise) 92%,transparent);backdrop-filter:blur(12px);box-shadow:0 16px 40px -16px rgb(0 0 0 / .8)}.ds-tab{min-height:44px;padding:0 16px;border:0;border-radius:999px;background:transparent;color:var(--muted);font-family:var(--font);font-size:.9375rem;white-space:nowrap;cursor:pointer;transition:background-color .2s var(--ease-out),color .2s var(--ease-out)}.ds-tab:hover{color:var(--fg-strong)}.ds-tab:focus-visible{outline:2px solid var(--accent);outline-offset:3px}.ds-tab[aria-selected=true]{background:var(--fg-strong);color:var(--bg)}"
+      "description": "Signature nav of layer links on the live map; the current step inverts. Desktop: bottom of the map; mobile (<900px): top, 5-column icon-over-label grid.",
+      "html": "<nav class=\"ds-dock\" aria-label=\"Layers\"><a class=\"ds-tab\" href=\"#layer-commute\" aria-current=\"step\">Commute</a><a class=\"ds-tab\" href=\"#layer-rent\">Rent</a><a class=\"ds-tab\" href=\"#layer-noise\">Noise</a><a class=\"ds-tab\" href=\"#layer-near\">Near or far</a><a class=\"ds-tab\" href=\"#layer-safety\">Safety</a></nav>",
+      "css": ".ds-dock{display:inline-flex;gap:4px;padding:5px;border-radius:999px;border:1px solid var(--line-strong);background:color-mix(in srgb,var(--bg-raise) 92%,transparent);backdrop-filter:blur(12px);box-shadow:0 16px 40px -16px rgb(0 0 0 / .8)}.ds-tab{display:inline-flex;align-items:center;gap:8px;min-height:40px;padding:0 14px;border-radius:999px;color:var(--muted);font-family:var(--font);font-size:.875rem;white-space:nowrap;text-decoration:none;transition:background-color .25s var(--ease-out),color .25s var(--ease-out)}.ds-tab:hover{color:var(--fg-strong)}.ds-tab:focus-visible{outline:2px solid var(--accent);outline-offset:2px}.ds-tab[aria-current=step]{background:var(--fg-strong);color:var(--bg)}"
+    },
+    {
+      "name": "Step Card",
+      "kind": "card",
+      "refersTo": "step-card",
+      "description": "Layer card that scrolls over the sticky map: copy, toggle pills, a slider, a live readout and a source line.",
+      "html": "<div class=\"ds-step\"><h3>Rent</h3><p>Estimated rent per area against your budget.</p><div class=\"ds-ctl\"><span class=\"ds-lbl\">Size</span><div class=\"ds-pills\"><button class=\"ds-pb\" aria-pressed=\"false\">40 m²</button><button class=\"ds-pb\" aria-pressed=\"true\">60 m²</button><button class=\"ds-pb\" aria-pressed=\"false\">90 m²</button></div><label class=\"ds-lbl\">Budget <output>€2,000</output></label><input type=\"range\" min=\"1000\" max=\"4000\" value=\"2000\"></div><p class=\"ds-readout\">Fits your budget in 14 areas.</p><p class=\"ds-src\">Source line.</p></div>",
+      "css": ".ds-step{width:min(384px,100%);padding:24px;border-radius:22px;border:1px solid var(--line-strong);background:color-mix(in srgb,var(--bg-raise) 94%,transparent);backdrop-filter:blur(14px);box-shadow:0 40px 80px -40px rgb(0 0 0 / .9);font-family:var(--font);color:var(--fg)}.ds-step h3{font-size:1.375rem;font-weight:540;letter-spacing:-.025em;line-height:1.2;color:var(--fg-strong);margin:0}.ds-step h3+p{margin:10px 0 0;color:#b4bcc6;font-size:.9375rem;line-height:1.55}.ds-ctl{display:grid;gap:8px;margin-top:20px;padding-top:18px;border-top:1px solid var(--line)}.ds-lbl{display:flex;justify-content:space-between;color:var(--muted);font-size:.8125rem}.ds-lbl output{color:var(--fg-strong);font-variant-numeric:tabular-nums}.ds-pills{display:flex;flex-wrap:wrap;gap:6px}.ds-pb{min-height:36px;padding:0 14px;border-radius:999px;border:1px solid var(--line-strong);background:transparent;color:var(--fg);font:inherit;font-size:.875rem;cursor:pointer;transition:background-color .2s var(--ease-out),color .2s var(--ease-out),border-color .2s var(--ease-out)}.ds-pb:hover{border-color:var(--muted)}.ds-pb[aria-pressed=true]{background:var(--fg-strong);border-color:var(--fg-strong);color:var(--bg)}.ds-pb:focus-visible{outline:2px solid var(--accent);outline-offset:2px}.ds-step input[type=range]{width:100%;height:24px;margin:0;accent-color:var(--accent)}.ds-readout{margin:16px 0 0;color:var(--fg-strong);font-size:.9375rem;font-weight:500;line-height:1.45;font-variant-numeric:tabular-nums}.ds-src{margin:12px 0 0;color:var(--muted);font-size:.8125rem;line-height:1.5}"
     }
   ],
   "narrative": {
     "northStar": "The App, Shown Working",
-    "overview": "The category standard for a modern dark product landing, played straight. The ground is the app's own near-black dark theme, so the landing and the Luxembourg demo read as one product. The hero is the real demo screenshot in a hairline browser frame, rising into the fold over a soft green-blue glow; everything else is quiet type on dark ground, hairline rules and pill controls.\n\nDensity is generous at the top (centred hero, wide section padding) and tighter in the evidence sections (city grid, sources table), where hairline grids carry structure instead of cards. Colour is almost entirely neutral; one blue speaks for every action, and green appears only where it means \"fits\" or \"live\", exactly as it does on the app's zone map.\n\nRejected by the build: fake device mockups, stock photography, invented stats, eyebrows above headings, icon chips.",
+    "overview": "The category standard for a modern dark product landing, played straight. The ground is the app's own near-black dark theme, so the landing and the Luxembourg demo read as one product. Under the centred hero copy, the demo's real Luxembourg data runs as a live dark map in a hairline browser frame that stays pinned while five layer cards scroll over it, above a soft green-blue glow; everything else is quiet type on dark ground, hairline rules and pill controls.\n\nDensity is generous at the top (centred hero, the scroll-driven map story, wide section padding) and tighter in the evidence sections (city grid, sources table), where hairline grids carry structure instead of cards. Colour is almost entirely neutral; one blue speaks for every action, and green appears only where it means \"fits\" or \"live\", exactly as it does on the app's zone map.\n\nRejected by the build: fake device mockups, stock photography, invented stats, eyebrows above headings, icon chips.",
     "keyCharacteristics": [
       "Near-black tonal layering (ground, raised, soft) instead of coloured surfaces.",
       "One accent, Signal Blue, for every action and link.",
       "Fits Green carries meaning, never decoration.",
       "Geist Variable throughout, tight negative tracking on headings.",
-      "Pill-shaped interactive controls; 22px-radius frames for screenshots and the form card.",
+      "Pill-shaped interactive controls; 22px-radius frames for the live map, screenshots, step cards and the form card.",
       "Hairline grids (1px rules) for lists, tables and the city grid."
     ],
     "rules": [
       {
         "name": "The One Voice Rule",
-        "body": "Signal Blue is the only colour that means \"act\". If something is clickable and primary, it is blue; nothing decorative is blue except the hero glow.",
+        "body": "Signal Blue is the only colour that means \"act\". If something is clickable and primary, it is blue; nothing decorative is blue except the story glow (the map's commute pins are data, mirroring the app).",
         "section": "colors"
       },
       {
         "name": "The Green Means Fits Rule",
         "body": "Fits Green is reserved for \"fits\", \"live\" and \"done\". Never use it as a second brand accent.",
+        "section": "colors"
+      },
+      {
+        "name": "The Data Stays on the Map Rule",
+        "body": "The data-viz colours live inside the map and its legend only; they never become UI accents.",
         "section": "colors"
       },
       {
@@ -404,16 +445,16 @@
       },
       {
         "name": "The Glow Once Rule",
-        "body": "The blurred green-blue radial glow lives behind the hero screenshot only. It is the page's single atmospheric effect.",
+        "body": "The blurred green-blue radial glow lives behind the top of the story's map frame only, masked to fade out top and bottom. It is the page's single atmospheric effect.",
         "section": "elevation"
       }
     ],
     "dos": [
       "**Do** build every surface on Ground and lift containers with Ground Raised plus a 1px hairline, not with colour.",
       "**Do** use Signal Blue for every primary action and link, with Signal Blue Ink as the text on blue.",
-      "**Do** show the real app (screenshots of the demo) as the evidence, framed at 22px radius.",
+      "**Do** show the real app as the evidence: the live map running the demo's own data, framed at 22px radius, with the screenshot as poster and fallback.",
       "**Do** keep a source line next to any data claim, in muted 0.875rem text.",
-      "**Do** make interactive controls full pills and honour `prefers-reduced-motion` for the rise and smooth-scroll."
+      "**Do** make interactive controls full pills and honour `prefers-reduced-motion` for the rise, card transitions and smooth-scroll."
     ],
     "donts": [
       "**Don't** put an eyebrow, kicker or icon chip above a heading.",
