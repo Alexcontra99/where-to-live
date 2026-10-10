@@ -28,7 +28,9 @@ $PY build/build_data.py
 | `data/areas.js` | Barrios de la ciudad y municipios: alquiler medio €/m², anuncio medio y nivel de precio `L` (para el modelo por tamaño) |
 | `data/pois.js` | Puntos de OpenStreetMap (+ Overture Places para gimnasios, guarderías, cadenas de supermercados y farmacias) y estaciones Vel'oh |
 | `data/transit.js` | Paradas y conexiones de un martes, 6:00-10:30 |
-| `build/build_data.py` | Genera todo lo anterior |
+| `data/night.js` | Capa "de noche" (safety) sobre la misma rejilla: ruido Lnight de carreteras y trenes, % de calle iluminada (`lit` de OSM) y bares con hora de cierre. Hoy la usa la landing (`apps/web`), no la demo |
+| `build/build_data.py` | Genera todo lo anterior salvo `night.js` |
+| `build/build_night.py` | Genera `night.js` (reutiliza las funciones y descargas de `build_data.py`; `$PY build/build_night.py`) |
 
 ## Textos de la app (Ale, 2026-10-07)
 - Mínimos. Nada de explicar la lógica en la app: la lógica vive aquí y en `../docs/notas/calidad_datos.md`.
