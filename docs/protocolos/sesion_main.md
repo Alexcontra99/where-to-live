@@ -5,6 +5,7 @@
 
 ## Qué es tuyo
 - `prototipo/` (web, `build/build_data.py`, `build/export_web.sh`), salvo `build/check_updates.py` y `build/qa_data.py`, que son de Secundaria.
+- `apps/mobile` y `packages/` (`core`, `data-lux`). Reglas del monorepo: `docs/repositorio.md`.
 - Publicar: la carpeta `~/GitHub/where-to-live` y el alojamiento.
 - En `estado.md`: la subsección "Próximo paso → Main". En el log del día: el bloque "## Main".
 - Mandas en el reparto. Si un encargo no está claro, decides tú (Ale, 2026-10-07).
