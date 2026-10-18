@@ -322,22 +322,14 @@
     ],
     "dataColors": {
       "note": "Data-visualisation colours on the live map only (src/scripts/live-map.ts, from prototipo/app.js); never UI accents.",
-      "rentBudget": [
-        "rgb(26 127 55)",
-        "rgb(124 201 106)",
-        "rgb(240 180 41)",
-        "rgb(209 73 91)"
-      ],
+      "rentBudget": ["rgb(26 127 55)", "rgb(124 201 106)", "rgb(240 180 41)", "rgb(209 73 91)"],
       "noiseBands": {
         "55": "rgb(240 200 90)",
         "60": "rgb(240 150 60)",
         "65": "rgb(226 96 72)",
         "70": "rgb(196 54 84)"
       },
-      "fits": [
-        "rgb(87 194 107)",
-        "rgb(87 194 107 / 0.35)"
-      ],
+      "fits": ["rgb(87 194 107)", "rgb(87 194 107 / 0.35)"],
       "nightlife": "rgb(240 180 41)",
       "planesAtNight": "rgb(150 140 235)",
       "commutePins": "#4493f8 fill, white 2px ring",

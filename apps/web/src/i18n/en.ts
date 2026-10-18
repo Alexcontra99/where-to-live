@@ -117,7 +117,11 @@ export const en = {
       readout: '{a} near a bar open past 1:00 · {b} at 45 dB or more at night · {c} mostly unlit.',
       bars: '{late} of the {hours} bars that publish their hours close at 1:00 or later; {none} don’t publish them.',
       note: 'Night noise: official 2021 maps (roads, trains) and 2023 (planes); the WHO advises less than 45 dB. Lighting and opening hours: OpenStreetMap. Police figures in Luxembourg exist only for four regions, so they are not on this map.',
-      legend: ['Bar open past 1:00 within 150 m', '45 dB or more at night, darker is louder', 'Mostly unlit streets'],
+      legend: [
+        'Bar open past 1:00 within 150 m',
+        '45 dB or more at night, darker is louder',
+        'Mostly unlit streets',
+      ],
     },
     popup: {
       rent: 'About {rent} for {size} m²',

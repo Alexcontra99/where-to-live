@@ -214,7 +214,6 @@ p {
   padding-block: clamp(80px, 12vw, 152px);
 }
 
-
 .h2 {
   font-size: clamp(2rem, 1.2rem + 2.6vw, 3.25rem);
 }
