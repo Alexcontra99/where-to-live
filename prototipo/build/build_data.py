@@ -1,9 +1,11 @@
 #!/usr/bin/env python3
 """Genera los datos del prototipo (prototipo/data/*.js) a partir de fuentes abiertas de Luxemburgo.
 
-Dependencias: build/requirements.txt. Antes: python3 prototipo/build/get_gtfs.py. Uso: python3 prototipo/build/build_data.py
+Necesita shapely, pyproj, openpyxl y xlrd. En este Mac:
+  PY=/Library/Developer/CommandLineTools/Library/Frameworks/Python3.framework/Versions/3.9/bin/python3
+  $PY prototipo/build/build_data.py
 
-Descargas en ~/.cache/nether_app/raw (fuera del repositorio: son grandes); las manuales, en prototipo/README.md. Fuentes y licencias: notas/fuentes_datos.md.
+Descargas en ~/.cache/nether_app/raw (fuera del vault: son grandes). Fuentes y licencias: docs/notas/fuentes_datos.md.
 """
 import csv, datetime, json, os, sqlite3, sys, time, unicodedata, urllib.parse, urllib.request
 import numpy as np
@@ -17,7 +19,7 @@ from shapely.strtree import STRtree
 HERE = os.path.dirname(os.path.abspath(__file__))
 OUT = os.path.normpath(os.path.join(HERE, '..', 'data'))
 RAW = os.path.expanduser('~/.cache/nether_app/raw')
-GTFS = os.path.expanduser('~/.cache/nether_gtfs')   # caché de horarios compartida con otras herramientas locales
+GTFS = os.path.expanduser('~/.cache/nether_gtfs')
 REGION = (49.55, 6.03, 49.70, 6.28)                  # lat0, lon0, lat1, lon1
 STEP_KM = 0.15                                        # lado de la celda
 KX, KY = 72.1, 111.2                                  # km por grado de lon / lat a esta latitud
@@ -191,7 +193,7 @@ def rents():
 
 # Curva oficial €/m² por tamaño (Observatoire de l'Habitat, "Loyers annoncés en 2025 dans l'aire fonctionnelle
 # du Luxembourg", 30/09/2026, fig. 5 p. 17; media por clase, asignada al centro de cada clase). Validado por la sesión
-# de datos frente a anuncios activos (notas/calidad_datos.md): error absoluto medio ±9 %.
+# de datos frente a anuncios activos (docs/notas/calidad_datos.md): error absoluto medio ±9 %.
 SIZE_CURVE = [(37, 56.3), (60, 31.9), (80, 26.9), (100, 26.1), (120, 22.9), (145, 21.0)]
 L_NAT = 0.879   # nivel nacional: 44,19715 €/m² / f(1842,624 / 44,19715)
 
@@ -273,7 +275,7 @@ def veloh():
     return out
 
 
-# Fusión con Overture Places (regla de la sesión de datos, notas/calidad_datos.md, 2026-10-07)
+# Fusión con Overture Places (regla de la sesión de datos, docs/notas/calidad_datos.md, 2026-10-07)
 OVERTURE = {
     'gym': ({'gym', 'sport_or_fitness_facility', 'gymnastics_center'}, 0.8, None, None),
     'kindergarten': ({'child_care_and_day_care', 'day_care_preschool', 'preschool'}, 0.8,
@@ -490,7 +492,7 @@ def main():
     rail = noise(LA, LO, [(raw('agglo.gpkg'), 'NoiseContours_railwaysInAgglomeration_Lden'),
                           (raw('agglo.gpkg'), 'NoiseContours_majorrailwaysInAgglomeration_Lden'),
                           (raw('majorrailways.gpkg'), 'NoiseContours_majorRailwaysIncludingAgglomeration_Lden')])
-    air = airport_2023(LA, LO, 'Lden')          # 2021 sobrestimaba cerca de la pista (notas/calidad_datos.md)
+    air = airport_2023(LA, LO, 'Lden')          # 2021 sobrestimaba cerca de la pista (docs/notas/calidad_datos.md)
     air_night = airport_2023(LA, LO, 'Lngt')    # desde 45 dB
     elev = elevation(LA, LO)
     cov = noise_coverage(LA, LO)

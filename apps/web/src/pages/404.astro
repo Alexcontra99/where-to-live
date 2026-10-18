@@ -1,0 +1,42 @@
+---
+import Base from '../layouts/Base.astro';
+import { SITE_NAME } from '../config';
+---
+
+<Base title={`Page not found — ${SITE_NAME}`} description="This page does not exist.">
+  <section class="wrap nf">
+    <h1>This address isn’t on the map.</h1>
+    <p>The page you were looking for doesn’t exist or has moved.</p>
+    <div class="ctas">
+      <a class="btn btn-primary" href="/">Go to the home page</a>
+      <a class="btn btn-quiet" href="/demo/">Open the Luxembourg demo</a>
+    </div>
+  </section>
+</Base>
+
+<style>
+  .nf {
+    display: grid;
+    justify-items: center;
+    text-align: center;
+    gap: 20px;
+    padding-block: clamp(96px, 16vw, 200px);
+  }
+
+  h1 {
+    font-size: clamp(2.2rem, 1.4rem + 3vw, 3.5rem);
+    max-width: 16ch;
+  }
+
+  p {
+    color: var(--muted);
+  }
+
+  .ctas {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 12px;
+    margin-top: 12px;
+  }
+</style>

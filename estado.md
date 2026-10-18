@@ -8,15 +8,16 @@ estado: activo
 
 ## Situación
 - v0 de Luxemburgo funcional, con datos validados (07/10): `prototipo/`; lógica en `prototipo/README.md`.
-- v0 publicado el 10/10 en GitHub Pages y retirado al pasar el repositorio a privado. Para los usuarios de prueba hará falta una web pública (Pro o Netlify).
-- Repositorio (10/10): `Alexcontra99/where-to-live`, privado, compartido con el equipo. `/cierre` hace commit y push. GitHub Pages queda inactivo mientras sea privado (cuenta gratuita).
-- Dos chats en paralelo, Main (construcción) y Secundaria (datos), con sus roles en `protocolos/sesion_main.md` y `protocolos/sesion_secundaria.md`.
+- Carpeta publicable probada en limpio, escritorio y móvil: `~/GitHub/where-to-live`. Falta publicarla, con tu OK.
+- GitHub conectado (10/10): repositorio privado `Alexcontra99/donde-vivir` con este proyecto, salvo `prototipo/` (ver Pendientes de Ale). La base de git está en `~/GitHub/donde-vivir.git`. `/cierre` hace commit y push.
+- `Alexcontra99/where-to-live`: público y vacío, para la web.
+- Dos chats en paralelo, Main (construcción) y Secundaria (datos), con sus roles en `docs/protocolos/sesion_main.md` y `docs/protocolos/sesion_secundaria.md`.
 
 ## Hitos
 | Fecha | Hito | Estado |
 |---|---|---|
-| 04/10 | Alcance del prototipo v0 (`notas/concepto.md`) | hecho |
-| 04/10 | Fuentes de datos de Luxemburgo con licencias comprobadas (`notas/fuentes_datos.md`) | hecho |
+| 04/10 | Alcance del prototipo v0 (`docs/notas/concepto.md`) | hecho |
+| 04/10 | Fuentes de datos de Luxemburgo con licencias comprobadas (`docs/notas/fuentes_datos.md`) | hecho |
 | 15/11 | Prototipo web v0 de Luxemburgo | funcional en local y datos validados (07/10); falta publicarlo y el guion de prueba |
 | 30/11 | 10 recién llegados lo han probado y hay feedback | pendiente |
 
@@ -30,14 +31,15 @@ estado: activo
 ## Próximo paso
 ### Main
 1. Guion de prueba y formulario de feedback en `usuarios/guion_prueba.md`. No depende de Ale.
-2. Hecho (10/10): v0 publicado. Siguiente: Ale lo prueba en su móvil y se pasa el enlace con el guion.
+2. Publicar el v0, con OK explícito de Ale justo antes.
+   - GitHub ya está conectado (GitHub Pages en `where-to-live`).
+   - Si no: Ale sube `~/GitHub/where-to-live` a Netlify Drop o a Cloudflare Pages.
+   - Después, probar la URL publicada en escritorio y móvil. La prueba de Ale en su móvil necesita esa URL.
 3. Opcional: un enlace que guarde los filtros, para compartir.
 
 ### Secundaria
-- Convertir en script la geocodificación de la lista SEA 2021 (`sea_2021_geocoded.json`), para que cualquiera pueda regenerar los datos (auditoría del 10/10).
-- Revisar el mínimo de 30 ofertas también en barrios (Hamm, Clausen y Pfaffenthal tienen L alto con 14-16 ofertas).
 - Sin trabajo abierto. Espera las decisiones de Ale sobre precios (A/B) y la tarea mensual (abajo).
-- Primera actualización mensual: primera semana de noviembre (`protocolos/actualizacion_datos.md`). Pasada extra tras el cambio de horarios de mediados de diciembre.
+- Primera actualización mensual: primera semana de noviembre (`docs/protocolos/actualizacion_datos.md`). Pasada extra tras el cambio de horarios de mediados de diciembre.
 - Factor t del alquiler: hoy es 1,04, calculado a mano. Para recalcularlo con la serie trimestral del Observatoire hace falta el OK de Ale a la descarga.
 - Después del v0:
   - Pisos grandes en la ciudad, que salen entre un 9 y un 13 % bajos.
@@ -46,10 +48,11 @@ estado: activo
 - Médicos: en espera (Ale, 07/10).
 
 ## Pendientes de Ale
-- Probar el v0 en su móvil (en local o cuando vuelva a haber web pública).
+- Probar el v0 en su móvil.
+- `prototipo/.git` (el git que creaste a las 12:32: solo el README, sin subir). ¿Lo borro? Recomendado: sí. No se pierde nada, el README se queda, y así el prototipo entra en `donde-vivir`.
 - Precios: A, oficial del Observatoire + revisión manual semestral (recomendado), o B, acuerdo con un portal.
 - Tarea programada mensual para la actualización de datos: sí o no.
 - OK para descargar la serie trimestral del Observatoire y recalcular el factor t del alquiler (hoy 1,04, calculado a mano): sí o no. Recomendado: sí.
 - Nombre comercial.
-- Dónde encontrar a los 10 usuarios de prueba (r/Luxembourg, grupos de expatriados, conocidos).
+- Dónde encontrar a los 10 usuarios de prueba (r/Luxembourg, grupos de expatriados, conocidos). ¿Compañeros de trabajo? Decide Ale.
 - Modelo de negocio (particulares o empresas: reubicación, RR. HH., portales): después de validar.

@@ -1,0 +1,57 @@
+name: CI
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+    branches: [main]
+
+concurrency:
+  group: ci-${{ github.ref }}
+  cancel-in-progress: true
+
+permissions:
+  contents: read
+
+jobs:
+  node:
+    name: Lint, typecheck, test, iOS bundle
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    steps:
+      - uses: actions/checkout@v4
+
+      # pnpm version comes from "packageManager" in package.json.
+      - uses: pnpm/action-setup@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version-file: .nvmrc
+          cache: pnpm
+
+      - run: pnpm install --frozen-lockfile
+      - run: pnpm lint
+      - run: pnpm format:check
+      - run: pnpm typecheck
+      - run: pnpm -r test
+
+      # Bundles the app's JavaScript for iOS (Metro + Hermes); catches resolution and bundling errors
+      # without a native build.
+      - name: Expo iOS JS bundle
+        run: pnpm --filter @wtl/mobile exec expo export --platform ios --output-dir "$RUNNER_TEMP/expo-ios"
+
+  python:
+    name: Data pipeline (py_compile)
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+          cache: pip
+          cache-dependency-path: prototipo/build/requirements.txt
+
+      - run: python -m pip install -r prototipo/build/requirements.txt
+      - run: python -m py_compile prototipo/build/*.py

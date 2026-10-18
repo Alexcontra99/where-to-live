@@ -1,0 +1,272 @@
+import type { Area, Grid } from '@wtl/data-lux';
+import { CATS, NOISE, NOISE_CHECK_WORDS, shortLabel } from './constants';
+import type { Filters } from './filters';
+import { fmtKm2 } from './format';
+import { km, type GridGeo } from './geo';
+import { estRent, refSize, rentProvenance, type RentProvenance } from './rent';
+
+export type CheckSource =
+  | { kind: 'person'; index: number }
+  | { kind: 'noise'; key: string }
+  | { kind: 'cat'; key: string }
+  | { kind: 'place'; index: number };
+
+export interface Check {
+  /** Sentence for the cell card ("Person 1: commute over 30 min"). */
+  name: string;
+  /** Label for the blocker list ("Person 1 commute"). */
+  short: string;
+  source: CheckSource;
+  /**
+   * Bit i set = cell i fails this check (packed, 8 cells per byte, all cells including those outside areas).
+   * Plain data: survives structuredClone / postMessage. Read it with checkFails(check, i).
+   */
+  mask: Uint8Array;
+  /**
+   * True if cell i fails this check; same as checkFails(this, i). Non-enumerable convenience, so it is dropped
+   * (not an error) by structuredClone / JSON. Thresholds (max minutes, metres, place location) are fixed when
+   * the evaluation is built. Intentional difference from app.js, whose closures read the live `state` lazily:
+   * there, changing a filter after evaluate() and before the popup applies new thresholds to old counts.
+   */
+  fail(i: number): boolean;
+}
+
+/** True if cell i fails the check (works on structured-cloned evaluations, which have no fail()). */
+export const checkFails = (ch: Pick<Check, 'mask'>, i: number): boolean =>
+  ((ch.mask[i >> 3]! >> (i & 7)) & 1) === 1;
+
+/**
+ * Typed arrays and plain objects only (each check's fail() is non-enumerable), so an evaluation can be
+ * structured-cloned to or from a worker and does not keep the engine's cached commute arrays alive.
+ */
+export interface Evaluation {
+  checks: Check[];
+  /** Failed checks per cell (only cells inside an area; 0 elsewhere). Saturates at 255 (app.js wraps). */
+  fails: Uint8Array;
+  /** Index of the last failing check per cell, -1 if none (the failing check when fails = 1). */
+  only: Int16Array;
+  /** Commute minutes per person (null when the person has no destination). A copy: mutating it is harmless. */
+  commutes: (Float32Array | null)[];
+}
+
+export type CommuteFn = (
+  p: { lat: number; lon: number; mode: Filters['people'][number]['mode'] },
+  arriveH: number,
+) => Float32Array;
+
+/** Build checks in app.js order (people, noise, categories, places) and count failures per cell. */
+type CheckSpec = Omit<Check, 'mask' | 'fail'> & { fail(i: number): boolean };
+
+export function evaluateFilters(G: Grid, geo: GridGeo, commute: CommuteFn, f: Filters): Evaluation {
+  const { cLat, cLon, n: N } = geo;
+  const checks: CheckSpec[] = [];
+  const commutes: (Float32Array | null)[] = [];
+  f.people.forEach((p, n) => {
+    if (!p.dest) {
+      commutes.push(null);
+      return;
+    }
+    const t = commute({ lat: p.dest.lat, lon: p.dest.lon, mode: p.mode }, f.arrive);
+    commutes.push(t.slice());
+    const label = p.label ?? `Person ${n + 1}`;
+    const max = p.max;
+    checks.push({
+      name: `${label}: commute over ${max} min`,
+      short: `${label} commute`,
+      source: { kind: 'person', index: n },
+      fail: (i) => t[i]! > max,
+    });
+  });
+  for (const [k, label] of NOISE) {
+    const thr = f.noise[k];
+    if (!thr) continue;
+    const arr = G[`noise_${k}` as const];
+    checks.push({
+      name: `${label}: ${NOISE_CHECK_WORDS[thr]}`,
+      short: `${label} noise`,
+      source: { kind: 'noise', key: k },
+      fail: (i) => arr[i]! >= thr,
+    });
+  }
+  for (const [k, label] of CATS) {
+    const c = f.cats[k];
+    if (!c || c.mode === 'any') continue;
+    const d = G.dist[k];
+    const m = c.m;
+    const short = shortLabel(label);
+    checks.push(
+      c.mode === 'near'
+        ? {
+            name: `${label}: none within ${m} m`,
+            short,
+            source: { kind: 'cat', key: k },
+            fail: (i) => d[i]! * 10 > m,
+          }
+        : {
+            name: `${label}: one closer than ${m} m`,
+            short,
+            source: { kind: 'cat', key: k },
+            fail: (i) => d[i]! * 10 < m,
+          },
+    );
+  }
+  f.places.forEach((pl, n) => {
+    if (!pl.loc) return;
+    const { lat, lon } = pl.loc;
+    const m = pl.m;
+    checks.push(
+      pl.mode === 'near'
+        ? {
+            name: `${pl.name}: more than ${m} m away`,
+            short: pl.name,
+            source: { kind: 'place', index: n },
+            fail: (i) => km(cLat[i]!, cLon[i]!, lat, lon) * 1000 > m,
+          }
+        : {
+            name: `${pl.name}: closer than ${m} m`,
+            short: pl.name,
+            source: { kind: 'place', index: n },
+            fail: (i) => km(cLat[i]!, cLon[i]!, lat, lon) * 1000 < m,
+          },
+    );
+  });
+  const fails = new Uint8Array(N);
+  const only = new Int16Array(N).fill(-1);
+  const area = G.area;
+  const out: Check[] = checks.map((spec, j) => {
+    // The spec's closure (which may hold a commute array) is only used here, then dropped.
+    const mask = new Uint8Array((N + 7) >> 3);
+    for (let i = 0; i < N; i++)
+      if (spec.fail(i)) {
+        mask[i >> 3]! |= 1 << (i & 7);
+        if (area[i]! >= 0) {
+          if (fails[i]! < 255) fails[i]!++;
+          only[i] = j;
+        }
+      }
+    const ch = { name: spec.name, short: spec.short, source: spec.source, mask } as Check;
+    Object.defineProperty(ch, 'fail', {
+      value: (i: number) => checkFails(ch, i),
+      enumerable: false,
+      writable: true,
+      configurable: true,
+    });
+    return ch;
+  });
+  return { checks: out, fails, only, commutes };
+}
+
+export interface AreaMatch {
+  /** Index into areas. */
+  area: number;
+  name: string;
+  cells: number;
+  km2: number;
+  /** "1.2 km²" / "<0.1 km²". */
+  km2Label: string;
+  /** Estimated asking rent (€, rounded) for `size` m². */
+  estRent: number;
+  /** What estRent is based on (published table, city average or national model) and its source key. */
+  rentProvenance: RentProvenance;
+}
+
+export interface Blocker {
+  /** Index into evaluation.checks. */
+  check: number;
+  short: string;
+  name: string;
+  /** Cells where this is the only failing check. */
+  cells: number;
+  km2: number;
+  km2Label: string;
+  /** cells / max cells over all blockers (bar width, 0–1). */
+  share: number;
+}
+
+export interface Summary {
+  /** Cells that pass every check. */
+  fitCells: number;
+  fitKm2: number;
+  fitKm2Label: string;
+  /** Cells failing exactly one check (grey on the map). */
+  oneAwayCells: number;
+  /** Districts or communes with at least one matching cell. */
+  areaCount: number;
+  /** Size used for rent estimates (user size or 60 m²). */
+  size: number;
+  /** Up to 8 areas with the most matching space, largest first (ties keep grid order). */
+  topAreas: AreaMatch[];
+  /** Checks that are the only failure somewhere, in check order. Empty when no cell is one filter away. */
+  blockers: Blocker[];
+  /** The blocker covering the most area (first in check order on ties), or null. */
+  topBlocker: Blocker | null;
+}
+
+/** Results panel data (app.js summary). */
+export function summarise(
+  G: Grid,
+  areas: Area[],
+  cellKm2: number,
+  ev: Evaluation,
+  f: Pick<Filters, 'size'>,
+): Summary {
+  const { checks, fails, only } = ev;
+  const N = fails.length;
+  let g = 0;
+  let a = 0;
+  const per = new Map<number, number>();
+  const lim = new Array<number>(checks.length).fill(0);
+  for (let i = 0; i < N; i++) {
+    const ar = G.area[i]!;
+    if (ar < 0) continue;
+    if (fails[i] === 0) {
+      g++;
+      per.set(ar, (per.get(ar) || 0) + 1);
+    } else if (fails[i] === 1) {
+      a++;
+      lim[only[i]!]!++;
+    }
+  }
+  const S = refSize(f.size);
+  const topAreas = [...per.entries()]
+    .sort((x, y) => y[1] - x[1])
+    .slice(0, 8)
+    .map(([k, cells]) => ({
+      area: k,
+      name: areas[k]!.name,
+      cells,
+      km2: cells * cellKm2,
+      km2Label: fmtKm2(cells, cellKm2),
+      estRent: Math.round(estRent(areas[k]!, S)),
+      rentProvenance: rentProvenance(areas[k]!),
+    }));
+  const maxLim = Math.max(1, ...lim);
+  const blockers: Blocker[] = [];
+  if (a)
+    checks.forEach((ch, j) => {
+      const cells = lim[j]!;
+      if (!cells) return;
+      blockers.push({
+        check: j,
+        short: ch.short,
+        name: ch.name,
+        cells,
+        km2: cells * cellKm2,
+        km2Label: fmtKm2(cells, cellKm2),
+        share: cells / maxLim,
+      });
+    });
+  let topBlocker: Blocker | null = null;
+  for (const b of blockers) if (!topBlocker || b.cells > topBlocker.cells) topBlocker = b;
+  return {
+    fitCells: g,
+    fitKm2: g * cellKm2,
+    fitKm2Label: fmtKm2(g, cellKm2),
+    oneAwayCells: a,
+    areaCount: per.size,
+    size: S,
+    topAreas,
+    blockers,
+    topBlocker,
+  };
+}

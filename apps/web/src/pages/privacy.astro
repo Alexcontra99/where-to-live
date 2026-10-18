@@ -1,0 +1,234 @@
+---
+import Base from '../layouts/Base.astro';
+import { CONTACT_EMAIL, CONTROLLER, SITE_NAME } from '../config';
+
+const updated = '10 October 2026';
+const title = `Privacy policy — ${SITE_NAME}`;
+---
+
+<Base title={title} description={`How ${SITE_NAME} handles your data on this website, the waitlist, the demo and the app.`}>
+  <article class="wrap doc">
+    <h1>Privacy policy</h1>
+    <p class="meta">Last updated {updated}</p>
+
+    <p class="intro">
+      {SITE_NAME} helps people decide where to look for a home. We collect as little as we can: an email address if
+      you join the waitlist, and nothing at all when you use the demo.
+    </p>
+
+    <nav aria-label="On this page" class="toc">
+      <ol>
+        <li><a href="#who">Who is responsible</a></li>
+        <li><a href="#waitlist">The waitlist</a></li>
+        <li><a href="#turnstile">Bot protection</a></li>
+        <li><a href="#demo">The demo</a></li>
+        <li><a href="#app">The iOS app</a></li>
+        <li><a href="#processors">Who processes data for us</a></li>
+        <li><a href="#rights">Your rights</a></li>
+        <li><a href="#changes">Changes</a></li>
+      </ol>
+    </nav>
+
+    <h2 id="who">Who is responsible</h2>
+    <p>The data controller is {CONTROLLER}. Questions or requests: <a href={`mailto:${CONTACT_EMAIL}`}>{CONTACT_EMAIL}</a>.</p>
+
+    <h2 id="waitlist">The waitlist</h2>
+    <table>
+      <tbody>
+        <tr><th scope="row">What we store</th><td>Your email address, the city you chose, the language you want us to write in, when you gave consent and when you signed up, and where you came from (for example a link tag such as <code>?ref=reddit</code>, if present).</td></tr>
+        <tr><th scope="row">Why</th><td>To email you when {SITE_NAME} opens in your city or when the iOS app launches. Only that: no newsletter, no sale or sharing of your address.</td></tr>
+        <tr><th scope="row">Legal basis</th><td>Your consent (Article 6(1)(a) GDPR). You can withdraw it at any time, as easily as you gave it.</td></tr>
+        <tr><th scope="row">How long</th><td>Until you unsubscribe or ask us to delete it, and at the latest 24 months after you signed up.</td></tr>
+        <tr><th scope="row">Where</th><td>In a Cloudflare D1 database created under the EU jurisdiction, so it is stored and processed in the EU.</td></tr>
+      </tbody>
+    </table>
+    <p>If the address is already on the list, signing up again changes nothing and we do not tell anyone whether an address is registered.</p>
+
+    <h2 id="turnstile">Bot protection</h2>
+    <p>
+      The form uses Cloudflare Turnstile to tell people from bots. To do so, Cloudflare processes technical data from
+      your browser and your IP address when the form loads and when you send it. It does not use cookies for
+      advertising. Legal basis: our legitimate interest in keeping the list free of spam (Article 6(1)(f) GDPR). See{' '}
+      <a href="https://www.cloudflare.com/turnstile-privacy-policy/" rel="noopener">Cloudflare's Turnstile privacy addendum</a>.
+    </p>
+
+    <h2 id="demo">The demo</h2>
+    <p>
+      Nothing you enter in the Luxembourg demo is stored or sent to us; it runs in your browser. If you search for an
+      address, that text is sent to <a href="https://www.geoportail.lu" rel="noopener">geoportail.lu</a> (the
+      Luxembourg government's map service) to find it. Map tiles also come from geoportail.lu, and the map library
+      from cdnjs (Cloudflare); like any website, they see your IP address when your browser loads them.
+    </p>
+    <p>
+      The map on our home page works the same way: what you set there stays in your browser, and only the map tiles
+      come from geoportail.lu.
+    </p>
+
+    <h2 id="app">The iOS app</h2>
+    <p>
+      The app is not released yet. Before it is, this page will describe exactly what it collects. Our rule stays the
+      same: only what the app needs to answer your question, never sold.
+    </p>
+
+    <h2 id="processors">Who processes data for us</h2>
+    <ul>
+      <li>
+        <strong>Cloudflare, Inc.</strong> hosts this website, runs the waitlist database and Turnstile. Transfers outside
+        the EU rely on the EU–US Data Privacy Framework and Standard Contractual Clauses.
+      </li>
+      <li>We use no analytics, advertising or tracking cookies on this website.</li>
+    </ul>
+
+    <h2 id="rights">Your rights</h2>
+    <p>
+      You can ask to see, correct, delete or take a copy of your data, object to its use, or restrict it. Write to{' '}
+      <a href={`mailto:${CONTACT_EMAIL}`}>{CONTACT_EMAIL}</a> and we will answer within one month. You can also
+      complain to the data protection authority of the EU country where you live or work.
+    </p>
+
+    <h2 id="changes">Changes</h2>
+    <p>If this policy changes in a way that matters, we will update the date above and, for waitlist members, tell you by email before it applies.</p>
+  </article>
+</Base>
+
+<style>
+  .doc {
+    max-width: calc(72ch + var(--gutter) * 2);
+    padding-block: clamp(56px, 9vw, 112px) clamp(80px, 10vw, 128px);
+  }
+
+  h1 {
+    font-size: clamp(2.4rem, 1.6rem + 3vw, 3.5rem);
+  }
+
+  .meta {
+    margin-top: 16px;
+    color: var(--muted);
+    font-size: 0.9375rem;
+  }
+
+  .intro {
+    margin-top: 32px;
+    font-size: 1.1875rem;
+    color: var(--fg);
+  }
+
+  .toc {
+    margin-top: 40px;
+    padding: 20px 24px;
+    border: 1px solid var(--line);
+    border-radius: var(--radius);
+    background: var(--bg-raise);
+  }
+
+  .toc ol {
+    margin: 0;
+    padding-left: 20px;
+    columns: 2;
+    column-gap: 32px;
+    color: var(--muted);
+  }
+
+  .toc li {
+    padding: 3px 0;
+  }
+
+  .toc a {
+    color: var(--fg);
+    text-decoration: none;
+  }
+
+  .toc a:hover {
+    color: var(--accent-hover);
+  }
+
+  h2 {
+    font-size: 1.5rem;
+    letter-spacing: -0.025em;
+    margin-top: 56px;
+    margin-bottom: 16px;
+  }
+
+  p,
+  li {
+    color: #b4bcc6;
+  }
+
+  p + p {
+    margin-top: 16px;
+  }
+
+  ul {
+    padding-left: 20px;
+    display: grid;
+    gap: 10px;
+  }
+
+  strong {
+    color: var(--fg-strong);
+    font-weight: 560;
+  }
+
+  table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-bottom: 16px;
+  }
+
+  th,
+  td {
+    text-align: left;
+    vertical-align: top;
+    padding: 14px 16px 14px 0;
+    border-bottom: 1px solid var(--line);
+  }
+
+  tr:first-child th,
+  tr:first-child td {
+    border-top: 1px solid var(--line);
+  }
+
+  th {
+    width: 32%;
+    color: var(--fg-strong);
+    font-weight: 540;
+  }
+
+  td {
+    color: #b4bcc6;
+  }
+
+  code {
+    font-size: 0.875em;
+    padding: 2px 6px;
+    border-radius: 6px;
+    background: var(--bg-soft);
+    color: var(--fg);
+  }
+
+  @media (max-width: 560px) {
+    .toc ol {
+      columns: 1;
+    }
+
+    th,
+    td {
+      display: block;
+      width: auto;
+      padding-right: 0;
+    }
+
+    th {
+      border-bottom: 0;
+      padding-bottom: 4px;
+    }
+
+    td {
+      padding-top: 0;
+    }
+
+    tr:first-child td {
+      border-top: 0;
+    }
+  }
+</style>

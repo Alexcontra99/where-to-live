@@ -1,0 +1,9 @@
+{
+  "extends": "../../tsconfig.base.json",
+  "compilerOptions": {
+    "noEmit": true,
+    // src runs on Hermes / browsers: no Node globals or modules.
+    "types": []
+  },
+  "include": ["src"]
+}
