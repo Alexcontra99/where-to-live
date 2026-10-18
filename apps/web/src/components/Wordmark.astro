@@ -1,0 +1,35 @@
+---
+import { SITE_NAME } from '../config';
+---
+
+<a class="wordmark" href="/" aria-label={`${SITE_NAME}, home`}>
+  <svg width="28" height="28" viewBox="0 0 32 32" aria-hidden="true" focusable="false">
+    <rect width="32" height="32" rx="8" fill="var(--bg-soft)" stroke="var(--line-strong)" />
+    <path
+      d="M16 6.5c-4.1 0-7.5 3.2-7.5 7.3 0 5.4 7.5 11.7 7.5 11.7s7.5-6.3 7.5-11.7c0-4.1-3.4-7.3-7.5-7.3Z"
+      fill="none"
+      stroke="var(--accent)"
+      stroke-width="2.2"
+      stroke-linejoin="round"></path>
+    <circle cx="16" cy="13.8" r="2.6" fill="var(--fit)"></circle>
+  </svg>
+  <span>{SITE_NAME}</span>
+</a>
+
+<style>
+  .wordmark {
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    color: var(--fg-strong);
+    font-weight: 600;
+    letter-spacing: -0.02em;
+    font-size: 1.0625rem;
+    text-decoration: none;
+    white-space: nowrap;
+  }
+
+  .wordmark:hover {
+    color: var(--fg-strong);
+  }
+</style>

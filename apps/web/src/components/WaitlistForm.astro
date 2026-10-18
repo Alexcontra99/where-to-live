@@ -1,0 +1,374 @@
+---
+import Icon from './Icon.astro';
+import { CITIES, LOCALES, TURNSTILE_TEST_SITE_KEY } from '../config';
+import { useStrings } from '../i18n';
+import { TURNSTILE_ACTION } from '../lib/waitlist';
+
+const { locale = 'en' } = Astro.props as { locale?: string };
+const t = useStrings(locale);
+const siteKey = import.meta.env.PUBLIC_TURNSTILE_SITE_KEY || TURNSTILE_TEST_SITE_KEY;
+---
+
+<form
+  class="waitlist"
+  id="waitlist-form"
+  action="/api/waitlist"
+  method="post"
+  novalidate
+  data-errors={JSON.stringify(t.form.errors)}
+  data-sending={t.form.sending}
+>
+  <div class="field">
+    <label for="wl-email">{t.form.email}</label>
+    <input
+      id="wl-email"
+      name="email"
+      type="email"
+      inputmode="email"
+      autocomplete="email"
+      autocapitalize="off"
+      spellcheck="false"
+      required
+      maxlength="254"
+      placeholder={t.form.emailHint}
+      aria-describedby="wl-email-error"
+    />
+    <p class="error" id="wl-email-error" hidden></p>
+  </div>
+
+  <div class="row">
+    <div class="field">
+      <label for="wl-city">{t.form.city}</label>
+      <div class="select">
+        <select id="wl-city" name="city" required aria-describedby="wl-city-error">
+          <option value="" disabled selected>{t.form.cityPlaceholder}</option>
+          {CITIES.map((c) => <option value={c.id}>{c.name}</option>)}
+        </select>
+      </div>
+      <p class="error" id="wl-city-error" hidden></p>
+    </div>
+    <div class="field">
+      <label for="wl-locale">{t.form.locale}</label>
+      <div class="select">
+        <select id="wl-locale" name="locale" required aria-describedby="wl-locale-error">
+          {LOCALES.map((l) => <option value={l.id} selected={l.id === locale}>{l.name}</option>)}
+        </select>
+      </div>
+      <p class="error" id="wl-locale-error" hidden></p>
+    </div>
+  </div>
+
+  <div class="field">
+    <label class="consent">
+      <input type="checkbox" name="consent" value="true" required aria-describedby="wl-consent-error" />
+      <span class="box" aria-hidden="true"><Icon name="check" size={14} /></span>
+      <span>
+        {t.form.consent} <a href="/privacy">{t.form.privacy}</a>.
+      </span>
+    </label>
+    <p class="error" id="wl-consent-error" hidden></p>
+  </div>
+
+  <div
+    class="cf-turnstile"
+    data-sitekey={siteKey}
+    data-action={TURNSTILE_ACTION}
+    data-theme="dark"
+    data-size="flexible"
+  ></div>
+
+  <button class="btn btn-primary submit" type="submit">
+    <span class="label">{t.form.submit}</span>
+    <span class="arrow"><Icon name="arrow" size={14} /></span>
+  </button>
+
+  <p class="status" role="status" aria-live="polite"></p>
+</form>
+
+<div class="done" id="waitlist-done" hidden tabindex="-1">
+  <span class="done-icon"><Icon name="check" size={22} /></span>
+  <p>{t.form.success}</p>
+</div>
+
+<script is:inline src="https://challenges.cloudflare.com/turnstile/v0/api.js" async defer></script>
+
+<script>
+  type Turnstile = { reset: (el?: string | HTMLElement) => void };
+  const form = document.getElementById('waitlist-form') as HTMLFormElement | null;
+  const done = document.getElementById('waitlist-done');
+
+  if (form && done) {
+    const messages = JSON.parse(form.dataset.errors ?? '{}') as Record<string, string>;
+    const status = form.querySelector<HTMLElement>('.status')!;
+    const button = form.querySelector<HTMLButtonElement>('.submit')!;
+    const label = button.querySelector<HTMLElement>('.label')!;
+    const idle = label.textContent ?? '';
+    const fields = ['email', 'city', 'locale', 'consent'] as const;
+
+    const showErrors = (bad: readonly string[]) => {
+      for (const name of fields) {
+        const input = form.elements.namedItem(name) as HTMLInputElement | null;
+        const out = document.getElementById(`wl-${name}-error`);
+        const isBad = bad.includes(name);
+        input?.setAttribute('aria-invalid', String(isBad));
+        if (out) {
+          out.textContent = isBad ? (messages[name] ?? '') : '';
+          out.hidden = !isBad;
+        }
+      }
+      const first = fields.find((f) => bad.includes(f));
+      if (first) (form.elements.namedItem(first) as HTMLElement | null)?.focus();
+    };
+
+    const localCheck = (): string[] => {
+      const bad: string[] = [];
+      const email = (form.elements.namedItem('email') as HTMLInputElement).value.trim();
+      if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) bad.push('email');
+      if (!(form.elements.namedItem('city') as HTMLSelectElement).value) bad.push('city');
+      if (!(form.elements.namedItem('locale') as HTMLSelectElement).value) bad.push('locale');
+      if (!(form.elements.namedItem('consent') as HTMLInputElement).checked) bad.push('consent');
+      return bad;
+    };
+
+    const resetCheck = () => (window as unknown as { turnstile?: Turnstile }).turnstile?.reset();
+
+    const busy = (on: boolean) => {
+      button.disabled = on;
+      label.textContent = on ? (form.dataset.sending ?? idle) : idle;
+    };
+
+    form.addEventListener('submit', async (event) => {
+      event.preventDefault();
+      status.textContent = '';
+      const bad = localCheck();
+      showErrors(bad);
+      if (bad.length) return;
+
+      const token = form.querySelector<HTMLInputElement>('[name="cf-turnstile-response"]')?.value;
+      if (!token) {
+        status.textContent = messages.pending ?? '';
+        return;
+      }
+
+      const data = Object.fromEntries(new FormData(form).entries());
+      const source = new URLSearchParams(location.search).get('ref');
+      if (source) data.source = source;
+
+      busy(true);
+      try {
+        const res = await fetch(form.action, {
+          method: 'POST',
+          headers: { 'content-type': 'application/json' },
+          body: JSON.stringify(data),
+        });
+        const body = (await res.json().catch(() => ({}))) as { error?: string; fields?: string[] };
+        if (res.ok) {
+          form.hidden = true;
+          done.hidden = false;
+          done.focus();
+          return;
+        }
+        if (res.status === 400 && body.fields?.length) showErrors(body.fields);
+        else status.textContent = messages[body.error === 'captcha' ? 'captcha' : 'server'] ?? '';
+        resetCheck();
+      } catch {
+        status.textContent = messages.network ?? '';
+        resetCheck();
+      } finally {
+        busy(false);
+      }
+    });
+  }
+</script>
+
+<style>
+  .waitlist {
+    display: grid;
+    gap: 20px;
+  }
+
+  .row {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 16px;
+  }
+
+  .field {
+    display: grid;
+    gap: 8px;
+    min-width: 0;
+  }
+
+  label {
+    font-size: 0.9375rem;
+    font-weight: 520;
+    color: var(--fg);
+  }
+
+  input[type='email'],
+  select {
+    width: 100%;
+    min-height: 52px;
+    padding: 0 16px;
+    border-radius: 12px;
+    border: 1px solid var(--line-strong);
+    background: var(--bg);
+    color: var(--fg-strong);
+    font: inherit;
+    font-size: 1rem;
+    caret-color: var(--accent);
+    transition:
+      border-color 0.2s var(--ease-out),
+      box-shadow 0.2s var(--ease-out);
+  }
+
+  input::placeholder {
+    color: #7d8590;
+  }
+
+  input[type='email']:hover,
+  select:hover {
+    border-color: #4b5462;
+  }
+
+  input[type='email']:focus,
+  select:focus {
+    outline: none;
+    border-color: var(--accent);
+    box-shadow: 0 0 0 4px color-mix(in srgb, var(--accent) 22%, transparent);
+  }
+
+  [aria-invalid='true'] {
+    border-color: var(--bad) !important;
+  }
+
+  .select {
+    position: relative;
+  }
+
+  select {
+    appearance: none;
+    padding-right: 44px;
+    cursor: pointer;
+  }
+
+  select:invalid {
+    color: #7d8590;
+  }
+
+  select option {
+    color: var(--fg-strong);
+    background: var(--bg-soft);
+  }
+
+  .select::after {
+    content: '';
+    position: absolute;
+    right: 18px;
+    top: 50%;
+    width: 8px;
+    height: 8px;
+    border-right: 1.6px solid var(--muted);
+    border-bottom: 1.6px solid var(--muted);
+    transform: translateY(-70%) rotate(45deg);
+    pointer-events: none;
+  }
+
+  .consent {
+    position: relative;
+    display: grid;
+    grid-template-columns: 22px 1fr;
+    gap: 12px;
+    align-items: start;
+    font-weight: 400;
+    color: var(--muted);
+    font-size: 0.9375rem;
+    line-height: 1.5;
+    cursor: pointer;
+  }
+
+  .consent input {
+    position: absolute;
+    opacity: 0;
+    width: 22px;
+    height: 22px;
+    margin: 0;
+    cursor: pointer;
+  }
+
+  .box {
+    width: 22px;
+    height: 22px;
+    border-radius: 6px;
+    border: 1px solid var(--line-strong);
+    background: var(--bg);
+    display: grid;
+    place-items: center;
+    color: transparent;
+    transition:
+      background-color 0.15s var(--ease-out),
+      border-color 0.15s var(--ease-out);
+  }
+
+  .consent input:checked + .box {
+    background: var(--accent);
+    border-color: var(--accent);
+    color: var(--accent-ink);
+  }
+
+  .consent input:focus-visible + .box {
+    outline: 2px solid var(--accent);
+    outline-offset: 3px;
+  }
+
+  .consent input[aria-invalid='true'] + .box {
+    border-color: var(--bad);
+  }
+
+  .error,
+  .status {
+    color: var(--bad);
+    font-size: 0.875rem;
+    margin: 0;
+  }
+
+  .status:empty {
+    display: none;
+  }
+
+  .cf-turnstile {
+    min-height: 65px;
+  }
+
+  .submit {
+    width: 100%;
+    min-height: 54px;
+  }
+
+  .done {
+    display: grid;
+    justify-items: start;
+    gap: 16px;
+    padding: 8px 0;
+    color: var(--fg-strong);
+    font-size: 1.25rem;
+    letter-spacing: -0.015em;
+    outline: none;
+  }
+
+  .done-icon {
+    width: 44px;
+    height: 44px;
+    border-radius: 999px;
+    display: grid;
+    place-items: center;
+    background: color-mix(in srgb, var(--fit) 18%, transparent);
+    color: var(--fit);
+  }
+
+  @media (max-width: 520px) {
+    .row {
+      grid-template-columns: 1fr;
+    }
+  }
+</style>

@@ -1,0 +1,1394 @@
+---
+import Base from '../layouts/Base.astro';
+import Icon from '../components/Icon.astro';
+import WaitlistForm from '../components/WaitlistForm.astro';
+import { CITIES } from '../config';
+import { useStrings } from '../i18n';
+
+const locale = Astro.currentLocale ?? 'en';
+const t = useStrings(locale);
+const layers = t.layers.items;
+const live = t.live;
+---
+
+<Base title={t.meta.title} description={t.meta.description} locale={locale}>
+  <section class="hero">
+    <div class="wrap hero-copy">
+      <h1>{t.hero.title}</h1>
+      <p class="hero-lead">{t.hero.lead}</p>
+      <div class="ctas">
+        <a class="btn btn-primary" href="#waitlist">
+          {t.hero.cta}
+          <span class="arrow"><Icon name="arrow" size={14} /></span>
+        </a>
+        <a class="btn btn-quiet" href="/demo/">
+          {t.hero.demo}
+          <span class="arrow"><Icon name="external" size={14} /></span>
+        </a>
+      </div>
+      <p class="status-line">
+        <span class="dot" aria-hidden="true"></span>
+        {t.hero.status}
+      </p>
+    </div>
+  </section>
+
+  <section class="story" id="how" aria-label={t.layers.label} data-story>
+    <script type="application/json" id="live-strings" set:html={JSON.stringify(live)} />
+    <div class="stage">
+      <figure class="frame">
+        <div class="frame-bar">
+          <span aria-hidden="true"></span><span aria-hidden="true"></span><span aria-hidden="true"></span>
+          <p><span class="dot" aria-hidden="true"></span>{live.frame}</p>
+          <a class="frame-open" href="/demo/">
+            {live.open}
+            <Icon name="external" size={13} />
+          </a>
+        </div>
+        <div class="map-shell">
+          <div class="map" data-map role="region" aria-label={live.mapLabel} tabindex="0"></div>
+          <picture class="poster" data-poster>
+            <source media="(max-width: 640px)" srcset="/img/demo-mobile-780.webp" width="780" height="1688" />
+            <img
+              src="/img/demo-results-1200.webp"
+              srcset="/img/demo-results-1200.webp 1200w, /img/demo-results-2400.webp 2400w"
+              sizes="(max-width: 1260px) 92vw, 1180px"
+              width="2400"
+              height="1500"
+              alt={t.hero.shotAlt}
+              fetchpriority="high"
+            />
+          </picture>
+          <p class="map-status" data-status role="status">{live.loading}</p>
+          <div class="legend" data-legend aria-hidden="true"></div>
+          <button class="move" type="button" data-move aria-pressed="false" hidden>{live.move}</button>
+        </div>
+        <nav class="dock" aria-label={t.layers.label}>
+          {
+            layers.map((l) => (
+              <a class="tab" href={`#layer-${l.id}`} data-tab={l.id}>
+                <Icon name={l.id as 'commute'} size={18} />
+                <span>{l.name}</span>
+              </a>
+            ))
+          }
+        </nav>
+      </figure>
+    </div>
+
+    <div class="steps">
+      <div class="step intro" data-layer="overview">
+        <div class="card" hidden data-controls>
+          <p class="readout" data-readout="overview" aria-live="polite"></p>
+        </div>
+      </div>
+
+      <article class="step" id="layer-commute" data-layer="commute">
+        <div class="card">
+          <h3>{layers[0]!.name}</h3>
+          <p>{layers[0]!.text}</p>
+          <div class="controls" data-controls hidden>
+            <div class="ctl">
+              <span class="ctl-label" id="lbl-who">{live.commute.who}</span>
+              <div class="pills" role="group" aria-labelledby="lbl-who">
+                {
+                  Object.entries(live.commute.people).map(([id, name]) => (
+                    <button type="button" class="pill-btn" data-k="persons" data-v={id} aria-pressed="true">
+                      {name}
+                    </button>
+                  ))
+                }
+              </div>
+            </div>
+            <label class="ctl range">
+              <span class="ctl-label">{live.commute.max} <output>30 min</output></span>
+              <input type="range" min="10" max="60" step="5" value="30" data-k="max" data-fmt={live.commute.minutes} />
+            </label>
+          </div>
+          <p class="readout" data-readout="commute" aria-live="polite"></p>
+          <p class="source">{layers[0]!.source}</p>
+        </div>
+      </article>
+
+      <article class="step" id="layer-rent" data-layer="rent">
+        <div class="card">
+          <h3>{layers[1]!.name}</h3>
+          <p>{layers[1]!.text}</p>
+          <div class="controls" data-controls hidden>
+            <div class="ctl">
+              <span class="ctl-label" id="lbl-size">{live.rent.size}</span>
+              <div class="pills" role="group" aria-labelledby="lbl-size">
+                {
+                  [40, 60, 90].map((m) => (
+                    <button type="button" class="pill-btn" data-k="size" data-v={m} aria-pressed={m === 60 ? 'true' : 'false'}>
+                      {m} m²
+                    </button>
+                  ))
+                }
+              </div>
+            </div>
+            <label class="ctl range">
+              <span class="ctl-label">{live.rent.budget} <output>€2,000</output></span>
+              <input type="range" min="1000" max="4000" step="100" value="2000" data-k="budget" data-fmt="€{n}" />
+            </label>
+          </div>
+          <p class="readout" data-readout="rent" aria-live="polite"></p>
+          <p class="source">{layers[1]!.source}</p>
+        </div>
+      </article>
+
+      <article class="step" id="layer-noise" data-layer="noise">
+        <div class="card">
+          <h3>{layers[2]!.name}</h3>
+          <p>{layers[2]!.text}</p>
+          <div class="controls" data-controls hidden>
+            <div class="ctl">
+              <span class="ctl-label" id="lbl-from">{live.noise.sources}</span>
+              <div class="pills" role="group" aria-labelledby="lbl-from">
+                {
+                  Object.entries(live.noise.kinds).map(([id, name]) => (
+                    <button type="button" class="pill-btn" data-k="sources" data-v={id} aria-pressed="true">
+                      {name}
+                    </button>
+                  ))
+                }
+              </div>
+            </div>
+            <div class="ctl">
+              <span class="ctl-label" id="lbl-level">{live.noise.level}</span>
+              <div class="pills" role="group" aria-labelledby="lbl-level">
+                {
+                  Object.entries(live.noise.levels).map(([db, name]) => (
+                    <button type="button" class="pill-btn" data-k="level" data-v={db} aria-pressed={db === '65' ? 'true' : 'false'}>
+                      {name}
+                    </button>
+                  ))
+                }
+              </div>
+            </div>
+          </div>
+          <p class="readout" data-readout="noise" aria-live="polite"></p>
+          <p class="source">{layers[2]!.source}</p>
+        </div>
+      </article>
+
+      <article class="step" id="layer-near" data-layer="near">
+        <div class="card">
+          <h3>{layers[3]!.name}</h3>
+          <p>{layers[3]!.text}</p>
+          <div class="controls" data-controls hidden>
+            <div class="ctl">
+              <span class="ctl-label" id="lbl-near">{live.near.what}</span>
+              <div class="pills" role="group" aria-labelledby="lbl-near">
+                {
+                  Object.entries(live.near.cats).map(([id, name]) => (
+                    <button
+                      type="button"
+                      class="pill-btn"
+                      data-k="cats"
+                      data-v={id}
+                      aria-pressed={id === 'supermarket' || id === 'park' ? 'true' : 'false'}
+                    >
+                      {name}
+                    </button>
+                  ))
+                }
+              </div>
+            </div>
+            <label class="ctl range">
+              <span class="ctl-label">{live.near.within} <output>800 m</output></span>
+              <input type="range" min="200" max="1500" step="100" value="800" data-k="within" data-fmt={live.near.metres} />
+            </label>
+          </div>
+          <p class="readout" data-readout="near" aria-live="polite"></p>
+          <p class="source">{layers[3]!.source}</p>
+        </div>
+      </article>
+
+      <article class="step" id="layer-safety" data-layer="safety">
+        <div class="card">
+          <h3>{layers[4]!.name}</h3>
+          <p>{layers[4]!.text}</p>
+          <div class="controls" data-controls hidden>
+            <div class="ctl">
+              <span class="ctl-label" id="lbl-night">{live.safety.show}</span>
+              <div class="pills" role="group" aria-labelledby="lbl-night">
+                {
+                  Object.entries(live.safety.kinds).map(([id, name]) => (
+                    <button type="button" class="pill-btn" data-k="night" data-v={id} aria-pressed="true">
+                      {name}
+                    </button>
+                  ))
+                }
+              </div>
+            </div>
+          </div>
+          <p class="readout" data-readout="safety" aria-live="polite"></p>
+          <p class="source note" data-bars></p>
+          <p class="source note">{live.safety.note}</p>
+        </div>
+      </article>
+    </div>
+  </section>
+
+  <section class="section reason">
+    <div class="wrap reason-grid">
+      <div class="reason-copy">
+        <h2 class="h2">{t.reason.title}</h2>
+        <p class="lead">{t.reason.lead}</p>
+        <ul class="points">
+          {
+            t.reason.points.map(([title, text]) => (
+              <li>
+                <strong>{title}</strong> {text}
+              </li>
+            ))
+          }
+        </ul>
+        <a class="btn btn-quiet link" href="/demo/">
+          {t.reason.try}
+          <span class="arrow"><Icon name="arrow" size={14} /></span>
+        </a>
+      </div>
+      <figure class="panel-shot">
+        <img src="/img/demo-panel.webp" width="720" height="1250" alt={t.reason.shotAlt} loading="lazy" decoding="async" />
+      </figure>
+    </div>
+  </section>
+
+  <section class="section cities" id="cities">
+    <div class="wrap">
+      <div class="head">
+        <h2 class="h2">{t.cities.title}</h2>
+        <p class="lead">{t.cities.lead}</p>
+      </div>
+      <ul class="city-list">
+        {
+          CITIES.map((c) => (
+            <li class:list={['city', c.status]}>
+              <span class="city-name">{c.name}</span>
+              <span class="city-country">{c.country}</span>
+              {c.status === 'demo' ? (
+                <a class="pill live" href="/demo/">
+                  <span class="dot" aria-hidden="true" />
+                  {t.cities.demo}
+                  <span class="visually-hidden">: {t.cities.open}</span>
+                </a>
+              ) : (
+                <span class="pill">{t.cities.soon}</span>
+              )}
+            </li>
+          ))
+        }
+        <li class="city app">
+          <span class="city-name">
+            <Icon name="phone" size={20} />
+            {t.cities.app}
+          </span>
+          <span class="city-app-text">{t.cities.appText}</span>
+        </li>
+      </ul>
+    </div>
+  </section>
+
+  <section class="section data" id="data">
+    <div class="wrap data-grid">
+      <div>
+        <h2 class="h2">{t.data.title}</h2>
+        <p class="lead">{t.data.lead}</p>
+      </div>
+      <div class="table-wrap">
+        <table>
+          <caption class="visually-hidden">{t.data.note}</caption>
+          <tbody>
+            {
+              t.data.sources.map(([layer, who, licence]) => (
+                <tr>
+                  <th scope="row">{layer}</th>
+                  <td>{who}</td>
+                  <td class="licence">{licence}</td>
+                </tr>
+              ))
+            }
+          </tbody>
+        </table>
+        <p class="note">{t.data.note}</p>
+      </div>
+    </div>
+  </section>
+
+  <section class="section join" id="waitlist">
+    <div class="wrap join-grid">
+      <div class="join-copy">
+        <h2 class="h2">{t.form.title}</h2>
+        <p class="lead">{t.form.lead}</p>
+      </div>
+      <div class="join-card">
+        <WaitlistForm locale={locale} />
+      </div>
+    </div>
+  </section>
+</Base>
+
+<script>
+  // Scroll story: the step crossing the reading line picks the map layer; the dock follows and jumps.
+  import type { LayerId } from '../scripts/live-map';
+
+  const root = document.querySelector<HTMLElement>('[data-story]')!;
+  const strings = JSON.parse(document.getElementById('live-strings')!.textContent!);
+  const tabs = Array.from(root.querySelectorAll<HTMLAnchorElement>('[data-tab]'));
+  const steps = Array.from(root.querySelectorAll<HTMLElement>('.step[data-layer]'));
+  const status = root.querySelector<HTMLElement>('[data-status]')!;
+  const reduced = matchMedia('(prefers-reduced-motion: reduce)').matches;
+  const wide = () => innerWidth >= 900;
+
+  let current: LayerId | '' = '';
+  let live: { setLayer: (id: LayerId) => void } | null = null;
+
+  const pick = () => {
+    const line = innerHeight * (wide() ? 0.6 : 0.9);
+    let id: LayerId = 'overview';
+    for (const step of steps) {
+      if ((step.querySelector('.card') ?? step).getBoundingClientRect().top < line) id = step.dataset.layer as LayerId;
+    }
+    if (id === current) return;
+    current = id;
+    root.dataset.layer = id;
+    for (const step of steps) step.classList.toggle('is-active', step.dataset.layer === id);
+    for (const tab of tabs) {
+      if (tab.dataset.tab === id) tab.setAttribute('aria-current', 'step');
+      else tab.removeAttribute('aria-current');
+    }
+    live?.setLayer(id);
+  };
+
+  let ticking = false;
+  addEventListener(
+    'scroll',
+    () => {
+      if (ticking) return;
+      ticking = true;
+      requestAnimationFrame(() => {
+        ticking = false;
+        pick();
+      });
+    },
+    { passive: true },
+  );
+  addEventListener('resize', pick);
+  pick();
+
+  for (const tab of tabs) {
+    tab.addEventListener('click', (e) => {
+      const card = document.getElementById(`layer-${tab.dataset.tab}`)?.querySelector('.card');
+      if (!card) return;
+      e.preventDefault();
+      card.scrollIntoView({ block: wide() ? 'center' : 'end', behavior: reduced ? 'auto' : 'smooth' });
+    });
+  }
+
+  import('../scripts/live-map')
+    .then(({ mountLiveMap }) => mountLiveMap(root, strings, () => {}))
+    .then((api) => {
+      live = api;
+      if (current) api.setLayer(current);
+      for (const el of root.querySelectorAll<HTMLElement>('[data-controls]')) el.hidden = false;
+      root.classList.add('is-live');
+      status.textContent = '';
+    })
+    .catch((err) => {
+      console.warn('live map', err);
+      status.textContent = strings.failed;
+      root.classList.add('is-failed');
+    });
+</script>
+
+<style>
+  .hero {
+    position: relative;
+    padding-top: clamp(48px, 8vw, 104px);
+  }
+
+  .hero-copy {
+    position: relative;
+    display: grid;
+    justify-items: center;
+    text-align: center;
+  }
+
+  h1 {
+    font-size: clamp(2.6rem, 1.4rem + 5.2vw, 5rem);
+    letter-spacing: -0.04em;
+    line-height: 1;
+    max-width: 14ch;
+  }
+
+  .hero-lead {
+    margin-top: 28px;
+    max-width: 60ch;
+    color: #b4bcc6;
+    font-size: clamp(1.0625rem, 1rem + 0.35vw, 1.25rem);
+    line-height: 1.55;
+  }
+
+  .ctas {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 12px 20px;
+    margin-top: 36px;
+  }
+
+  .status-line {
+    display: block;
+    margin-top: 28px;
+    color: var(--muted);
+    font-size: 0.875rem;
+  }
+
+  .status-line .dot {
+    display: inline-block;
+    margin-right: 10px;
+    vertical-align: 1px;
+  }
+
+  .dot {
+    width: 8px;
+    height: 8px;
+    flex: none;
+    border-radius: 999px;
+    background: var(--fit);
+    box-shadow: 0 0 0 4px color-mix(in srgb, var(--fit) 22%, transparent);
+  }
+
+  /* Story: a sticky live map; the layer steps scroll over it and pick what it shows. */
+  .story {
+    --stage-top: 80px;
+    overflow-x: clip;
+    --card-w: 384px;
+    position: relative;
+    display: grid;
+    width: 100%;
+    max-width: calc(var(--wrap) + var(--gutter) * 2);
+    margin: clamp(48px, 6vw, 72px) auto 0;
+    padding-inline: var(--gutter);
+  }
+
+  .story::before {
+    content: '';
+    position: absolute;
+    inset: -4% -12% auto;
+    height: 90svh;
+    mask-image: linear-gradient(to bottom, transparent, #000 30%, #000 55%, transparent 92%);
+    -webkit-mask-image: linear-gradient(to bottom, transparent, #000 30%, #000 55%, transparent 92%);
+    background:
+      radial-gradient(38% 46% at 40% 50%, color-mix(in srgb, var(--fit) 34%, transparent), transparent 72%),
+      radial-gradient(40% 52% at 62% 46%, color-mix(in srgb, var(--accent) 40%, transparent), transparent 72%);
+    filter: blur(24px);
+    pointer-events: none;
+  }
+
+  .stage,
+  .steps {
+    grid-area: 1 / 1;
+  }
+
+  .stage {
+    position: sticky;
+    top: var(--stage-top);
+    align-self: start;
+    height: min(calc(100svh - var(--stage-top) - 16px), 860px);
+  }
+
+  .frame {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+    margin: 0;
+    border-radius: var(--radius-lg);
+    border: 1px solid var(--line-strong);
+    background: var(--bg-raise);
+    padding: 0 8px 8px;
+    box-shadow:
+      0 40px 80px -30px rgb(0 0 0 / 0.75),
+      0 0 0 6px color-mix(in srgb, var(--bg-soft) 60%, transparent);
+    animation: rise 1.1s var(--ease-out) both;
+  }
+
+  @keyframes rise {
+    from {
+      transform: translateY(32px) scale(0.985);
+      filter: blur(6px);
+    }
+    to {
+      transform: none;
+      filter: none;
+    }
+  }
+
+  .frame-bar {
+    display: flex;
+    align-items: center;
+    gap: 7px;
+    height: 40px;
+    flex: none;
+    padding-inline: 8px 4px;
+  }
+
+  .frame-bar > span {
+    width: 10px;
+    height: 10px;
+    border-radius: 999px;
+    background: var(--line-strong);
+  }
+
+  .frame-bar p {
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    color: var(--muted);
+    font-size: 0.8125rem;
+    white-space: nowrap;
+  }
+
+  .frame-bar .dot {
+    width: 6px;
+    height: 6px;
+    box-shadow: none;
+    opacity: 0.4;
+    transition: opacity 0.4s var(--ease-out);
+  }
+
+  .is-live .frame-bar .dot {
+    opacity: 1;
+  }
+
+  .frame-open {
+    margin-left: auto;
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    min-height: 32px;
+    padding: 0 10px;
+    border-radius: 999px;
+    color: var(--muted);
+    font-size: 0.8125rem;
+    text-decoration: none;
+    transition: color 0.2s var(--ease-out);
+  }
+
+  .frame-open:hover {
+    color: var(--fg-strong);
+  }
+
+  .map-shell {
+    position: relative;
+    flex: 1;
+    min-height: 0;
+    border-radius: 14px;
+    overflow: hidden;
+    border: 1px solid var(--line);
+    background: #0d1116;
+  }
+
+  .map {
+    position: absolute;
+    inset: 0;
+    background: #0d1116;
+  }
+
+  .map:focus-visible {
+    outline: 2px solid var(--accent);
+    outline-offset: -2px;
+  }
+
+  .poster {
+    position: absolute;
+    inset: 0;
+    transition:
+      opacity 0.6s var(--ease-out),
+      visibility 0.6s;
+  }
+
+  .poster img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: left top;
+  }
+
+  .is-live .poster {
+    opacity: 0;
+    visibility: hidden;
+  }
+
+  .map-status {
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+    padding: 10px 16px;
+    border-radius: 999px;
+    border: 1px solid var(--line-strong);
+    background: color-mix(in srgb, var(--bg-raise) 92%, transparent);
+    color: var(--fg);
+    font-size: 0.875rem;
+    text-align: center;
+  }
+
+  .map-status:empty {
+    display: none;
+  }
+
+  .is-failed .map-status {
+    max-width: calc(100% - 32px);
+    border-radius: var(--radius);
+  }
+
+  .legend {
+    position: absolute;
+    z-index: 500;
+    top: 12px;
+    right: 60px;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: flex-end;
+    gap: 6px 14px;
+    max-width: calc(100% - var(--card-w) - 120px);
+    padding: 8px 14px;
+    border-radius: 999px;
+    border: 1px solid var(--line-strong);
+    background: color-mix(in srgb, var(--bg-raise) 88%, transparent);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    color: var(--fg);
+    font-size: 0.8125rem;
+    line-height: 1.3;
+    pointer-events: none;
+  }
+
+  .legend:empty {
+    display: none;
+  }
+
+  .legend :global(span) {
+    display: inline-flex;
+    align-items: center;
+    gap: 7px;
+    white-space: nowrap;
+  }
+
+  .legend :global(i) {
+    width: 10px;
+    height: 10px;
+    border-radius: 3px;
+  }
+
+  .move {
+    position: absolute;
+    z-index: 500;
+    top: 12px;
+    left: 12px;
+    min-height: 40px;
+    padding: 0 16px;
+    border-radius: 999px;
+    border: 1px solid var(--line-strong);
+    background: color-mix(in srgb, var(--bg-raise) 92%, transparent);
+    color: var(--fg-strong);
+    font: inherit;
+    font-size: 0.875rem;
+    cursor: pointer;
+  }
+
+  .move[aria-pressed='true'] {
+    background: var(--accent);
+    border-color: var(--accent);
+    color: var(--accent-ink);
+  }
+
+  .dock {
+    position: absolute;
+    z-index: 600;
+    left: 50%;
+    bottom: 24px;
+    transform: translateX(calc(-50% + var(--card-w) / 2 + 12px));
+    display: flex;
+    gap: 4px;
+    padding: 5px;
+    border-radius: 999px;
+    border: 1px solid var(--line-strong);
+    background: color-mix(in srgb, var(--bg-raise) 92%, transparent);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    box-shadow: 0 16px 40px -16px rgb(0 0 0 / 0.8);
+  }
+
+  .tab {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    min-height: 40px;
+    padding: 0 14px;
+    border-radius: 999px;
+    color: var(--muted);
+    font-size: 0.875rem;
+    white-space: nowrap;
+    text-decoration: none;
+    transition:
+      background-color 0.25s var(--ease-out),
+      color 0.25s var(--ease-out);
+  }
+
+  .tab:hover {
+    color: var(--fg-strong);
+  }
+
+  .tab[aria-current='step'] {
+    background: var(--fg-strong);
+    color: var(--bg);
+  }
+
+  .steps {
+    position: relative;
+    z-index: 1;
+    pointer-events: none;
+    padding: 0 20px;
+  }
+
+  .step {
+    display: flex;
+    align-items: center;
+    min-height: 88svh;
+  }
+
+  .step.intro {
+    min-height: 62svh;
+    align-items: flex-end;
+  }
+
+  .step:last-child {
+    min-height: 100svh;
+  }
+
+  .card {
+    pointer-events: auto;
+    width: min(var(--card-w), 100%);
+    padding: 24px;
+    border-radius: var(--radius-lg);
+    border: 1px solid var(--line-strong);
+    background: color-mix(in srgb, var(--bg-raise) 94%, transparent);
+    backdrop-filter: blur(14px);
+    -webkit-backdrop-filter: blur(14px);
+    box-shadow: 0 40px 80px -40px rgb(0 0 0 / 0.9);
+    transition:
+      opacity 0.45s var(--ease-out),
+      transform 0.45s var(--ease-out);
+  }
+
+  /* Upcoming steps wait dimmed; past ones get out of the way of the map and the header. */
+  .step:not(.is-active) .card {
+    opacity: 0.4;
+    transform: scale(0.98);
+  }
+
+  .step:has(~ .step.is-active) .card {
+    opacity: 0;
+    pointer-events: none;
+  }
+
+  .intro .card {
+    padding: 14px 18px;
+  }
+
+  .card h3 {
+    font-size: 1.375rem;
+    font-weight: 540;
+    letter-spacing: -0.025em;
+    line-height: 1.2;
+    color: var(--fg-strong);
+  }
+
+  .card h3 + p {
+    margin-top: 10px;
+    color: #b4bcc6;
+    font-size: 0.9375rem;
+    line-height: 1.55;
+  }
+
+  .controls {
+    display: grid;
+    gap: 16px;
+    margin-top: 20px;
+    padding-top: 18px;
+    border-top: 1px solid var(--line);
+  }
+
+  .ctl {
+    display: grid;
+    gap: 8px;
+  }
+
+  .ctl-label {
+    display: flex;
+    justify-content: space-between;
+    color: var(--muted);
+    font-size: 0.8125rem;
+  }
+
+  .ctl-label output {
+    color: var(--fg-strong);
+    font-variant-numeric: tabular-nums;
+  }
+
+  .pills {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 6px;
+  }
+
+  .pill-btn {
+    min-height: 36px;
+    padding: 0 14px;
+    border-radius: 999px;
+    border: 1px solid var(--line-strong);
+    background: transparent;
+    color: var(--fg);
+    font: inherit;
+    font-size: 0.875rem;
+    cursor: pointer;
+    transition:
+      background-color 0.2s var(--ease-out),
+      color 0.2s var(--ease-out),
+      border-color 0.2s var(--ease-out);
+  }
+
+  .pill-btn:hover {
+    border-color: var(--muted);
+  }
+
+  .pill-btn[aria-pressed='true'] {
+    background: var(--fg-strong);
+    border-color: var(--fg-strong);
+    color: var(--bg);
+  }
+
+  .pill-btn:focus-visible,
+  .tab:focus-visible,
+  .frame-open:focus-visible,
+  .move:focus-visible {
+    outline: 2px solid var(--accent);
+    outline-offset: 2px;
+  }
+
+  .range input {
+    width: 100%;
+    height: 24px;
+    margin: 0;
+    accent-color: var(--accent);
+    cursor: pointer;
+  }
+
+  .readout {
+    margin-top: 16px;
+    color: var(--fg-strong);
+    font-size: 0.9375rem;
+    font-weight: 500;
+    line-height: 1.45;
+    font-variant-numeric: tabular-nums;
+  }
+
+  .source:empty,
+  .readout:empty {
+    display: none;
+  }
+
+  .intro .readout {
+    margin-top: 0;
+  }
+
+  .source {
+    margin-top: 12px;
+    color: var(--muted);
+    font-size: 0.8125rem;
+    line-height: 1.5;
+  }
+
+  /* Leaflet, in the page's dark world */
+  .map :global(.leaflet-container),
+  .map:global(.leaflet-container) {
+    font-family: var(--font);
+    background: #0d1116;
+  }
+
+  .map :global(.live-tiles) {
+    filter: invert(1) hue-rotate(180deg) brightness(0.92) contrast(0.86) saturate(0.4);
+  }
+
+  .map :global(.leaflet-control-zoom) {
+    border: 1px solid var(--line-strong);
+    border-radius: 12px;
+    overflow: hidden;
+    box-shadow: 0 16px 40px -16px rgb(0 0 0 / 0.8);
+  }
+
+  .map :global(.leaflet-control-zoom a) {
+    width: 36px;
+    height: 36px;
+    line-height: 34px;
+    background: var(--bg-raise);
+    color: var(--fg);
+    border-color: var(--line);
+  }
+
+  .map :global(.leaflet-control-zoom a:hover) {
+    background: var(--bg-soft);
+    color: var(--fg-strong);
+  }
+
+  .map :global(.leaflet-control-attribution) {
+    background: color-mix(in srgb, var(--bg) 70%, transparent);
+    color: var(--muted);
+    font-size: 0.6875rem;
+    border-top-left-radius: 8px;
+  }
+
+  .map :global(.leaflet-popup-content-wrapper),
+  .map :global(.leaflet-popup-tip),
+  .map :global(.leaflet-tooltip) {
+    background: var(--bg-raise);
+    color: var(--fg);
+    border: 1px solid var(--line-strong);
+    box-shadow: 0 16px 40px -16px rgb(0 0 0 / 0.8);
+  }
+
+  .map :global(.leaflet-popup-content-wrapper) {
+    border-radius: var(--radius);
+  }
+
+  .map :global(.leaflet-popup-content) {
+    margin: 14px 16px;
+    font-size: 0.8125rem;
+    line-height: 1.55;
+  }
+
+  .map :global(.leaflet-popup-content b) {
+    color: var(--fg-strong);
+    font-size: 0.9375rem;
+    font-weight: 560;
+  }
+
+  .map :global(.leaflet-popup-content .muted) {
+    color: var(--muted);
+  }
+
+  .map :global(.leaflet-popup-close-button) {
+    color: var(--muted);
+  }
+
+  .map :global(.leaflet-tooltip::before) {
+    display: none;
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .frame {
+      animation: none;
+    }
+
+    .card,
+    .poster {
+      transition: none;
+    }
+  }
+
+  @media (max-width: 899px) {
+    .story {
+      --stage-top: 76px;
+      padding-inline: 12px;
+    }
+
+    .stage {
+      height: 46svh;
+    }
+
+    .frame {
+      padding: 0 5px 5px;
+    }
+
+    .frame-bar {
+      height: 34px;
+    }
+
+    .frame-bar > span {
+      display: none;
+    }
+
+    .frame-bar p {
+      position: static;
+      transform: none;
+    }
+
+    .legend {
+      top: auto;
+      bottom: 8px;
+      left: 8px;
+      right: auto;
+      max-width: calc(100% - 16px);
+      justify-content: flex-start;
+      border-radius: 12px;
+      padding: 6px 10px;
+      font-size: 0.75rem;
+    }
+
+    .map :global(.leaflet-control-attribution),
+    .map :global(.leaflet-control-zoom) {
+      display: none;
+    }
+
+    .move {
+      top: auto;
+      left: auto;
+      right: 8px;
+      bottom: 8px;
+      min-height: 36px;
+      padding: 0 14px;
+      font-size: 0.8125rem;
+    }
+
+    .legend {
+      max-width: calc(100% - 140px);
+    }
+
+    .source:not(.note) {
+      display: none;
+    }
+
+    .dock {
+      left: 10px;
+      right: 10px;
+      top: 44px;
+      bottom: auto;
+      transform: none;
+      display: grid;
+      grid-template-columns: repeat(5, 1fr);
+      gap: 2px;
+      padding: 3px;
+    }
+
+    .tab {
+      flex-direction: column;
+      justify-content: center;
+      gap: 2px;
+      min-height: 50px;
+      padding: 4px 2px;
+      border-radius: 14px;
+      font-size: 0.6875rem;
+      line-height: 1.15;
+      text-align: center;
+      white-space: normal;
+    }
+
+    .steps {
+      padding: 0;
+    }
+
+    /* Each card scrolls up over the map and leaves; the map then shows that layer unobstructed. */
+    .step,
+    .step:last-child {
+      min-height: 125svh;
+      align-items: flex-start;
+    }
+
+    .step.intro {
+      min-height: calc(46svh + 96px);
+    }
+
+    .card {
+      width: 100%;
+      padding: 18px;
+    }
+
+    .card h3 + p {
+      font-size: 0.875rem;
+    }
+
+    .controls {
+      margin-top: 14px;
+      padding-top: 14px;
+      gap: 12px;
+    }
+  }
+
+  /* Reason */
+  .reason-grid {
+    display: grid;
+    grid-template-columns: 1.1fr 0.9fr;
+    gap: clamp(40px, 6vw, 96px);
+    align-items: center;
+  }
+
+  .reason-copy .lead {
+    margin-top: 24px;
+  }
+
+  .points {
+    list-style: none;
+    padding: 0;
+    margin: 40px 0 32px;
+    display: grid;
+    gap: 0;
+    border-top: 1px solid var(--line);
+  }
+
+  .points li {
+    padding: 20px 0;
+    border-bottom: 1px solid var(--line);
+    color: var(--muted);
+  }
+
+  .points strong {
+    color: var(--fg-strong);
+    font-weight: 560;
+  }
+
+  .link {
+    padding-inline: 0;
+    color: var(--accent);
+  }
+
+  .panel-shot {
+    margin: 0;
+    justify-self: center;
+    width: min(100%, 400px);
+    border-radius: var(--radius-lg);
+    border: 1px solid var(--line-strong);
+    overflow: hidden;
+    background: var(--bg-raise);
+    box-shadow: 0 40px 80px -40px rgb(0 0 0 / 0.9);
+    position: relative;
+  }
+
+  .panel-shot img {
+    width: 100%;
+  }
+
+  /* Cities */
+  .head {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 24px 64px;
+    align-items: end;
+    margin-bottom: 48px;
+  }
+
+  .city-list {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    border-top: 1px solid var(--line);
+    border-left: 1px solid var(--line);
+  }
+
+  .city {
+    display: grid;
+    grid-template-columns: 1fr auto;
+    grid-template-rows: auto auto;
+    gap: 4px 16px;
+    align-items: center;
+    padding: 24px;
+    min-height: 112px;
+    border-right: 1px solid var(--line);
+    border-bottom: 1px solid var(--line);
+  }
+
+  .city-name {
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    color: var(--fg-strong);
+    font-size: 1.375rem;
+    font-weight: 540;
+    letter-spacing: -0.025em;
+  }
+
+  .city-country {
+    grid-row: 2;
+    color: var(--muted);
+    font-size: 0.875rem;
+    font-variant-numeric: tabular-nums;
+  }
+
+  .pill {
+    grid-row: 1 / span 2;
+    grid-column: 2;
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    padding: 6px 12px;
+    border-radius: 999px;
+    border: 1px solid var(--line-strong);
+    color: var(--muted);
+    font-size: 0.8125rem;
+    white-space: nowrap;
+    text-decoration: none;
+  }
+
+  .pill.live {
+    color: var(--fg-strong);
+    border-color: color-mix(in srgb, var(--fit) 55%, transparent);
+    background: color-mix(in srgb, var(--fit) 12%, transparent);
+  }
+
+  .pill.live:hover {
+    background: color-mix(in srgb, var(--fit) 20%, transparent);
+    color: var(--fg-strong);
+  }
+
+  .pill .dot {
+    width: 6px;
+    height: 6px;
+    box-shadow: none;
+  }
+
+  .city.demo {
+    background: color-mix(in srgb, var(--fit) 5%, transparent);
+  }
+
+  .city.app {
+    grid-column: 1 / -1;
+    grid-template-columns: auto 1fr;
+    grid-template-rows: auto;
+    min-height: 0;
+    background: var(--bg-raise);
+  }
+
+  .city-app-text {
+    color: var(--muted);
+  }
+
+  /* Data */
+  .data {
+    background: var(--bg-raise);
+    border-block: 1px solid var(--line);
+  }
+
+  .data-grid {
+    display: grid;
+    grid-template-columns: 0.9fr 1.1fr;
+    gap: 48px clamp(40px, 6vw, 96px);
+  }
+
+  .data-grid .lead {
+    margin-top: 24px;
+  }
+
+  .table-wrap {
+    min-width: 0;
+  }
+
+  table {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 0.9375rem;
+  }
+
+  th,
+  td {
+    text-align: left;
+    vertical-align: top;
+    padding: 16px 16px 16px 0;
+    border-bottom: 1px solid var(--line);
+  }
+
+  tr:first-child th,
+  tr:first-child td {
+    border-top: 1px solid var(--line);
+  }
+
+  th {
+    color: var(--fg-strong);
+    font-weight: 540;
+    width: 30%;
+  }
+
+  td {
+    color: var(--muted);
+  }
+
+  .licence {
+    padding-right: 0;
+    text-align: right;
+    white-space: nowrap;
+    color: var(--fg);
+    font-size: 0.8125rem;
+  }
+
+  .note {
+    margin-top: 16px;
+    color: var(--muted);
+    font-size: 0.8125rem;
+  }
+
+  /* Join */
+  .join-grid {
+    display: grid;
+    grid-template-columns: 0.9fr 1.1fr;
+    gap: 48px clamp(40px, 6vw, 96px);
+    align-items: start;
+  }
+
+  .join-copy .lead {
+    margin-top: 24px;
+  }
+
+  .join-card {
+    padding: clamp(24px, 4vw, 40px);
+    border-radius: var(--radius-lg);
+    border: 1px solid var(--line-strong);
+    background: var(--bg-raise);
+    box-shadow: 0 40px 80px -40px rgb(0 0 0 / 0.9);
+  }
+
+  @media (max-width: 960px) {
+    .reason-grid,
+    .data-grid,
+    .join-grid,
+    .head {
+      grid-template-columns: 1fr;
+    }
+
+    .city-list {
+      grid-template-columns: repeat(2, 1fr);
+    }
+
+  }
+
+  @media (max-width: 640px) {
+    .city-list {
+      grid-template-columns: 1fr;
+    }
+
+    .city.app {
+      grid-template-columns: 1fr;
+    }
+
+    .city {
+      padding: 20px;
+      min-height: 0;
+    }
+
+    th {
+      width: 34%;
+    }
+
+    .licence {
+      white-space: normal;
+      max-width: 7em;
+    }
+  }
+</style>

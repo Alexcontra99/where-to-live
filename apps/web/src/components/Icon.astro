@@ -1,0 +1,68 @@
+---
+// Authored line icons, 24px grid, 1.6 stroke. One family for the whole site.
+interface Props {
+  name: 'commute' | 'rent' | 'noise' | 'near' | 'safety' | 'arrow' | 'pin' | 'phone' | 'check' | 'external';
+  size?: number;
+}
+const { name, size = 20 } = Astro.props;
+---
+
+<svg
+  width={size}
+  height={size}
+  viewBox="0 0 24 24"
+  fill="none"
+  stroke="currentColor"
+  stroke-width="1.6"
+  stroke-linecap="round"
+  stroke-linejoin="round"
+  aria-hidden="true"
+  focusable="false"
+>
+  {name === 'commute' && (
+    <>
+      <rect x="5" y="3.5" width="14" height="13" rx="3" />
+      <path d="M5 10.5h14M8.5 13.5h.01M15.5 13.5h.01M8 16.5l-2 4M16 16.5l2 4M9 6.5h6" />
+    </>
+  )}
+  {name === 'rent' && (
+    <>
+      <path d="M4 10.5 12 4l8 6.5V19a1.5 1.5 0 0 1-1.5 1.5h-13A1.5 1.5 0 0 1 4 19z" />
+      <path d="M14 11.2a2.8 2.8 0 1 0 0 4.6M9.5 12.8h4M9.5 14.6h4" />
+    </>
+  )}
+  {name === 'noise' && (
+    <>
+      <path d="M4 9.5h3.5L12 5.5v13l-4.5-4H4z" />
+      <path d="M15.5 9a4 4 0 0 1 0 6M18 6.5a7.5 7.5 0 0 1 0 11" />
+    </>
+  )}
+  {name === 'near' && (
+    <>
+      <circle cx="12" cy="12" r="8.5" />
+      <circle cx="12" cy="12" r="4.5" />
+      <circle cx="12" cy="12" r="1" fill="currentColor" />
+    </>
+  )}
+  {name === 'safety' && (
+    <>
+      <path d="M12 3.5 5 6.2v5.6c0 4.3 3 7.6 7 8.7 4-1.1 7-4.4 7-8.7V6.2z" />
+      <path d="m9 12 2.2 2.2L15.5 10" />
+    </>
+  )}
+  {name === 'arrow' && <path d="M5 12h14M13 6l6 6-6 6" />}
+  {name === 'external' && <path d="M7 17 17 7M9 7h8v8" />}
+  {name === 'pin' && (
+    <>
+      <path d="M12 21s7-6 7-11.2A7 7 0 0 0 5 9.8C5 15 12 21 12 21z" />
+      <circle cx="12" cy="9.8" r="2.4" />
+    </>
+  )}
+  {name === 'phone' && (
+    <>
+      <rect x="6.5" y="2.5" width="11" height="19" rx="2.5" />
+      <path d="M10.5 18.5h3" />
+    </>
+  )}
+  {name === 'check' && <path d="m5 12.5 4.5 4.5L19 7.5" />}
+</svg>

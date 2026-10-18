@@ -1,0 +1,21 @@
+# Cloudflare Pages project for the landing page. The Pages project must be named "where-to-live".
+# Docs: README.md
+name = "where-to-live"
+compatibility_date = "2026-10-01"
+pages_build_output_dir = "./dist"
+
+# Production. Replace database_id with the id printed by
+# `wrangler d1 create wtl-waitlist --jurisdiction eu` and commit it before the first deploy.
+[[d1_databases]]
+binding = "DB"
+database_name = "wtl-waitlist"
+database_id = "00000000-0000-0000-0000-000000000000"
+migrations_dir = "migrations"
+
+# Preview deployments (every non-production branch) write to their own database,
+# never to the real waitlist. Replace the id after `wrangler d1 create wtl-waitlist-preview`.
+[[env.preview.d1_databases]]
+binding = "DB"
+database_name = "wtl-waitlist-preview"
+database_id = "00000000-0000-0000-0000-000000000001"
+migrations_dir = "migrations"

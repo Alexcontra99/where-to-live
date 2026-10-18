@@ -1,0 +1,6 @@
+# Copy to .dev.vars (git-ignored) for `pnpm preview`.
+# Cloudflare test secret that always passes. Use 2x0000000000000000000000000000000AA to force a failure.
+TURNSTILE_SECRET=1x0000000000000000000000000000000AA
+# Leave empty locally. In production set the real hostnames (comma-separated): tokens from anywhere
+# else, or from test keys (they report example.com), are rejected.
+TURNSTILE_HOSTNAMES=

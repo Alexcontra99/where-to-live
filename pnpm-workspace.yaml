@@ -1,5 +1,8 @@
 packages:
   - apps/*
   - packages/*
+allowBuilds:
+  esbuild: true
+  workerd: true
 minimumReleaseAgeExclude:
   - prettier@3.9.10
