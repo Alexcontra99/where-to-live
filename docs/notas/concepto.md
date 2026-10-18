@@ -47,5 +47,5 @@ fecha: 2026-10-04
   - Textos mínimos en la app: fuentes en una pestaña aparte; nada de explicar la lógica (eso va en los archivos internos).
 
 ## Lo que ya existe (prueba de concepto)
-- `Proyectos/cambio_piso/notas/mapa_zonas.html`: zonas, trayectos reales de dos personas, corredor de ruido de Findel, alquiler por barrio.
-- `Proyectos/cambio_piso/herramientas/trayectos.py`: trayectos puerta a puerta con horarios oficiales (GTFS).
+- Mapa de zonas personal (fuera del repositorio): zonas, trayectos reales, corredor de ruido de Findel, alquiler por barrio.
+- Script de trayectos (fuera del repositorio): trayectos puerta a puerta con horarios oficiales (GTFS).

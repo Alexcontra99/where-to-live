@@ -347,7 +347,7 @@ Observado frente a recomendado (€/m², n):
 
 **Médicos**:
 - Ninguna fuente abierta los resuelve.
-- Recomiendo pedir el conjunto de datos al Ministerio de Sanidad (professions.medicales@ms.etat.lu), pero **después** de que Ale revise la política del empleador sobre actividades externas (hito del 11/10), porque es contactar con fuera.
+- Recomiendo pedir el conjunto de datos al Ministerio de Sanidad (professions.medicales@ms.etat.lu), pero solo con OK explícito de Ale, porque es contactar con fuera.
 - Mientras tanto: médicos de OSM con el aviso "incomplete".
 
 ## Fuentes de esta nota

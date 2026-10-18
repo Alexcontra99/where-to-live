@@ -1,7 +1,7 @@
 # App dónde vivir — reglas
 
 > Tipo: proyecto (nombre de carpeta provisional; nombre comercial pendiente)
-> Rutas relativas a `Proyectos/app_donde_vivir/` (salvo `_sistema/`, `Inbox/`, `Areas/` y `Proyectos/cambio_piso/`).
+> Rutas relativas a la raíz del repositorio.
 
 ## Objetivo
 - Meta: prototipo web de Luxemburgo probado por 10 recién llegados antes del **30/11/2026**.
@@ -15,13 +15,12 @@
 
 ## Principios del producto
 - **Filtros neutrales**: el usuario elige qué quiere cerca o lejos y a qué distancia. La app no etiqueta barrios ni colectivos ni trae filtros predefinidos por religión, origen o servicios sociales.
-- Lo personal de Ale (`Proyectos/cambio_piso/`) no se copia a la app.
+- Nada personal en el repositorio: el contexto personal de cada uno vive fuera.
 - Datos reales y verificables (horarios oficiales, mapas oficiales de ruido, alquiler publicado), con fuente visible.
 - Solo lugares que existen y están reconocidos (edificios y puntos de una fuente de datos); nunca suposiciones, como dónde se vende droga — Ale, 2026-10-04.
 
 ## Contexto
-- Nace del mapa de zonas de `Proyectos/cambio_piso/` (`notas/mapa_zonas.html` + `herramientas/trayectos.py`): es la prueba de concepto.
-- Ale: 5 h/semana, sin cadencia fija. Ideas relacionadas (incluida la app de viajes, aparcada): `Areas/Carrera/notas/ideas_startup.md`.
+- Nace de un mapa de zonas personal (trayectos reales, ruido y alquiler por barrio): es la prueba de concepto.
 
 ## Reparto
 - Claude: construye (código, datos, mapas), investiga (competencia, fuentes, licencias) y propone.
@@ -45,14 +44,10 @@
 - Publicar: `sh prototipo/build/export_web.sh` → `~/GitHub/where-to-live`. Pruébalo en limpio (escritorio y móvil, consola sin errores) antes de subirlo.
 
 ## Cómo trabajar
-- Para gustos y decisiones de producto, dale a Ale opciones para marcar; no las elijas por él (`_sistema/memoria.md`).
+- Para gustos y decisiones de producto, dale a Ale opciones para marcar; no las elijas por él.
 - Cada fuente de datos se apunta con su licencia en `docs/notas/fuentes_datos.md`; solo licencias que permitan uso comercial o con condiciones claras (p. ej. atribución de OpenStreetMap).
 - Trayectos y tiempos: siempre calculados con datos reales, nunca de cabeza.
 - Prototipo primero: lo mínimo que se pueda enseñar a un usuario.
-
-## Confidencialidad
-- Política del empleador revisada por Ale (07/10): se puede si no interfiere ni compite.
-- Nada en equipos ni cuentas del trabajo.
 
 ## Qué leer según la tarea
 | Tarea | Lee (además de este archivo) |

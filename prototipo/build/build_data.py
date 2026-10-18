@@ -19,7 +19,7 @@ from shapely.strtree import STRtree
 HERE = os.path.dirname(os.path.abspath(__file__))
 OUT = os.path.normpath(os.path.join(HERE, '..', 'data'))
 RAW = os.path.expanduser('~/.cache/nether_app/raw')
-GTFS = os.path.expanduser('~/.cache/nether_gtfs')   # compartido con Proyectos/cambio_piso/herramientas/trayectos.py
+GTFS = os.path.expanduser('~/.cache/nether_gtfs')
 REGION = (49.55, 6.03, 49.70, 6.28)                  # lat0, lon0, lat1, lon1
 STEP_KM = 0.15                                        # lado de la celda
 KX, KY = 72.1, 111.2                                  # km por grado de lon / lat a esta latitud

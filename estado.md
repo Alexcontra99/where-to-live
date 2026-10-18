@@ -16,7 +16,6 @@ estado: activo
 ## Hitos
 | Fecha | Hito | Estado |
 |---|---|---|
-| 07/10 | Ale revisa la política de actividades externas de su empleador | hecho: se puede si no interfiere ni compite |
 | 04/10 | Alcance del prototipo v0 (`docs/notas/concepto.md`) | hecho |
 | 04/10 | Fuentes de datos de Luxemburgo con licencias comprobadas (`docs/notas/fuentes_datos.md`) | hecho |
 | 15/11 | Prototipo web v0 de Luxemburgo | funcional en local y datos validados (07/10); falta publicarlo y el guion de prueba |
@@ -33,7 +32,7 @@ estado: activo
 ### Main
 1. Guion de prueba y formulario de feedback en `usuarios/guion_prueba.md`. No depende de Ale.
 2. Publicar el v0, con OK explícito de Ale justo antes.
-   - GitHub ya está conectado: `_sistema/protocolo_github.md` → "Web de la app" (GitHub Pages en `where-to-live`).
+   - GitHub ya está conectado (GitHub Pages en `where-to-live`).
    - Si no: Ale sube `~/GitHub/where-to-live` a Netlify Drop o a Cloudflare Pages.
    - Después, probar la URL publicada en escritorio y móvil. La prueba de Ale en su móvil necesita esa URL.
 3. Opcional: un enlace que guarde los filtros, para compartir.

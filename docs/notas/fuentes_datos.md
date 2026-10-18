@@ -9,10 +9,10 @@ fecha: 2026-10-06
 
 | Capa del v0 | Fuente | Licencia | Formato | Notas y límites |
 |---|---|---|---|---|
-| Transporte público | Horarios y paradas GTFS, Administration des transports publics (data.public.lu) | CC-BY | GTFS (zip) | Actualizado cada semana. Bus, tranvía y tren; sin funicular ni ascensores. También hay versión NeTEx (CC0). Ya usado en `cambio_piso`. |
+| Transporte público | Horarios y paradas GTFS, Administration des transports publics (data.public.lu) | CC-BY | GTFS (zip) | Actualizado cada semana. Bus, tranvía y tren; sin funicular ni ascensores. También hay versión NeTEx (CC0). Ya usado en la prueba de concepto. |
 | Andando y bici | Red de calles y carriles bici de OpenStreetMap | ODbL | OSM | Pendientes con el modelo del terreno (abajo). |
 | Pendientes | Modèle numérique de terrain 75 m (ACT); el zip incluye un modelo de 4 m de la ciudad | CC0 | ESRI ASCII / XYZ (18,7 MB) | Integrado el 2026-10-07: subida neta a pie (0,07 min/m) y en bici (0,10). El LiDAR 2019 (27 GB) no hace falta. |
-| Ruido aviones | Mapas estratégicos de ruido 2021, aeropuerto (Administration de l'environnement) | CC0 | GeoPackage | Contornos Lden 55-59, 60-64, 65-69, 70-74, ≥ 75 dB y Lnight. Oficiales, mejor que el corredor aproximado de `cambio_piso`. |
+| Ruido aviones | Mapas estratégicos de ruido 2021, aeropuerto (Administration de l'environnement) | CC0 | GeoPackage | Contornos Lden 55-59, 60-64, 65-69, 70-74, ≥ 75 dB y Lnight. Oficiales, mejor que el corredor aproximado de la prueba de concepto. |
 | Ruido trenes | Mapas estratégicos de ruido 2021, ferrocarril | CC0 | GeoPackage (61 MB) | Grandes líneas y ferrocarril en la aglomeración. |
 | Ruido aviones 2023 | Mapa estratégico intermedio del aeropuerto, tráfico 2023 (Administration de l'environnement; estudio de Acoustic Technologies, febrero de 2025), dentro del zip "Strategic noise maps 2023 on major airport – Documentation" | CC0 | Shapefile (Lden y Lnight) | Sustituye al de 2021 (tráfico de 2023 y método corregido). El `.prj` dice Web Mercator, pero las coordenadas son EPSG:2169. Banda en `LEVEL_1`. Ver `docs/notas/calidad_datos.md`. |
 | Ruido carreteras | Mapas estratégicos de ruido 2021, grandes carreteras y aglomeración | CC0 | GeoPackage (310 y 484 MB) | Incluye las avenidas principales de la ciudad. La aglomeración (10 municipios) cubre solo el 66 % de la zona del prototipo: ver `docs/notas/calidad_datos.md`. |

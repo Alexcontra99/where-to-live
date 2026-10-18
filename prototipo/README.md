@@ -17,7 +17,7 @@ PY=/Library/Developer/CommandLineTools/Library/Frameworks/Python3.framework/Vers
 $PY build/build_data.py
 ```
 - Necesita `shapely`, `pyproj`, `openpyxl`, `xlrd` (instalados con `$PY -m pip install --user ...`).
-- Descargas en `~/.cache/nether_app/raw` (incluye `overture_places.geojson`, bajado con `overturemaps download --bbox=6.00,49.52,6.33,49.73 -f geojson --type=place`, y `airport2023/` del zip de documentación 2023); horarios en `~/.cache/nether_gtfs` (los comparte `Proyectos/cambio_piso/herramientas/trayectos.py`; si están viejos, ejecuta antes `trayectos.py punto 49.6 6.1` para refrescarlos).
+- Descargas en `~/.cache/nether_app/raw` (incluye `overture_places.geojson`, bajado con `overturemaps download --bbox=6.00,49.52,6.33,49.73 -f geojson --type=place`, y `airport2023/` del zip de documentación 2023); horarios en `~/.cache/nether_gtfs`.
 - Fuentes y licencias: `../docs/notas/fuentes_datos.md`.
 
 ## Qué hay
